@@ -1,3 +1,4 @@
+
 <?php 
 include("../function/connection.php");
 session_start(); 
@@ -9,14 +10,17 @@ include("../function/functions.php")
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../output.css" rel="stylesheet">
     <title>Document</title>
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/home1.css">
     <link rel="stylesheet" href="../css/home2.css">
     <link rel="stylesheet" href="../css/home3.css">
     <link rel="stylesheet" href="../css/home4.css">
+    <link rel="stylesheet" href="../../styles.css">
 
-<style>
+
+  <style>
  .searchbar{
     width:auto;
  }
@@ -273,7 +277,7 @@ else{
     </div>
 
 <div class="heading" > 
-<div class="logo" style="margin-right: 10px;">Make Yourself Gorgeous And Obvious </div> 
+<div class="bg-red-500 border border-red-500" style="margin-right: 10px;">Make Yourself Gorgeous And Obvious </div> 
 <div class="searchbar"><form action="../components/search.php" method="get">
     <input type="text" name="val" placeholder="Type of clothe" ><input type="submit" value="Search" name="search">
 </form></div>
