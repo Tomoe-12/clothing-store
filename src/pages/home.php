@@ -10,29 +10,17 @@ include("../function/functions.php")
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../output.css" rel="stylesheet">
     <title>Document</title>
     <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/home1.css">
     <link rel="stylesheet" href="../css/home2.css">
     <link rel="stylesheet" href="../css/home3.css">
     <link rel="stylesheet" href="../css/home4.css">
+    <link rel="stylesheet" href="../../styles.css">
 
-    <!-- tailwindcss -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            clifford: '#da373d',
-          }
-        }
-      }
-    }
-  </script>
-    <!-- alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
-<style>
+
+  <style>
  .searchbar{
     width:auto;
  }
