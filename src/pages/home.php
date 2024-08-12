@@ -1,3 +1,4 @@
+
 <?php 
 include("../function/connection.php");
 session_start(); 
@@ -16,6 +17,21 @@ include("../function/functions.php")
     <link rel="stylesheet" href="../css/home3.css">
     <link rel="stylesheet" href="../css/home4.css">
 
+    <!-- tailwindcss -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+    <!-- alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.1/dist/cdn.min.js"></script>
 <style>
  .searchbar{
     width:auto;
@@ -273,7 +289,7 @@ else{
     </div>
 
 <div class="heading" > 
-<div class="logo" style="margin-right: 10px;">Make Yourself Gorgeous And Obvious </div> 
+<div class="bg-red-500 border border-red-500" style="margin-right: 10px;">Make Yourself Gorgeous And Obvious </div> 
 <div class="searchbar"><form action="../components/search.php" method="get">
     <input type="text" name="val" placeholder="Type of clothe" ><input type="submit" value="Search" name="search">
 </form></div>
