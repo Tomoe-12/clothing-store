@@ -26,7 +26,7 @@ $key=false;
 
 <body>
 
-    <div class="h-screen flex justify-center items-center">
+    <div class="min-h-screen flex justify-center items-center">
         <?php 
    $item_id=$_GET["item_id"];
   
