@@ -1,0 +1,28 @@
+
+#success {
+
+font-size: 16px;
+font-weight: bold;
+display: none;
+}
+
+#unsuccess {
+
+font-size: 16px;
+font-weight: bold;
+display: none;
+}
+
+#insufficient {
+
+font-size: 16px;
+font-weight: bold;
+display: none;
+}
+
+#zero {
+
+font-size: 16px;
+font-weight: bold;
+display: none;
+}
