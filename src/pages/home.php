@@ -12,8 +12,8 @@ include("../function/functions.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!--     
-    <link rel="stylesheet" href="../css/home.css">
+        
+    <!-- <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/home1.css">
     <link rel="stylesheet" href="../css/home2.css">
     <link rel="stylesheet" href="../css/home3.css">
@@ -24,17 +24,18 @@ include("../function/functions.php")
     <!-- alpine -->
     <script src="../../public/script.js"></script>
 
-    <link href="../css/card.css" rel="stylesheet">
 
+<style>
+    nav{
+        z-index: 99 !important;
 
+    } 
+</style>
 
 
 </head>
 
 <body>
-
-
-
     <nav x-data="{ isOpen: false }" class=" bg-white shadow sticky">
         <div class="container px-6 py-4 mx-auto">
             <div class="lg:flex lg:items-center lg:justify-between">
@@ -62,8 +63,8 @@ include("../function/functions.php")
                 </div>
 
                 <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-                <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 ' : 'opacity-0 -translate-x-full']"
-                    class="absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
+                <div x-cloak :class="[isOpen ? 'translate-x-0 opacity-100 shadow-md' : 'opacity-0 -translate-x-full']"
+                    class="absolute   inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
 
                     <div class="relative mt-4  md:mt-0 ">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -131,7 +132,7 @@ if(!empty($result)&& $result->num_rows>0){
  if($row=$result->fetch_assoc()){?>
         <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" alt=""
             style="max-height:200px;max-width:250px;border-radius:50%;">
-        <form action="./home.php" method="get">
+        <form action="./home.php"  method="get">
 
             <label for=""> <input type="text" value="<?php echo $row["cus_id"] ?>" name="user_id"
                     style="display:none;"></label><br>

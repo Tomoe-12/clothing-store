@@ -42,3 +42,37 @@ $con->close();
 ?>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post"> -->
+     <!-- <a href="../pages/home.php">Back</a>
+    <div class="signupbox">
+
+        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post"> -->
+    <!-- <h1>Sign Up</h1>
+    <input type="text" name="username" placeholder="User name" required>
+    <input type="email" name="email" placeholder="E-mail" required>
+    <input type="password" name="pass" placeholder="Password" maxlength="10" required>
+    <input type="password" name="repass" placeholder="Confirm Password" maxlength="10" required>
+    <input type="text" name="ph_no" placeholder="Contact Number" required>
+    <input type="textarea" name="address" placeholder="Address" required>
+    <input type="submit" name="Login" value="Sign Up">
+    <div id="success" style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:green;border-radius:10px;"> Sign Up Successfully</div>
+<div id="unsuccess" style="margin-top:10px;text-align:center; background-color:white;padding:10px; color:red;border-radius:10px;">Already have an account .Please Login ! </div>
+<div id="pass" style="margin-top:10px;text-align:center; background-color:white;padding:10px; color:red;border-radius:10px;"> Password and confirm password must be the same!</div>
+<div id="complete" style="margin-top:10px;text-align:center; background-color:white;padding:10px; color:red;border-radius:10px;"> Please fill the form completely!</div> -->
+
+    <!--
+  Heads up! 👋
+
+  Plugins:
+    - @tailwindcss/forms
+-->
