@@ -1,5 +1,5 @@
 <?php 
-include("connection.php");
+include("../function/connection.php");
 session_start(); 
 $user_id=$_SESSION["user_id"]; 
 
@@ -65,7 +65,7 @@ $user_id=$_SESSION["user_id"];
     </style>
 </head>
 <body>
-    <a href="home.php">Back</a>
+    <a href="../pages/home.php">Back</a>
     <?php
     ob_start();
 $result=$con->query("SELECT * FROM customers  WHERE cus_id='$user_id'");

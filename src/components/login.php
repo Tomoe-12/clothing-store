@@ -1,6 +1,7 @@
 <?php 
 include("../function/connection.php");
-session_start(); 
+session_start();
+
    
 $key=true;
  $key2=true;
@@ -31,7 +32,7 @@ $key=true;
 
 
     <!-- <a href="../pages/home.php">Back</a>
-    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" id="form" class="formlog" method="post">
+    <form action="<//?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>//" id="form" class="formlog" method="post">
         <h1 style="color:black;font-size:35px; text-align:center;margin-top:0px;">Login </h1>
         <input type="email" name="email" placeholder="E-mail" required><br>
         <input type="password" name="pass" placeholder="Password" maxlength="10" required><br>
@@ -58,14 +59,14 @@ $key=true;
 
             <div
                 class="bg-white mt-16 rounded-xl sm:px-6 px-4 py-8 max-w-md w-full h-max shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] max-lg:mx-auto">
-                <form x-data="{show: false, email: '',password: '',toggle: '0',}">
+                <form x-data="{show: false, email: '',password: '',toggle: '0',}" action="./loginvalidate.php" method="post">
 
                     <div class="mb-8">
                         <h3 class="text-4xl font-extrabold text-gray-800">Sign in</h3>
                     </div>
 
                     <div>
-                        <label class="text-gray-800 text-base font-medium mb-2 block">Email</label>
+                        <label class="text-gray-800 text-base font-medium mb-2 block" >Email</label>
                         <div class="relative flex items-center ">
                             <input name="email" type="email" required
                                 class="w-full text-base text-gray-800 border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
@@ -133,13 +134,13 @@ $key=true;
 
 
                     <div class="mt-8">
-                        <button type="button"
+                        <button type="submit"
                             class="w-full shadow-xl py-3 px-6 text-base font-semibold rounded-md text-white bg-primary hover:bg-blue-700 focus:outline-none">
-                            Log in
+                     Log in
                         </button>
                     </div>
                     <p class="text-sm mt-8 text-center text-gray-800">Don't have an account <a
-                            href="./signup.php"
+                            href="./signup.php";
                             class="text-primary font-semibold hover:underline ml-1 whitespace-nowrap">Register here</a>
                     </p>
                 </form>
@@ -147,14 +148,20 @@ $key=true;
         </div>
     </div>
 
-    <?php 
+    
+</body>
+
+</html>
+<?php 
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
+   ob_start();
 $email=filter_input(INPUT_POST,"email",FILTER_SANITIZE_SPECIAL_CHARS);
-$pass=filter_input(INPUT_POST,"pass",FILTER_SANITIZE_SPECIAL_CHARS);
+$pass=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);
+ 
 
 if($email=="admin@gmail.com" && $pass =="admin123"){
-    header("Location:itemlist.php");
+    header("Location:./itemlist.php");
 } 
 else{  
      $result=$con->query("SELECT * FROM customers");
@@ -162,12 +169,16 @@ else{
         while($row=$result->fetch_assoc()){
              if($row["email"]==$email && password_verify($pass,$row["pass"])){
                 $_SESSION["user_id"]=$row["cus_id"];
+                
                 $key=false; 
+               
                   ?>
     <script>
     document.getElementById("success").style.display = "block";
     </script>
     <?php
+    
+     ob_end_flush();
                 
              }  
 
@@ -203,7 +214,4 @@ else{
 }   
 }
 
-?>
-</body>
-
-</html>
+ ?>

@@ -80,6 +80,7 @@ include("../function/functions.php")
                             name='val'
                                 class="w-full lg:w-96 py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-lg  focus:border-blue-400  focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
                                 placeholder="Search">
+                                
                         </form>
                     </div>
 
@@ -92,18 +93,51 @@ include("../function/functions.php")
                         <a href="./Lady.php"
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">lady's
                             collections</a>
-                        <a href="../components/login.php"
+                           
+                            <?php
+                            
+                             if(empty($_SESSION["user_id"])){ ?>
+                            <a href="../components/login.php" 
                             class="px-3 py-2 mx-3 mt-2 text-primary font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">Login</a>
                         <a href="../components/signup.php"
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold  transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">Sign
                             up</a>
+                        <?php    }
+                            
+                            ?>
+                       
                     </div>
 
-                    <div class="flex items-center mt-4 lg:mt-0">
+                  <?php  
+                 
+                  if(isset($_SESSION["user_id"])){
+                    $user_id=$_SESSION["user_id"];
+                 if(profileimgvalidate($user_id)) {
+
+                    
+$result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
+if(!empty($result)&& $result->num_rows>0){
+ if($row=$result->fetch_assoc()){?>
+ <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
                             <button type="button" class="flex items-center focus:outline-none"
                                 aria-label="toggle profile dropdown">
-                                <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                                <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full"> 
+        <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" 
+ class="object-cover w-full h-full" alt="avatar">
+            </div>
+
+<h3 class="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+</button>
+</div>
+</div>
+              <?php   }}} 
+                 else{ ?>
+                 <div class="flex items-center mt-4 lg:mt-0">
+                        <div class=''>
+                            <button type="button" class="flex items-center focus:outline-none"
+                                aria-label="toggle profile dropdown">
+                                <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full"> 
                                     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                                         class="object-cover w-full h-full" alt="avatar">
                                 </div>
@@ -112,6 +146,10 @@ include("../function/functions.php")
                             </button>
                         </div>
                     </div>
+                   
+             <?php   } }?>
+                    
+
                 </div>
 
 
@@ -127,7 +165,8 @@ include("../function/functions.php")
 ob_start();
  if(!empty($_SESSION["user_id"])){
 $user_id=$_SESSION["user_id"];
-$result=$con->query("SELECT * FROM customers  WHERE cus_id='$user_id'");
+
+$result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
 if(!empty($result)&& $result->num_rows>0){
  if($row=$result->fetch_assoc()){?>
         <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" alt=""
