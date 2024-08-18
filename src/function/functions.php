@@ -18,4 +18,17 @@ function update($a,$b){
     include("connection.php");
 $con->query("UPDATE closet set instock='$a' where clo_id='$b'");    
 } 
+function profileimgvalidate($user_id){
+    include("connection.php");
+$result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
+if(!empty($result)&& $result->num_rows>0){
+ if($row=$result->fetch_assoc()){
+        if(empty($row["per_img"])){
+return false;
+        }
+        if(isset($row["per_img"])){
+            return true;
+        }
+  }}
+}
 ?>

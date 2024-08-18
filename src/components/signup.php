@@ -151,7 +151,7 @@ session_start();
                                 <label class="block text-base font-medium text-gray-800" for="email">Password</label>
                                 <input
                                     class="mt-1 w-full rounded-md border-gray-300 bg-white text-base text-gray-800 shadow-sm"
-                                    placeholder="Password" type="text" id="email" name='pass' />
+                                    placeholder="Password" type="password" id="email" name='pass' />
                             </div>
                         </div>
                         <div class="col-span-6 sm:col-span-3">
@@ -172,7 +172,7 @@ session_start();
                         </div>
 
                         <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                            <button
+                            <button type="submit"
                                 class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-base font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
                                 Create an account
                             </button>

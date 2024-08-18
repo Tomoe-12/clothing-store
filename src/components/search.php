@@ -338,12 +338,12 @@ else{
     <div id="searchitem" style="margin-top: 40px;">
         <div class="container">
             <?php
-if(isset($_GET["search"])){
+
    
     $val=$_GET["val"]; 
    
     
-   $result=$con->query("SELECT * FROM closet WHERE type='$val' order by price");
+   $result=$con->query("SELECT * FROM closet  where type='$val' order by price");
    if(!empty($result)&& $result->num_rows>0){
     while($row=$result->fetch_assoc()){ 
         
@@ -362,7 +362,7 @@ if(isset($_GET["search"])){
   
     }
    
-   }}
+   }
    else{
     echo " ";
    } ?>
