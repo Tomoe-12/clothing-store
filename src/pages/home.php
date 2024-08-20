@@ -2,7 +2,6 @@
 include("../function/connection.php");
 session_start(); 
 include("../function/functions.php")
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +11,16 @@ include("../function/functions.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-        
+
     <!-- <link rel="stylesheet" href="../css/home.css">
     <link rel="stylesheet" href="../css/home1.css">
     <link rel="stylesheet" href="../css/home2.css">
     <link rel="stylesheet" href="../css/home3.css">
     <link rel="stylesheet" href="../css/home4.css"> -->
+
+    <!-- flowbite -->
+    <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
+    <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
 
     <!-- tailwind -->
     <link href="../output.css" rel="stylesheet">
@@ -25,17 +28,17 @@ include("../function/functions.php")
     <script src="../../public/script.js"></script>
 
 
-<style>
-    nav{
+    <style>
+    #drawer-right-example {
         z-index: 99 !important;
-
-    } 
-</style>
+    }
+    </style>
 
 
 </head>
 
 <body>
+
     <nav x-data="{ isOpen: false }" class=" bg-white shadow sticky">
         <div class="container px-6 py-4 mx-auto">
             <div class="lg:flex lg:items-center lg:justify-between">
@@ -45,7 +48,21 @@ include("../function/functions.php")
                     </a>
 
                     <!-- Mobile menu button -->
-                    <div class="flex lg:hidden">
+                    <div class="flex lg:hidden gap-5">
+                        <div class="flex justify-center md:block">
+                            <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
+                                href="./Cart.php">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+
+                                <span
+                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+                            </a>
+                        </div>
                         <button x-cloak @click="isOpen = !isOpen" type="button"
                             class="text-gray-500  hover:text-gray-600  focus:outline-none focus:text-gray-600 "
                             aria-label="toggle menu">
@@ -76,11 +93,10 @@ include("../function/functions.php")
                             </svg>
                         </span>
                         <form action="../components/search.php" method="get">
-                            <input type="text" 
-                            name='val'
+                            <input type="text" name='val'
                                 class="w-full lg:w-96 py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-lg  focus:border-blue-400  focus:outline-none focus:ring focus:ring-opacity-40 focus:ring-blue-300"
                                 placeholder="Search">
-                                
+
                         </form>
                     </div>
 
@@ -93,22 +109,43 @@ include("../function/functions.php")
                         <a href="./Lady.php"
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">lady's
                             collections</a>
-                           
-                            <?php
+
+                        <?php if(!empty($_SESSION['user_id'])){ ?>
+                        <div class="lg:flex justify-center hidden">
+                            <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
+                                href="./Cart.php">
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+
+                                <span
+                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+                            </a>
+                        </div>
+                        <?php } ?>
+
+
+                        <?php
                             
                              if(empty($_SESSION["user_id"])){ ?>
-                            <a href="../components/login.php" 
+                        <a href="../components/login.php"
                             class="px-3 py-2 mx-3 mt-2 text-primary font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">Login</a>
                         <a href="../components/signup.php"
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold  transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">Sign
                             up</a>
+
+
                         <?php    }
                             
                             ?>
-                       
+
+
                     </div>
 
-                  <?php  
+                    <?php  
                  
                   if(isset($_SESSION["user_id"])){
                     $user_id=$_SESSION["user_id"];
@@ -118,26 +155,27 @@ include("../function/functions.php")
 $result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
 if(!empty($result)&& $result->num_rows>0){
  if($row=$result->fetch_assoc()){?>
- <div class="flex items-center mt-4 lg:mt-0">
+                    <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
                             <button type="button" class="flex items-center focus:outline-none"
                                 aria-label="toggle profile dropdown">
-                                <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full"> 
-        <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" 
- class="object-cover w-full h-full" alt="avatar">
-            </div>
+                                <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
+                                    <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>"
+                                        class="object-cover w-full h-full" alt="avatar">
+                                </div>
 
-<h3 class="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
-</button>
-</div>
-</div>
-              <?php   }}} 
+                                <h3 class="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+                            </button>
+                        </div>
+                    </div>
+
+                    <?php   }}} 
                  else{ ?>
-                 <div class="flex items-center mt-4 lg:mt-0">
+                    <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
                             <button type="button" class="flex items-center focus:outline-none"
                                 aria-label="toggle profile dropdown">
-                                <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full"> 
+                                <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                                     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                                         class="object-cover w-full h-full" alt="avatar">
                                 </div>
@@ -146,9 +184,9 @@ if(!empty($result)&& $result->num_rows>0){
                             </button>
                         </div>
                     </div>
-                   
-             <?php   } }?>
-                    
+
+                    <?php   } }?>
+
 
                 </div>
 
@@ -171,7 +209,7 @@ if(!empty($result)&& $result->num_rows>0){
  if($row=$result->fetch_assoc()){?>
         <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" alt=""
             style="max-height:200px;max-width:250px;border-radius:50%;">
-        <form action="./home.php"  method="get">
+        <form action="./home.php" method="get">
 
             <label for=""> <input type="text" value="<?php echo $row["cus_id"] ?>" name="user_id"
                     style="display:none;"></label><br>
@@ -212,24 +250,14 @@ if(!empty($result)&& $result->num_rows>0){
 header("Location:./home.php");
 ob_end_flush();
         }catch(mysqli_sql_exception){
-       
-
      }
- 
- 
 }  
 
 }}} 
 else{
     echo " ";
 }
-
-
-
-
 ?>
-
-
 
     </div>
     <div id="orhis">
