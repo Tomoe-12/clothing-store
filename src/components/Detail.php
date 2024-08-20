@@ -121,14 +121,18 @@ $key=false;
                         <div class="mt-8">
                             <h3 class="text-xl font-bold text-gray-800">Choose a Size</h3>
                             <div class="flex flex-wrap gap-4 mt-4">
-                                <button type="button"
-                                id="size-sm"  class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"  data-size="SM">SM</button>
-                                <button type="button"
-                                id="size-md"   class="w-10 h-10 border hover:border-blue-700  border-blue-600 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0" data-size="MD">MD</button>
-                                <button type="button"
-                                id="size-lg"    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0" data-size="LG">LG</button>
-                                <button type="button"
-                                id="size-xl"   class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0" data-size="XL">XL</button>
+                                <button type="button" id="size-sm"
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="SM">SM</button>
+                                <button type="button" id="size-md"
+                                    class="w-10 h-10 border hover:border-blue-700  border-blue-600 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="MD">MD</button>
+                                <button type="button" id="size-lg"
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="LG">LG</button>
+                                <button type="button" id="size-xl"
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="XL">XL</button>
                             </div>
                         </div>
                         <div class="mt-4 " max-w-xs mx-auto">
@@ -165,10 +169,11 @@ $key=false;
                         <div class=" gap-4 mt-10">
                             <input type="submit" value="Order Now" name="order"
                                 class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-blue-700 text-white text-sm font-semibold rounded-lg">
-                            <a href='../pages/home.php'
+                            <btton type='button'
+                             onclick="location.href='../pages/home.php'"
                                 class="min-w-[200px] px-4 py-3 text-center border border-blue-600 bg-transparent  text-primary text-sm font-bold rounded-lg cursor-pointer">
                                 Cancel
-                            </a>
+                                </button>
                         </div>
 
                         <div class="mt-8">
@@ -317,7 +322,7 @@ $key=false;
             e.target.classList.remove('border-gray-200');
         });
     });
-</script>
+    </script>
 </body>
 
 </html>
