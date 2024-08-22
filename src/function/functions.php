@@ -32,6 +32,26 @@ return false;
   }}
 }
 
+
+
+function sizeid(){
+    include("connection.php");
+    $result=$con->query("SELECT * FROM closet order by clo_id desc");
+    if(!empty($result)&& $result->num_rows>0){
+     if($row=$result->fetch_assoc()){ 
+  return $row["clo_id"];
+  
+
+     }}
+
+}
+
+function size($small,$medium,$large,$XL,$XXL){ 
+    include("connection.php");
+    $id=sizeid();
+$con->query("INSERT INTO size (clo_id,Small,Medium,Large,XL,XXL) VALUES ('$id','$small','$medium','$large','$XL','$XXL')");    
+} 
+
 function sizeupdate($xxx,$left,$clo_id){
     include("connection.php");
 $con->query("UPDATE size set $xxx=$left  where clo_Id=$clo_id");  
@@ -76,7 +96,7 @@ sizeupdate($xxx,$left,$row["clo_id"]);
 function sizequantity($xxx,$clo_id){ 
     include("connection.php");
 
-    $result=$con->query("SELECT $xxx,clo_id from size  where clo_Id=$clo_id");
+    $result=$con->query("SELECT $xxx,clo_id from size  where clo_Id='$clo_id'");
     if(!empty($result)&& $result->num_rows>0){
      if($row=$result->fetch_assoc()){ 
    return $row[$xxx];
@@ -143,4 +163,36 @@ function deletcart($user_id){
          if($row=$result->fetch_assoc()){
    return $row["user_name"];
     }}}
+    function sizeout($size,$clo_id){
+        include("connection.php");
+   
+        $result=$con->query("SELECT $size  from size  where clo_id=$clo_id");
+        if(!empty($result)&& $result->num_rows>0){
+        
+         if($row=$result->fetch_assoc()){
+   return $row[$size];
+    }}  
+    }
+    function profileout($content,$cus_id){
+        include("connection.php");
+   
+        $result=$con->query("SELECT $content  from customers  where cus_id=$cus_id");
+        if(!empty($result)&& $result->num_rows>0){
+        
+         if($row=$result->fetch_assoc()){
+   return $row[$content];
+    }}  
+    }
+    
+    function deletecloset($clo_Id){
+        include("connection.php");
+        $con->query("DELETE FROM closet where clo_id='$clo_Id'");
+
+    }
+
+    function deletesize($clo_Id){
+        include("connection.php");
+        $con->query("DELETE FROM size where clo_id='$clo_Id'");
+
+    }
 ?>

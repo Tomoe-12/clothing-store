@@ -232,10 +232,12 @@ document.getElementById("unsuccess").style.display = "block";
                 try{
                   $hash=password_hash($pass,PASSWORD_DEFAULT)  ;
                 $con->query("INSERT INTO customers (user_name,email,pass,ph_no,address) VALUES ('$username','$email','$hash','$ph_no','$address')");
-            
+               $result=true;
                ?>
 <script>
-document.getElementById("success").style.display = "block";
+if(<?php  echo $result ?>){
+    alert("Sign Up Successfully!");
+} 
 </script>
 <?php
             }catch(mysqli_sql_exception){

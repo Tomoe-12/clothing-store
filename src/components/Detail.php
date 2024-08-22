@@ -20,7 +20,9 @@ $key=false;
     <link href="../output.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/details.css">
     <style>
-
+#size{
+    display:none;
+}
     </style>
 </head>
 
@@ -122,26 +124,49 @@ $key=false;
                         <div class="mt-8">
                             <h3 class="text-xl font-bold text-gray-800">Choose a Size</h3>
                             <div class="flex flex-wrap gap-4 mt-4">
-                                <button type="button" id="size-sm"
+                                <?php 
+                               $small= sizeout("Small",$row["clo_id"]);
+                               $medium= sizeout("Medium",$row["clo_id"]);
+                               $large= sizeout("Large",$row["clo_id"]);
+                               $XL= sizeout("XL",$row["clo_id"]);
+                               $XXL= sizeout("XXL",$row["clo_id"]);
+                               if($small>0){ ?>
+                               <button type="button" id="size-sm"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="SM"><label for="small" style="padding:100%;">SM</label></button>
+                            <?php   }
+                               
+                       if($medium>0) {  ?>
                                 <button type="button" id="size-md"
                                     class="w-10 h-10 border hover:border-blue-700  border-blue-600 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="MD"><label for="medium" style="padding:100%;">MD</label></button>
+                    <?php   }   
+                    if($large>0)   { ?>
                                 <button type="button" id="size-lg"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="LG"><label for="large" style="padding:100%;">LG</label></button>
+                <?php    } 
+                if($XL>0){ ?>
                                 <button type="button" id="size-xl"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XL"><label for="XL" style="padding:100%;">XL</label></button>
-                                    <button type="button" id="size-xxl"
+          <?Php      } 
+          if($XXL>0){ ?>
+                            <button type="button" id="size-xxl"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XL"><label for="XXL" style="padding:100%;">XXL</label></button>
+        <?php  }
+                ?>
+                              
+                               
+                              
+                              
+                                    
                                     <div class="radio" style="visibility:hidden;"><input type="radio" id="small" value="small" name="size">
-                                    <input type="radio" id="medium" value="medium" name="size">
-                                    <input type="radio" id="large" value="large" name="size">
-                                    <input type="radio" id="XL" value="XL" name="size">
-                                    <input type="radio" id="XXL" value="XXL" name="size">
+                                    <input type="radio" id="medium" value="medium" name="size" >
+                                    <input type="radio" id="large" value="large" name="size" >
+                                    <input type="radio" id="XL" value="XL" name="size" >
+                                    <input type="radio" id="XXL" value="XXL" name="size" >
                                     </div>
 
                                     
@@ -261,9 +286,8 @@ $key=false;
     <?php
         } 
         else {
-
             $size=filter_input(INPUT_POST,"size",FILTER_SANITIZE_SPECIAL_CHARS);
-            
+                if(isset($size)){
             $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);
             echo $size;
             echo $quantity;
@@ -350,7 +374,14 @@ $key=false;
         }
             
         }
-    }} ?>
+    }
+    else{ ?>
+    <script>
+    document.getElementById("size").style.display = "block";
+    </script>
+    <?php
+
+    }}} ?>
 
     <script>
     const sizeButtons = document.querySelectorAll('[data-size]');

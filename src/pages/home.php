@@ -52,7 +52,7 @@ include("../function/functions.php")
                         <div class="flex justify-center md:block">
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -60,18 +60,19 @@ include("../function/functions.php")
                                 </svg>
 
                                 <span
-                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+                                    class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
+                                    style="font-size : 11px; top:-30%; right: -40%;">66</span>
                             </a>
                         </div>
                         <button x-cloak @click="isOpen = !isOpen" type="button"
                             class="text-gray-500  hover:text-gray-600  focus:outline-none focus:text-gray-600 "
                             aria-label="toggle menu">
-                            <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                            <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
                             </svg>
 
-                            <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                            <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -115,7 +116,7 @@ include("../function/functions.php")
                         <div class="lg:flex justify-center hidden">
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -123,7 +124,10 @@ include("../function/functions.php")
                                 </svg>
 
                                 <span
-                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full" ><?php echo $count?></span>
+
+                                    class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
+                                    style="font-size : 11px; top :-30%; right : -40%;"><?php  echo $count?></span>
+
                             </a>
                         </div>
                         <?php } ?>
@@ -142,8 +146,6 @@ include("../function/functions.php")
                         <?php    }
                             
                             ?>
-
-
                     </div>
 
                     <?php  
@@ -158,7 +160,7 @@ if(!empty($result)&& $result->num_rows>0){
  if($row=$result->fetch_assoc()){?>
                     <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
-                            <button type="button" class="flex items-center focus:outline-none"
+                            <button onclick="location.href='./profile.php'" type="button" class="flex items-center focus:outline-none"
                                 aria-label="toggle profile dropdown">
                                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                                     <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>"
@@ -195,197 +197,6 @@ if(!empty($result)&& $result->num_rows>0){
             </div>
         </div>
     </nav>
-
-    <div class="account" id="accountcontent">
-        <button id="closebtn"> &times;</button>
-
-        <?php
-
-ob_start();
- if(!empty($_SESSION["user_id"])){
-$user_id=$_SESSION["user_id"];
-
-$result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
-if(!empty($result)&& $result->num_rows>0){
- if($row=$result->fetch_assoc()){?>
-        <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" alt=""
-            style="max-height:200px;max-width:250px;border-radius:50%;">
-        <form action="./home.php" method="get">
-
-            <label for=""> <input type="text" value="<?php echo $row["cus_id"] ?>" name="user_id"
-                    style="display:none;"></label><br>
-
-            <label for=""> <input type="text" value="<?php echo $row["user_name"] ?>" name="user_name"
-                    style="border:none;font-size:large;"> <br>Tap to change the username </label><br>
-            <hr>
-            <label for=""> <input type="text" value="<?php echo $row["address"] ?>" name="address"
-                    style="border:none; font-size:large;"> <br> Tap to change the address </label><br>
-            <hr>
-            <label for=""> <input type="text" value="<?php echo $row["ph_no"] ?>" name="connum"
-                    style="border:none; font-size:large;"> <br>Tap to change the contact number </label><br>
-            <hr>
-            <input type="submit" style="width:30%;" id="save" value="Save" name="save">
-            <a href="../components/edit.php" id="edit"
-                style=" width:40%;background-color: rgb(63, 202, 63);color:white;font-size:20px;padding:10px;text-decoration:none;font-weight:bold;border-radius:10px;">
-                Edit profile </a>
-
-        </form>
-        <form action="../components/logout.php" method="post">
-            <input id="logout"
-                style=" width:70%; margin-top:20px;background-color: rgba(55, 120, 232, 0.885);color:white;font-size:20px;padding:10px;text-decoration:none;font-weight:bold;border-radius:10px;border:none;"
-                type="submit" value="Logout" name="Logout">
-        </form>
-
-
-
-        <?php     
-
- if(isset($_GET["save"])){
-    
-    $user_id=$_GET["user_id"];
-    $user_name=$_GET["user_name"];
-    $address=$_GET["address"];
-    $ph_no=$_GET["connum"];
-     try{            
-         $con->query("UPDATE customers SET user_name='$user_name', address='$address' , ph_no='$ph_no' WHERE cus_id='$user_id'");
-header("Location:./home.php");
-ob_end_flush();
-        }catch(mysqli_sql_exception){
-     }
-}  
-
-}}} 
-else{
-    echo " ";
-}
-?>
-
-    </div>
-    <div id="orhis">
-        <button id="orclobtn"> &times;</button>
-        <table>
-            <tr style="background-color: darkcyan;">
-                <th style="width:5%;padding:8px;border-radius:8px ;color:white;">Image</th>
-                <th style="width:5%; padding:8px; border-radius:8px ;color:white;">Type</th>
-                <th style="width:5%;padding:8px; border-radius:8px ;color:white;">Size</th>
-                <th style="width:5%; padding:8px; border-radius:8px ;color:white;">Price</th>
-                <th style="width:5%; padding:8px; border-radius:8px ;color:white;">Quantity</th>
-                <th style="width:5%;padding:8px; border-radius:8px ;color:white;">Status</th>
-                <th style="width:10%; padding:8px; border-radius:8px ;color:white;">Date&Time</th>
-            </tr>
-            <?php  
-    if(!empty($_SESSION["user_id"])){
-        $user_id=$_SESSION["user_id"];
-       
-        $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id WHERE orderhistory.cus_id='$user_id' ");
-        if(!empty($result)&& $result->num_rows>0){
-           while($row=$result->fetch_assoc()){ ?>
-            <tr style="background-color:white;font-weight:bold;">
-
-
-                <td style="padding: 0px;margin:0px"> <img
-                        src="data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>" alt=""
-                        style="height:50px;width:70px;">
-                </td>
-                <td style="width:5%;padding:8px; border-radius:8px ;"><?php echo $row["type"] ?></td>
-                <td style="width:5%;padding:8px; border-radius:8px ;"><?php echo $row["size"] ?></td>
-                <td style="width:5%;padding:8px; border-radius:8px ;"><?php echo $row["price"] ?></td>
-                <td style="width:5%;padding:8px; border-radius:8px ;"><?php echo $row["quantity"] ?></td>
-                <?php
-                switch($row["admindec"]){ 
-                    case"Pending":?><td
-                    style="width:5%;padding:8px; border-radius:8px ;background-color: rgba(55, 120, 232, 0.885);color:white;">
-                    <?php echo $row["admindec"] ?></td><?php ;break; 
-                    case"Accept":?><td
-                    style="width:5%;padding:8px; border-radius:8px ; background-color: rgb(63, 202, 63);color:white;">
-                    <?php echo $row["admindec"] ?></td><?php ;break;
-                    case"Cancel":?><td
-                    style="width:5%;padding:8px; border-radius:8px ; background-color: rgb(228, 77, 77);color:white;">
-                    <?php echo $row["admindec"] ?></td><?php ;break;   
-                }
-
-                 
-                ?>
-                <td style="width:10%;padding:8px; border-radius:8px ;"><?php echo $row["or_date"] ?></td>
-                <td class="action" style="width:5%;padding:8px; border-radius:8px ;background-color:red;">
-                    <form action="./home.php" method="get">
-                        <input style="display:none;" type="text" name="orid" value="<?php echo $row["his_id"] ?>">
-                        <input style="display:none;" type="text" name="cus_id" value="<?php echo $row["cus_id"] ?>">
-                        <input style="display:none;" type="text" name="clo_id" value="<?php echo $row["clo_id"] ?>">
-                        <input style="display:none;" type="text" name="quantity" value="<?php echo $row["quantity"] ?>">
-                        <input style="display:none;" type="text" name="instock" value="<?php echo $row["instock"] ?>">
-
-                        <input style="border:none;font-size:15px;font-weight:bold;color:white;background-color:red;"
-                            type="submit" name="cancel" value="Cancel">
-                    </form>
-                </td>
-            </tr>
-            <?php
-            }}}
-            else{
-                echo" ";
-            }
-        
-        ?>
-            <?php
-        if(isset($_GET["cancel"])){
-            ob_start();
-            $orid=$_GET["orid"];
-            $user_id=$_GET["cus_id"];
-            $clo_id=$_GET["clo_id"];
-            $quantity=$_GET["quantity"];
-            $instock=$_GET["instock"];
-            $upinstock=$instock+$quantity;
-            try{
-                $con->query("DELETE FROM orderhistory WHERE his_id='$orid'");
-                update($upinstock,$clo_id);
-               header("Location:./home.php");
-               ob_end_flush();
-                   
-            }catch(mysqli_sql_exception){
-                echo"Fail to Delete";
-            }
-        }
-        ?>
-        </table>
-
-    </div>
-
-    <div class="heading">
-        <div class="bg-red-500 border border-red-500" style="margin-right: 10px;">Make Yourself Gorgeous And Obvious
-        </div>
-        <div class="searchbar">
-            <form action="../components/search.php" method="get">
-                <input type="text" name="val" placeholder="Type of clothes">
-                <input type="submit" value="Search" name="search">
-            </form>
-        </div>
-        <div class="options">
-
-
-
-            <button id="orhisbtn">Manage Orders</button>
-            <button id="login" class="loginbtn"><a href="../components/login.php">Login</a></button>
-            <button id="Sign Up" id="searchbtn"><a href="../components/signup.php">Sign Up</a></button>
-            <button id="account">My Account</button>
-        </div>
-    </div>
-
-    <div class="categories">
-        <a href="./home.php">
-            <div class="cat">All</div>
-        </a>
-        <a href="./Men.php">
-            <div class="cat">Men's Collections</div>
-        </a>
-        <a href="./Lady.php">
-            <div class="cat">Lady's Collections</div>
-        </a>
-    </div>
-
-
-
-
     <div id="all" class="container px-10 md:px-0 mx-auto " style="margin-top:40px;">
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
@@ -416,9 +227,9 @@ else{
                     <a href="../components/Detail.php?item_id=<?php  echo $row["clo_id"]; ?>"
                         class="flex items-center justify-center rounded-md bg-primary  px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
+                        stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg> -->
                         <svg class="mr-2 h-6 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"
                             width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">

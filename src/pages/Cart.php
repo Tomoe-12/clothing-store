@@ -1,7 +1,22 @@
 <?php 
 include("../function/connection.php");
 session_start(); 
-include("../function/functions.php")
+include("../function/functions.php");
+
+if(empty( $_SESSION["res"])){
+    echo"";
+}
+if(isset($_SESSION["res"])){ 
+    $res=true;
+    $_SESSION["res"]=null;
+    ?>
+<script>
+    if(<?php echo $res?>){
+        alert("Order all items Successfully!");
+    }
+</script>
+<?php
+}
 ?>
 
 
@@ -32,7 +47,6 @@ include("../function/functions.php")
 
 </head>
 
-
 <body>
     <div class='w-full h-36 flex justify-center items-center  mt-10'>
         <h1 class="text-3xl font-bold text-gray-800 text-center">Shopping Cart</h1>
@@ -47,6 +61,8 @@ include("../function/functions.php")
                 <!-- items box  -->
                 <div class="md:col-span-2 space-y-4  h-full overflow-scroll">
                 <?php  
+               
+                
     if(!empty($_SESSION["user_id"])){
         $user_id=$_SESSION["user_id"];
        
@@ -240,6 +256,7 @@ include("../function/functions.php")
   </form>
 </body>
 
+ 
 <script>
     
 
