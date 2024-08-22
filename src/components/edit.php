@@ -202,7 +202,7 @@ if(!empty($result)&& $result->num_rows>0){
 
         </div>
         <div class='w-96 flex gap-10  mt-5  '>
-            <button onclick="location.href='../components/edit.php'"
+            <button onclick="location.href='../pages/profile.php'"
                 class="w-full h-9 px-2.5 py-1.5  bg-white text-base text-primary border border-blue-600 rounded-md flex justify-center items-center ">Cancel</button>
             <button onclick="location.href='../components/edit.php'"
                 class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-md flex justify-center items-center ">Update</button>

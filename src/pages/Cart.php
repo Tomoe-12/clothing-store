@@ -32,7 +32,6 @@ include("../function/functions.php")
 
 </head>
 
-
 <body>
     <div class='w-full h-36 flex justify-center items-center  mt-10'>
         <h1 class="text-3xl font-bold text-gray-800 text-center">Shopping Cart</h1>

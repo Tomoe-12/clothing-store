@@ -29,16 +29,17 @@
 
 <body>
 
-    <div class="min-h-screen  flex flex-col justify-center items-center ">
+    <div class="min-h-screen   flex flex-col justify-center items-center ">
         <div
-            class='  border border-gray-200 rounded-xl flex flex-col  gap-4  w-96 h-96   px-3 py-3 shadow-md shadow-[#F3F3F3] '>
+            class='relative  border border-gray-200 rounded-xl flex flex-col  gap-4  w-96 h-96   px-3 py-3 shadow-md shadow-[#F3F3F3] '>
             <div class='h-48  flex justify-center  w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
                 style="background-image : url('../../public/profileCoverImg.jpg')">
 
                 <div class="relative translate-y-1/2 ">
                     <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
                         alt=""> -->
-                    <svg class="w-28 h-28 ring-4 ring-white bg-gray-200 rounded-full" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
+                    <svg class="w-28 h-28 ring-4 ring-white bg-gray-200 rounded-full" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -160,21 +161,31 @@
                     </div>
                 </form>
             </div>
+            <button onclick="location.href='../components/edit.php'"
+                class='absolute w-14 h-14 rounded-full border border-gray-200 bg-white flex items-center justify-center'
+                style="top :-5%; right:-7%;">
+                <svg class='w-10 h-10' fill="#2563EB" viewBox="0 0 24 24" id="update-alt-2" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color" stroke="#2563EB"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="primary" d="M6,5H16a2,2,0,0,1,2,2v7" style="fill: none; stroke: #2563EBbbb; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path id="primary-2" data-name="primary" d="M18,19H8a2,2,0,0,1-2-2V10" style="fill: none; stroke: #2563EBbbb; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><polyline id="secondary" points="15 11 18 14 21 11" style="fill: none; stroke: #2563EBbbb2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline><polyline id="secondary-2" data-name="secondary" points="9 13 6 10 3 13" style="fill: none; stroke: #2563EBbbb2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline></g></svg>
+            </button>
 
-           
 
 
         </div>
 
-        <div class=' w-96  mt-10  '>
-                <button  onclick="location.href='../components/edit.php'" class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-lg flex justify-center items-center ">Update</button>
-            </div>
+        <!-- <div class=' w-96  mt-5  '>
+            <button onclick="location.href='../components/edit.php'"
+                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-lg flex justify-center items-center ">Update</button>
+        </div> -->
+
+        <div class=' w-96  mt-5  '>
+            <button onclick="location.href='../components/edit.php'"
+                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-lg flex justify-center items-center ">Logout</button>
+        </div>
 
 
 
     </div>
 
-    
+
 </body>
 
 </html>

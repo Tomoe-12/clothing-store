@@ -52,7 +52,7 @@ include("../function/functions.php")
                         <div class="flex justify-center md:block">
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -60,18 +60,19 @@ include("../function/functions.php")
                                 </svg>
 
                                 <span
-                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+                                    class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
+                                    style="font-size : 11px; top:-30%; right: -40%;">66</span>
                             </a>
                         </div>
                         <button x-cloak @click="isOpen = !isOpen" type="button"
                             class="text-gray-500  hover:text-gray-600  focus:outline-none focus:text-gray-600 "
                             aria-label="toggle menu">
-                            <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                            <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
                             </svg>
 
-                            <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none"
+                            <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -114,7 +115,7 @@ include("../function/functions.php")
                         <div class="lg:flex justify-center hidden">
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -122,7 +123,8 @@ include("../function/functions.php")
                                 </svg>
 
                                 <span
-                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+                                    class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
+                                    style="font-size : 11px; top :-30%; right : -40%;">66</span>
                             </a>
                         </div>
                         <?php } ?>
@@ -141,8 +143,6 @@ include("../function/functions.php")
                         <?php    }
                             
                             ?>
-
-
                     </div>
 
                     <?php  
@@ -157,7 +157,7 @@ if(!empty($result)&& $result->num_rows>0){
  if($row=$result->fetch_assoc()){?>
                     <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
-                            <button type="button" class="flex items-center focus:outline-none"
+                            <button onclick="location.href='./profile.php'" type="button" class="flex items-center focus:outline-none"
                                 aria-label="toggle profile dropdown">
                                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                                     <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>"
@@ -415,9 +415,9 @@ else{
                     <a href="../components/Detail.php?item_id=<?php  echo $row["clo_id"]; ?>"
                         class="flex items-center justify-center rounded-md bg-primary  px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor" stroke-width="2">
+                        stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg> -->
                         <svg class="mr-2 h-6 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"
                             width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">
