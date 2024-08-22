@@ -177,7 +177,7 @@
         </div> -->
 
         <div class=' w-96  mt-5  '>
-            <button onclick="location.href='../components/edit.php'"
+            <button onclick="location.href='../components/logout.php'"
                 class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-lg flex justify-center items-center ">Logout</button>
         </div>
 
