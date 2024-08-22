@@ -1,9 +1,3 @@
-<?php 
-include("../function/connection.php");
-session_start(); 
-$user_id=$_SESSION["user_id"]; 
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +5,15 @@ $user_id=$_SESSION["user_id"];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+    .test {
+        border: 1px solid red;
+    }
 
+    body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    </style>
     <!-- flowbite -->
     <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
     <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
@@ -21,45 +23,22 @@ $user_id=$_SESSION["user_id"];
 
     <!-- alpine -->
     <script src="../../public/script.js"></script>
-    <style>
-    .test {
-        border: 1px solid red;
-    }
-    </style>
+
+
 </head>
 
 <body>
-    <!-- <a href="../pages/home.php">Back</a>
-    <?php
-    ob_start();
-$result=$con->query("SELECT * FROM customers  WHERE cus_id='$user_id'");
-if(!empty($result)&& $result->num_rows>0){
- if($row=$result->fetch_assoc()){?>
- <div class="profile">
- <img   src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" alt="" style="max-height:300px;max-width:250px;border-radius:20px;" >
-<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post"  enctype="multipart/form-data">
-<label for="" style="color:lightgray;fontsize:13px"> <input type="text"  value="<?php echo $row["user_name"] ?>" name="user_name" style="border:none;font-size:larger;color:white;background-color:transparent;"> <br>Tap to change the username </label><br>
-    <hr>
-    <label for="" style="color:lightgray;fontsize:13px"> <input type="text" value="<?php echo $row["address"] ?>" name="address" style="border:none; font-size:large;color:white;background-color:transparent;"> <br> Tap to change the address </label><br>
-    <hr>
-    <label for="" style="color:lightgray;fontsize:13px"> <input type="text" value="<?php echo $row["ph_no"] ?>" name="connum" style="border:none; font-size:large;color:white;background-color:transparent;">  <br>Tap to change the contact number </label><br>
-    <hr>
-<label style="color:lightgray;font-size:15px"><input style="border-radius:10px;background-color:green;" type="file" name="image" accept="img/*"> <br>Choose a Profile picture</label> <br><hr>
-<input id="save" style=" background-color:green;color:white;padding:10px 20px;margin-left:35%;margin-top:20px;border-radius:10px;font-weight:bold;font-size:17px;" type="submit" name="Post" value="Save">
-</div>  -->
-
 
     <div class="min-h-screen  flex flex-col justify-center items-center ">
         <div
-            class='border border-gray-200 rounded-xl flex flex-col gap-4 w-96 h-96 px-3 py-3 shadow-md shadow-[#F3F3F3] '>
-            <div class='h-48 flex justify-center  w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
+            class='  border border-gray-200 rounded-xl flex flex-col  gap-4  w-96 h-96   px-3 py-3 shadow-md shadow-[#F3F3F3] '>
+            <div class='h-48  flex justify-center  w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
                 style="background-image : url('../../public/profileCoverImg.jpg')">
 
                 <div class="relative translate-y-1/2 ">
                     <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
                         alt=""> -->
-                    <!-- <svg class="w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
+                    <svg class="w-28 h-28 ring-4 ring-white bg-gray-200 rounded-full" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -76,50 +55,19 @@ if(!empty($result)&& $result->num_rows>0){
                                 </g>
                             </g>
                         </g>
-                    </svg> -->
-
-                   
-
-
-                    <input class='hidden' type="file" id="file-2" accept="image/*">
-                    <label for="file-2" id="file-2-preview">
-                    <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'>
-                        <img id="file-2-preview-img" src="../../public/profile.svg" alt="" class='w-28 h-28 rounded-full bg-cover'>
-                    </div>
-                        <div
-                            class='absolute cursor-pointer border border-gray-400 flex items-center justify-center w-9 h-9 top-0 right-0 rounded-full bg-white '>
-                            <span>
-                                <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <circle cx="12" cy="13" r="3" stroke="#bbb" stroke-width="1.5"></circle>
-                                        <path
-                                            d="M9.77778 21H14.2222C17.3433 21 18.9038 21 20.0248 20.2646C20.51 19.9462 20.9267 19.5371 21.251 19.0607C22 17.9601 22 16.4279 22 13.3636C22 10.2994 22 8.76721 21.251 7.6666C20.9267 7.19014 20.51 6.78104 20.0248 6.46268C19.3044 5.99013 18.4027 5.82123 17.022 5.76086C16.3631 5.76086 15.7959 5.27068 15.6667 4.63636C15.4728 3.68489 14.6219 3 13.6337 3H10.3663C9.37805 3 8.52715 3.68489 8.33333 4.63636C8.20412 5.27068 7.63685 5.76086 6.978 5.76086C5.59733 5.82123 4.69555 5.99013 3.97524 6.46268C3.48995 6.78104 3.07328 7.19014 2.74902 7.6666C2 8.76721 2 10.2994 2 13.3636C2 16.4279 2 17.9601 2.74902 19.0607C3.07328 19.5371 3.48995 19.9462 3.97524 20.2646C5.09624 21 6.65675 21 9.77778 21Z"
-                                            stroke="#bbb" stroke-width="1.5"></path>
-                                        <path d="M19 10H18" stroke="#bbb" stroke-width="1.5" stroke-linecap="round">
-                                        </path>
-                                    </g>
-                                </svg>
-
-                            </span>
-
-                        </div>
-
-
-                    </label>
+                    </svg>
                 </div>
-
             </div>
 
-            <div class='flex flex-col  items-center h-full '>
+            <div class='flex items-center h-full  '>
 
-                <form class="w-full px-12 mt-14 ">
+                <form class=" w-full px-12 mt-10  ">
                     <div>
-                        <div class="space-y-4 ">
-
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <div class="space-y-6">
+                            <div class="relative grid grid-cols-4 items-center justify-between ">
+                                <!-- <input type="text" placeholder="Full Name"
+                                        class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" /> -->
+                                <div class='col-span-1 h-full flex justify-center'>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-5  h-5"
                                         viewBox="0 0 24 24">
                                         <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
@@ -127,16 +75,18 @@ if(!empty($result)&& $result->num_rows>0){
                                             d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
                                             data-original="#000000"></path>
                                     </svg>
+                                </div>
+                                <div class='col-span-3 h-full flex justify-center'>
+                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800">Order Summary </h3>
 
-                                </span>
+                                </div>
 
-                                <input type="text"
-                                    class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                                    placeholder="Username">
                             </div>
 
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <div class=" relative grid grid-cols-4 items-center justify-between ">
+                                <!-- <input type="email" placeholder="Email"
+                                        class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" /> -->
+                                <div class='col-span-1 h-full  flex justify-center '>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-5 h-5 "
                                         viewBox="0 0 682.667 682.667">
                                         <defs>
@@ -153,16 +103,19 @@ if(!empty($result)&& $result->num_rows>0){
                                                 data-original="#000000"></path>
                                         </g>
                                     </svg>
+                                </div>
 
-                                </span>
+                                <div class='col-span-3 h-full flex justify-center '>
+                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800">Order Summary </h3>
+                                </div>
 
-                                <input type="text"
-                                    class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                                    placeholder="Email">
                             </div>
 
-                            <div class="relative">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+
+                            <div class=" relative grid grid-cols-4 items-center justify-between ">
+                                <!-- <input type="email" placeholder="Email"
+                                        class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" /> -->
+                                <div class='col-span-1 h-full  flex items-center justify-center '>
                                     <svg class='w-5 h-5' fill="#bbb" height="200px" width="200px" version="1.1"
                                         id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 473.806 473.806"
@@ -186,96 +139,42 @@ if(!empty($result)&& $result->num_rows>0){
                                             </g>
                                         </g>
                                     </svg>
+                                </div>
 
-                                </span>
+                                <div class='col-span-3 h-full flex justify-center '>
+                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800">Order Summary </h3>
+                                </div>
 
-                                <input type="text"
-                                    class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                                    placeholder="Phone">
                             </div>
 
+                            <!-- <div class="relative flex items-center">
+                                    <input type="number" placeholder="Phone No."
+                                        class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" />
+                                    <svg fill="#bbb" class="w-4 h-4 absolute right-4" viewBox="0 0 64 64">
+                                        <path
+                                            d="m52.148 42.678-6.479-4.527a5 5 0 0 0-6.963 1.238l-1.504 2.156c-2.52-1.69-5.333-4.05-8.014-6.732-2.68-2.68-5.04-5.493-6.73-8.013l2.154-1.504a4.96 4.96 0 0 0 2.064-3.225 4.98 4.98 0 0 0-.826-3.739l-4.525-6.478C20.378 10.5 18.85 9.69 17.24 9.69a4.69 4.69 0 0 0-1.628.291 8.97 8.97 0 0 0-1.685.828l-.895.63a6.782 6.782 0 0 0-.63.563c-1.092 1.09-1.866 2.472-2.303 4.104-1.865 6.99 2.754 17.561 11.495 26.301 7.34 7.34 16.157 11.9 23.011 11.9 1.175 0 2.281-.136 3.29-.406 1.633-.436 3.014-1.21 4.105-2.302.199-.199.388-.407.591-.67l.63-.899a9.007 9.007 0 0 0 .798-1.64c.763-2.06-.007-4.41-1.871-5.713z"
+                                            data-original="#000000"></path>
+                                    </svg>
+                                </div> -->
                         </div>
                     </div>
                 </form>
-
             </div>
 
+           
+
+
         </div>
-        <div class='w-96 flex gap-10  mt-5  '>
-            <button onclick="location.href='../components/edit.php'"
-                class="w-full h-9 px-2.5 py-1.5  bg-white text-base text-primary border border-blue-600 rounded-md flex justify-center items-center ">Cancel</button>
-            <button onclick="location.href='../components/edit.php'"
-                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-md flex justify-center items-center ">Update</button>
-        </div>
+
+        <div class=' w-96  mt-10  '>
+                <button  onclick="location.href='../components/edit.php'" class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-lg flex justify-center items-center ">Update</button>
+            </div>
+
+
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-    <?php
- }}
-
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $user_name=$_POST["user_name"];
-    $address=$_POST["address"];
-    $ph_no=$_POST["connum"];
-    if(isset($_FILES["image"]) && $_FILES["image"]["error"]==0){
-        $image=$_FILES["image"]["tmp_name"];
-        $image_content=file_get_contents($image);
-        $statement=$con->prepare("UPDATE customers SET user_name='$user_name', address='$address' , ph_no='$ph_no', per_img=? where cus_id='$user_id'");
-        $statement->bind_param("s",$image_content);
-        $current_id= $statement->execute() or die("<b> Error </b> problem on image insertion".mysqli_connect_error());
-     if($current_id){
-        header("Location:edit.php");
-
-       
-         
-     } 
-     else {
-         echo"fail to insert";
-     }
-      }
-      else{ 
-        try{
-            $con->query("UPDATE customers SET user_name='$user_name', address='$address' , ph_no='$ph_no' where cus_id='$user_id'");
-            header("Location:edit.php");
-
-            ob_end_flush();
-
-        }catch(mysqli_sql_exception){
-
-        }
-
-      }
-    } 
- 
-?>
-
-
-
+    
 </body>
-<script>
-function previewBeforeUpload(id) {
-    document.querySelector("#" + id).addEventListener("change", function(e) {
-        if (e.target.files.length == 0) {
-            return;
-        }
-        let file = e.target.files[0];
-        let url = URL.createObjectURL(file);
-        document.querySelector("#" + id + "-preview div img").src = url;
-    });
-}
-
-previewBeforeUpload("file-2");
-</script>
 
 </html>
