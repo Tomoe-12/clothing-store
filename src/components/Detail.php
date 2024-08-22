@@ -1,7 +1,7 @@
 <?php 
 include("../function/connection.php");
 session_start();
-
+include("../function/functions.php");
 $key=false;
 ?>
 <!DOCTYPE html>
@@ -34,7 +34,8 @@ $key=false;
    $result=$con->query("SELECT * FROM closet WHERE clo_id='$item_id' ");
    if(!empty($result)&& $result->num_rows>0){
     while($row=$result->fetch_assoc()){ 
-    
+        $clo_id=$row["clo_id"];
+    $price=$row["price"];
       $instock=$row["instock"];
         ?>
 
@@ -115,7 +116,7 @@ $key=false;
                         </div> -->
 
                         <div class="mt-4">
-                            <h3 class="text-gray-800 text-4xl font-bold"><?php echo $row["price"]?>KS</h3>
+                            <h3 class="text-gray-800 text-4xl font-bold" id="price"><?php echo $row["price"]?>KS</h3>
                         </div>
 
                         <div class="mt-8">
@@ -123,16 +124,27 @@ $key=false;
                             <div class="flex flex-wrap gap-4 mt-4">
                                 <button type="button" id="size-sm"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="SM">SM</button>
+                                    data-size="SM"><label for="small" style="padding:100%;">SM</label></button>
                                 <button type="button" id="size-md"
                                     class="w-10 h-10 border hover:border-blue-700  border-blue-600 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="MD">MD</button>
+                                    data-size="MD"><label for="medium" style="padding:100%;">MD</label></button>
                                 <button type="button" id="size-lg"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="LG">LG</button>
+                                    data-size="LG"><label for="large" style="padding:100%;">LG</label></button>
                                 <button type="button" id="size-xl"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="XL">XL</button>
+                                    data-size="XL"><label for="XL" style="padding:100%;">XL</label></button>
+                                    <button type="button" id="size-xxl"
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="XL"><label for="XXL" style="padding:100%;">XXL</label></button>
+                                    <div class="radio" style="visibility:hidden;"><input type="radio" id="small" value="small" name="size">
+                                    <input type="radio" id="medium" value="medium" name="size">
+                                    <input type="radio" id="large" value="large" name="size">
+                                    <input type="radio" id="XL" value="XL" name="size">
+                                    <input type="radio" id="XXL" value="XXL" name="size">
+                                    </div>
+
+                                    
                             </div>
                         </div>
                         <div class="mt-4 " max-w-xs mx-auto">
@@ -149,7 +161,7 @@ $key=false;
                                             stroke-width="2" d="M1 1h16" />
                                     </svg>
                                 </button>
-                                <input type="text" id="quantity-input" data-input-counter
+                                <input type="text" id="quantity-input" data-input-counter name="quantity"
                                     aria-describedby="helper-text-explanation"
                                     class=" w-full h-11 font-semibold bg-white text-gray-900 text-lg  text-center border border-gray-100 focus:ring-none  block  py-2.5 "
                                     placeholder="0" required />
@@ -165,9 +177,24 @@ $key=false;
                             </div>
                         </div>
 
-
+                        <div id="insufficient"
+                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
+                Insufficient in stock item number</div>
+                <div id="success"
+                style="margin-top:10px;text-align:center;background-color:white;padding:10px;color:green;border-radius:10px;">
+                Order Successfully</div>
+            <div id="unsuccess"
+                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
+                Unable to order. Please Login first!</div>
+                <div id="size"
+                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
+                Please Select size</div>
+            <div id="zero"
+                style="margin-top:10px;text-align:center; background-color:white;padding:10px;color:red;border-radius:10px;">
+                Your order quantity must be greater than zero</div>
+   
                         <div class=" gap-4 mt-10">
-                            <input type="submit" value="Order Now" name="order"
+                            <input type="submit" value="Add to Cart" name="order"
                                 class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-blue-700 text-white text-sm font-semibold rounded-lg">
                             <btton type='button'
                              onclick="location.href='../pages/home.php'"
@@ -209,20 +236,9 @@ $key=false;
             </div>
 
 
-            <div id="success"
-                style="margin-top:10px;text-align:center;background-color:white;padding:10px;color:green;border-radius:10px;">
-                Order Successfully</div>
-            <div id="unsuccess"
-                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
-                Unable to order. Please Login first!</div>
-            <div id="zero"
-                style="margin-top:10px;text-align:center; background-color:white;padding:10px;color:red;border-radius:10px;">
-                Your order quantity must be greater than zero</div>
+           
 
-            <div id="insufficient"
-                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
-                Insufficient in stock item number</div>
-
+         
 
         </form>
 
@@ -246,20 +262,50 @@ $key=false;
         } 
         else {
 
-             
+            $size=filter_input(INPUT_POST,"size",FILTER_SANITIZE_SPECIAL_CHARS);
+            
             $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);
+            echo $size;
+            echo $quantity;
+            switch($size){
+                case"small":  $realprice=$price+0;break;
+                case"medium": $realprice=$price+2000;break;
+                case"large": $realprice=$price+4000;break;
+                case"XL": $realprice=$price+6000;break;
+                case"XXL":$realprice=$price+8000;break;
+
+            }
+            $realprice*=$quantity;
+           echo $realprice;
+            $originquantity=sizequantity($size,$clo_id);
+            echo $originquantity;
+        
             if($quantity>0){
-            if($instock>$quantity || $instock==$quantity){
+            if($originquantity>$quantity || $originquantity==$quantity){
                 $instock=$instock-$quantity;
                 try{
+                    
                     $con->query("UPDATE closet SET instock='$instock' WHERE clo_id='$item_id'");
+                    sizeretri($size,$quantity,$clo_id);
                   $key=true;
+                  ?>
+                  
+                <script>
+                    if(<?php echo $key ?>){
+                        alert("Add to cart Successfully!");
+                    }
+                </script>
+                  <?php
                 }catch(mysqli_sql_exception){
                     echo"fail to upadate";
                     
                 }
+
             }else{  
-                $key=false; ?>
+                $key=false; 
+               
+                
+                ?>
     <script>
     document.getElementById("insufficient").style.display = "block";
     </script>
@@ -279,18 +325,16 @@ $key=false;
             $user_id=$_SESSION["user_id"];
           if($_SESSION["user_id"]!=null)  {
            
-                if($key){
+                if($key){  
             try{
                 $_SESSION["order_id"]=$item_id;
                 $user_id=$_SESSION["user_id"];
                 $order_id= $_SESSION["order_id"];
-                $con->query("INSERT INTO orderhistory (clo_id,cus_id,quantity,admindec) VALUES ('$order_id','$user_id','$quantity','Pending')");
+                $con->query("INSERT INTO cart (clo_id,cus_id,quantity,size,orderprice) VALUES ('$order_id','$user_id','$quantity','$size','$realprice')");
                
               
                 ?>
-    <script>
-    document.getElementById("success").style.display = "block";
-    </script>
+    
     <?php
                
             }catch(mysqli_sql_exception){ ?>
@@ -322,6 +366,28 @@ $key=false;
             e.target.classList.remove('border-gray-200');
         });
     });
+
+    document.getElementById("size-sm").addEventListener("click",function(){
+           document.getElementById("price").innerHTML=<?php echo $price ?>+"KS";
+    
+    })
+    document.getElementById("size-md").addEventListener("click",function(){
+        document.getElementById("price").innerHTML=<?php echo $price +2000?>+"KS";
+    })
+    document.getElementById("size-lg").addEventListener("click",function(){
+        document.getElementById("price").innerHTML=<?php echo $price +4000?>+"KS";
+    })
+    document.getElementById("size-xl").addEventListener("click",function(){
+        document.getElementById("price").innerHTML=<?php echo $price + 6000?>+"KS";
+    })
+    document.getElementById("size-xxl").addEventListener("click",function(){
+        document.getElementById("price").innerHTML=<?php echo $price +8000?>+"KS";
+    })
+
+
+
+    
+
     </script>
 </body>
 

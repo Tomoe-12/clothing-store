@@ -110,7 +110,8 @@ include("../function/functions.php")
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">lady's
                             collections</a>
 
-                        <?php if(!empty($_SESSION['user_id'])){ ?>
+                        <?php if(!empty($_SESSION['user_id'])){
+                         $count=cartnoti($_SESSION["user_id"]); ?>
                         <div class="lg:flex justify-center hidden">
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
@@ -122,7 +123,7 @@ include("../function/functions.php")
                                 </svg>
 
                                 <span
-                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full"></span>
+                                    class="absolute top-0 left-0 p-1 text-xs text-white bg-blue-500 rounded-full" ><?php echo $count?></span>
                             </a>
                         </div>
                         <?php } ?>
