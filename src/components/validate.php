@@ -2,8 +2,8 @@
 
 <?php 
     
-    include("connection.php");
-include("functions.php");
+    include("../function/connection.php");
+include("../function/functions.php");
     if(isset($_GET["save"])){
        ob_start();
         $dec=$_GET["dec"];

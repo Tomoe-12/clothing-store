@@ -1,7 +1,22 @@
 <?php 
 include("../function/connection.php");
 session_start(); 
-include("../function/functions.php")
+include("../function/functions.php");
+
+if(empty( $_SESSION["res"])){
+    echo"";
+}
+if(isset($_SESSION["res"])){ 
+    $res=true;
+    $_SESSION["res"]=null;
+    ?>
+<script>
+    if(<?php echo $res?>){
+        alert("Order all items Successfully!");
+    }
+</script>
+<?php
+}
 ?>
 
 
@@ -32,7 +47,6 @@ include("../function/functions.php")
 
 </head>
 
-
 <body>
     <div class='w-full h-36 flex justify-center items-center  mt-10'>
         <h1 class="text-3xl font-bold text-gray-800 text-center">Shopping Cart</h1>
@@ -46,18 +60,44 @@ include("../function/functions.php")
 
                 <!-- items box  -->
                 <div class="md:col-span-2 space-y-4  h-full overflow-scroll">
+                <?php  
+               
+                
+    if(!empty($_SESSION["user_id"])){
+        $user_id=$_SESSION["user_id"];
+       
+        $result=$con->query("SELECT * FROM cart JOIN closet ON closet.clo_id=cart.clo_id JOIN customers ON customers.cus_id=cart.cus_id WHERE cart.cus_id='$user_id' ");
+        if(!empty($result)&& $result->num_rows>0){
+           $subtotal=0;
+           while($row=$result->fetch_assoc()){
+            $email=$row["email"];
+            $user_name=$row["user_name"];
+            
+            $user_id=$row["cus_id"];
+
+           
+            
+            
+           ?>
                     <div class="grid grid-cols-3 items-start gap-4">
                         <div class="col-span-2 flex items-start gap-4">
                             <div class="w-28 h-28 max-sm:w-24 max-sm:h-24 shrink-0 bg-gray-100 p-2 rounded-md">
-                                <img src='https://readymadeui.com/images/product14.webp'
+                                <img src='data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>'
                                     class="w-full h-full object-contain" />
+                                    
                             </div>
 
                             <div class="flex flex-col">
                                 <h3 class="text-base font-bold text-gray-800">Velvet Sneaker</h3>
-                                <p class="text-xs font-semibold text-gray-500 mt-0.5">Size: MD</p>
-
-                                <button type="button"
+                                <p class="text-xs font-semibold text-gray-500 mt-0.5"><?php echo $row["size"]?></p>
+                                <form action="../function/cartitemremove.php" method="post" >
+                                    <input type="text" name="cart_id" value="<?php  echo $row["cart_id"] ?>" style="display: none;">
+                                    <input type="text" name="clo_id" value="<?php  echo $row["clo_id"] ?>" style="display: none;">
+                                    <input type="text" name="quantity" value="<?php  echo $row["quantity"] ?>"style="display: none;">
+                                    <input type="text" name="size" value="<?php  echo $row["size"] ?>" style="display: none;">
+                                   
+                                  
+                                <button type="submit" name="remove"
                                     class="mt-6 font-semibold text-red-500 text-xs flex items-center gap-1 shrink-0 ">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4 fill-current inline"
                                         viewBox="0 0 24 24">
@@ -68,18 +108,22 @@ include("../function/functions.php")
                                             d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
                                             data-original="#000000"></path>
                                     </svg>
-                                    REMOVE
+                                   REMOVE
+                                  
                                 </button>
+                                </form>
                             </div>
                         </div>
 
                         <div class="ml-auto">
-                            <h4 class="text-lg max-sm:text-base font-bold text-gray-800">$20.00</h4>
-
+                           
+                            <h4 class="text-lg max-sm:text-base font-bold text-gray-800"><?php  $subtotal+=$row["orderprice"];
+                             echo  $row["orderprice"]?></h4>
+                             
 
                             <div
                                 class=" mt-6 flex items-center px-3 py-1.5 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md">
-                                <button  type="button" id="decrement-button" class="decrement-btn"
+                                <button  type="button" id="decrement-button" 
                                     data-input-counter-decrement="quantity-input">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 fill-current"
                                         viewBox="0 0 124 124">
@@ -89,10 +133,12 @@ include("../function/functions.php")
                                     </svg>
                                 </button>
                                 <input type="text" id="quantity-input" data-input-counter
-                                    aria-describedby="helper-text-explanation"
+                                    aria-describedby="helper-text-explanation" 
+                                    
                                     class=" w-12 h-5 font-semibold bg-white text-gray-900 text-base  text-center border-none focus:ring-none  block  py-2.5 "
-                                    value='1' required />
-                                <button type="button" id="increment-button"
+                                    value='<?php echo $row["quantity"]?>' required />
+                                    <p calss="text"></p>
+                                <button type="button" id="increment-button" 
                                     data-input-counter-increment="quantity-input">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 fill-current"
                                         viewBox="0 0 42 42">
@@ -105,7 +151,7 @@ include("../function/functions.php")
 
 
                         </div>
-                    </div>
+                    </div> <?PHP }}} ?>
 
                     <hr class="border-gray-300" />
 
@@ -131,7 +177,7 @@ include("../function/functions.php")
                                             d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
                                             data-original="#000000"></path>
                                     </svg>
-                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800">Order Summary </h3>
+                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800"><?php echo usernameout($user_id); ?></h3>
 
 
                                 </div>
@@ -155,7 +201,7 @@ include("../function/functions.php")
                                                 data-original="#000000"></path>
                                         </g>
                                     </svg>
-                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800">Order Summary </h3>
+                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800"><?php  echo emailout($user_id)?> </h3>
 
 
                                 </div>
@@ -174,20 +220,24 @@ include("../function/functions.php")
                     </form>
 
                     <ul class="text-gray-800 mt-8 space-y-3">
-                        <li class="flex flex-wrap gap-4 text-sm">Subtotal <span class="ml-auto font-bold">$200.00</span>
+                        <?php if(isset($subtotal)){?>
+                        <li class="flex flex-wrap gap-4 text-sm">Subtotal <span class="ml-auto font-bold"><?php echo $subtotal;?>KS</span>
+                        </li> <?php } else{?>
+                            <li class="flex flex-wrap gap-4 text-sm">Subtotal <span class="ml-auto font-bold"><?php echo $subtotal=0;?>KS</span>
+                        </li> <?php }?>
+                        <li class="flex flex-wrap gap-4 text-sm">Shipping <span class="ml-auto font-bold"><?PHP  echo $shipping=3000?>KS</span>
                         </li>
-                        <li class="flex flex-wrap gap-4 text-sm">Shipping <span class="ml-auto font-bold">$2.00</span>
-                        </li>
-                        <li class="flex flex-wrap gap-4 text-sm">Tax <span class="ml-auto font-bold">$4.00</span></li>
+                        <li class="flex flex-wrap gap-4 text-sm">Tax <span class="ml-auto font-bold"><?PHP  echo $tax=1000?>KS</span></li>
                         <hr class="border-gray-300" />
-                        <li class="flex flex-wrap gap-4 text-sm font-bold">Total <span class="ml-auto">$206.00</span>
+                        <li class="flex flex-wrap gap-4 text-sm font-bold">Total <span class="ml-auto"><?php echo $subtotal+$shipping+$tax; ?>KS</span>
                         </li>
                     </ul>
 
                     <div class="mt-6 w-full space-y-3 ">
-                        <button type="button"
+                       
+                        <button type="submit"
                             class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-blue-700 text-white rounded-md">
-                            Checkout
+                            <label for="order">Order Now</label>  
                         </button>
                         <button type="button"
                             class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
@@ -200,8 +250,13 @@ include("../function/functions.php")
             </div>
         </div>
     </div>
-
+  <form action="../function/cartmovorder.php" method="post" style="display: none;">
+    <input type="text" name="user_id" value="<?php  echo $user_id;?>">
+    <input type="submit" name="submit" value="submit" id="order">
+  </form>
 </body>
+
+ 
 <script>
     
 
@@ -219,13 +274,12 @@ decrementButton.addEventListener('click', () => {
     const currentValue = parseInt(quantityInput.value, 10);
     if (currentValue > 1) {
         quantityInput.value = currentValue - 0.5;
-    } else if (currentValue == 1) {
+    } else if (currentValue === 1) {
         console.log('1');
         quantityInput.value = 1;
         decrementButton.classList.add('disabled');
     }
 });
-
 </script>
 
 

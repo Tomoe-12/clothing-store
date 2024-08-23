@@ -1,5 +1,5 @@
 <?php 
-include("connection.php");
+include("../function/connection.php");
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +44,7 @@ width:80%;
   <a href="itemlist.php">Items List</a>
   <a href="ordered.php">Ordered Items</a>
   <a href="accept.php">Accept Orders</a>
-  <a href="cancel.php">Cancel Orders</a>
+ 
   <a href="notification.php">Notification</a>
   <a href="admin.php">Add Item</a>
     </nav>
@@ -59,7 +59,7 @@ width:80%;
         <th>Price</th>
         <th>Address</th>
          <th>Quantity</th>
-         <th>Status</th>
+         
          <th>Action</th>
 
 
@@ -88,16 +88,15 @@ width:80%;
         
                 switch($row["admindec"]){ 
                     case"Pending":?>
-                    <td><select name="dec">
-                        <option name="dec" value="<?php echo $row["admindec"] ?>"><?php echo $row["admindec"] ?></option>
-                        <option name="dec" value="Accept">Accept</option>
-                        <option  name="dec" value="Cancel">Cancel</option>
+                    <select name="dec" style="display:none">
+                       <option name="dec" value="Accept">Accept</option>
                         
-                        </select></td><?php ;break; 
+                        
+                        </select><?php ;break; 
                     case"Accept":?><td ><select name="dec">
                         <option name="dec" value="<?php echo $row["admindec"] ?>"><?php echo $row["admindec"] ?></option>
                         <option name="dec" value="Pending">Pending</option>
-                        <option name="dec" value="Cancel">Cancel</option>
+                       
                         
                         </select></td><?php ;break;
                     case"Cancel":  ?><td ><select name="dec">
@@ -115,7 +114,7 @@ width:80%;
                 <input type="text" style="display:none" value="<?php echo $row["his_id"] ?>" name="his_id"><br>
                 <input type="text" style="display:none" value="<?php echo $row["clo_id"] ?>" name="clo_id"><br>
 
-    <td><input type="submit" value="save" name="save"></td>
+    <td><input type="submit" value="Deliver" name="save"></td>
     </form>
 </tr>
 
