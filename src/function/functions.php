@@ -109,6 +109,20 @@ function sizequantity($xxx,$clo_id){
      }}
 
     }
+    function perimg($cus_id){
+        include("connection.php");
+        
+    $result=$con->query("SELECT per_img from customers  where cus_Id='$cus_id'");
+    if(!empty($result)&& $result->num_rows>0){
+     if($row=$result->fetch_assoc()){ 
+   return $row["per_img"];
+ 
+
+
+
+  
+
+    }}}
     function cartnoti($cus_id){
         include("connection.php");
         $count=0;
