@@ -29,6 +29,9 @@ include("../function/functions.php")
 
 
     <style>
+        nav {
+            z-index : 999 !important;
+        }
     #drawer-right-example {
         z-index: 99 !important;
     }
