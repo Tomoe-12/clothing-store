@@ -19,9 +19,11 @@ else{
              if($row["email"]==$email && password_verify($pass,$row["pass"])){
                 $_SESSION["user_id"]=$row["cus_id"];
                echo $_SESSION["user_id"];
-               
+              $_SESSION["success"]=true;
                 $key=false; 
-                header("Location:../pages/home.php");
+               
+                    header("Location:../pages/home.php");
+               
                 ob_end_flush();
                
                   ?>

@@ -1,5 +1,4 @@
-<?php 
-include("../function/connection.php");
+<?php include("../function/connection.php");
 include("../function/functions.php");
 ?>
 <!DOCTYPE html>
@@ -62,7 +61,7 @@ include("../function/functions.php");
         <input type="submit" name="searchadmin" value="search">
     </form>
     </div>
-   
+   <a href=""></a>
     <table>
     <tr>
         <th>Image</th>
@@ -92,7 +91,7 @@ $result=$con->query("SELECT * FROM closet JOIN size ON closet.clo_id=size.clo_id
 if(!empty($result)&& $result->num_rows>0){
  while($row=$result->fetch_assoc()){ ?>
 <tr>
-    <td style="padding: 0px;margin:0px"> <img  src="data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>" alt="" style="height:100px;width:100pxo;" >
+    <td style="padding: 0px;margin:0px"> <img  src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"]))  ?>" alt="" style="height:100px;width:100pxo;" >
     </td>
     <td><?php echo $row["type"] ?></td>
     <td><?php echo $row["Small"] ?></td>
@@ -124,7 +123,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 deletecloset($clo_id);
 deletesize($clo_id);
-
+deleimg($clo_id);
 
  header("Location:itemlist.php");
 ob_end_flush();
