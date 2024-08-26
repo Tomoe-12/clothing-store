@@ -45,7 +45,7 @@ width:80%;
 </head>
 <body>
     <nav>
-    <a href="itemlist.php">Items List</a>
+    <a href="../pages/admin/components/itemlist.php">Items List</a>
   <a href="ordered.php">Ordered Items</a>
   <a href="accept.php">Accept Orders</a>
   
@@ -86,7 +86,7 @@ width:80%;
             <td ><?php echo $row["price"] ?></td>
             <td ><?php echo $row["address"] ?></td>
             <td ><?php echo $row["quantity"] ?></td>
-            <form action="validate1.php" method="get">
+            <form action="../function/validate1.php" method="get">
             <?php
         
                 switch($row["admindec"]){ 

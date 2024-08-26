@@ -108,7 +108,7 @@ deletecloset($clo_id);
 deletesize($clo_id);
 
 
- header("Location:itemlist.php");
+ header("Location:../pages/admin/components/itemlist.php");
 ob_end_flush();
 
 }

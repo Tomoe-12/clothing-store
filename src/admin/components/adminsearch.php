@@ -1,6 +1,11 @@
 <?php 
-include("../function/connection.php");
-include("../function/functions.php");
+include("connection.php");
+if(isset($_GET["searchadmin"])){
+$item=$_GET["seaitem"];
+}
+?>
+<?php 
+include("connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,10 +54,10 @@ include("../function/functions.php");
 </head>
 <body>
     <nav>
-    <a href="itemlist.php">Items List</a>
+    <a href="./itemlist.php">Items List</a>
   <a href="ordered.php">Ordered Items</a>
   <a href="accept.php">Accept Orders</a>
-  
+  <a href="cancel.php">Cancel Orders</a>
   <a href="notification.php">Notification</a>
   <a href="admin.php">Add Item</a>
     </nav>
@@ -67,47 +72,24 @@ include("../function/functions.php");
     <tr>
         <th>Image</th>
         <th>Type</th>
-        <th colspan="5"> Size</th>
-        
+        <th>Size</th>
         <th>Price</th>
         <th>Instock</th>
-        <th colspan="2">Action</th>
-    </tr>
-    <tr>
-    <th></th>
-        <th></th>
-       
-        <th>Small</th>
-        <th>Medium</th>
-        <th>Large</th>
-        <th>XL</th>
-        <th>XXL</th>
-        <th></th>
-        <th></th>
-        <th colspan="2"></th>
+        <th>Action</th>
     </tr>
     <?php
-ob_start();
-$result=$con->query("SELECT * FROM closet JOIN size ON closet.clo_id=size.clo_id order by type  ");
+    
+$result=$con->query("SELECT * FROM closet  where type='$item' order by price ");
 if(!empty($result)&& $result->num_rows>0){
  while($row=$result->fetch_assoc()){ ?>
 <tr>
     <td style="padding: 0px;margin:0px"> <img  src="data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>" alt="" style="height:100px;width:100pxo;" >
     </td>
     <td><?php echo $row["type"] ?></td>
-    <td><?php echo $row["Small"] ?></td>
-    <td><?php echo $row["Medium"] ?></td>
-    <td><?php echo $row["Large"] ?></td>
-    <td><?php echo $row["XL"] ?></td>
-    <td><?php echo $row["XXL"] ?></td>
+    <td><?php echo $row["size"] ?></td>
     <td><?php echo $row["price"] ?></td>
     <td><?php echo $row["instock"] ?></td>
     <td><a href="update.php?item_id=<?php echo $row["clo_id"] ?>">Edit</a></td>
-
-    <td><form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
-        <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id" style="display:none;">
-        <input type="submit" value="Delete">
-    </form></td>
 
 </tr>
 
@@ -116,18 +98,3 @@ if(!empty($result)&& $result->num_rows>0){
     
 </body>
 </html>
-<?php 
-
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-   
-    $clo_id=filter_input(INPUT_POST,"clo_id",FILTER_VALIDATE_INT);
-
-deletecloset($clo_id);
-deletesize($clo_id);
-
-
- header("Location:itemlist.php");
-ob_end_flush();
-
-}
-?>
