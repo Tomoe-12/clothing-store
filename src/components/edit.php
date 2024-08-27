@@ -1,5 +1,7 @@
 <?php 
 include("../function/connection.php");
+include("../function/functions.php");
+
 session_start(); 
 $user_id=$_SESSION["user_id"]; 
 
@@ -26,37 +28,23 @@ $user_id=$_SESSION["user_id"];
         border: 1px solid red;
     }
     </style>
+    
+    
 </head>
 
 <body>
-    <!-- <a href="../pages/home.php">Back</a>
-    <?php
-    ob_start();
-$result=$con->query("SELECT * FROM customers  WHERE cus_id='$user_id'");
-if(!empty($result)&& $result->num_rows>0){
- if($row=$result->fetch_assoc()){?>
- <div class="profile">
- <img   src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>" alt="" style="max-height:300px;max-width:250px;border-radius:20px;" >
-<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post"  enctype="multipart/form-data">
-<label for="" style="color:lightgray;fontsize:13px"> <input type="text"  value="<?php echo $row["user_name"] ?>" name="user_name" style="border:none;font-size:larger;color:white;background-color:transparent;"> <br>Tap to change the username </label><br>
-    <hr>
-    <label for="" style="color:lightgray;fontsize:13px"> <input type="text" value="<?php echo $row["address"] ?>" name="address" style="border:none; font-size:large;color:white;background-color:transparent;"> <br> Tap to change the address </label><br>
-    <hr>
-    <label for="" style="color:lightgray;fontsize:13px"> <input type="text" value="<?php echo $row["ph_no"] ?>" name="connum" style="border:none; font-size:large;color:white;background-color:transparent;">  <br>Tap to change the contact number </label><br>
-    <hr>
-<label style="color:lightgray;font-size:15px"><input style="border-radius:10px;background-color:green;" type="file" name="image" accept="img/*"> <br>Choose a Profile picture</label> <br><hr>
-<input id="save" style=" background-color:green;color:white;padding:10px 20px;margin-left:35%;margin-top:20px;border-radius:10px;font-weight:bold;font-size:17px;" type="submit" name="Post" value="Save">
-</div>  -->
-
-
+    
+   
+ 
+ 
+     
     <div class="min-h-screen  flex flex-col justify-center items-center ">
         <div
             class='border border-gray-200 rounded-xl flex flex-col gap-4 w-96 h-96 px-3 py-3 shadow-md shadow-[#F3F3F3] '>
             <div class='h-48 flex justify-center  w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
                 style="background-image : url('../../public/profileCoverImg.jpg')">
-
-                <div class="relative translate-y-1/2 ">
-                    <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
+               
+                         <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
                         alt=""> -->
                     <!-- <svg class="w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
@@ -78,14 +66,25 @@ if(!empty($result)&& $result->num_rows>0){
                         </g>
                     </svg> -->
 
+                <div class="relative translate-y-1/2 ">
                    
-
-
-                    <input class='hidden' type="file" id="file-2" accept="image/*">
                     <label for="file-2" id="file-2-preview">
+                    <?php
+                
+                ob_start();
+                $per_img=perimg($_SESSION["user_id"]);
+                         if(empty($per_img)){
+
+                        ?>
                     <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'>
                         <img id="file-2-preview-img" src="../../public/profile.svg" alt="" class='w-28 h-28 rounded-full bg-cover'>
-                    </div>
+                    </div> 
+                    <?php }  ?>
+                    <?php if(!empty($per_img)) {?>
+                        <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'>
+                        <img id="file-2-preview-img" src="data:image/jepg;base64,<?php echo base64_encode($per_img) ?>" alt="" class='w-28 h-28 rounded-full bg-cover'>
+                    </div> 
+                       <?php } ?>
                         <div
                             class='absolute cursor-pointer border border-gray-400 flex items-center justify-center w-9 h-9 top-0 right-0 rounded-full bg-white '>
                             <span>
@@ -109,12 +108,14 @@ if(!empty($result)&& $result->num_rows>0){
 
                     </label>
                 </div>
+                
+            
 
             </div>
 
             <div class='flex flex-col  items-center h-full '>
 
-                <form class="w-full px-12 mt-14 ">
+                <form class="w-full px-12 mt-14 " action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" enctype="multipart/form-data">
                     <div>
                         <div class="space-y-4 ">
 
@@ -129,8 +130,10 @@ if(!empty($result)&& $result->num_rows>0){
                                     </svg>
 
                                 </span>
-
-                                <input type="text"
+                              
+                                <input class='hidden'name="image" type="file" id="file-2" accept="image/*">
+                                <input type="text" name="Username" 
+                                value="<?php echo profileout("user_name",$_SESSION["user_id"]) ?>"
                                     class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                                     placeholder="Username">
                             </div>
@@ -156,9 +159,10 @@ if(!empty($result)&& $result->num_rows>0){
 
                                 </span>
 
-                                <input type="text"
+                                <input  type="text" name="address"
+                                 value="<?php echo profileout("address",$_SESSION["user_id"]) ?>"
                                     class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
-                                    placeholder="Email">
+                                    placeholder="Address">
                             </div>
 
                             <div class="relative">
@@ -189,9 +193,11 @@ if(!empty($result)&& $result->num_rows>0){
 
                                 </span>
 
-                                <input type="text"
+                                <input type="tel" name="Phone"
+                                 value="<?php echo profileout("ph_no",$_SESSION["user_id"]) ?>"
                                     class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                                     placeholder="Phone">
+                                    <input type="submit" id="update" name="update" style="display: none;">
                             </div>
 
                         </div>
@@ -204,13 +210,14 @@ if(!empty($result)&& $result->num_rows>0){
         <div class='w-96 flex gap-10  mt-5  '>
             <button onclick="location.href='../pages/profile.php'"
                 class="w-full h-9 px-2.5 py-1.5  bg-white text-base text-primary border border-blue-600 rounded-md flex justify-center items-center ">Cancel</button>
-            <button onclick="location.href='../components/edit.php'"
-                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-md flex justify-center items-center ">Update</button>
+            <label for="update"  
+                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-md flex justify-center items-center ">Update</label>
+                
         </div>
 
     </div>
 
-
+ 
 
 
 
@@ -222,12 +229,13 @@ if(!empty($result)&& $result->num_rows>0){
 
 
     <?php
- }}
+ 
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $user_name=$_POST["user_name"];
+    $user_name=$_POST["Username"];
     $address=$_POST["address"];
-    $ph_no=$_POST["connum"];
+    $ph_no=$_POST["Phone"];
+    $user_id=$_SESSION["user_id"];
     if(isset($_FILES["image"]) && $_FILES["image"]["error"]==0){
         $image=$_FILES["image"]["tmp_name"];
         $image_content=file_get_contents($image);
@@ -235,9 +243,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $statement->bind_param("s",$image_content);
         $current_id= $statement->execute() or die("<b> Error </b> problem on image insertion".mysqli_connect_error());
      if($current_id){
-        header("Location:edit.php");
-
-       
+        
+       header("Location:edit.php");
          
      } 
      else {
@@ -247,8 +254,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
       else{ 
         try{
             $con->query("UPDATE customers SET user_name='$user_name', address='$address' , ph_no='$ph_no' where cus_id='$user_id'");
-            header("Location:edit.php");
-
+          
+             header("Location:edit.php");
             ob_end_flush();
 
         }catch(mysqli_sql_exception){
@@ -276,6 +283,8 @@ function previewBeforeUpload(id) {
 }
 
 previewBeforeUpload("file-2");
+
+
 </script>
 
 </html>

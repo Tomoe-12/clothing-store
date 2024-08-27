@@ -29,17 +29,35 @@ include("../function/functions.php")
 
 
     <style>
+    nav {
+        z-index: 999 !important;
+    }
+
     #drawer-right-example {
         z-index: 99 !important;
     }
+    
+    nav:not(.scrolled) {
+        box-shadow: none;
+    }
+
+    nav.scrolled {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
     </style>
 
-
+<script>
+    if(<?Php echo $_SESSION["success"]?>){
+       
+        alert("Logged in Successfully!");
+          <?php $_SESSION["success"]=null; ?>
+    }
+</script>
 </head>
 
 <body>
 
-    <nav x-data="{ isOpen: false }" class=" bg-white shadow sticky">
+    <nav x-data="{ isOpen: false }" class="w-full  bg-white fixed top-0">
         <div class="container px-6 py-4 mx-auto">
             <div class="lg:flex lg:items-center lg:justify-between">
                 <div class="flex items-center justify-between">
@@ -116,7 +134,7 @@ include("../function/functions.php")
                         <div class="lg:flex justify-center hidden">
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
-                                <svg class="w-6 h-6 viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="w-6 h-6 viewBox=" 0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -124,7 +142,6 @@ include("../function/functions.php")
                                 </svg>
 
                                 <span
-
                                     class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
                                     style="font-size : 11px; top :-30%; right : -40%;"><?php  echo $count?></span>
 
@@ -160,8 +177,8 @@ if(!empty($result)&& $result->num_rows>0){
  if($row=$result->fetch_assoc()){?>
                     <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
-                            <button onclick="location.href='./profile.php'" type="button" class="flex items-center focus:outline-none"
-                                aria-label="toggle profile dropdown">
+                            <button onclick="location.href='./profile.php'" type="button"
+                                class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                                     <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>"
                                         class="object-cover w-full h-full" alt="avatar">
@@ -177,7 +194,7 @@ if(!empty($result)&& $result->num_rows>0){
                     <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
                             <button type="button" class="flex items-center focus:outline-none"
-                                aria-label="toggle profile dropdown">
+                                onclick="location.href='./profile.php'" aria-label="toggle profile dropdown">
                                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                                     <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
                                         class="object-cover w-full h-full" alt="avatar">
@@ -197,7 +214,7 @@ if(!empty($result)&& $result->num_rows>0){
             </div>
         </div>
     </nav>
-    <div id="all" class="container px-10 md:px-0 mx-auto " style="margin-top:40px;">
+    <div id="all" class="container px-10 md:px-0 mx-auto " style="margin-top:80px;">
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             <?php
@@ -212,7 +229,7 @@ if(!empty($result)&& $result->num_rows>0){
                 class="group my-10 flex w-full md:max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
                 <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
                     <img class="peer absolute top-0 right-0 h-full w-full object-cover"
-                        src="data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>" alt="product image" />
+                        src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="product image" />
                     <!-- <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> -->
                 </a>
                 <div class="mt-4 px-5 pb-5">
@@ -256,6 +273,15 @@ if(!empty($result)&& $result->num_rows>0){
 </html>
 <script src="../js/home.js"></script>
 <script>
+const nav = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
 document.getElementById("account").addEventListener("click", () => {
     document.getElementById("accountcontent").style.width = "20%";
 

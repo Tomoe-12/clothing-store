@@ -39,10 +39,18 @@ include("../function/functions.php")
             class='relative  border border-gray-200 rounded-xl flex flex-col  gap-4  w-96 h-96   px-3 py-3 shadow-md shadow-[#F3F3F3] '>
             <div class='h-48  flex justify-center  w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
                 style="background-image : url('../../public/profileCoverImg.jpg')">
+                <?php $per_img=perimg($_SESSION["user_id"]);
+                       
+                 
+                
+                       if(empty($per_img)){
 
+                      ?>
                 <div class="relative translate-y-1/2 ">
                     <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
                         alt=""> -->
+            
+                       
                     <svg class="w-28 h-28 ring-4 ring-white bg-gray-200 rounded-full" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -62,10 +70,25 @@ include("../function/functions.php")
                             </g>
                         </g>
                     </svg>
+                    
+   
+                
+
+                         </div>
+                         <?php } 
+                     ?>
+                <?PHP 
+                if(!empty($per_img)) { 
+                    ?>  <div class="relative translate-y-1/2 ">
+                    <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'> 
+                    <img   src="data:image/jepg;base64,<?php echo base64_encode($per_img) ?>" alt=""class='w-28 h-28 rounded-full bg-cover' >
+                    </div>
                 </div>
+              <?php  }
+                 ?>
             </div>
 
-            <div class='flex items-center h-full  '>
+            <div class='flex items-center h-full '>
 
                 <form class=" w-full px-12 mt-10  ">
                     <div>
