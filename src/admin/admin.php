@@ -96,7 +96,7 @@ include("../function/functions.php");
     
     <tr>
     <td><label>Image</td>
-    <td><input type="file" name="image" accept="img/*"></label></td>
+    <td><input type="file" name="image[]" accept="img/*" multiple></label></td>
     </tr>
     <tr>
     <td></td>
@@ -119,31 +119,33 @@ $XXL=filter_input(INPUT_POST,"XXL",FILTER_VALIDATE_INT);
 $gender=filter_input(INPUT_POST,"gender",FILTER_SANITIZE_SPECIAL_CHARS);
 $price=filter_input(INPUT_POST,"price",FILTER_VALIDATE_INT);
 $instock=$small+$medium+$large+$XL+$XXL;
+  $clo_id=insertintocloset($type,$price,$gender,$instock);
+  size($small,$medium,$large,$XL,$XXL);
+  
+  
 
-if(isset($_FILES["image"]) && $_FILES["image"]["error"]==0){
-   
-    $image=$_FILES["image"]["tmp_name"];
-    $image_content=file_get_contents($image);
-
-    $statement=$con->prepare("INSERT INTO closet (type,price,gender,instock,image) VALUES ('$type','$price','$gender','$instock',?)");
-    $statement->bind_param("s",$image_content);
+foreach($_FILES["image"]['tmp_name'] as $key => $tmp_name){
+    $imgdata=file_get_contents($tmp_name);
+    $statement=$con->prepare("INSERT INTO closet_img (clo_id,img) VALUES ( '$clo_id',?)");
+    $statement->bind_param("s",$imgdata);
     $current_id= $statement->execute() or die("<b> Error </b> problem on image insertion".mysqli_connect_error());
  if($current_id){
-     echo"inserted successfully<a href='home.php'>view all images</a>";
-     size($small,$medium,$large,$XL,$XXL);
+     echo"inserted successfully";
+    
      
  } 
  else {
      echo"fail to insert";
  }
-  }
-  else{
-    echo "please select an image";
-  }
+  
 } 
+   
+    
+     
+ 
 $con->close();
 
-
+}
 ?>
 </body>
 </html>

@@ -58,18 +58,18 @@ $key=false;
                 <div class="grid items-start grid-cols-1 lg:grid-cols-2 gap-10">
                     <div class="space-y-4 text-center lg:sticky top-8">
                         <div class="bg-gray-100 p-4 flex items-center sm:h-[380px] rounded-lg">
-                            <img src="data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>" alt="Product"
+                            <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="Product"
                                 class="w-full max-h-full object-contain object-top" />
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div class="bg-gray-100 p-4 flex items-center rounded-lg sm:h-[182px]">
-                                <img src="https://readymadeui.com/images/product12.webp" alt="Product"
+                                <img src="data:image/jepg;base64,<?php echo base64_encode(retrimulimg($row["clo_id"])) ?>" alt="Product"
                                     class="w-full max-h-full object-contain object-top" />
                             </div>
 
                             <div class="bg-gray-100 p-4 flex items-center rounded-lg sm:h-[182px]">
-                                <img src="https://readymadeui.com/images/product9.webp" alt="Product"
+                                <img src="data:image/jepg;base64,<?php echo base64_encode(retrimulimg2($row["clo_id"])) ?>" alt="Product"
                                     class="w-full max-h-full object-contain object-top" />
                             </div>
                         </div>

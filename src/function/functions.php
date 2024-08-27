@@ -116,13 +116,17 @@ function sizequantity($xxx,$clo_id){
     if(!empty($result)&& $result->num_rows>0){
      if($row=$result->fetch_assoc()){ 
    return $row["per_img"];
+     }}}
  
-
-
-
+     
+ function insertintocloset($type,$price,$gender,$instock){
+    include("connection.php");
+    $con->query("INSERT INTO closet (type,price,gender,instock) VALUES ('$type','$price','$gender','$instock')");
+    return sizeid();
+ }
   
 
-    }}}
+
     function cartnoti($cus_id){
         include("connection.php");
         $count=0;
@@ -132,6 +136,65 @@ function sizequantity($xxx,$clo_id){
 $count++;
     }
     return $count;
+}}
+function retriimgid($clo_id){
+    include("connection.php");
+   $arr=array();
+    $result=$con->query("SELECT *  from closet_img  where clo_id=$clo_id order by img_id desc");
+    if(!empty($result)&& $result->num_rows>0){
+     while($row=$result->fetch_assoc()){
+array_push($arr,$row["img_id"]);
+  
+}
+
+}
+ return $arr;
+}
+ 
+
+ 
+
+
+
+function retrimulimg($clo_id  ){
+    include("connection.php");
+    $arr= retriimgid($clo_id);
+    $num=$arr[0];
+    $result=$con->query("SELECT *  from closet_img  where clo_id=$clo_id and img_id=$num");
+    if(!empty($result)&& $result->num_rows>0){
+     if($row=$result->fetch_assoc()){
+return $row["img"];
+
+}
+}
+}
+
+function retrimulimg2($clo_id  ){
+    include("connection.php");
+    $arr= retriimgid($clo_id);
+    $num=$arr[1];
+    $result=$con->query("SELECT *  from closet_img  where clo_id=$clo_id and img_id=$num");
+    if(!empty($result)&& $result->num_rows>0){
+     if($row=$result->fetch_assoc()){
+return $row["img"];
+
+}
+}
+}
+
+function deleimg($clo_id){
+    include("connection.php");
+    $con->query("DELETE FROM  closet_img where  clo_id=$clo_id");
+}
+function retriimg($clo_id){
+    include("connection.php");
+
+    $result=$con->query("SELECT *  from closet_img  where clo_id=$clo_id order by img_id ");
+    if(!empty($result)&& $result->num_rows>0){
+     if($row=$result->fetch_assoc()){
+return $row["img"];
+
+}
 }}
 function insertorder($clo_id,$cus_id,$quantity,$size,$orderprice){
     include("connection.php");

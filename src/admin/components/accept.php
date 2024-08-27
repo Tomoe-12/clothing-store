@@ -1,10 +1,7 @@
 <?php 
 include("../function/connection.php");
+include("../function/functions.php");
 
-function update($a,$b){ 
-    include("connection.php");
-$con->query("UPDATE orderhistory set admindec='$a' where his_id='$b'");    
-} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +75,7 @@ width:80%;
            <td ><?php echo $row["user_name"] ?></td>
             <td ><?php echo $row["email"] ?></td>
             <td ><?php echo $row["ph_no"] ?></td> 
-            <td style="padding: 0px;margin:0px"> <img  src="data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>" alt="" style="height:100px;width:100pxo;" >
+            <td style="padding: 0px;margin:0px"> <img   src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="" style="height:100px;width:100pxo;" >
             </td>
 
             <td ><?php echo $row["type"] ?></td> 

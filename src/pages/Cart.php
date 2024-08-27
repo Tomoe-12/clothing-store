@@ -72,7 +72,7 @@ if(isset($_SESSION["res"])){
            while($row=$result->fetch_assoc()){
             $email=$row["email"];
             $user_name=$row["user_name"];
-            
+$clo_id=$row["clo_id"];
             $user_id=$row["cus_id"];
 
            
@@ -82,7 +82,7 @@ if(isset($_SESSION["res"])){
                     <div class="grid grid-cols-3 items-start gap-4">
                         <div class="col-span-2 flex items-start gap-4">
                             <div class="w-28 h-28 max-sm:w-24 max-sm:h-24 shrink-0 bg-gray-100 p-2 rounded-md">
-                                <img src='data:image/jepg;base64,<?php echo base64_encode($row["image"]) ?>'
+                                <img  src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
                                     class="w-full h-full object-contain" />
                                     
                             </div>
