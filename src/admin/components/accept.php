@@ -1,6 +1,6 @@
 <?php 
-include("../function/connection.php");
-include("../function/functions.php");
+include("../../function/connection.php");
+include("../../function/functions.php");
 
 ?>
 <!DOCTYPE html>
