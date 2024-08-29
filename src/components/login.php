@@ -59,7 +59,7 @@ $key=true;
 
             <div
                 class="bg-white mt-16 rounded-xl sm:px-6 px-4 py-8 max-w-md w-full h-max shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] max-lg:mx-auto">
-                <form x-data="{show: false, email: '',password: '',toggle: '0',}" action="./loginvalidate.php" method="post">
+                <form x-data="{show: false, email: '',password: '',toggle: '0',}" action="../function/loginvalidate.php" method="post">
 
                     <div class="mb-8">
                         <h3 class="text-4xl font-extrabold text-gray-800">Sign in</h3>
@@ -161,7 +161,7 @@ $pass=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);
  
 
 if($email=="admin@gmail.com" && $pass =="admin123"){
-    header("Location:./itemlist.php");
+    header("Location:/admin/components/itemlist.php");
 } 
 else{  
      $result=$con->query("SELECT * FROM customers");

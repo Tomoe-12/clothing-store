@@ -274,7 +274,7 @@ decrementButton.addEventListener('click', () => {
     const currentValue = parseInt(quantityInput.value, 10);
     if (currentValue > 1) {
         quantityInput.value = currentValue - 0.5;
-    } else if (currentValue == 1) {
+    } else if (currentValue === 1) {
         console.log('1');
         quantityInput.value = 1;
         decrementButton.classList.add('disabled');

@@ -20,9 +20,20 @@ $key=false;
     <link href="../output.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/details.css">
     <style>
-#size{
-    display:none;
-}
+    #size {
+        display: none;
+    }
+
+    .selected {
+        border: 1px solid #2563EB;
+        background-color: #2563EB;
+        color: white;
+
+    }
+
+    .unSelected {
+        background-color: white;
+    }
     </style>
 </head>
 
@@ -123,7 +134,7 @@ $key=false;
 
                         <div class="mt-8">
                             <h3 class="text-xl font-bold text-gray-800">Choose a Size</h3>
-                            <div class="flex flex-wrap gap-4 mt-4">
+                            <div class="flex flex-row flex-wrap gap-4 mt-4">
                                 <?php 
                                $small= sizeout("Small",$row["clo_id"]);
                                $medium= sizeout("Medium",$row["clo_id"]);
@@ -131,45 +142,46 @@ $key=false;
                                $XL= sizeout("XL",$row["clo_id"]);
                                $XXL= sizeout("XXL",$row["clo_id"]);
                                if($small>0){ ?>
-                               <button type="button" id="size-sm"
-                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="SM"><label for="small" style="padding:100%;">SM</label></button>
-                            <?php   }
+                                <label for="small" id="size-sm"
+                                    class="w-10 h-10 border  hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="SM">SM</label>
+                                <?php   }
                                
                        if($medium>0) {  ?>
-                                <button type="button" id="size-md"
-                                    class="w-10 h-10 border hover:border-blue-700  border-blue-600 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="MD"><label for="medium" style="padding:100%;">MD</label></button>
-                    <?php   }   
+                                <label for="medium" id="size-md"
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="MD">MD</label>
+                                <?php   }   
                     if($large>0)   { ?>
-                                <button type="button" id="size-lg"
+                                <label for="large" id="size-lg"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="LG"><label for="large" style="padding:100%;">LG</label></button>
-                <?php    } 
+                                    data-size="LG">LG </label>
+                                <?php    } 
                 if($XL>0){ ?>
-                                <button type="button" id="size-xl"
+                                <label for="XL" id="size-xl"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="XL"><label for="XL" style="padding:100%;">XL</label></button>
-          <?Php      } 
+                                    data-size="XL"> XL</label>
+                                <?Php      } 
           if($XXL>0){ ?>
-                            <button type="button" id="size-xxl"
+                                <label for="XXL" id="size-xxl"
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="XL"><label for="XXL" style="padding:100%;">XXL</label></button>
-        <?php  }
+                                    data-size="XXL">XXL</label>
+                                <?php  }
                 ?>
-                              
-                               
-                              
-                              
-                                    
-                                    <div class="radio" style="visibility:hidden;"><input type="radio" id="small" value="small" name="size">
-                                    <input type="radio" id="medium" value="medium" name="size" >
-                                    <input type="radio" id="large" value="large" name="size" >
-                                    <input type="radio" id="XL" value="XL" name="size" >
-                                    <input type="radio" id="XXL" value="XXL" name="size" >
-                                    </div>
 
-                                    
+
+
+
+
+                                <div class="radio hidden">
+                                    <input type="radio" id="small" value="small" name="size">
+                                    <input type="radio" id="medium" value="medium" name="size">
+                                    <input type="radio" id="large" value="large" name="size">
+                                    <input type="radio" id="XL" value="XL" name="size">
+                                    <input type="radio" id="XXL" value="XXL" name="size">
+                                </div>
+
+
                             </div>
                         </div>
                         <div class="mt-4 " max-w-xs mx-auto">
@@ -203,26 +215,25 @@ $key=false;
                         </div>
 
                         <div id="insufficient"
-                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
-                Insufficient in stock item number</div>
-                <div id="success"
-                style="margin-top:10px;text-align:center;background-color:white;padding:10px;color:green;border-radius:10px;">
-                Order Successfully</div>
-            <div id="unsuccess"
-                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
-                Unable to order. Please Login first!</div>
-                <div id="size"
-                style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
-                Please Select size</div>
-            <div id="zero"
-                style="margin-top:10px;text-align:center; background-color:white;padding:10px;color:red;border-radius:10px;">
-                Your order quantity must be greater than zero</div>
-   
+                            style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
+                            Insufficient in stock item number</div>
+                        <div id="success"
+                            style="margin-top:10px;text-align:center;background-color:white;padding:10px;color:green;border-radius:10px;">
+                            Order Successfully</div>
+                        <div id="unsuccess"
+                            style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
+                            Unable to order. Please Login first!</div>
+                        <div id="size"
+                            style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:red;border-radius:10px;">
+                            Please Select size</div>
+                        <div id="zero"
+                            style="margin-top:10px;text-align:center; background-color:white;padding:10px;color:red;border-radius:10px;">
+                            Your order quantity must be greater than zero</div>
+
                         <div class=" gap-4 mt-10">
                             <input type="submit" value="Add to Cart" name="order"
                                 class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-blue-700 text-white text-sm font-semibold rounded-lg">
-                            <btton type='button'
-                             onclick="location.href='../pages/home.php'"
+                            <btton type='button' onclick="location.href='../pages/home.php'"
                                 class="min-w-[200px] px-4 py-3 text-center border border-blue-600 bg-transparent  text-primary text-sm font-bold rounded-lg cursor-pointer">
                                 Cancel
                                 </button>
@@ -261,9 +272,9 @@ $key=false;
             </div>
 
 
-           
 
-         
+
+
 
         </form>
 
@@ -297,7 +308,6 @@ $key=false;
                 case"large": $realprice=$price+4000;break;
                 case"XL": $realprice=$price+6000;break;
                 case"XXL":$realprice=$price+8000;break;
-
             }
             $realprice*=$quantity;
            echo $realprice;
@@ -313,13 +323,14 @@ $key=false;
                     sizeretri($size,$quantity,$clo_id);
                   $key=true;
                   ?>
-                  
-                <script>
-                    if(<?php echo $key ?>){
-                        alert("Add to cart Successfully!");
-                    }
-                </script>
-                  <?php
+
+    <script>
+    if (<?php echo $key ?>) {
+        alert("Add to cart Successfully!");
+
+    }
+    </script>
+    <?php
                 }catch(mysqli_sql_exception){
                     echo"fail to upadate";
                     
@@ -358,7 +369,7 @@ $key=false;
                
               
                 ?>
-    
+
     <?php
                
             }catch(mysqli_sql_exception){ ?>
@@ -390,35 +401,32 @@ $key=false;
         button.addEventListener('click', (e) => {
             const selectedSize = e.target.dataset.size;
             sizeButtons.forEach((btn) => {
-                btn.classList.remove('border-blue-600');
+                btn.classList.remove('bg-primary');
+                btn.classList.remove('text-white');
                 btn.classList.add('border-gray-200');
             });
-            e.target.classList.add('border-blue-600');
+            e.target.classList.add('bg-primary');
+            e.target.classList.add('text-white')
             e.target.classList.remove('border-gray-200');
         });
     });
 
-    document.getElementById("size-sm").addEventListener("click",function(){
-           document.getElementById("price").innerHTML=<?php echo $price ?>+"KS";
-    
-    })
-    document.getElementById("size-md").addEventListener("click",function(){
-        document.getElementById("price").innerHTML=<?php echo $price +2000?>+"KS";
-    })
-    document.getElementById("size-lg").addEventListener("click",function(){
-        document.getElementById("price").innerHTML=<?php echo $price +4000?>+"KS";
-    })
-    document.getElementById("size-xl").addEventListener("click",function(){
-        document.getElementById("price").innerHTML=<?php echo $price + 6000?>+"KS";
-    })
-    document.getElementById("size-xxl").addEventListener("click",function(){
-        document.getElementById("price").innerHTML=<?php echo $price +8000?>+"KS";
-    })
+    document.getElementById("size-sm").addEventListener("click", function() {
+        document.getElementById("price").innerHTML = <?php echo $price ?> + "KS";
 
-
-
-    
-
+    })
+    document.getElementById("size-md").addEventListener("click", function() {
+        document.getElementById("price").innerHTML = <?php echo $price +2000?> + "KS";
+    })
+    document.getElementById("size-lg").addEventListener("click", function() {
+        document.getElementById("price").innerHTML = <?php echo $price +4000?> + "KS";
+    })
+    document.getElementById("size-xl").addEventListener("click", function() {
+        document.getElementById("price").innerHTML = <?php echo $price + 6000?> + "KS";
+    })
+    document.getElementById("size-xxl").addEventListener("click", function() {
+        document.getElementById("price").innerHTML = <?php echo $price +8000?> + "KS";
+    })
     </script>
 </body>
 
