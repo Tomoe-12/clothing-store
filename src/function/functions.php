@@ -8,10 +8,19 @@ function update2($x,$y){
     include("connection.php");
 $con->query("UPDATE closet set instock='$x' where clo_id='$y'");    
 }
-
-function update3($d,$e,){ 
+function update4($his_id,$dec){
     include("connection.php");
-$con->query("UPDATE orderhistory set admindec='$d'  where his_id='$e'");    
+    $con->query("UPDATE orderhistory set admindec='$dec' where his_id='$his_id'");
+}
+
+function update3($dec,$cus_id,$or_date){ 
+    include("connection.php");
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+          update4($row["his_id"],$dec);
+
+       }}
 } 
 
 function update($a,$b){ 
@@ -107,7 +116,7 @@ function sizequantity($xxx,$clo_id){
   
 
      }}
-
+  
     }
     function perimg($cus_id){
         include("connection.php");

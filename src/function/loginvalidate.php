@@ -10,7 +10,7 @@ $email=filter_input(INPUT_POST,"email",FILTER_SANITIZE_SPECIAL_CHARS);
 $pass=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);
  
 if($email=="admin@gmail.com" && $pass =="admin123"){
-    header("Location:./itemlist.php");
+    header("Location:../admin/home.php");
 } 
 else{  
      $result=$con->query("SELECT * FROM customers");
