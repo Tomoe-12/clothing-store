@@ -42,7 +42,7 @@ width:80%;
 </head>
 <body>
     <nav>
-    <a href="../pages/admin/components/itemlist.php">Items List</a>
+    <a href="../home.php">Items List</a>
   <a href="ordered.php">Ordered Items</a>
   <a href="accept.php">Accept Orders</a>
   

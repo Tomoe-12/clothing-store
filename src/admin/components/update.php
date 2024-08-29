@@ -63,7 +63,7 @@ include("../../function/functions.php");
     </style>
 </head>
 <body>
-    <a href="itemlist.php">Back</a>
+    <a href="../home.php">Back</a>
     <?php
 
     ob_start();

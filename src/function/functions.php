@@ -157,6 +157,9 @@ sizeupdate($xxx,$left,$row["clo_id"]);
 
     }
     
+    function updatequanity($xxx,$clo_id){
+        
+    }
 function sizequantity($xxx,$clo_id){ 
     include("connection.php");
 
@@ -183,9 +186,9 @@ function sizequantity($xxx,$clo_id){
      }}}
  
      
- function insertintocloset($type,$price,$gender,$instock){
+ function insertintocloset($type,$price,$gender,$instock,$productdesc ,$productname){
     include("connection.php");
-    $con->query("INSERT INTO closet (type,price,gender,instock) VALUES ('$type','$price','$gender','$instock')");
+    $con->query("INSERT INTO closet (type,price,gender,instock,productdesc,productname) VALUES ('$type','$price','$gender','$instock','$productdesc','$productname')");
     return sizeid();
  }
   

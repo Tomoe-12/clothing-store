@@ -65,7 +65,7 @@ include("../function/connection.php");
     </style>
 </head>
 <body>
-    <a href="../pages/admin/components/itemlist.php">Back</a>
+    <a href="../admin/home.php">Back</a>
     <?php
 
     ob_start();

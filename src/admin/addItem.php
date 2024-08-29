@@ -43,7 +43,7 @@ include("../function/functions.php");
 <body>
    
 <nav>
-<a href="./components/itemlist.php">Items List</a>
+<a href="./home.php">Items List</a>
   <a href="ordered.php">Ordered Items</a>
   <a href="accept.php">Accept Orders</a>
   
@@ -56,6 +56,10 @@ include("../function/functions.php");
     <tr>
         <td> <label>Type </td> 
         <td><input type="text" name="type"></label></td>
+    </tr>
+    <tr>
+        <td> <label>Product name </td> 
+        <td><input type="text" name="productname"></label></td>
     </tr>
     <tr>
         <td><label>Small </td>
@@ -99,7 +103,9 @@ include("../function/functions.php");
     <td><input type="file" name="image[]" accept="img/*" multiple></label></td>
     </tr>
     <tr>
-    <td></td>
+    <td> 
+     <label for="">Product Descriptiont <textarea name="productdesc" id=""></textarea></label>  
+    </td>
     <td><input type="submit" name="Post" value="Post">
     </td>
     </tr>
@@ -110,6 +116,8 @@ include("../function/functions.php");
 </form>
 <?php 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $productname=filter_input(INPUT_POST,"productname",FILTER_SANITIZE_SPECIAL_CHARS);
+    $productdesc=filter_input(INPUT_POST,"productdesc",FILTER_SANITIZE_SPECIAL_CHARS);
 $type=filter_input(INPUT_POST,"type",FILTER_SANITIZE_SPECIAL_CHARS);
 $small=filter_input(INPUT_POST,"small",FILTER_VALIDATE_INT);
 $medium=filter_input(INPUT_POST,"medium",FILTER_VALIDATE_INT);
@@ -119,7 +127,7 @@ $XXL=filter_input(INPUT_POST,"XXL",FILTER_VALIDATE_INT);
 $gender=filter_input(INPUT_POST,"gender",FILTER_SANITIZE_SPECIAL_CHARS);
 $price=filter_input(INPUT_POST,"price",FILTER_VALIDATE_INT);
 $instock=$small+$medium+$large+$XL+$XXL;
-  $clo_id=insertintocloset($type,$price,$gender,$instock);
+  $clo_id=insertintocloset($type,$price,$gender,$instock,$productdesc,$productname);
   size($small,$medium,$large,$XL,$XXL);
   
   

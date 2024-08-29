@@ -41,9 +41,9 @@ $key=false;
 
     <div class="min-h-screen flex justify-center items-center">
         <?php 
-   $item_id=$_GET["item_id"];
+   $item_id=$_GET["clo_id"];
   
-  
+  echo 5+(-1);
    $result=$con->query("SELECT * FROM closet WHERE clo_id='$item_id' ");
    if(!empty($result)&& $result->num_rows>0){
     while($row=$result->fetch_assoc()){ 
@@ -233,7 +233,7 @@ $key=false;
                         <div class=" gap-4 mt-10">
                             <input type="submit" value="Add to Cart" name="order"
                                 class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-blue-700 text-white text-sm font-semibold rounded-lg">
-                            <btton type='button' onclick="location.href='../pages/home.php'"
+                            <btton type='button' onclick="location.href='../pages/Cart.php'"
                                 class="min-w-[200px] px-4 py-3 text-center border border-blue-600 bg-transparent  text-primary text-sm font-bold rounded-lg cursor-pointer">
                                 Cancel
                                 </button>

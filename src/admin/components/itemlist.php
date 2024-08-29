@@ -49,7 +49,7 @@ include("../../function/functions.php");
 </head>
 <body>
     <nav>
-    <a href="./itemlist.php">Items List</a>
+    <a href="../home.php">Items List</a>
   <a href="../../components/ordered.php">Ordered Items</a>
   <a href="../../components/accept.php">Accept Orders</a>
   
@@ -126,7 +126,7 @@ deletecloset($clo_id);
 deletesize($clo_id);
 deleimg($clo_id);
 
- header("Location:itemlist.php");
+ header("Location:../home.php");
 ob_end_flush();
 
 }
