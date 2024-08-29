@@ -1,3 +1,8 @@
+<?php 
+include("../function/functions.php");
+include("../function/connection.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -248,7 +253,8 @@
                         </svg>
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Collected</h3>
                     </div>
-                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">$3,313.44
+                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">
+                        <?php  echo acceptitemks()?>KS
                     </p>
                 </div>
 
@@ -262,7 +268,7 @@
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Pending</h3>
                     </div>
                     <p class="rounded-xl bg-white px-4 py-8 text-center text-2xl">
-                        $125,968.64
+                        <?php  echo pendingitemks();?>KS
                     </p>
                 </div>
 
@@ -276,7 +282,7 @@
                         </svg>
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Total items</h3>
                     </div>
-                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">10
+                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl"><?php echo itemcount() ?>
                     </p>
                 </div>
 
@@ -290,7 +296,7 @@
                         </svg>
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Total Customers</h3>
                     </div>
-                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">6</p>
+                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl"><?php echo userscount() ?></p>
                 </div>
 
 
@@ -364,54 +370,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                            <td>2021/25/09</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                            <td>269000</td>
-                            <td>49%</td>
+                       
+                            <?php   
+                            $result=$con->query("SELECT * FROM closet order by type ");
+                            if(!empty($result)&& $result->num_rows>0){
+                               while($row=$result->fetch_assoc()){ 
+                             ?>
+                              <tr class="hover:bg-gray-50 cursor-pointer">
+                            <td class="font-medium text-gray-900 whitespace-nowrap "><img style="height:45px;"
+                        src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                        alt="product image" /></td>
+                            <td><?php echo $row["type"]?></td>
+                            <td><?php echo $row["instock"]?></td>
+                            <td><?php echo $row["price"]?></td>
+                            <td><a href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">Edit</a></td>
+                            <td><form action="../admin/components/delete.php" method="post">
+        <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id" style="display:none;">
+        <input type="submit" value="Delete">
+    </form></td>
+                           
                         </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                            <td>2013/24/05</td>
-                            <td>4500000</td>
-                            <td>24%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                            <td>2021/25/09</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                            <td>2013/24/05</td>
-                            <td>4500000</td>
-                            <td>24%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                            <td>2021/25/09</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                            <td>2013/24/05</td>
-                            <td>4500000</td>
-                            <td>24%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
+                         <?php }}?>
                     </tbody>
                 </table>
 
@@ -421,7 +400,7 @@
         </div>
     </div>
 
-
+    
 
 
     <script>
