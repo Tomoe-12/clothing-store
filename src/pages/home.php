@@ -29,6 +29,10 @@ include("../function/functions.php")
 
 
     <style>
+    .test {
+        border: 1px solid red;
+    }
+
     nav {
         z-index: 999 !important;
     }
@@ -36,7 +40,7 @@ include("../function/functions.php")
     #drawer-right-example {
         z-index: 99 !important;
     }
-    
+
     nav:not(.scrolled) {
         box-shadow: none;
     }
@@ -46,13 +50,13 @@ include("../function/functions.php")
     }
     </style>
 
-<script>
-    if(<?Php echo $_SESSION["success"]?>){
-       
+    <script>
+    if ( < ? Php echo $_SESSION["success"] ? > ) {
+
         alert("Logged in Successfully!");
-          <?php $_SESSION["success"]=null; ?>
+        <?php $_SESSION["success"]=null; ?>
     }
-</script>
+    </script>
 </head>
 
 <body>
@@ -214,7 +218,7 @@ if(!empty($result)&& $result->num_rows>0){
             </div>
         </div>
     </nav>
-    <div id="all" class="container px-10 md:px-0 mx-auto " style="margin-top:80px;">
+    <div id="all" class="container px-6 md:px-0 mx-auto " style="margin-top:80px;">
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             <?php
@@ -229,7 +233,8 @@ if(!empty($result)&& $result->num_rows>0){
                 class="group my-10 flex w-full md:max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
                 <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
                     <img class="peer absolute top-0 right-0 h-full w-full object-cover"
-                        src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="product image" />
+                        src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                        alt="product image" />
                     <!-- <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> -->
                 </a>
                 <div class="mt-4 px-5 pb-5">
