@@ -101,7 +101,7 @@
                                 d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
                     </a>
-                    <a href=""
+                    <a href="./components/ordered.php"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
                         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -114,7 +114,7 @@
                             </g>
                         </svg>
                     </a>
-                    <a href=""
+                    <a href="./components/accept.php"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
                         <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
                             xmlns="http://www.w3.org/2000/svg">
@@ -130,6 +130,23 @@
                             </g>
                         </svg>
                     </a>
+                    <a href="./components/notification.php"
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
+                        <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                            <g id="SVGRepo_iconCarrier">
+                                <path
+                                    d="M959.018 208.158c0.23-2.721 0.34-5.45 0.34-8.172 0-74.93-60.96-135.89-135.89-135.89-1.54 0-3.036 0.06-6.522 0.213l-611.757-0.043c-1.768-0.085-3.563-0.17-5.424-0.17-74.812 0-135.67 60.84-135.67 135.712l0.188 10.952h-0.306l0.391 594.972-0.162 20.382c0 74.03 60.22 134.25 134.24 134.25 1.668 0 7.007-0.239 7.1-0.239l608.934 0.085c2.985 0.357 6.216 0.468 9.55 0.468 35.815 0 69.514-13.954 94.879-39.302 25.373-25.34 39.344-58.987 39.344-94.794l-0.145-12.015h0.918l-0.008-606.41z m-757.655 693.82l-2.585-0.203c-42.524 0-76.146-34.863-76.537-79.309V332.671H900.79l0.46 485.186-0.885 2.865c-0.535 1.837-0.8 3.58-0.8 5.17 0 40.382-31.555 73.766-71.852 76.002l-10.816 0.621v-0.527l-615.533-0.01zM900.78 274.424H122.3l-0.375-65.934 0.85-2.924c0.52-1.82 0.782-3.63 0.782-5.247 0-42.236 34.727-76.665 78.179-76.809l0.45-0.068 618.177 0.018 2.662 0.203c42.329 0 76.767 34.439 76.767 76.768 0 1.326 0.196 2.687 0.655 4.532l0.332 0.884v68.577z"
+                                    fill=""></path>
+                                <path
+                                    d="M697.67 471.435c-7.882 0-15.314 3.078-20.918 8.682l-223.43 223.439L346.599 596.84c-5.544-5.603-12.95-8.69-20.842-8.69s-15.323 3.078-20.918 8.665c-5.578 5.518-8.674 12.9-8.7 20.79-0.017 7.908 3.07 15.357 8.69 20.994l127.55 127.558c5.57 5.56 13.01 8.622 20.943 8.622 7.925 0 15.364-3.06 20.934-8.63l244.247-244.247c5.578-5.511 8.674-12.883 8.7-20.783 0.017-7.942-3.079-15.408-8.682-20.986-5.552-5.612-12.958-8.698-20.85-8.698z"
+                                    fill=""></path>
+                            </g>
+                        </svg>
+                    </a>
+
                 </div>
 
                 <div class=" flex  flex-col space-y-6">
@@ -155,7 +172,6 @@
             </div>
 
             <!-- for small screen -->
-
             <div class="sm:hidden flex grow flex-row justify-between space-x-2 sm:flex-col sm:space-x-0 sm:space-y-2">
                 <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold  sm:flex-none sm:justify-start sm:p-2 sm:px-3 text-blue-600"
                     href="#">
@@ -166,7 +182,7 @@
                     </svg>
                 </a>
                 <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
-                    href="#">
+                    href="./components/ordered.php">
                     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -177,9 +193,9 @@
                             <path d="M9 17H13" stroke="currentColor" stroke-linecap="round"></path>
                         </g>
                     </svg>
-                </a><a
-                    class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
-                    href="#">
+                </a>
+                <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
+                    href="./components/accept.php">
                     <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="#000000" class="icon" version="1.1"
                         xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -193,7 +209,6 @@
                                 fill=""></path>
                         </g>
                     </svg>
-                    <p class="hidden sm:block">Customers</p>
                 </a>
                 <div class="hidden h-auto w-full grow rounded-sm bg-gray-100 sm:block"></div>
 
