@@ -40,7 +40,8 @@ else{
         
         
         }
-         if($key){ ?>
+         if($key){ 
+              $_SESSION["loginfail"] =true;?>
     <script>
     document.getElementById("unsuccess").style.display = "block";
     </script>
@@ -60,7 +61,7 @@ else{
     </script>
 
     <?php  
-     header("Location:./login.php");  } 
+     header("Location:../components/login.php");  } 
 
       
           

@@ -1,3 +1,8 @@
+<?php 
+include("../function/functions.php");
+include("../function/connection.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +108,7 @@
                     </a>
                     <a href="./components/ordered.php"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
-                        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -132,17 +137,13 @@
                     </a>
                     <a href="./components/notification.php"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
-                        <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg">
+                        <svg class='w-8 h-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
                                 <path
-                                    d="M959.018 208.158c0.23-2.721 0.34-5.45 0.34-8.172 0-74.93-60.96-135.89-135.89-135.89-1.54 0-3.036 0.06-6.522 0.213l-611.757-0.043c-1.768-0.085-3.563-0.17-5.424-0.17-74.812 0-135.67 60.84-135.67 135.712l0.188 10.952h-0.306l0.391 594.972-0.162 20.382c0 74.03 60.22 134.25 134.24 134.25 1.668 0 7.007-0.239 7.1-0.239l608.934 0.085c2.985 0.357 6.216 0.468 9.55 0.468 35.815 0 69.514-13.954 94.879-39.302 25.373-25.34 39.344-58.987 39.344-94.794l-0.145-12.015h0.918l-0.008-606.41z m-757.655 693.82l-2.585-0.203c-42.524 0-76.146-34.863-76.537-79.309V332.671H900.79l0.46 485.186-0.885 2.865c-0.535 1.837-0.8 3.58-0.8 5.17 0 40.382-31.555 73.766-71.852 76.002l-10.816 0.621v-0.527l-615.533-0.01zM900.78 274.424H122.3l-0.375-65.934 0.85-2.924c0.52-1.82 0.782-3.63 0.782-5.247 0-42.236 34.727-76.665 78.179-76.809l0.45-0.068 618.177 0.018 2.662 0.203c42.329 0 76.767 34.439 76.767 76.768 0 1.326 0.196 2.687 0.655 4.532l0.332 0.884v68.577z"
-                                    fill=""></path>
-                                <path
-                                    d="M697.67 471.435c-7.882 0-15.314 3.078-20.918 8.682l-223.43 223.439L346.599 596.84c-5.544-5.603-12.95-8.69-20.842-8.69s-15.323 3.078-20.918 8.665c-5.578 5.518-8.674 12.9-8.7 20.79-0.017 7.908 3.07 15.357 8.69 20.994l127.55 127.558c5.57 5.56 13.01 8.622 20.943 8.622 7.925 0 15.364-3.06 20.934-8.63l244.247-244.247c5.578-5.511 8.674-12.883 8.7-20.783 0.017-7.942-3.079-15.408-8.682-20.986-5.552-5.612-12.958-8.698-20.85-8.698z"
-                                    fill=""></path>
+                                    d="M17.7778 16.4066C18.1725 16.2808 18.3904 15.8588 18.2646 15.4642C18.1388 15.0696 17.7168 14.8516 17.3222 14.9774L17.7778 16.4066ZM11.6797 15.9343C11.2657 15.9455 10.9391 16.2902 10.9503 16.7043C10.9615 17.1183 11.3062 17.4449 11.7203 17.4337L11.6797 15.9343ZM16.876 16.0131C17.0578 16.3853 17.5068 16.5397 17.8791 16.358C18.2513 16.1762 18.4057 15.7272 18.224 15.3549L16.876 16.0131ZM16.9104 14.374L16.2225 14.6728C16.2269 14.683 16.2316 14.6931 16.2364 14.7031L16.9104 14.374ZM15.9422 10.806L16.6868 10.7157C16.6855 10.7048 16.6839 10.694 16.6821 10.6832L15.9422 10.806ZM11.7068 5.941C11.2926 5.941 10.9568 6.27679 10.9568 6.691C10.9568 7.10521 11.2926 7.441 11.7068 7.441V5.941ZM11.7068 7.441C12.121 7.441 12.4568 7.10521 12.4568 6.691C12.4568 6.27679 12.121 5.941 11.7068 5.941V7.441ZM7.45778 10.807L6.71795 10.6839C6.71614 10.6948 6.71457 10.7057 6.71325 10.7166L7.45778 10.807ZM6.48961 14.374L7.16357 14.7031C7.16843 14.6931 7.17308 14.683 7.1775 14.6728L6.48961 14.374ZM5.17605 15.3549C4.99431 15.7272 5.14873 16.1762 5.52095 16.358C5.89317 16.5397 6.34223 16.3853 6.52397 16.0131L5.17605 15.3549ZM10.9568 6.691C10.9568 7.10521 11.2926 7.441 11.7068 7.441C12.121 7.441 12.4568 7.10521 12.4568 6.691H10.9568ZM12.4568 5C12.4568 4.58579 12.121 4.25 11.7068 4.25C11.2926 4.25 10.9568 4.58579 10.9568 5H12.4568ZM10.9568 6.691C10.9568 7.10521 11.2926 7.441 11.7068 7.441C12.121 7.441 12.4568 7.10521 12.4568 6.691H10.9568ZM12.4568 5C12.4568 4.58579 12.121 4.25 11.7068 4.25C11.2926 4.25 10.9568 4.58579 10.9568 5H12.4568ZM6.07781 14.9774C5.68317 14.8516 5.26125 15.0696 5.13544 15.4642C5.00963 15.8588 5.22756 16.2808 5.6222 16.4066L6.07781 14.9774ZM11.6797 17.4337C12.0938 17.4449 12.4385 17.1183 12.4497 16.7043C12.4609 16.2902 12.1343 15.9455 11.7203 15.9343L11.6797 17.4337ZM10.5 16.523C10.5 16.1088 10.1642 15.773 9.75001 15.773C9.33579 15.773 9.00001 16.1088 9.00001 16.523H10.5ZM14.4049 16.523C14.4049 16.1088 14.0691 15.773 13.6549 15.773C13.2407 15.773 12.9049 16.1088 12.9049 16.523H14.4049ZM17.3222 14.9774C15.4929 15.5606 13.5943 15.8825 11.6797 15.9343L11.7203 17.4337C13.7761 17.3782 15.8144 17.0325 17.7778 16.4066L17.3222 14.9774ZM18.224 15.3549L17.5844 14.0449L16.2364 14.7031L16.876 16.0131L18.224 15.3549ZM17.5983 14.0752C17.1347 13.008 16.8275 11.8759 16.6868 10.7157L15.1977 10.8963C15.3558 12.1997 15.701 13.4723 16.2225 14.6728L17.5983 14.0752ZM16.6821 10.6832C16.4696 9.40313 16.017 8.21501 15.1948 7.33897C14.3526 6.44171 13.1869 5.941 11.7068 5.941V7.441C12.8193 7.441 13.5729 7.80279 14.1011 8.36553C14.6492 8.94949 15.0181 9.81887 15.2024 10.9288L16.6821 10.6832ZM11.7068 5.941C10.2266 5.941 9.05835 6.44146 8.21321 7.33789C7.38755 8.21366 6.93123 9.40201 6.71795 10.6839L8.19761 10.9301C8.38214 9.82099 8.75359 8.95134 9.30463 8.36686C9.83619 7.80304 10.5936 7.441 11.7068 7.441V5.941ZM6.71325 10.7166C6.57244 11.8765 6.26519 13.0083 5.80171 14.0752L7.1775 14.6728C7.69888 13.4727 8.04413 12.2004 8.20232 10.8974L6.71325 10.7166ZM5.81565 14.0449L5.17605 15.3549L6.52397 16.0131L7.16357 14.7031L5.81565 14.0449ZM12.4568 6.691V5H10.9568V6.691H12.4568ZM12.4568 6.691V5H10.9568V6.691H12.4568ZM5.6222 16.4066C7.58558 17.0325 9.62394 17.3782 11.6797 17.4337L11.7203 15.9343C9.80576 15.8825 7.90713 15.5606 6.07781 14.9774L5.6222 16.4066ZM9.00001 16.523V17.023H10.5V16.523H9.00001ZM9.00001 17.023C9.00001 18.5252 10.1921 19.7755 11.7024 19.7755V18.2755C11.0561 18.2755 10.5 17.7327 10.5 17.023H9.00001ZM11.7024 19.7755C13.2127 19.7755 14.4049 18.5252 14.4049 17.023H12.9049C12.9049 17.7327 12.3487 18.2755 11.7024 18.2755V19.7755ZM14.4049 17.023V16.523H12.9049V17.023H14.4049Z"
+                                    fill="currentColor"></path>
                             </g>
                         </svg>
                     </a>
@@ -183,7 +184,7 @@
                 </a>
                 <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
                     href="./components/ordered.php">
-                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -210,18 +211,21 @@
                         </g>
                     </svg>
                 </a>
+
                 <div class="hidden h-auto w-full grow rounded-sm bg-gray-100 sm:block"></div>
 
-                <form action="" enctype="multipart/form-data" method="POST"><input type="hidden"
-                        name="$ACTION_ID_afb2820c8facca439123229c7bfc8d5d4f1e5184"><button
-                        class="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"><svg
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                <form action="" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" name="$ACTION_ID_afb2820c8facca439123229c7bfc8d5d4f1e5184">
+                    <button
+                        class="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" aria-hidden="true" data-slot="icon" class="w-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M5.636 5.636a9 9 0 1 0 12.728 0M12 3v9"></path>
                         </svg>
-                        <div class="hidden sm:block">Sign Out</div>
-                    </button></form>
+                    </button>
+                </form>
+
             </div>
 
 
@@ -248,7 +252,8 @@
                         </svg>
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Collected</h3>
                     </div>
-                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">$3,313.44
+                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">
+                        <?php  echo acceptitemks()?>KS
                     </p>
                 </div>
 
@@ -262,7 +267,7 @@
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Pending</h3>
                     </div>
                     <p class="rounded-xl bg-white px-4 py-8 text-center text-2xl">
-                        $125,968.64
+                        <?php  echo pendingitemks();?>KS
                     </p>
                 </div>
 
@@ -276,7 +281,7 @@
                         </svg>
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Total items</h3>
                     </div>
-                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">10
+                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl"><?php echo itemcount() ?>
                     </p>
                 </div>
 
@@ -290,7 +295,7 @@
                         </svg>
                         <h3 class="ml-2 text-base text-gray-500 font-medium">Total Customers</h3>
                     </div>
-                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">6</p>
+                    <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl"><?php echo userscount() ?></p>
                 </div>
 
 
@@ -364,54 +369,31 @@
                         </tr>
                     </thead>
                     <tbody>
+
+                        <?php   
+                            $result=$con->query("SELECT * FROM closet order by type ");
+                            if(!empty($result)&& $result->num_rows>0){
+                               while($row=$result->fetch_assoc()){ 
+                             ?>
                         <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                            <td>2021/25/09</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                            <td>269000</td>
-                            <td>49%</td>
+                            <td class="font-medium text-gray-900 whitespace-nowrap "><img style="height:45px;"
+                                    src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                                    alt="product image" /></td>
+                            <td><?php echo $row["type"]?></td>
+                            <td><?php echo $row["instock"]?></td>
+                            <td><?php echo $row["price"]?></td>
+                            <td><a href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">Edit</a>
+                            </td>
+                            <td>
+                                <form action="../admin/components/delete.php" method="post">
+                                    <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
+                                        style="display:none;">
+                                    <input type="submit" value="Delete">
+                                </form>
+                            </td>
+
                         </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                            <td>2013/24/05</td>
-                            <td>4500000</td>
-                            <td>24%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                            <td>2021/25/09</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                            <td>2013/24/05</td>
-                            <td>4500000</td>
-                            <td>24%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                            <td>2021/25/09</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
-                            <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                            <td>2013/24/05</td>
-                            <td>4500000</td>
-                            <td>24%</td>
-                            <td>269000</td>
-                            <td>49%</td>
-                        </tr>
+                        <?php }}?>
                     </tbody>
                 </table>
 

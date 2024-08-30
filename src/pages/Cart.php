@@ -112,6 +112,7 @@ $clo_id=$row["clo_id"];
                                   
                                 </button>
                                 </form>
+                                <a href="../components/updateitem.php?clo_id=<?php echo $row["clo_id"]?> " >Update</a>
                             </div>
                         </div>
 

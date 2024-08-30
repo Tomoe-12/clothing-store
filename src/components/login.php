@@ -25,6 +25,12 @@ $key=true;
         fill: #bbb;
     }
     </style>
+    <script>
+        if(<?php echo $_SESSION["loginfail"] ?>){
+            <?php $_SESSION["loginfail"]=null; ?>
+            alert("login Fail");
+        }
+    </script>
 </head>
 
 
@@ -161,7 +167,7 @@ $pass=filter_input(INPUT_POST,"password",FILTER_SANITIZE_SPECIAL_CHARS);
  
 
 if($email=="admin@gmail.com" && $pass =="admin123"){
-    header("Location:/admin/components/itemlist.php");
+    header("Location:../admin/home.php");
 } 
 else{  
      $result=$con->query("SELECT * FROM customers");

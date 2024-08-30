@@ -61,6 +61,7 @@ include("../function/functions.php")
 
 <body>
 
+
     <nav x-data="{ isOpen: false }" class="w-full  bg-white fixed top-0">
         <div class="container px-6 py-4 mx-auto">
             <div class="lg:flex lg:items-center lg:justify-between">
@@ -69,9 +70,13 @@ include("../function/functions.php")
                         <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
                     </a>
 
+
                     <!-- Mobile menu button -->
+
                     <div class="flex lg:hidden gap-5">
                         <div class="flex justify-center md:block">
+                            <?php if(!empty($_SESSION['user_id'])){
+                            $count=cartnoti($_SESSION["user_id"]); ?>
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
                                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,11 +86,17 @@ include("../function/functions.php")
                                         stroke-linejoin="round" />
                                 </svg>
 
+                                <?php  if($count!=0){ ?>
                                 <span
                                     class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
-                                    style="font-size : 11px; top:-30%; right: -40%;">66</span>
+                                    style="font-size : 11px; top :-30%; right : -40%;"><?php  echo $count?>
+                                </span>
+                                <?php }?>
                             </a>
+                            <?php } ?>
                         </div>
+
+
                         <button x-cloak @click="isOpen = !isOpen" type="button"
                             class="text-gray-500  hover:text-gray-600  focus:outline-none focus:text-gray-600 "
                             aria-label="toggle menu">
@@ -144,10 +155,12 @@ include("../function/functions.php")
                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
-
+                                <?php  if($count != 0){ ?>
                                 <span
                                     class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
-                                    style="font-size : 11px; top :-30%; right : -40%;"><?php  echo $count?></span>
+                                    style="font-size : 11px; top :-30%; right : -40%;"><?php  echo $count?>
+                                </span>
+                                <?php }?>
 
                             </a>
                         </div>

@@ -22,6 +22,61 @@ function update3($dec,$cus_id,$or_date){
 
        }}
 } 
+function pendingitemks(){
+    include("connection.php");
+    $pendKS=0;
+    $result=$con->query("SELECT orderprice FROM orderhistory where admindec='Pending'  ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+         $pendKS+=$row["orderprice"];
+
+       }}
+       return $pendKS;
+}
+
+function acceptitemks(){
+    include("connection.php");
+    $acceptKS=0;
+    $result=$con->query("SELECT orderprice FROM orderhistory where admindec='Accept'  ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+         $acceptKS+=$row["orderprice"];
+
+       }}
+       return $acceptKS;
+}
+
+
+function itemcount(){
+    include("connection.php");
+    $itemcount=0;
+    $result=$con->query("SELECT * FROM closet group by type ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+         $itemcount++;
+
+       }}
+       return $itemcount;
+}
+
+
+function userscount(){
+    include("connection.php");
+    $userscount=0;
+    $result=$con->query("SELECT * FROM customers   ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+         $userscount++;
+
+       }}
+       return $userscount;
+}
+
+    
+function adminsize($clo_id,$small,$medium,$large,$xl,$xxl){
+    include("connection.php");
+    $con->query("UPDATE size set Small='$small',Medium='$medium',Large='$large',XL='$xl' ,XXL='$xxl' where clo_id=$clo_id");  
+}
 
 function update($a,$b){ 
     include("connection.php");
@@ -102,6 +157,9 @@ sizeupdate($xxx,$left,$row["clo_id"]);
 
     }
     
+    function updatequanity($xxx,$clo_id){
+        
+    }
 function sizequantity($xxx,$clo_id){ 
     include("connection.php");
 
@@ -128,9 +186,9 @@ function sizequantity($xxx,$clo_id){
      }}}
  
      
- function insertintocloset($type,$price,$gender,$instock){
+ function insertintocloset($type,$price,$gender,$instock,$productdesc ,$productname){
     include("connection.php");
-    $con->query("INSERT INTO closet (type,price,gender,instock) VALUES ('$type','$price','$gender','$instock')");
+    $con->query("INSERT INTO closet (type,price,gender,instock,productdesc,productname) VALUES ('$type','$price','$gender','$instock','$productdesc','$productname')");
     return sizeid();
  }
   

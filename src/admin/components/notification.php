@@ -1,6 +1,6 @@
 <?php 
-include("../function/connection.php");
-include("../function/functions.php");
+include("../../function/connection.php");
+include("../../function/functions.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +38,7 @@ include("../function/functions.php");
 </head>
 <body>
     <nav>
-  <a href="itemlist.php">Items List</a>
+  <a href="../home.php">Items List</a>
   <a href="ordered.php">Ordered Items</a>
   <a href="accept.php">Accept Orders</a>
 
@@ -108,7 +108,7 @@ deletecloset($clo_id);
 deletesize($clo_id);
 deleimg($clo_id);
 
- header("Location:../pages/admin/components/itemlist.php");
+ header("Location:../home.php");
 ob_end_flush();
 
 }
