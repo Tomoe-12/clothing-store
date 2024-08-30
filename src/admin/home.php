@@ -112,10 +112,10 @@ include("../function/connection.php");
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
-                                <rect x="5" y="4" width="14" height="17" rx="2" stroke="#222222"></rect>
-                                <path d="M9 9H15" stroke="#222222" stroke-linecap="round"></path>
-                                <path d="M9 13H15" stroke="#222222" stroke-linecap="round"></path>
-                                <path d="M9 17H13" stroke="#222222" stroke-linecap="round"></path>
+                                <rect x="5" y="4" width="14" height="17" rx="2" stroke="currentColor"></rect>
+                                <path d="M9 9H15" stroke="currentColor" stroke-linecap="round"></path>
+                                <path d="M9 13H15" stroke="currentColor" stroke-linecap="round"></path>
+                                <path d="M9 17H13" stroke="currentColor" stroke-linecap="round"></path>
                             </g>
                         </svg>
                     </a>

@@ -47,7 +47,7 @@ width:80%;
   <a href="accept.php">Accept Orders</a>
   
   <a href="notification.php">Notification</a>
-  <a href="admin.php">Add Item</a>
+  <a href="../addItem.php">Add Item</a>
     </nav>
     <table>
     <tr>
