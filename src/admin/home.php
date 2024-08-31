@@ -85,9 +85,9 @@ include("../function/connection.php");
 <body class='flex p-0'>
 
     <!-- navbar -->
-    <div
+    <nav
         class="navbar flex flex-col  items-center w-full sm:w-14 sm:h-screen sm:py-8 overflow-y-auto bg-white sm:border-r rtl:border-l rtl:border-r-0 ">
-        <nav class="px-3 pb-4  w-full flex flex-col flex-1 sm:space-y-6">
+        <div class="px-3 pb-4  w-full flex flex-col flex-1 sm:space-y-6">
 
             <div class='flex justify-center h-20 '>
                 <a href="#">
@@ -99,7 +99,7 @@ include("../function/connection.php");
             <div class='w-full h-full hidden sm:flex  flex-col px-0 items-center justify-between'>
                 <div class='w-full flex flex-col gap-4 mt-5'>
                     <a href=""
-                        class="flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600">
+                        class="flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium bg-blue-100 text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -197,7 +197,7 @@ include("../function/connection.php");
                 </a>
                 <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
                     href="./components/accept.php">
-                    <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="#000000" class="icon" version="1.1"
+                    <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
                         xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -229,8 +229,8 @@ include("../function/connection.php");
             </div>
 
 
-        </nav>
-    </div>
+        </div>
+    </nav>
 
     <!-- data table -->
     <div class='w-full flex justify-center items-center'>
@@ -316,7 +316,7 @@ include("../function/connection.php");
                                     </svg>
                                 </span>
                             </th>
-                            <th class='bg-gray-100' data-type="date" data-format="YYYY/DD/MM">
+                            <th class='bg-gray-100' data-format="YYYY/DD/MM">
                                 <span class="flex items-center">
                                     Type
                                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -375,7 +375,7 @@ include("../function/connection.php");
                             if(!empty($result)&& $result->num_rows>0){
                                while($row=$result->fetch_assoc()){ 
                              ?>
-                        <tr class="hover:bg-gray-50 cursor-pointer">
+                        <tr class="hover:bg-gray-50 cursor-pointer ">
                             <td class="font-medium text-gray-900 whitespace-nowrap "><img style="height:45px;"
                                     src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
                                     alt="product image" /></td>
@@ -409,71 +409,77 @@ include("../function/connection.php");
     <script>
     if (document.getElementById("selection-table") && typeof simpleDatatables.DataTable !== 'undefined') {
 
-        let multiSelect = true;
-        let rowNavigation = false;
-        let table = null;
-
-        const resetTable = function() {
-            if (table) {
-                table.destroy();
+        const exportCustomCSV = function(dataTable, userOptions = {}) {
+            // A modified CSV export that includes a row of minuses at the start and end.
+            const clonedUserOptions = {
+                ...userOptions
             }
-
+            clonedUserOptions.download = false
+            const csv = simpleDatatables.exportCSV(dataTable, clonedUserOptions)
+            // If CSV didn't work, exit.
+            if (!csv) {
+                return false
+            }
+            const defaults = {
+                download: true,
+                lineDelimiter: "\n",
+                columnDelimiter: ";"
+            }
             const options = {
-                rowRender: (row, tr, _index) => {
-                    if (!tr.attributes) {
-                        tr.attributes = {};
-                    }
-                    if (!tr.attributes.class) {
-                        tr.attributes.class = "";
-                    }
-                    if (row.selected) {
-                        tr.attributes.class += " selected";
-                    } else {
-                        tr.attributes.class = tr.attributes.class.replace(" selected", "");
-                    }
-                    return tr;
-                },
-                columns: [{
-                    select: [0, 4, 5],
-                    sortable: false
-                }, ]
-            };
-            if (rowNavigation) {
-                options.rowNavigation = true;
-                options.tabIndex = 1;
+                ...defaults,
+                ...clonedUserOptions
             }
 
-            table = new simpleDatatables.DataTable("#selection-table", options);
-
-            // Mark all rows as unselected
-            table.data.data.forEach(data => {
-                data.selected = false;
-            });
-
-            table.on("datatable.selectrow", (rowIndex, event) => {
-                event.preventDefault();
-                const row = table.data.data[rowIndex];
-                if (row.selected) {
-                    row.selected = false;
-                } else {
-                    if (!multiSelect) {
-                        table.data.data.forEach(data => {
-                            data.selected = false;
-                        });
-                    }
-                    row.selected = true;
-                }
-                table.update();
-            });
-        };
-
-        // Row navigation makes no sense on mobile, so we deactivate it and hide the checkbox.
-        const isMobile = window.matchMedia("(any-pointer:coarse)").matches;
-        if (isMobile) {
-            rowNavigation = false;
+            return str
         }
+        const table = new simpleDatatables.DataTable("#selection-table", {
+            perPage: 5,
+            perPageSelect: [5, 10, 20,50], // Options for the entries dropdown
+            columns: [{
+                select: [0, 4, 5],
+                sortable: false
+            }],
+            template: (options, dom) => "<div class='" + options.classes.top + "'>" +
+                "<div class='flex flex-col sm:items-center sm:justify-between sm:flex-row space-y-4 sm:space-y-0 sm:space-x-3 rtl:space-x-reverse w-full h-fit sm:w-auto'>" +
+                "<a href='./additem.php' id='exportDropdownButton' class='cursor-pointer flex w-fit px-2 h-10 items-center justify-center rounded-lg border border-blue-600 text-sm font-semibold bg-blue-600 hover:bg-white hover:text-blue-600 text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto'>" +
+                "Add Item" +
 
-        resetTable();
+               " <svg class='-me-0.5 ms-1.5 h-4 w-4' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path d='M4 12H20M12 4V20' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path> </g></svg>"+
+               
+               "</a>" +
+               (options.paging && options.perPageSelect ?
+                    "<div class='" + options.classes.dropdown + "'>" +
+                    "<label>" +
+                    "<select class='" + options.classes.selector + "'></select> " + options.labels.perPage +
+                    "</label>" +
+                    "</div>" : ""
+                ) +
+                "<div id='exportDropdown' class='z-10 hidden w-52 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700' data-popper-placement='bottom'>" +
+
+                "</div>" + "</div>" +
+                (options.searchable ?
+                    "<div class='" + options.classes.search + "'>" +
+                    "<input class='" + options.classes.input + "' placeholder='" + options.labels.placeholder +
+                    "' type='search' title='" + options.labels.searchTitle + "'" + (dom.id ?
+                        " aria-controls='" + dom.id + "'" : "") + ">" +
+                    "</div>" : ""
+                ) +
+                "</div>" +
+                "<div class='" + options.classes.container + "'" + (options.scrollY.length ?
+                    " style='height: " + options.scrollY + "; overflow-Y: auto;'" : "") + "></div>" +
+                "<div class='" + options.classes.bottom + "'>" +
+                (options.paging ?
+                    "<div class='" + options.classes.info + "'></div>" : ""
+                ) +
+                "<nav class='" + options.classes.pagination + "'></nav>" +
+                "</div>"
+        })
+        const $exportButton = document.getElementById("exportDropdownButton");
+        const $exportDropdownEl = document.getElementById("exportDropdown");
+        const dropdown = new Dropdown($exportDropdownEl, $exportButton);
+        console.log(dropdown)
+
+      
     }
     </script>
 
