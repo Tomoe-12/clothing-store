@@ -6,6 +6,17 @@ include("../function/functions.php");
 if(empty( $_SESSION["res"])){
     echo"";
 }
+if( isset($_SESSION["update"] )){
+    $_SESSION["update"]=null;
+    $update=true;
+}  
+ ?>
+ <script>
+     if(<?php echo $update ?>){
+        alert("Update Successfully!");
+    }
+ </script>
+  <?php
 if(isset($_SESSION["res"])){ 
     $res=true;
     $_SESSION["res"]=null;
@@ -14,6 +25,7 @@ if(isset($_SESSION["res"])){
     if(<?php echo $res?>){
         alert("Order all items Successfully!");
     }
+   
 </script>
 <?php
 }
@@ -112,7 +124,7 @@ $clo_id=$row["clo_id"];
                                   
                                 </button>
                                 </form>
-                                <a href="../components/updateitem.php?clo_id=<?php echo $row["clo_id"]?> " >Update</a>
+     <a href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> " >Update</a>
                             </div>
                         </div>
 
