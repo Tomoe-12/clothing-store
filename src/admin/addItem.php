@@ -261,12 +261,12 @@ include("../function/functions.php");
                     <div class="col-span-6">
                         <label for="file-input" class="mb-2 font-medium flex justify-between items-center">
                             <p>Choose files <span class='text-gray-400'>( up to 3 files )</span> </p>
-                            <button id="select-button"
+                            <button type='button' id="select-button"
                                 class="bg-primary hover:bg-white hover:text-blue-600 border border-blue-600  text-white font-medium py-1.5 px-4 rounded-full transition-colors duration-300">
                                 Select
                             </button>
                         </label>
-                        <input type="file" name="image[]" accept="img/*" multiple>
+                        <input id='file-input' type="file" name="image[]" class='hidden' accept="img/*" multiple>
                         <!-- <input id="file-input" type="file"  name="image[]" accept="img/*" multiple class="hidden" /> -->
                         <div class="flex mb-4 flex-col">
                             <div id="drop-zone"
