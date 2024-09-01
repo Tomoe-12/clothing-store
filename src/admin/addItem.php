@@ -188,21 +188,21 @@ include("../function/functions.php");
                 <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>"  method="post"  enctype="multipart/form-data" class="mt-8 grid grid-cols-6 gap-6">
                     <div class="col-span-6">
                         <label for="product-name" class="block text-sm font-medium text-gray-700"> Product Name </label>
-                        <input type="text" id="product-name" name="productname" placeholder='Nike Air Force'
+                        <input type="text" id="product-name" name="productname" placeholder='Nike Air Force' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="type" class="block text-sm font-medium text-gray-700">
                             Type
                         </label>
-                        <input type="text" id="type" name="type" placeholder='somthing else'
+                        <input type="text" id="type" name="type" placeholder='somthing else' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="price" class="block text-sm font-medium text-gray-700">
                             Price
                         </label>
-                        <input type="text" id="price" name="price" placeholder='100000'
+                        <input type="text" id="price" name="price" placeholder='100000' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
 
@@ -210,7 +210,7 @@ include("../function/functions.php");
                         <label for="Gender" class="block text-sm font-medium text-gray-700">
                             Gender
                         </label>
-                        <input type="text" id="Gender" name="gender" placeholder='no lgbtq++ only male and female '
+                        <input type="text" id="Gender" name="gender" placeholder='no lgbtq++ only male and female ' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
 
@@ -219,32 +219,32 @@ include("../function/functions.php");
                         <div id='number-input' class='grid grid-cols-5 gap-5 '>
                             <div>
                                 <label for="number-input-sm" class="block text-sm font-medium text-gray-700">SM</label>
-                                <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation" name="small"
+                                <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation" name="small" required
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-md" class="block text-sm font-medium text-gray-700">MD</label>
-                                <input type="number" id="number-input-md" aria-describedby="helper-text-explanation" name="medium"
+                                <input type="number" id="number-input-md" aria-describedby="helper-text-explanation" name="medium" required
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-lg" class="block text-sm font-medium text-gray-700">LG</label>
-                                <input type="number" id="number-input-lg" aria-describedby="helper-text-explanation" name="large"
+                                <input type="number" id="number-input-lg" aria-describedby="helper-text-explanation" name="large" required
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-xl" class="block text-sm font-medium text-gray-700">XL</label>
-                                <input type="number" id="number-input-xl" aria-describedby="helper-text-explanation" name="XL"
+                                <input type="number" id="number-input-xl" aria-describedby="helper-text-explanation" name="XL" required
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-xxl"
                                     class="block text-sm font-medium text-gray-700">XXL</label>
-                                <input type="number" id="number-input-xxl" aria-describedby="helper-text-explanation" name="XXL"
+                                <input type="number" id="number-input-xxl" aria-describedby="helper-text-explanation" name="XXL" required
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -254,7 +254,7 @@ include("../function/functions.php");
                     <div class="col-span-6 max-h-96">
                         <label for="product-desc" class="block text-sm font-medium text-gray-700"> Product Description
                         </label>
-                        <textarea id="product-desc" name="productdesc" placeholder='sth description'
+                        <textarea id="product-desc" name="productdesc" placeholder='sth description' required
                             class="mt-1 w-full h-36 max-h-96 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"></textarea>
                     </div>
                     <!-- photo select -->
@@ -266,7 +266,7 @@ include("../function/functions.php");
                                 Select
                             </button>
                         </label>
-                        <input id='file-input' type="file" name="image[]" class='hidden' accept="img/*" multiple>
+                        <input id='file-input' type="file" name="image[]" class='hidden' accept="img/*" required multiple>
                         <!-- <input id="file-input" type="file"  name="image[]" accept="img/*" multiple class="hidden" /> -->
                         <div class="flex mb-4 flex-col">
                             <div id="drop-zone"
