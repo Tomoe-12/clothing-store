@@ -185,10 +185,10 @@ include("../function/functions.php");
             class="container flex flex-col main items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <h1 class='text-black font-semibold text-xl sm:text-3xl'>Add new Item</h1>
             <div class=" max-w-xl lg:max-w-3xl">
-                <form action="#" class="mt-8 grid grid-cols-6 gap-6">
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>"  method="post"  enctype="multipart/form-data" class="mt-8 grid grid-cols-6 gap-6">
                     <div class="col-span-6">
                         <label for="product-name" class="block text-sm font-medium text-gray-700"> Product Name </label>
-                        <input type="text" id="product-name" name="product-anme" placeholder='Nike Air Force'
+                        <input type="text" id="product-name" name="productname" placeholder='Nike Air Force'
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <div class="col-span-6 sm:col-span-3">
@@ -210,7 +210,7 @@ include("../function/functions.php");
                         <label for="Gender" class="block text-sm font-medium text-gray-700">
                             Gender
                         </label>
-                        <input type="text" id="Gender" name="Gender" placeholder='no lgbtq++ only male and female '
+                        <input type="text" id="Gender" name="gender" placeholder='no lgbtq++ only male and female '
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
 
@@ -219,32 +219,32 @@ include("../function/functions.php");
                         <div id='number-input' class='grid grid-cols-5 gap-5 '>
                             <div>
                                 <label for="number-input-sm" class="block text-sm font-medium text-gray-700">SM</label>
-                                <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation"
+                                <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation" name="small"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-md" class="block text-sm font-medium text-gray-700">MD</label>
-                                <input type="number" id="number-input-md" aria-describedby="helper-text-explanation"
+                                <input type="number" id="number-input-md" aria-describedby="helper-text-explanation" name="medium"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-lg" class="block text-sm font-medium text-gray-700">LG</label>
-                                <input type="number" id="number-input-lg" aria-describedby="helper-text-explanation"
+                                <input type="number" id="number-input-lg" aria-describedby="helper-text-explanation" name="large"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-xl" class="block text-sm font-medium text-gray-700">XL</label>
-                                <input type="number" id="number-input-xl" aria-describedby="helper-text-explanation"
+                                <input type="number" id="number-input-xl" aria-describedby="helper-text-explanation" name="XL"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-xxl"
                                     class="block text-sm font-medium text-gray-700">XXL</label>
-                                <input type="number" id="number-input-xxl" aria-describedby="helper-text-explanation"
+                                <input type="number" id="number-input-xxl" aria-describedby="helper-text-explanation" name="XXL"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -254,7 +254,7 @@ include("../function/functions.php");
                     <div class="col-span-6 max-h-96">
                         <label for="product-desc" class="block text-sm font-medium text-gray-700"> Product Description
                         </label>
-                        <textarea id="product-desc" name="product-desc" placeholder='sth description'
+                        <textarea id="product-desc" name="productdesc" placeholder='sth description'
                             class="mt-1 w-full h-36 max-h-96 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"></textarea>
                     </div>
                     <!-- photo select -->
@@ -266,7 +266,8 @@ include("../function/functions.php");
                                 Select
                             </button>
                         </label>
-                        <input id="file-input" type="file" multiple class="hidden" />
+                        <input type="file" name="image[]" accept="img/*" multiple>
+                        <!-- <input id="file-input" type="file"  name="image[]" accept="img/*" multiple class="hidden" /> -->
                         <div class="flex mb-4 flex-col">
                             <div id="drop-zone"
                                 class="w-full h-48 border-2 border-dashed border-gray-300 rounded-lg flex justify-center items-center text-gray-400 text-lg">
@@ -277,7 +278,7 @@ include("../function/functions.php");
                         </div>
                     </div>
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4 ">
-                        <button
+                        <button type="submit" 
                             class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
                             Create New
                         </button>
@@ -409,3 +410,45 @@ include("../function/functions.php");
 </body>
 
 </html>
+
+<?php 
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+    $productname=filter_input(INPUT_POST,"productname",FILTER_SANITIZE_SPECIAL_CHARS);
+    $productdesc=filter_input(INPUT_POST,"productdesc",FILTER_SANITIZE_SPECIAL_CHARS);
+$type=filter_input(INPUT_POST,"type",FILTER_SANITIZE_SPECIAL_CHARS);
+$small=filter_input(INPUT_POST,"small",FILTER_VALIDATE_INT);
+$medium=filter_input(INPUT_POST,"medium",FILTER_VALIDATE_INT);
+$large=filter_input(INPUT_POST,"large",FILTER_VALIDATE_INT);
+$XL=filter_input(INPUT_POST,"XL",FILTER_VALIDATE_INT);
+$XXL=filter_input(INPUT_POST,"XXL",FILTER_VALIDATE_INT);
+$gender=filter_input(INPUT_POST,"gender",FILTER_SANITIZE_SPECIAL_CHARS);
+$price=filter_input(INPUT_POST,"price",FILTER_VALIDATE_INT);
+$instock=$small+$medium+$large+$XL+$XXL;
+  $clo_id=insertintocloset($type,$price,$gender,$instock,$productdesc,$productname);
+  size($small,$medium,$large,$XL,$XXL);
+  
+  
+
+foreach($_FILES["image"]['tmp_name'] as $key => $tmp_name){ 
+    $imgdata=file_get_contents($tmp_name);
+    $statement=$con->prepare("INSERT INTO closet_img (clo_id,img) VALUES ( '$clo_id',?)");
+    $statement->bind_param("s",$imgdata);
+    $current_id= $statement->execute() or die("<b> Error </b> problem on image insertion".mysqli_connect_error());
+ if($current_id){
+     echo"inserted successfully";
+    
+     
+ } 
+ else {
+     echo"fail to insert";
+ }
+  
+} 
+   
+    
+     
+ 
+$con->close();
+
+}
+?>
