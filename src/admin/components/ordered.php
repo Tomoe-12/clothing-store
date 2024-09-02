@@ -8,7 +8,7 @@ include("../../function/functions.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ordered</title>
     <style>
     table>tr>th,td{
         text-align: center;
@@ -47,7 +47,7 @@ width:80%;
   <a href="accept.php">Accept Orders</a>
   
   <a href="notification.php">Notification</a>
-  <a href="admin.php">Add Item</a>
+  <a href="../addItem.php">Add Item</a>
     </nav>
     <table>
     <tr>

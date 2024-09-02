@@ -339,4 +339,10 @@ function deletcart($user_id){
         $con->query("DELETE FROM size where clo_id='$clo_Id'");
 
     }
+
+    function updatecart($quantity,$size,$orderprice,$cart_id){
+        include("connection.php");
+        $con->query("UPDATE cart set quantity='$quantity' , size='$size' ,orderprice='$orderprice' where cart_id='$cart_id'");    
+
+    }
 ?>

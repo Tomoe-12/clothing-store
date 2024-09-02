@@ -13,7 +13,7 @@ $key=true;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
 
     <!-- tailwind -->
     <link href="../output.css" rel="stylesheet">
@@ -101,7 +101,7 @@ $key=true;
                             <input :type="show ? 'text' : 'password' " x-model="password" name="password"
                                 class="w-full text-base text-gray-800 border border-gray-300 px-4 py-3 rounded-md outline-blue-600"
                                 placeholder="Enter password">
-                            <button @click="show = !show" class="w-[18px] h-[18px] absolute right-4 cursor-pointer">
+                            <button type='button' @click="show = !show" class="w-[18px] h-[18px] absolute right-4 cursor-pointer">
                               
                                 <svg x-show="!show" class='w-6 h-6' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

@@ -9,7 +9,7 @@ include("../function/functions.php")
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Home</title>
 
 
     <!-- <link rel="stylesheet" href="../css/home.css">
@@ -51,7 +51,7 @@ include("../function/functions.php")
     </style>
 
     <script>
-    if ( < ? Php echo $_SESSION["success"] ? > ) {
+    if ( <?Php echo $_SESSION["success"] ?> ) {
 
         alert("Logged in Successfully!");
         <?php $_SESSION["success"]=null; ?>
@@ -252,7 +252,7 @@ if(!empty($result)&& $result->num_rows>0){
                 </a>
                 <div class="mt-4 px-5 pb-5">
                     <a href="#">
-                        <h5 class="text-xl tracking-tight text-slate-900">Nike Air MX Super 2500 - Red</h5>
+                        <h5 class="text-xl tracking-tight text-slate-900"><?php echo $row["productname"] ?></h5>
                     </a>
                     <div class="mt-2 mb-5 flex items-center justify-between">
                         <p>

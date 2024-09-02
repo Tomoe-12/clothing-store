@@ -41,18 +41,23 @@ $key=false;
 
     <div class="min-h-screen flex justify-center items-center">
         <?php 
-   $item_id=$_GET["clo_id"];
+   $item_id=$_GET["cart_id"];
+   $price=$_GET["price"];
+   $clo_id=$_GET["clo_id"];
+   $quantity=$_GET["quantity"];
+   
   
-  echo 5+(-1);
-   $result=$con->query("SELECT * FROM closet WHERE clo_id='$item_id' ");
+   $result=$con->query("SELECT * FROM closet join cart on closet.clo_id=cart.clo_id where cart.cart_id='$item_id' ");
    if(!empty($result)&& $result->num_rows>0){
-    while($row=$result->fetch_assoc()){ 
-        $clo_id=$row["clo_id"];
-    $price=$row["price"];
+    if($row=$result->fetch_assoc()){ 
+       
+       $size=$row["size"];
+      
+       
       $instock=$row["instock"];
         ?>
 
-        <form action=" <?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
+        <form action="../function/cartupdate.php" method="post">
             <div class="font-sans p-8 tracking-wide max-lg:max-w-2xl mx-auto">
 
                 <div class="grid items-start grid-cols-1 lg:grid-cols-2 gap-10">
@@ -141,44 +146,85 @@ $key=false;
                                $large= sizeout("Large",$row["clo_id"]);
                                $XL= sizeout("XL",$row["clo_id"]);
                                $XXL= sizeout("XXL",$row["clo_id"]);
-                               if($small>0){ ?>
+                               if($small>0){
+                                if($size=="small"){  ?>
+                            <label for="small" id="size-sm" onclick='document.getElementById("price").innerHTML = <?php echo $price ?>+"KS"'; 
+                                     class="w-10 h-10 border   hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="SM">SM</label>
+                              <?php } 
+                              else{?>
+
                                 <label for="small" id="size-sm" onclick='document.getElementById("price").innerHTML = <?php echo $price ?>+"KS"';
                                     class="w-10 h-10 border  hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="SM">SM</label>
-                                <?php   }
-                               
-                       if($medium>0) {  ?>
+                                <?php   }}
+
+
+                       if($medium>0) { 
+                        if($size=="medium"){
+                             ?>
+                                  <label for="medium" id="size-md" onclick='document.getElementById("price").innerHTML = <?php echo $price+2000?>+"KS"';
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="MD">MD</label>
+                                <?php } 
+                              else{?>
                                 <label for="medium" id="size-md" onclick='document.getElementById("price").innerHTML = <?php echo $price+2000?>+"KS"';
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="MD">MD</label>
-                                <?php   }   
-                    if($large>0)   { ?>
+                                <?php }  }
+                                
+                                
+                    if($large>0)   {
+                        if($size=="large"){ ?>
+                              <label for="large" id="size-lg" onclick='document.getElementById("price").innerHTML = <?php echo $price +4000?>+"KS"';
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="LG">LG </label>
+                            <?php } 
+                              else{?>
                                 <label for="large" id="size-lg" onclick='document.getElementById("price").innerHTML = <?php echo $price +4000?>+"KS"';
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="LG">LG </label>
-                                <?php    } 
-                if($XL>0){ ?>
+                                <?php   } } 
+                if($XL>0){ 
+                    if($size=="large"){?>
+
+                               <label for="XL" id="size-xl" onclick='document.getElementById("price").innerHTML = <?php echo $price +6000?>+"KS"';
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="XL"> XL</label>
+                                <?php } 
+                              else{?>
                                 <label for="XL" id="size-xl" onclick='document.getElementById("price").innerHTML = <?php echo $price +6000?>+"KS"';
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XL"> XL</label>
-                                <?Php      } 
-          if($XXL>0){ ?>
+                                <?Php    }  } 
+          if($XXL>0){
+            if($size=="large"){ ?>
                                 <label for="XXL" id="size-xxl"onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"';
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XXL">XXL</label>
-                                <?php  }
-                ?>
+                            <?php } 
+                              else{?>
+                                <label for="XXL" id="size-xxl"onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"';
+                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    data-size="XXL">XXL</label>
+                                <?php  }}?>
+                
 
+                                <input type="text" name="orderprice" value="<?php echo $row["orderprice"] ?>" style="display:none;">
 
+                                <input type="text" name="price" value="<?php echo $row["price"] ?>" style="display:none;">
+                                <input type="text" name="cart_id" value="<?php echo $row["cart_id"] ?>" style="display:none;">
 
-
+                                <input type="text" name="clo_id" value="<?php echo $clo_id ?>" style="display:none;">
+                                <input type="text" name="size" value="<?php echo $size ?>" style="display:none;">
+                                <input type="text" name="quantity" value="<?php echo $quantity ?>" style="display:none;">
 
                                 <div class="radio hidden">
-                                    <input type="radio" id="small" value="small" name="size">
-                                    <input type="radio" id="medium" value="medium" name="size">
-                                    <input type="radio" id="large" value="large" name="size">
-                                    <input type="radio" id="XL" value="XL" name="size">
-                                    <input type="radio" id="XXL" value="XXL" name="size">
+                                    <input type="radio" id="small" value="small" name="orsize">
+                                    <input type="radio" id="medium" value="medium" name="orsize">
+                                    <input type="radio" id="large" value="large" name="orsize">
+                                    <input type="radio" id="XL" value="XL" name="orsize">
+                                    <input type="radio" id="XXL" value="XXL" name="orsize">
                                 </div>
 
 
@@ -198,7 +244,7 @@ $key=false;
                                             stroke-width="2" d="M1 1h16" />
                                     </svg>
                                 </button>
-                                <input type="text" id="quantity-input" data-input-counter name="quantity"
+                                <input type="text" id="quantity-input" data-input-counter name="orquantity" value="<?php  echo $quantity;?>"
                                     aria-describedby="helper-text-explanation"
                                     class=" w-full h-11 font-semibold bg-white text-gray-900 text-lg  text-center border border-gray-100 focus:ring-none  block  py-2.5 "
                                     placeholder="0" required />
@@ -229,7 +275,6 @@ $key=false;
                         <div id="zero"
                             style="margin-top:10px;text-align:center; background-color:white;padding:10px;color:red;border-radius:10px;">
                             Your order quantity must be greater than zero</div>
-
                         <div class=" gap-4 mt-10">
                             <input type="submit" value="Add to Cart" name="order"
                                 class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-blue-700 text-white text-sm font-semibold rounded-lg">
@@ -276,7 +321,7 @@ $key=false;
 
 
 
-
+           
 
 
         </form>
@@ -288,18 +333,8 @@ $key=false;
   ?>
     </div>
     <?php 
-    if($_SERVER["REQUEST_METHOD"]=="POST"){
-        
-
-
-        if(empty($_SESSION["user_id"])){
-            ?>
-    <script>
-    document.getElementById("unsuccess").style.display = "block";
-    </script>
-    <?php
-        } 
-        else {
+    
+       /*  else {
             $size=filter_input(INPUT_POST,"size",FILTER_SANITIZE_SPECIAL_CHARS);
                 if(isset($size)){
             $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);
@@ -395,7 +430,7 @@ $key=false;
     </script>
     <?php
 
-    }}} ?>
+    }} */ ?>
 
     <script>
     const sizeButtons = document.querySelectorAll('[data-size]');
