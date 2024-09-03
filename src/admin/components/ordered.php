@@ -100,7 +100,7 @@ include("../../function/functions.php");
             <div class='w-full h-full hidden sm:flex  flex-col px-0 items-center justify-between'>
                 <div class='w-full flex flex-col gap-4 mt-5'>
                     <a href="../home.php"
-                        class="flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600">
+                        class="flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 text-gray-600">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -108,7 +108,7 @@ include("../../function/functions.php");
                         </svg>
                     </a>
                     <a href="./ordered.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium bg-blue-100 text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3'>
                         <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -121,7 +121,7 @@ include("../../function/functions.php");
                         </svg>
                     </a>
                     <a href="./accept.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 text-gray-600'>
                         <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -136,8 +136,8 @@ include("../../function/functions.php");
                             </g>
                         </svg>
                     </a>
-                    <a href="#"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium bg-blue-100 text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 '>
+                    <a href="./notification.php"
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 text-gray-600 md:flex-none md:justify-start md:p-2 md:px-3 '>
                         <svg class='w-8 h-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -153,7 +153,7 @@ include("../../function/functions.php");
 
                 <div class=" flex  flex-col space-y-6">
 
-                    <a href="#"
+                    <a href=""
                         class="p-1.5  focus:outline-nones transition-colors duration-200 rounded-lg bg-gray-100">
 
                         <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

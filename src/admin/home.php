@@ -98,7 +98,7 @@ include("../function/connection.php");
             <!-- for large screen from (table to latop  & desktop) -->
             <div class='w-full h-full hidden sm:flex  flex-col px-0 items-center justify-between'>
                 <div class='w-full flex flex-col gap-4 mt-5'>
-                    <a href=""
+                    <a href="#"
                         class="flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium bg-blue-100 text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6">
@@ -107,7 +107,7 @@ include("../function/connection.php");
                         </svg>
                     </a>
                     <a href="./components/ordered.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover: hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
                         <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -120,7 +120,7 @@ include("../function/connection.php");
                         </svg>
                     </a>
                     <a href="./components/accept.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover: hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
                         <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -136,7 +136,7 @@ include("../function/connection.php");
                         </svg>
                     </a>
                     <a href="./components/notification.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 bg-sky-100 text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover: hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
                         <svg class='w-8 h-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -182,7 +182,7 @@ include("../function/connection.php");
                             d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75  12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                     </svg>
                 </a>
-                <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
+                <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover: hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
                     href="./components/ordered.php">
                     <svg class="w-7 h-7" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -195,7 +195,7 @@ include("../function/connection.php");
                         </g>
                     </svg>
                 </a>
-                <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
+                <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover: hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
                     href="./components/accept.php">
                     <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
                         xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +217,7 @@ include("../function/connection.php");
                 <form action="" enctype="multipart/form-data" method="POST">
                     <input type="hidden" name="$ACTION_ID_afb2820c8facca439123229c7bfc8d5d4f1e5184">
                     <button
-                        class="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3">
+                        class="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover: hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" aria-hidden="true" data-slot="icon" class="w-6">
                             <path stroke-linecap="round" stroke-linejoin="round"
