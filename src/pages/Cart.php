@@ -71,7 +71,7 @@ if(isset($_SESSION["res"])){
             <div class="grid md:grid-cols-3 gap-5">
 
                 <!-- items box  -->
-                <div class="md:col-span-2 space-y-4  h-full overflow-scroll">
+                <div class="md:col-span-2 space-y-4  h-full ">
                 <?php  
                
                 

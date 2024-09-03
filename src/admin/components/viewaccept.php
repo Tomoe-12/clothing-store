@@ -1,14 +1,15 @@
 <?php 
 include("../../function/connection.php");
 include("../../function/functions.php");
-
+$or_date=$_GET["or_date"];
+$cus_id=$_GET["cus_id"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ordered</title>
+    <title>Document</title>
     <style>
     table>tr>th,td{
         text-align: center;
@@ -47,40 +48,36 @@ width:80%;
   <a href="accept.php">Accept Orders</a>
   
   <a href="notification.php">Notification</a>
-  <a href="../addItem.php">Add Item</a>
+  <a href="admin.php">Add Item</a>
     </nav>
     <table>
     <tr>
-        <th>User name</th>
-        <th>E-mail</th>
-        <th>Contact No</th>
+        <th>Image</th>
+        <th>Type</th>
+        <th>Size</th>
         <!-- <th>Image</th> -->
        <!--  <th>Type</th>
         <th>Size</th>
         <th>Price</th> -->
-        <th>Address</th>
+        <th>Price</th>
          <!-- <th>Quantity</th>
          <th>Action</th> -->
-         <th>View Detail</th>
+         <th>Quantity</th>
+  
 
 
     </tr>
     <?php
     ob_start();
     
-    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Accept' group by orderhistory.or_date; ");
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Accept' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
     if(!empty($result)&& $result->num_rows>0){
-       while($row=$result->fetch_assoc()){ ?>
+       while($row=$result->fetch_assoc()){ 
+        $cus_id=$row["cus_id"];?>
            <tr>
             
-           <td ><?php echo $row["user_name"] ?></td>
-            <td ><?php echo $row["email"] ?></td>
-            <td ><?php echo $row["ph_no"] ?></td> 
-            <td ><?php echo $row["address"] ?></td>
-            <td><a href="viewaccept.php?or_date=<?php echo $row['or_date'] ?> && cus_id=<?php echo $row["cus_id"] ?>">
-                View Details
-            </a></td>
-           <!--  <td style="padding: 0px;margin:0px"> <img   src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="" style="height:100px;width:100pxo;" >
+          
+         <td style="padding: 0px;margin:0px"> <img   src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="" style="height:100px;width:100pxo;" >
             </td>
 
             <td ><?php echo $row["type"] ?></td> 
@@ -88,7 +85,7 @@ width:80%;
             <td ><?php echo $row["price"] ?></td>
            
             <td ><?php echo $row["quantity"] ?></td>
-            <form action="validate.php" method="get">
+           
             <?php
         
         switch($row["admindec"]){ 
@@ -98,7 +95,7 @@ width:80%;
                 
                 
                 </select><?php ;break; 
-            case"Accept":?><td ><select name="dec">
+            case"Accept":?><td ><select name="dec"  style="display:none">
                 <option name="dec" value="<?php echo $row["admindec"] ?>"><?php echo $row["admindec"] ?></option>
                 <option name="dec" value="Pending">Pending</option>
                
@@ -115,18 +112,20 @@ width:80%;
 
                  
                 ?>
-   <input type="text" style="display:none" value="<?php echo $row["quantity"] ?>" name="quantity"><br>
-                                <input type="text" style="display:none" value="<?php echo $row["instock"] ?>" name="instock"><br>
-                <input type="text" style="display:none" value="<?php echo $row["his_id"] ?>" name="his_id"><br>
-                <input type="text" style="display:none" value="<?php echo $row["clo_id"] ?>" name="clo_id"><br>
-                <input type="text" style="display:none" value="<?php echo $row["or_date"] ?>" name="or_date"><br>
-
-    <td><input type="submit" value="Deliver" name="save"></td>
-    </form>
-</tr> -->
+ 
+              
+</tr> 
 
     <?php }}?>
     </table>
-   
+     
+    <form action="../../function/validate.php" method="get">
+    <input type="text" style="display:none" value="<?php echo $cus_id ?>" name="cus_id"><br>
+                <input type="text" style="display:none" value="<?php echo $or_date ?>" name="or_date"><br>
+
+                
+
+    <td><input style="display:none" type="submit" value="Deliver" name="save"></td>
+    </form>
 </body>
 </html>

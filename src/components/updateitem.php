@@ -149,7 +149,7 @@ $key=false;
                                if($small>0){
                                 if($size=="small"){  ?>
                             <label for="small" id="size-sm" onclick='document.getElementById("price").innerHTML = <?php echo $price ?>+"KS"'; 
-                                     class="w-10 h-10 border   hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                     class="w-10 h-10 border bg-primary text-white  hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="SM">SM</label>
                               <?php } 
                               else{?>
@@ -164,7 +164,7 @@ $key=false;
                         if($size=="medium"){
                              ?>
                                   <label for="medium" id="size-md" onclick='document.getElementById("price").innerHTML = <?php echo $price+2000?>+"KS"';
-                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    class="w-10 h-10 border  bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="MD">MD</label>
                                 <?php } 
                               else{?>
@@ -177,7 +177,7 @@ $key=false;
                     if($large>0)   {
                         if($size=="large"){ ?>
                               <label for="large" id="size-lg" onclick='document.getElementById("price").innerHTML = <?php echo $price +4000?>+"KS"';
-                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    class="w-10 h-10 border bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="LG">LG </label>
                             <?php } 
                               else{?>
@@ -189,7 +189,7 @@ $key=false;
                     if($size=="large"){?>
 
                                <label for="XL" id="size-xl" onclick='document.getElementById("price").innerHTML = <?php echo $price +6000?>+"KS"';
-                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    class="w-10 h-10 border bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XL"> XL</label>
                                 <?php } 
                               else{?>
@@ -200,7 +200,7 @@ $key=false;
           if($XXL>0){
             if($size=="large"){ ?>
                                 <label for="XXL" id="size-xxl"onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"';
-                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    class="w-10 h-10 border bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XXL">XXL</label>
                             <?php } 
                               else{?>
@@ -250,7 +250,7 @@ $key=false;
                                     placeholder="0" required />
                                 <button type="button" id="increment-button"
                                     data-input-counter-increment="quantity-input"
-                                    class="bg-blue-600 border border-blue-600 hover:bg-blue-700  rounded-e-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none">
+                                    class="bg-blue-600 border border-blue-600 hover:bg-primary  rounded-e-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none">
                                     <svg class="w-3 h-3 text-white " aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -277,7 +277,7 @@ $key=false;
                             Your order quantity must be greater than zero</div>
                         <div class=" gap-4 mt-10">
                             <input type="submit" value="Add to Cart" name="order"
-                                class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-blue-700 text-white text-sm font-semibold rounded-lg">
+                                class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-primary text-white text-sm font-semibold rounded-lg">
                             <btton type='button' onclick="location.href='../pages/Cart.php'"
                                 class="min-w-[200px] px-4 py-3 text-center border border-blue-600 bg-transparent  text-primary text-sm font-bold rounded-lg cursor-pointer">
                                 Cancel

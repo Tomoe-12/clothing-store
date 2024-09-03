@@ -26,7 +26,7 @@ include("../function/functions.php");
        
       
 
-       header("Location:ordered.php");
+       header("Location:../admin/components/ordered.php");
         ob_end_flush();
     }
     
