@@ -50,7 +50,7 @@ include("../function/connection.php");
     }
 
     .main {
-        margin-top: 0rem;
+        margin-top: 3rem;
         padding-top: 2rem;
     }
 
@@ -234,7 +234,7 @@ include("../function/connection.php");
 
     <!-- data table -->
     <div class='w-full flex justify-center items-center'>
-        <div class='container flex flex-col main px-3 py-4 h-fit'>
+        <div class='container  flex flex-col main px-3 py-4 h-fit gap-5'>
 
 
             <h1 class='main-text text-black text-xl sm:text-3xl'>Dashboard</h1>
@@ -434,7 +434,7 @@ include("../function/connection.php");
         }
         const table = new simpleDatatables.DataTable("#selection-table", {
             perPage: 5,
-            perPageSelect: [5, 10, 20,50], // Options for the entries dropdown
+            perPageSelect: [5, 10, 20, 50], // Options for the entries dropdown
             columns: [{
                 select: [0, 4, 5],
                 sortable: false
@@ -444,10 +444,10 @@ include("../function/connection.php");
                 "<a href='./additem.php' id='exportDropdownButton' class='cursor-pointer flex w-fit px-2 h-10 items-center justify-center rounded-lg border border-blue-600 text-sm font-semibold bg-blue-600 hover:bg-white hover:text-blue-600 text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto'>" +
                 "Add Item" +
 
-               " <svg class='-me-0.5 ms-1.5 h-4 w-4' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path d='M4 12H20M12 4V20' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path> </g></svg>"+
-               
-               "</a>" +
-               (options.paging && options.perPageSelect ?
+                " <svg class='-me-0.5 ms-1.5 h-4 w-4' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g id='SVGRepo_bgCarrier' stroke-width='0'></g><g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g><g id='SVGRepo_iconCarrier'> <path d='M4 12H20M12 4V20' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'></path> </g></svg>" +
+
+                "</a>" +
+                (options.paging && options.perPageSelect ?
                     "<div class='" + options.classes.dropdown + "'>" +
                     "<label>" +
                     "<select class='" + options.classes.selector + "'></select> " + options.labels.perPage +
@@ -479,8 +479,23 @@ include("../function/connection.php");
         const dropdown = new Dropdown($exportDropdownEl, $exportButton);
         console.log(dropdown)
 
-      
+
     }
+    </script>
+    <script>
+    const nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+    document.getElementById("account").addEventListener("click", () => {
+        document.getElementById("accountcontent").style.width = "20%";
+
+    }, false);
     </script>
 
 
