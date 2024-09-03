@@ -107,7 +107,7 @@ include("../function/connection.php");
                         </svg>
                     </a>
                     <a href="./components/ordered.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover: hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
                         <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -120,7 +120,7 @@ include("../function/connection.php");
                         </svg>
                     </a>
                     <a href="./components/accept.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover: hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
                         <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
                             xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -136,7 +136,7 @@ include("../function/connection.php");
                         </svg>
                     </a>
                     <a href="./components/notification.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover: hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
+                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
                         <svg class='w-8 h-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -440,7 +440,7 @@ include("../function/connection.php");
                 sortable: false
             }],
             template: (options, dom) => "<div class='" + options.classes.top + "'>" +
-                "<div class='flex flex-col sm:items-center sm:justify-between sm:flex-row space-y-4 sm:space-y-0 sm:space-x-3 rtl:space-x-reverse w-full h-fit sm:w-auto'>" +
+                "<div class='flex flex-col sm:items-center sm:justify-between test sm:flex-row space-y-4 sm:space-y-0 sm:space-x-3 rtl:space-x-reverse w-full h-fit sm:w-auto'>" +
                 "<a href='./additem.php' id='exportDropdownButton' class='cursor-pointer flex w-fit px-2 h-10 items-center justify-center rounded-lg border border-blue-600 text-sm font-semibold bg-blue-600 hover:bg-white hover:text-blue-600 text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto'>" +
                 "Add Item" +
 
