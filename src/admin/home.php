@@ -358,7 +358,7 @@ include("../function/connection.php");
                             <td><?php echo $row["price"]?></td>
                             <td>
                                 <div class='flex justify-start items-center' style='gap:50px;'>
-                                    <a href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">
+                                    <a href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?> && noti=<?php echo "home" ?>">
                                         <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

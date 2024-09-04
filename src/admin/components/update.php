@@ -62,12 +62,17 @@ include("../../function/functions.php");
          
     </style>
 </head>
-<body>
+<body> <?php  if($_GET["noti"]=="noti"){?>
+    <a href="notification.php">Back</a>
+     <?php }?>
+     <?php  if($_GET["noti"]=="home"){?>
     <a href="../home.php">Back</a>
+     <?php }?>
+     
     <?php
 
     ob_start();
-   
+    
     $item_id=$_GET["item_id"];
 $result=$con->query("SELECT * FROM  closet join size ON closet.clo_id=size.clo_id WHERE closet.clo_id='$item_id'");
 if(!empty($result)&& $result->num_rows>0){
