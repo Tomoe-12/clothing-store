@@ -332,18 +332,25 @@ nav.scrolled {
                     </tr>
                 </thead>
                 <tbody>
-                    <td>image</td>
-                    <td>type</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>3</td>
-                    <td>3</td>
-                    <td>3000</td>
-                    <td>10</td>
+                <?php
+    
+    $result=$con->query("SELECT * FROM closet JOIN size ON closet.clo_id=size.clo_id where Small<=3 or Medium<=3 or Large<=3 or XL<=3 or XXL<=3  order by type  ");
+    if(!empty($result)&& $result->num_rows>0){
+     while($row=$result->fetch_assoc()){ ?>
+                    <tr>
+                    <td><img   src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="" style="height:100px;width:100pxo;" ></td>
+                    <td><?php echo $row["type"] ?></td>
+                    <td><?php echo $row["Small"] ?></td>
+                    <td><?php echo $row["Medium"] ?></td>
+                    <td><?php echo $row["Large"] ?></td>
+                    <td><?php echo $row["XL"] ?></td>
+                    <td><?php echo $row["XXL"] ?></td>
+                    <td><?php echo $row["price"] ?></td>
+                    <td><?php echo $row["instock"] ?></td>
+                 
                     <td>
                         <div class='flex justify-between items-center' style='gap:50px;'>
-                            <a href="./update.php?item_id=<?php echo $row["clo_id"] ?>">
+                            <a href="./update.php?item_id=<?php echo $row["clo_id"] ?> && noti=<?php echo "noti" ?>">
                                 <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
@@ -384,6 +391,7 @@ nav.scrolled {
                             </form>
                         </div>
                     </td>
+                    </tr> <?Php }}?>
                 </tbody>
 
             </table>

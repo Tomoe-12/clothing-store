@@ -1,7 +1,7 @@
 <?php 
 include("../function/connection.php");
 session_start(); 
-include("../function/functions.php")
+include("../function/functions.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
