@@ -28,25 +28,25 @@ $user_id=$_SESSION["user_id"];
         border: 1px solid red;
     }
     </style>
-    
-    
+
+
 </head>
 
 <body>
-    
-   
- 
- 
-     
+
+
+
+
+
     <div class="min-h-screen  flex flex-col justify-center items-center ">
         <div
             class='border border-gray-200 rounded-xl flex flex-col gap-4 w-96 h-96 px-3 py-3 shadow-md shadow-[#F3F3F3] '>
             <div class='h-48 flex justify-center  w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
                 style="background-image : url('../../public/profileCoverImg.jpg')">
-               
-                         <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
+
+                <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
                         alt=""> -->
-                    <!-- <svg class="w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full" viewBox="0 0 24 24" fill="none"
+                <!-- <svg class="w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -67,24 +67,27 @@ $user_id=$_SESSION["user_id"];
                     </svg> -->
 
                 <div class="relative translate-y-1/2 ">
-                   
+
                     <label for="file-2" id="file-2-preview">
-                    <?php
+                        <?php
                 
                 ob_start();
                 $per_img=perimg($_SESSION["user_id"]);
                          if(empty($per_img)){
 
                         ?>
-                    <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'>
-                        <img id="file-2-preview-img" src="../../public/profile.svg" alt="" class='w-28 h-28 rounded-full bg-cover'>
-                    </div> 
-                    <?php }  ?>
-                    <?php if(!empty($per_img)) {?>
                         <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'>
-                        <img id="file-2-preview-img" src="data:image/jepg;base64,<?php echo base64_encode($per_img) ?>" alt="" class='w-28 h-28 rounded-full bg-cover'>
-                    </div> 
-                       <?php } ?>
+                            <img id="file-2-preview-img" src="../../public/profile.svg" alt=""
+                                class='w-28 h-28 rounded-full bg-cover'>
+                        </div>
+                        <?php }  ?>
+                        <?php if(!empty($per_img)) {?>
+                        <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'>
+                            <img id="file-2-preview-img"
+                                src="data:image/jepg;base64,<?php echo base64_encode($per_img) ?>" alt=""
+                                class='w-28 h-28 rounded-full bg-cover'>
+                        </div>
+                        <?php } ?>
                         <div
                             class='absolute cursor-pointer border border-gray-400 flex items-center justify-center w-9 h-9 top-0 right-0 rounded-full bg-white '>
                             <span>
@@ -113,7 +116,8 @@ $user_id=$_SESSION["user_id"];
 
             <div class='flex flex-col  items-center h-full '>
 
-                <form class="w-full px-12 mt-14 " action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" enctype="multipart/form-data">
+                <form class="w-full px-12 mt-14 " action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post"
+                    enctype="multipart/form-data">
                     <div>
                         <div class="space-y-4 ">
 
@@ -128,37 +132,42 @@ $user_id=$_SESSION["user_id"];
                                     </svg>
 
                                 </span>
-                              
-                                <input class='hidden'name="image" type="file" id="file-2" accept="image/*">
-                                <input type="text" name="Username" 
-                                value="<?php echo profileout("user_name",$_SESSION["user_id"]) ?>"
+
+                                <input class='hidden' name="image" type="file" id="file-2" accept="image/*">
+                                <input type="text" name="Username"
+                                    value="<?php echo profileout("user_name",$_SESSION["user_id"]) ?>"
                                     class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                                     placeholder="Username">
                             </div>
 
                             <div class="relative">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-5 h-5 "
-                                        viewBox="0 0 682.667 682.667">
-                                        <defs>
-                                            <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                                                <path d="M0 512h512V0H0Z" data-original="#000000"></path>
-                                            </clipPath>
-                                        </defs>
-                                        <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
-                                            <path fill="none" stroke-miterlimit="10" stroke-width="40"
-                                                d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
-                                                data-original="#000000"></path>
-                                            <path
-                                                d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
-                                                data-original="#000000"></path>
+                                    <svg class='w-5 h-5' viewBox="-4 0 32 32" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <title>location</title>
+                                            <desc>Created with Sketch Beta.</desc>
+                                            <defs> </defs>
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd" sketch:type="MSPage">
+                                                <g id="Icon-Set" sketch:type="MSLayerGroup"
+                                                    transform="translate(-104.000000, -411.000000)" fill="#bbb">
+                                                    <path
+                                                        d="M116,426 C114.343,426 113,424.657 113,423 C113,421.343 114.343,420 116,420 C117.657,420 119,421.343 119,423 C119,424.657 117.657,426 116,426 L116,426 Z M116,418 C113.239,418 111,420.238 111,423 C111,425.762 113.239,428 116,428 C118.761,428 121,425.762 121,423 C121,420.238 118.761,418 116,418 L116,418 Z M116,440 C114.337,440.009 106,427.181 106,423 C106,417.478 110.477,413 116,413 C121.523,413 126,417.478 126,423 C126,427.125 117.637,440.009 116,440 L116,440 Z M116,411 C109.373,411 104,416.373 104,423 C104,428.018 114.005,443.011 116,443 C117.964,443.011 128,427.95 128,423 C128,416.373 122.627,411 116,411 L116,411 Z"
+                                                        id="location" sketch:type="MSShapeGroup"> </path>
+                                                </g>
+                                            </g>
                                         </g>
                                     </svg>
 
                                 </span>
 
-                                <input  type="text" name="address"
-                                 value="<?php echo profileout("address",$_SESSION["user_id"]) ?>"
+                                <input type="text" name="address"
+                                    value="<?php echo profileout("address",$_SESSION["user_id"]) ?>"
                                     class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                                     placeholder="Address">
                             </div>
@@ -192,10 +201,10 @@ $user_id=$_SESSION["user_id"];
                                 </span>
 
                                 <input type="tel" name="Phone"
-                                 value="<?php echo profileout("ph_no",$_SESSION["user_id"]) ?>"
+                                    value="<?php echo profileout("ph_no",$_SESSION["user_id"]) ?>"
                                     class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                                     placeholder="Phone">
-                                    <input type="submit" id="update" name="update" style="display: none;">
+                                <input type="submit" id="update" name="update" style="display: none;">
                             </div>
 
                         </div>
@@ -208,14 +217,14 @@ $user_id=$_SESSION["user_id"];
         <div class='w-96 flex gap-10  mt-5  '>
             <button onclick="location.href='../pages/profile.php'"
                 class="w-full h-9 px-2.5 py-1.5  bg-white text-base text-primary border border-blue-600 rounded-md flex justify-center items-center ">Cancel</button>
-            <label for="update"  
+            <label for="update"
                 class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-md flex justify-center items-center ">Update</label>
-                
+
         </div>
 
     </div>
 
- 
+
 
 
 
@@ -281,8 +290,6 @@ function previewBeforeUpload(id) {
 }
 
 previewBeforeUpload("file-2");
-
-
 </script>
 
 </html>

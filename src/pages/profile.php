@@ -34,10 +34,10 @@ include("../function/functions.php")
 
 <body>
 
-    <div class="min-h-screen   flex flex-col justify-center items-center ">
+    <div class="min-h-screen flex flex-col justify-center items-center ">
         <div
-            class='relative  border border-gray-200 rounded-xl flex flex-col  gap-4  w-96 h-96   px-3 py-3 shadow-md shadow-[#F3F3F3] '>
-            <div class='h-48  flex justify-center  w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
+            class='relative  border border-gray-200 rounded-xl flex flex-col  gap-4  w-96 h-fit   px-3 py-3 shadow-md shadow-[#F3F3F3] '>
+            <div class='h-fit flex justify-center w-full relative rounded-xl bg-image bg-cover bg-no-repeat'
                 style="background-image : url('../../public/profileCoverImg.jpg')">
                 <?php $per_img=perimg($_SESSION["user_id"]);
                        
@@ -49,8 +49,8 @@ include("../function/functions.php")
                 <div class="relative translate-y-1/2 ">
                     <!-- <img class="w-28 h-28 ring-4 ring-white  rounded-full" src="https://readymadeui.com/team-1.webp"
                         alt=""> -->
-            
-                       
+
+
                     <svg class="w-28 h-28 ring-4 ring-white bg-gray-200 rounded-full" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -70,43 +70,55 @@ include("../function/functions.php")
                             </g>
                         </g>
                     </svg>
-                    
-   
-                
 
-                         </div>
-                         <?php } 
+
+
+
+                </div>
+                <?php } 
                      ?>
                 <?PHP 
                 if(!empty($per_img)) { 
-                    ?>  <div class="relative translate-y-1/2 ">
-                    <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'> 
-                    <img   src="data:image/jepg;base64,<?php echo base64_encode($per_img) ?>" alt=""class='w-28 h-28 rounded-full bg-cover' >
+                    ?>
+                <div class="relative translate-y-1/2 ">
+                    <div class='w-28 h-28 ring-4 ring-white bg-gray-100 rounded-full'>
+                        <img src="data:image/jepg;base64,<?php echo base64_encode($per_img) ?>" alt=""
+                            class='w-28 h-28  rounded-full bg-cover'>
                     </div>
                 </div>
-              <?php  }
+                <?php  }
                  ?>
             </div>
 
-            <div class='flex items-center h-full '>
+            <div class='flex items-center h-full mt-4 '>
 
-                <form class=" w-full px-12 mt-10  ">
+                <form class=" w-full px-12 mt-10 ">
                     <div>
                         <div class="space-y-6">
                             <div class="relative grid grid-cols-4 items-center justify-between ">
                                 <!-- <input type="text" placeholder="Full Name"
                                         class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" /> -->
                                 <div class='col-span-1 h-full flex justify-center'>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-5  h-5"
-                                        viewBox="0 0 24 24">
-                                        <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
-                                        <path
-                                            d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                                            data-original="#000000"></path>
+                                    <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
+                                                stroke="#bbb" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                            <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
+                                                stroke="#bbb" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round"></path>
+                                        </g>
                                     </svg>
                                 </div>
                                 <div class='col-span-3 h-full flex justify-center'>
-                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800"><?Php  echo profileout("user_name",$_SESSION["user_id"])?></h3>
+                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800">
+                                        <?Php  echo profileout("user_name",$_SESSION["user_id"])?>
+                                    </h3>
 
                                 </div>
 
@@ -135,7 +147,9 @@ include("../function/functions.php")
                                 </div>
 
                                 <div class='col-span-3 h-full flex justify-center '>
-                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800"><?Php  echo profileout("email",$_SESSION["user_id"])?> </h3>
+                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800">
+                                        <?Php  echo profileout("email",$_SESSION["user_id"])?>
+                                    </h3>
                                 </div>
 
                             </div>
@@ -171,7 +185,44 @@ include("../function/functions.php")
                                 </div>
 
                                 <div class='col-span-3 h-full flex justify-center '>
-                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800"><?Php  echo profileout("ph_no",$_SESSION["user_id"])?> </h3>
+                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800">
+                                        <?Php  echo profileout("ph_no",$_SESSION["user_id"])?>
+                                    </h3>
+                                </div>
+
+                            </div>
+
+                            <div class=" relative grid grid-cols-4 items-center justify-between ">
+                                <!-- <input type="email" placeholder="Email"
+                                        class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" /> -->
+                                <div class='col-span-1 h-full  flex items-center justify-center '>
+                                    <svg class='w-5 h-5' viewBox="-4 0 32 32" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" fill="#000000">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <title>location</title>
+                                            <desc>Created with Sketch Beta.</desc>
+                                            <defs> </defs>
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd" sketch:type="MSPage">
+                                                <g id="Icon-Set" sketch:type="MSLayerGroup"
+                                                    transform="translate(-104.000000, -411.000000)" fill="#bbb">
+                                                    <path
+                                                        d="M116,426 C114.343,426 113,424.657 113,423 C113,421.343 114.343,420 116,420 C117.657,420 119,421.343 119,423 C119,424.657 117.657,426 116,426 L116,426 Z M116,418 C113.239,418 111,420.238 111,423 C111,425.762 113.239,428 116,428 C118.761,428 121,425.762 121,423 C121,420.238 118.761,418 116,418 L116,418 Z M116,440 C114.337,440.009 106,427.181 106,423 C106,417.478 110.477,413 116,413 C121.523,413 126,417.478 126,423 C126,427.125 117.637,440.009 116,440 L116,440 Z M116,411 C109.373,411 104,416.373 104,423 C104,428.018 114.005,443.011 116,443 C117.964,443.011 128,427.95 128,423 C128,416.373 122.627,411 116,411 L116,411 Z"
+                                                        id="location" sketch:type="MSShapeGroup"> </path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <div class='col-span-3 h-full flex justify-center '>
+                                    <h3 class="text-lg max-sm:text-base font-semibold text-gray-800">
+                                        <?Php  echo profileout("address",$_SESSION["user_id"])?>
+                                    </h3>
                                 </div>
 
                             </div>
@@ -189,10 +240,29 @@ include("../function/functions.php")
                     </div>
                 </form>
             </div>
+
             <button onclick="location.href='../components/edit.php'"
                 class='absolute w-14 h-14 rounded-full border border-gray-200 bg-white flex items-center justify-center'
                 style="top :-5%; right:-7%;">
-                <svg class='w-10 h-10' fill="#2563EB" viewBox="0 0 24 24" id="update-alt-2" data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color" stroke="#2563EB"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path id="primary" d="M6,5H16a2,2,0,0,1,2,2v7" style="fill: none; stroke: #2563EBbbb; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><path id="primary-2" data-name="primary" d="M18,19H8a2,2,0,0,1-2-2V10" style="fill: none; stroke: #2563EBbbb; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path><polyline id="secondary" points="15 11 18 14 21 11" style="fill: none; stroke: #2563EBbbb2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline><polyline id="secondary-2" data-name="secondary" points="9 13 6 10 3 13" style="fill: none; stroke: #2563EBbbb2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></polyline></g></svg>
+                <svg class='w-10 h-10' fill="#2563EB" viewBox="0 0 24 24" id="update-alt-2" data-name="Line Color"
+                    xmlns="http://www.w3.org/2000/svg" class="icon line-color" stroke="#2563EB">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path id="primary" d="M6,5H16a2,2,0,0,1,2,2v7"
+                            style="fill: none; stroke: #2563EBbbb; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                        </path>
+                        <path id="primary-2" data-name="primary" d="M18,19H8a2,2,0,0,1-2-2V10"
+                            style="fill: none; stroke: #2563EBbbb; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                        </path>
+                        <polyline id="secondary" points="15 11 18 14 21 11"
+                            style="fill: none; stroke: #2563EBbbb2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                        </polyline>
+                        <polyline id="secondary-2" data-name="secondary" points="9 13 6 10 3 13"
+                            style="fill: none; stroke: #2563EBbbb2ca9bc; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
+                        </polyline>
+                    </g>
+                </svg>
             </button>
 
 
