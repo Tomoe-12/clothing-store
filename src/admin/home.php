@@ -59,6 +59,8 @@ include("../function/connection.php");
         top: 0;
     }
 
+
+
     @media (min-width: 640px) {
 
         .main-text {
@@ -108,7 +110,8 @@ include("../function/connection.php");
                     </a>
                     <a href="./components/ordered.php"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
-                        <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class='w-7 h-7' viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            stroke="#000000" stroke-width="1.128">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -116,22 +119,6 @@ include("../function/connection.php");
                                 <path d="M9 9H15" stroke="currentColor" stroke-linecap="round"></path>
                                 <path d="M9 13H15" stroke="currentColor" stroke-linecap="round"></path>
                                 <path d="M9 17H13" stroke="currentColor" stroke-linecap="round"></path>
-                            </g>
-                        </svg>
-                    </a>
-                    <a href="./components/accept.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3  text-gray-600'>
-                        <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path
-                                    d="M959.018 208.158c0.23-2.721 0.34-5.45 0.34-8.172 0-74.93-60.96-135.89-135.89-135.89-1.54 0-3.036 0.06-6.522 0.213l-611.757-0.043c-1.768-0.085-3.563-0.17-5.424-0.17-74.812 0-135.67 60.84-135.67 135.712l0.188 10.952h-0.306l0.391 594.972-0.162 20.382c0 74.03 60.22 134.25 134.24 134.25 1.668 0 7.007-0.239 7.1-0.239l608.934 0.085c2.985 0.357 6.216 0.468 9.55 0.468 35.815 0 69.514-13.954 94.879-39.302 25.373-25.34 39.344-58.987 39.344-94.794l-0.145-12.015h0.918l-0.008-606.41z m-757.655 693.82l-2.585-0.203c-42.524 0-76.146-34.863-76.537-79.309V332.671H900.79l0.46 485.186-0.885 2.865c-0.535 1.837-0.8 3.58-0.8 5.17 0 40.382-31.555 73.766-71.852 76.002l-10.816 0.621v-0.527l-615.533-0.01zM900.78 274.424H122.3l-0.375-65.934 0.85-2.924c0.52-1.82 0.782-3.63 0.782-5.247 0-42.236 34.727-76.665 78.179-76.809l0.45-0.068 618.177 0.018 2.662 0.203c42.329 0 76.767 34.439 76.767 76.768 0 1.326 0.196 2.687 0.655 4.532l0.332 0.884v68.577z"
-                                    fill=""></path>
-                                <path
-                                    d="M697.67 471.435c-7.882 0-15.314 3.078-20.918 8.682l-223.43 223.439L346.599 596.84c-5.544-5.603-12.95-8.69-20.842-8.69s-15.323 3.078-20.918 8.665c-5.578 5.518-8.674 12.9-8.7 20.79-0.017 7.908 3.07 15.357 8.69 20.994l127.55 127.558c5.57 5.56 13.01 8.622 20.943 8.622 7.925 0 15.364-3.06 20.934-8.63l244.247-244.247c5.578-5.511 8.674-12.883 8.7-20.783 0.017-7.942-3.079-15.408-8.682-20.986-5.552-5.612-12.958-8.698-20.85-8.698z"
-                                    fill=""></path>
                             </g>
                         </svg>
                     </a>
@@ -348,17 +335,7 @@ include("../function/connection.php");
                             </th>
                             <th class='noSort bg-gray-100'>
                                 <span class="flex items-center">
-                                    Edit
-                                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                    </svg>
-                                </span>
-                            </th>
-                            <th class='noSort bg-gray-100'>
-                                <span class="flex items-center">
-                                    Delete
+                                    Actions
                                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" fill="none" viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -382,14 +359,51 @@ include("../function/connection.php");
                             <td><?php echo $row["type"]?></td>
                             <td><?php echo $row["instock"]?></td>
                             <td><?php echo $row["price"]?></td>
-                            <td><a href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">Edit</a>
-                            </td>
                             <td>
-                                <form action="../admin/components/delete.php" method="post">
-                                    <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
-                                        style="display:none;">
-                                    <input type="submit" value="Delete">
-                                </form>
+                                <div class='flex justify-start items-center' style='gap:50px;'>
+                                    <a href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">
+                                        <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                            </g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z"
+                                                    fill="#FFC107"></path>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <form action="../admin/components/delete.php" method="post">
+                                        <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
+                                            style="display:none;">
+                                        <button type='submtit' class='w-6 h-6'>
+                                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                </g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M10 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M14 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M4 7H20" stroke="#FF4F4E" stroke-width="2"
+                                                        stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path
+                                                        d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+                                                        stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                    <path
+                                                        d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                                        stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                </g>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
 
                         </tr>
@@ -436,11 +450,11 @@ include("../function/connection.php");
             perPage: 5,
             perPageSelect: [5, 10, 20, 50], // Options for the entries dropdown
             columns: [{
-                select: [0, 4, 5],
+                select: [0, 4],
                 sortable: false
             }],
             template: (options, dom) => "<div class='" + options.classes.top + "'>" +
-                "<div class='flex flex-col sm:items-center sm:justify-between test sm:flex-row space-y-4 sm:space-y-0 sm:space-x-3 rtl:space-x-reverse w-full h-fit sm:w-auto'>" +
+                "<div class='flex flex-col sm:items-center sm:justify-between sm:flex-row space-y-4 sm:space-y-0 sm:space-x-3 rtl:space-x-reverse w-full h-fit sm:w-auto'>" +
                 "<a href='./additem.php' id='exportDropdownButton' class='cursor-pointer flex w-fit px-2 h-10 items-center justify-center rounded-lg border border-blue-600 text-sm font-semibold bg-blue-600 hover:bg-white hover:text-blue-600 text-white focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 sm:w-auto'>" +
                 "Add Item" +
 

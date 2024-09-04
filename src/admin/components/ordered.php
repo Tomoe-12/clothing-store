@@ -40,7 +40,7 @@ include("../../function/functions.php");
         display: none;
     }
 
-        {
+    .test {
         border: 1px solid red;
     }
 
@@ -76,8 +76,6 @@ include("../../function/functions.php");
             position: fixed;
             flex-direction: column;
         }
-
-
     }
     </style>
 
@@ -109,7 +107,8 @@ include("../../function/functions.php");
                     </a>
                     <a href="./ordered.php"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium bg-blue-100 text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3'>
-                        <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#FF4F4E"
+                            stroke-width="1.128">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -117,22 +116,6 @@ include("../../function/functions.php");
                                 <path d="M9 9H15" stroke="currentColor" stroke-linecap="round"></path>
                                 <path d="M9 13H15" stroke="currentColor" stroke-linecap="round"></path>
                                 <path d="M9 17H13" stroke="currentColor" stroke-linecap="round"></path>
-                            </g>
-                        </svg>
-                    </a>
-                    <a href="./accept.php"
-                        class='flex h-[48px] grow items-center justify-center gap-2 rounded-md text-sm font-medium hover:bg-blue-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 text-gray-600'>
-                        <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path
-                                    d="M959.018 208.158c0.23-2.721 0.34-5.45 0.34-8.172 0-74.93-60.96-135.89-135.89-135.89-1.54 0-3.036 0.06-6.522 0.213l-611.757-0.043c-1.768-0.085-3.563-0.17-5.424-0.17-74.812 0-135.67 60.84-135.67 135.712l0.188 10.952h-0.306l0.391 594.972-0.162 20.382c0 74.03 60.22 134.25 134.24 134.25 1.668 0 7.007-0.239 7.1-0.239l608.934 0.085c2.985 0.357 6.216 0.468 9.55 0.468 35.815 0 69.514-13.954 94.879-39.302 25.373-25.34 39.344-58.987 39.344-94.794l-0.145-12.015h0.918l-0.008-606.41z m-757.655 693.82l-2.585-0.203c-42.524 0-76.146-34.863-76.537-79.309V332.671H900.79l0.46 485.186-0.885 2.865c-0.535 1.837-0.8 3.58-0.8 5.17 0 40.382-31.555 73.766-71.852 76.002l-10.816 0.621v-0.527l-615.533-0.01zM900.78 274.424H122.3l-0.375-65.934 0.85-2.924c0.52-1.82 0.782-3.63 0.782-5.247 0-42.236 34.727-76.665 78.179-76.809l0.45-0.068 618.177 0.018 2.662 0.203c42.329 0 76.767 34.439 76.767 76.768 0 1.326 0.196 2.687 0.655 4.532l0.332 0.884v68.577z"
-                                    fill=""></path>
-                                <path
-                                    d="M697.67 471.435c-7.882 0-15.314 3.078-20.918 8.682l-223.43 223.439L346.599 596.84c-5.544-5.603-12.95-8.69-20.842-8.69s-15.323 3.078-20.918 8.665c-5.578 5.518-8.674 12.9-8.7 20.79-0.017 7.908 3.07 15.357 8.69 20.994l127.55 127.558c5.57 5.56 13.01 8.622 20.943 8.622 7.925 0 15.364-3.06 20.934-8.63l244.247-244.247c5.578-5.511 8.674-12.883 8.7-20.783 0.017-7.942-3.079-15.408-8.682-20.986-5.552-5.612-12.958-8.698-20.85-8.698z"
-                                    fill=""></path>
                             </g>
                         </svg>
                     </a>
@@ -153,8 +136,7 @@ include("../../function/functions.php");
 
                 <div class=" flex  flex-col space-y-6">
 
-                    <a href=""
-                        class="p-1.5  focus:outline-nones transition-colors duration-200 rounded-lg bg-gray-100">
+                    <a href="" class="p-1.5  focus:outline-nones transition-colors duration-200 rounded-lg bg-gray-100">
 
                         <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -256,29 +238,19 @@ include("../../function/functions.php");
                                 </svg>
                             </span>
                         </th>
+                        <th>
+                            <span class="flex items-center noSort">
+                                Status
+                                <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                </svg>
+                            </span>
+                        </th>
                         <th data-type="date" data-format="YYYY/DD/MM">
                             <span class="flex items-center">
                                 E-mail
-                                <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                </svg>
-                            </span>
-                        </th>
-                        <th>
-                            <span class="flex items-center">
-                                Contact-No
-                                <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                                </svg>
-                            </span>
-                        </th>
-                        <th>
-                            <span class="flex items-center">
-                                Address
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -298,7 +270,7 @@ include("../../function/functions.php");
                         </th>
                         <th>
                             <span class="flex items-center noSort">
-                                View Detail
+                                Actions
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -308,6 +280,211 @@ include("../../function/functions.php");
                         </th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                        <td>khun thi han</td>
+                        <td>
+                            <div style='color:#FF4F4E; border :1px solid #FF4F4E;'
+                                class='w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-1'>
+
+                                <svg class='w-4 h-4' viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M15.9995 11.9998V17.3332M15.9995 22.6665H16.0128M14.1533 5.18878L3.18675 24.1309C2.57848 25.1816 2.27434 25.7069 2.31929 26.1381C2.3585 26.5141 2.55553 26.8559 2.86134 27.0782C3.21195 27.3332 3.81897 27.3332 5.033 27.3332H26.966C28.1801 27.3332 28.7871 27.3332 29.1377 27.0782C29.4435 26.8559 29.6405 26.5141 29.6797 26.1381C29.7247 25.7069 29.4205 25.1816 28.8123 24.1309L17.8458 5.18878C17.2397 4.1419 16.9366 3.61845 16.5412 3.44265C16.1964 3.2893 15.8027 3.2893 15.4578 3.44265C15.0624 3.61845 14.7594 4.1419 14.1533 5.18878Z"
+                                        stroke="#FF4F4E" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+
+                                <p>Cancelled</p>
+                            </div>
+                        </td>
+                        <!--- cancel , pending , accepted -->
+                        <td>khunthihan@gmail.com</td>
+                        <td>date date date</td>
+                        <td>
+                            <div class='flex justify-start items-center' style='gap:50px;'>
+                                <a class='cursor-pointer font-semibold' style='color:#FFC107 ;'
+                                    href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">
+                                    <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z"
+                                                fill="#FFC107"></path>
+                                        </g>
+                                    </svg>
+                                </a>
+                                <form action="../admin/components/delete.php" method="post">
+                                    <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
+                                        style="display:none;">
+                                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
+                                        value="Delete"> -->
+                                    <button type='submtit' class='w-6 h-6'>
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                            </g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M10 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M14 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M4 7H20" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+                                                    stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                                    stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>khun thi han</td>
+                        <td>
+                            <div style='color:#79B5EC; border:1px solid #79B5EC;'
+                                class='border border-[#79B5EC] w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-0.5'>
+
+                                <svg class='w-4 h-4' width="32" height="32" viewBox="0 0 32 32" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16.0002 15.9998L10.303 11.2522C9.45651 10.5468 9.03328 10.1941 8.72901 9.76175C8.45942 9.37868 8.25921 8.95122 8.13752 8.49888C8.00016 7.98835 8.00016 7.43743 8.00016 6.33557V2.6665M16.0002 15.9998L21.6973 11.2522C22.5438 10.5468 22.967 10.1941 23.2713 9.76175C23.5409 9.37868 23.7411 8.95122 23.8628 8.49888C24.0002 7.98835 24.0002 7.43743 24.0002 6.33557V2.6665M16.0002 15.9998L10.303 20.7475C9.45651 21.4529 9.03328 21.8056 8.72901 22.2379C8.45942 22.621 8.25921 23.0484 8.13752 23.5008C8.00016 24.0113 8.00016 24.5622 8.00016 25.6641V29.3332M16.0002 15.9998L21.6973 20.7475C22.5438 21.4529 22.967 21.8056 23.2713 22.2379C23.5409 22.621 23.7411 23.0484 23.8628 23.5008C24.0002 24.0113 24.0002 24.5622 24.0002 25.6641V29.3332M5.3335 2.6665H26.6668M5.3335 29.3332H26.6668"
+                                        stroke="#79B5EC" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+
+                                <p class=''>Pending</p>
+                            </div>
+                        </td>
+                        <!--- cancel , pending , accepted -->
+                        <td>khunthihan@gmail.com</td>
+                        <td>date date date</td>
+                        <td>
+                            <div class='flex justify-start items-center' style='gap:50px;'>
+                                <a class='cursor-pointer font-semibold' style='color:#FFC107 ;'
+                                    href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">
+                                    <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z"
+                                                fill="#FFC107"></path>
+                                        </g>
+                                    </svg>
+                                </a>
+                                <form action="../admin/components/delete.php" method="post">
+                                    <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
+                                        style="display:none;">
+                                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
+                                        value="Delete"> -->
+                                    <button type='submit' class='w-6 h-6'>
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                            </g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M10 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M14 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M4 7H20" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+                                                    stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                                    stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>khun thi han</td>
+                        <td>
+                            <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
+                                class='w-fit flex justify-center items-center test gap-1 rounded-full px-1.5 py-1'>
+
+                                <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <p>Accepted</p>
+                            </div>
+                        </td>
+                        <!--- cancel , pending , accepted -->
+                        <td>khunthihan@gmail.com</td>
+                        <td>date date date</td>
+                        <td>
+                            <div class='flex justify-start items-center' style='gap:50px;'>
+                                <a class='cursor-pointer font-semibold' style='color:#FFC107 ;'
+                                    href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?>">
+                                    <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z"
+                                                fill="#FFC107"></path>
+                                        </g>
+                                    </svg>
+                                </a>
+                                <form action="../admin/components/delete.php" method="post">
+                                    <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
+                                        style="display:none;">
+                                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
+                                        value="Delete"> -->
+                                    <button type='submtit' class='w-6 h-6'>
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                            </g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M10 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M14 11V17" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M4 7H20" stroke="#FF4F4E" stroke-width="2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+                                                    stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                                <path
+                                                    d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                                    stroke="#FF4F4E" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                            </g>
+                                        </svg>
+                                    </button>
+
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
 
             </table>
         </div>
@@ -326,6 +503,12 @@ if (document.getElementById("selection-table") && typeof simpleDatatables.DataTa
         }
 
         const options = {
+            perPage: 15,
+            perPageSelect: [15, 30, 40, 50], // Options for the entries dropdown
+            columns: [{
+                select: [0, 4],
+                sortable: false
+            }],
             rowRender: (row, tr, _index) => {
                 if (!tr.attributes) {
                     tr.attributes = {};
