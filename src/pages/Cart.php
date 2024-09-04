@@ -11,21 +11,20 @@ if( isset($_SESSION["update"] )){
     $update=true;
 }  
  ?>
- <script>
-     if(<?php echo $update ?>){
-        alert("Update Successfully!");
-    }
- </script>
-  <?php
+<script>
+if (<?php echo $update ?>) {
+    alert("Update Successfully!");
+}
+</script>
+<?php
 if(isset($_SESSION["res"])){ 
     $res=true;
     $_SESSION["res"]=null;
     ?>
 <script>
-    if(<?php echo $res?>){
-        alert("Order all items Successfully!");
-    }
-   
+if (<?php echo $res?>) {
+    alert("Order all items Successfully!");
+}
 </script>
 <?php
 }
@@ -51,6 +50,10 @@ if(isset($_SESSION["res"])){
     <script src="../../public/script.js"></script>
 
     <style>
+    .test {
+        border: 1px solid red;
+    }
+
     .disabled {
         opacity: 0.5;
         pointer-events: none;
@@ -72,7 +75,7 @@ if(isset($_SESSION["res"])){
 
                 <!-- items box  -->
                 <div class="md:col-span-2 space-y-4  h-full ">
-                <?php  
+                    <?php  
                
                 
     if(!empty($_SESSION["user_id"])){
@@ -94,49 +97,65 @@ $clo_id=$row["clo_id"];
                     <div class="grid grid-cols-3 items-start gap-4">
                         <div class="col-span-2 flex items-start gap-4">
                             <div class="w-28 h-28 max-sm:w-24 max-sm:h-24 shrink-0 bg-gray-100 p-2 rounded-md">
-                                <img  src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                                <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
                                     class="w-full h-full object-contain" />
-                                    
+
                             </div>
 
-                            <div class="flex flex-col">
+                            <div class="flex flex-col ">
                                 <h3 class="text-base font-bold text-gray-800">Velvet Sneaker</h3>
                                 <p class="text-xs font-semibold text-gray-500 mt-0.5"><?php echo $row["size"]?></p>
-                                <form action="../function/cartitemremove.php" method="post" >
-                                    <input type="text" name="cart_id" value="<?php  echo $row["cart_id"] ?>" style="display: none;">
-                                    <input type="text" name="clo_id" value="<?php  echo $row["clo_id"] ?>" style="display: none;">
-                                    <input type="text" name="quantity" value="<?php  echo $row["quantity"] ?>"style="display: none;">
-                                    <input type="text" name="size" value="<?php  echo $row["size"] ?>" style="display: none;">
-                                   
-                                  
-                                <button type="submit" name="remove"
-                                    class="mt-6 font-semibold text-red-500 text-xs flex items-center gap-1 shrink-0 ">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 fill-current inline"
-                                        viewBox="0 0 24 24">
-                                        <path
-                                            d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
-                                            data-original="#000000"></path>
-                                        <path
-                                            d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
-                                            data-original="#000000"></path>
-                                    </svg>
-                                   REMOVE
-                                  
-                                </button>
+                                <form action="../function/cartitemremove.php" method="post">
+                                    <input type="text" name="cart_id" value="<?php  echo $row["cart_id"] ?>"
+                                        style="display: none;">
+                                    <input type="text" name="clo_id" value="<?php  echo $row["clo_id"] ?>"
+                                        style="display: none;">
+                                    <input type="text" name="quantity" value="<?php  echo $row["quantity"] ?>"
+                                        style="display: none;">
+                                    <input type="text" name="size" value="<?php  echo $row["size"] ?>"
+                                        style="display: none;">
+
+
+                                    <button type="submit" name="remove"
+                                        class="mt-6 font-semibold text-red-500 text-xs flex items-center gap-1 shrink-0 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 fill-current inline"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                                                data-original="#000000"></path>
+                                            <path
+                                                d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                                                data-original="#000000"></path>
+                                        </svg>
+                                        REMOVE
+
+                                    </button>
                                 </form>
-     <a href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> " >Update</a>
+                                <!-- <a
+                                    href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> ">Update</a> -->
                             </div>
                         </div>
 
                         <div class="ml-auto">
-                           
+
                             <h4 class="text-lg max-sm:text-base font-bold text-gray-800"><?php  $subtotal+=$row["orderprice"];
                              echo  $row["orderprice"]?></h4>
-                             
 
-                            <div
-                                class=" mt-6 flex items-center px-3 py-1.5 border border-gray-300 text-gray-800 text-xs outline-none bg-transparent rounded-md">
-                                <button  type="button" id="decrement-button" 
+                            <a class="text-primary gap-1 font-semibold mt-6 flex items-center px-3 py-1.5 border border-blue-600  hover:bg-blue-600 hover:text-white text-sm outline-none bg-transparent rounded-md"
+                                href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> ">
+                                <svg class='w-4 h-4' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path fill="none" stroke="currentColor" stroke-width="2"
+                                            d="M2.99787498,6.99999999 L2.99787498,0.999999992 L17.4999998,0.999999992 L20.9999998,4.50000005 L21,23 L15,23 M16,1 L16,6 L21,6 M8,23 C11.8659932,23 15,19.8659932 15,16 C15,12.1340068 11.8659932,9 8,9 C4.13400675,9 1,12.1340068 1,16 C1,19.8659932 4.13400675,23 8,23 Z M4.5,16.5 L8,13 L11.5,16.5 M8,13.5 L8,20">
+                                        </path>
+                                    </g>
+                                </svg>
+                                Update
+                            </a>
+
+                            <!-- <button type="button" id="decrement-button"
                                     data-input-counter-decrement="quantity-input">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 fill-current"
                                         viewBox="0 0 124 124">
@@ -146,12 +165,11 @@ $clo_id=$row["clo_id"];
                                     </svg>
                                 </button>
                                 <input type="text" id="quantity-input" data-input-counter
-                                    aria-describedby="helper-text-explanation" 
-                                    
+                                    aria-describedby="helper-text-explanation"
                                     class=" w-12 h-5 font-semibold bg-white text-gray-900 text-base  text-center border-none focus:ring-none  block  py-2.5 "
                                     value='<?php echo $row["quantity"]?>' required />
-                                    <p calss="text"></p>
-                                <button type="button" id="increment-button" 
+                                <p calss="text"></p>
+                                <button type="button" id="increment-button"
                                     data-input-counter-increment="quantity-input">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-2.5 fill-current"
                                         viewBox="0 0 42 42">
@@ -159,12 +177,12 @@ $clo_id=$row["clo_id"];
                                             d="M37.059 16H26V4.941C26 2.224 23.718 0 21 0s-5 2.224-5 4.941V16H4.941C2.224 16 0 18.282 0 21s2.224 5 4.941 5H16v11.059C16 39.776 18.282 42 21 42s5-2.224 5-4.941V26h11.059C39.776 26 42 23.718 42 21s-2.224-5-4.941-5z"
                                             data-original="#000000"></path>
                                     </svg>
-                                </button>
-                            </div>
+                                </button> -->
 
 
                         </div>
-                    </div> <?PHP }}} ?>
+                    </div>
+                    <?PHP }}} ?>
 
                     <hr class="border-gray-300" />
 
@@ -190,7 +208,8 @@ $clo_id=$row["clo_id"];
                                             d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
                                             data-original="#000000"></path>
                                     </svg>
-                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800"><?php echo usernameout($user_id); ?></h3>
+                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800">
+                                        <?php echo usernameout($user_id); ?></h3>
 
 
                                 </div>
@@ -214,7 +233,8 @@ $clo_id=$row["clo_id"];
                                                 data-original="#000000"></path>
                                         </g>
                                     </svg>
-                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800"><?php  echo emailout($user_id)?> </h3>
+                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800">
+                                        <?php  echo emailout($user_id)?> </h3>
 
 
                                 </div>
@@ -234,23 +254,30 @@ $clo_id=$row["clo_id"];
 
                     <ul class="text-gray-800 mt-8 space-y-3">
                         <?php if(isset($subtotal)){?>
-                        <li class="flex flex-wrap gap-4 text-sm">Subtotal <span class="ml-auto font-bold"><?php echo $subtotal;?>KS</span>
+                        <li class="flex flex-wrap gap-4 text-sm">Subtotal <span
+                                class="ml-auto font-bold"><?php echo $subtotal;?>KS</span>
                         </li> <?php } else{?>
-                            <li class="flex flex-wrap gap-4 text-sm">Subtotal <span class="ml-auto font-bold"><?php echo $subtotal=0;?>KS</span>
+                        <li class="flex flex-wrap gap-4 text-sm">Subtotal <span
+                                class="ml-auto font-bold"><?php echo $subtotal=0;?>KS</span>
                         </li> <?php }?>
-                        <li class="flex flex-wrap gap-4 text-sm">Shipping <span class="ml-auto font-bold"><?PHP  echo $shipping=3000?>KS</span>
+                        <li class="flex flex-wrap gap-4 text-sm">Shipping <span class="ml-auto font-bold">
+                                <?PHP  echo $shipping=3000?>KS
+                            </span>
                         </li>
-                        <li class="flex flex-wrap gap-4 text-sm">Tax <span class="ml-auto font-bold"><?PHP  echo $tax=1000?>KS</span></li>
+                        <li class="flex flex-wrap gap-4 text-sm">Tax <span class="ml-auto font-bold">
+                                <?PHP  echo $tax=1000?>KS
+                            </span></li>
                         <hr class="border-gray-300" />
-                        <li class="flex flex-wrap gap-4 text-sm font-bold">Total <span class="ml-auto"><?php echo $subtotal+$shipping+$tax; ?>KS</span>
+                        <li class="flex flex-wrap gap-4 text-sm font-bold">Total <span
+                                class="ml-auto"><?php echo $subtotal+$shipping+$tax; ?>KS</span>
                         </li>
                     </ul>
 
                     <div class="mt-6 w-full space-y-3 ">
-                       
+
                         <button type="submit"
-                            class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-blue-700 text-white rounded-md">
-                            <label for="order">Order Now</label>  
+                            class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-primary border border-primary  text-white rounded-md">
+                            <label for="order">Order Now</label>
                         </button>
                         <button type="button"
                             class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
@@ -263,16 +290,14 @@ $clo_id=$row["clo_id"];
             </div>
         </div>
     </div>
-  <form action="../function/cartmovorder.php" method="post" style="display: none;">
-    <input type="text" name="user_id" value="<?php  echo $user_id;?>">
-    <input type="submit" name="submit" value="submit" id="order">
-  </form>
+    <form action="../function/cartmovorder.php" method="post" style="display: none;">
+        <input type="text" name="user_id" value="<?php  echo $user_id;?>">
+        <input type="submit" name="submit" value="submit" id="order">
+    </form>
 </body>
 
- 
-<script>
-    
 
+<script>
 const quantityInput = document.getElementById('quantity-input');
 const incrementButton = document.getElementById('increment-button');
 const decrementButton = document.getElementById('decrement-button');
