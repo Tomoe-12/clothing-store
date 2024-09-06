@@ -172,26 +172,13 @@ include("../function/functions.php");
             <div class=" max-w-xl lg:max-w-3xl">
                 <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post"
                     enctype="multipart/form-data" class="mt-8 grid grid-cols-6 gap-6">
+                    <!-- product name -->
                     <div class="col-span-6">
                         <label for="product-name" class="block text-sm font-medium text-gray-700"> Product Name </label>
                         <input type="text" id="product-name" name="productname" placeholder='Nike Air Force' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
-                    <div class="col-span-6">
-                        <label class="block text-sm font-medium text-gray-700">Colors</label>
-                        <div id="color-inputs" class="space-y-3">
-                            <!-- Initial color input -->
-                            <div class="flex items-center space-x-2">
-                                <input type="color" name="colors[]"
-                                    class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-16 h-10"
-                                    required />
-                                <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md"
-                                    onclick="removeColor(this)">Remove</button>
-                            </div>
-                        </div>
-                        <button type="button" id="add-color"
-                            class="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md">Add More Colors</button>
-                    </div>
+                    <!-- Type -->
                     <div class="col-span-6 sm:col-span-3">
                         <label for="type" class="block text-sm font-medium text-gray-700">
                             Type
@@ -199,6 +186,7 @@ include("../function/functions.php");
                         <input type="text" id="type" name="type" placeholder='somthing else' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
+                    <!-- price -->
                     <div class="col-span-6 sm:col-span-3">
                         <label for="price" class="block text-sm font-medium text-gray-700">
                             Price
@@ -206,7 +194,7 @@ include("../function/functions.php");
                         <input type="text" id="price" name="price" placeholder='100000' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
-
+                    <!-- Gender -->
                     <div class="col-span-6 sm:col-span-3">
                         <label for="Gender" class="block text-sm font-medium text-gray-700">
                             Gender
@@ -256,6 +244,22 @@ include("../function/functions.php");
                                     placeholder="0" />
                             </div>
                         </div>
+                    </div>
+                    <!-- colors -->
+                    <div class="col-span-6">
+                        <label class="block text-sm font-medium text-gray-700">Colors</label>
+                        <div id="color-inputs" class="space-y-3">
+                            <!-- Initial color input -->
+                            <div class="flex items-center space-x-2">
+                                <input type="color" name="colors[]"
+                                    class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-16 h-10"
+                                    required />
+                                <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md"
+                                    onclick="removeColor(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-color"
+                            class="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md">Add More Colors</button>
                     </div>
                     <!-- product desc -->
                     <div class="col-span-6 max-h-96">
