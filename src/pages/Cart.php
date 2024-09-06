@@ -58,6 +58,10 @@ if (<?php echo $res?>) {
         opacity: 0.5;
         pointer-events: none;
     }
+    .update:hover{
+        background-color: #2563EB;
+    }
+
     </style>
 
 </head>
@@ -141,9 +145,9 @@ $clo_id=$row["clo_id"];
                             <h4 class="text-lg max-sm:text-base font-bold text-gray-800"><?php  $subtotal+=$row["orderprice"];
                              echo  $row["orderprice"]?></h4>
 
-                            <a class="text-primary gap-1 font-semibold mt-6 flex items-center px-3 py-1.5 border border-blue-600  hover:bg-blue-600 hover:text-white text-sm outline-none bg-transparent rounded-md"
+                            <a class="update text-primary gap-1 font-semibold mt-6 flex items-center px-3 py-1.5 border border-blue-600  hover:text-white text-sm outline-none bg-transparent rounded-md"
                                 href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> ">
-                                <svg class='w-4 h-4' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                <svg class='w-4 h-4 ' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
@@ -276,8 +280,8 @@ $clo_id=$row["clo_id"];
                     <div class="mt-6 w-full space-y-3 ">
 
                         <button type="submit"
-                            class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-primary border border-primary  text-white rounded-md">
-                            <label for="order">Order Now</label>
+                            class="cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
+                            <label for="order" class='cursor-pointer'>Order Now</label>
                         </button>
                         <button type="button"
                             class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"

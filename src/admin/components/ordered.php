@@ -278,7 +278,7 @@ include("../../function/functions.php");
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
     ob_start();
     
     $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' or admindec='Accept' group by orderhistory.or_date; ");
@@ -289,7 +289,7 @@ include("../../function/functions.php");
 
                         <td>
                             <?php if($row["admindec"]=="Pending") {?>
-                                <div style='color:#79B5EC; border:1px solid #79B5EC;'
+                            <div style='color:#79B5EC; border:1px solid #79B5EC;'
                                 class='border border-[#79B5EC] w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-0.5'>
 
                                 <svg class='w-4 h-4' width="32" height="32" viewBox="0 0 32 32" fill="none"
@@ -300,15 +300,17 @@ include("../../function/functions.php");
                                         stroke-linejoin="round" />
                                 </svg><?php } 
                                 if($row["admindec"]=="Accept"){?>
-                                 <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
-                                class='w-fit flex justify-center items-center test gap-1 rounded-full px-1.5 py-1'>
+                                <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
+                                    class='w-fit flex justify-center items-center test gap-1 rounded-full px-1.5 py-1'>
 
-                                <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg><?Php }?>
+                                    <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                    <?Php }?>
 
-                            <!-- <div style='color:#FF4F4E; border :1px solid #FF4F4E;'
+                                    <!-- <div style='color:#FF4F4E; border :1px solid #FF4F4E;'
                                 class='w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-1'>
 
                                 <svg class='w-4 h-4' viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -318,8 +320,8 @@ include("../../function/functions.php");
                                         stroke-linejoin="round" />
                                 </svg> -->
 
-                                <p><?php echo $row["admindec"] ?></p>
-                            </div>
+                                    <p><?php echo $row["admindec"] ?></p>
+                                </div>
                         </td>
                         <!--- cancel , pending , accepted -->
                         <td><?php  echo $row["email"] ?></td>
@@ -327,18 +329,22 @@ include("../../function/functions.php");
                         <td>
                             <div class='flex justify-start items-center' style='gap:50px;'>
                                 <?php  if($row["admindec"]=="Pending"){?>
-                                <a class='cursor-pointer font-semibold' style='color:#FFC107 ;'
+                                <a class='cursor-pointer font-semibold' style='color:#79B5EC ;'
                                     href="vieworders.php?or_date=<?php echo $row['or_date'] ?> && cus_id=<?php echo $row["cus_id"] ?>">
-                                    <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                    <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                        </g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z"
-                                                fill="#FFC107"></path>
-                                        </g>
+                                        <path
+                                            d="M459.8 305.8c11 0 20 9 20 20v15c0 11-9 20-20 20H294.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h165.6zM347.5 458.6c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2zM347.5 617.7c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M579.1 345c-116.9 0-211.6 94.7-211.6 211.6 0 116.9 94.7 211.6 211.6 211.6 116.9 0 211.6-94.7 211.6-211.6C790.8 439.7 696 345 579.1 345z m0 369.6c-87.3 0-158-70.8-158-158 0-87.3 70.8-158 158-158s158 70.8 158 158c0.1 87.3-70.7 158-158 158z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M913.7 875.7c7.8 7.8 7.8 20.5 0 28.3l-10.1 10.1c-7.8 7.8-20.5 7.8-28.3 0L697.7 736.6c-7.8-7.8-7.8-20.5 0-28.3l10.1-10.1c7.8-7.8 20.5-7.8 28.3 0l177.6 177.5z"
+                                            fill="currentColor" />
+                                        <path
+                                            d="M750.7 827.3c-7.8-7.8-14.1-5.1-14.1 5.9V858c0 11-9 20-20 20l-475.8-0.5c-11 0-20-9-20-20V171.9c0-11 9-20 20-20h369.1c11 0 20 9 20 20v68.5c0 11 9 20 20 20h66.7c11 0 20 9 20 20v88.3c0 11 5.6 27.1 12.4 35.7l32 52.3c4.7 10 8.5 9.1 8.5-1.9l0.1-204.7c0-11-6.3-26.4-14.1-34.2L673 113.1c-7.8-7.8-23.1-14.2-34.1-14.2H190.1c-11 0-20 9-20 20v789.4c0 11 9 20 20 20h579.1c11 0 20-9 20-20v-22.5c0-11-6.4-26.4-14.1-34.1l-24.4-24.4z"
+                                            fill="currentColor" />
                                     </svg>
                                 </a>
                                 <?php } ?>
@@ -361,9 +367,9 @@ include("../../function/functions.php");
                                 <!-- <form action="../admin/components/delete.php" method="post">
                                     <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
                                         style="display:none;"> -->
-                                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
+                                <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
                                         value="Delete"> -->
-                                    <!-- <button type='submtit' class='w-6 h-6'>
+                                <!-- <button type='submtit' class='w-6 h-6'>
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -408,8 +414,8 @@ include("../../function/functions.php");
                                 <p class=''>Pending</p>
                             </div>
                         </td> -->
-                        <!--- cancel , pending , accepted -->
-                        <!-- <td>khunthihan@gmail.com</td>
+                    <!--- cancel , pending , accepted -->
+                    <!-- <td>khunthihan@gmail.com</td>
                         <td>date date date</td>
                         <td>
                             <div class='flex justify-start items-center' style='gap:50px;'>
@@ -430,9 +436,9 @@ include("../../function/functions.php");
                                 <form action="../admin/components/delete.php" method="post">
                                     <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
                                         style="display:none;"> -->
-                                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
+                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
                                         value="Delete"> -->
-                                    <!-- <button type='submit' class='w-6 h-6'>
+                    <!-- <button type='submit' class='w-6 h-6'>
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -473,8 +479,8 @@ include("../../function/functions.php");
                                 <p>Accepted</p>
                             </div>
                         </td> -->
-                        <!--- cancel , pending , accepted -->
-                        <!-- <td>khunthihan@gmail.com</td>
+                    <!--- cancel , pending , accepted -->
+                    <!-- <td>khunthihan@gmail.com</td>
                         <td>date date date</td>
                         <td>
                             <div class='flex justify-start items-center' style='gap:50px;'>
@@ -495,9 +501,9 @@ include("../../function/functions.php");
                                 <form action="../admin/components/delete.php" method="post">
                                     <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
                                         style="display:none;"> -->
-                                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
+                    <!-- <input style='color:#FF4F4E;' class='cursor-pointer font-semibold' type="submit"
                                         value="Delete"> -->
-                                    <!-- <button type='submtit' class='w-6 h-6'>
+                    <!-- <button type='submtit' class='w-6 h-6'>
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
