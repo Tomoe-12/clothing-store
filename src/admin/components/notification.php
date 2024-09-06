@@ -43,7 +43,7 @@ nav.scrolled {
     display: none;
 }
 
-    .test{
+.test {
     border: 1px solid red;
 }
 
@@ -82,10 +82,13 @@ nav.scrolled {
 
 
 }
+
+.hidded {
+    display: none;
+}
 </style>
 
-
-<body class='flex p-0'>
+<body class='flex p-0 relative'>
 
     <!-- navbar -->
     <nav
@@ -218,6 +221,7 @@ nav.scrolled {
     </nav>
 
     <!-- data table -->
+    <h1 class="test">test</h1>
     <div class='w-full flex justify-center items-center overflow-hidden'>
 
         <div class='container flex flex-col main px-3 py-4 h-fit gap-5 '>
@@ -338,8 +342,9 @@ nav.scrolled {
     if(!empty($result)&& $result->num_rows>0){
      while($row=$result->fetch_assoc()){ ?>
                     <tr>
-                        <td >
-                            <img style='min-width:100px; max-width:100px; height: 100px;' src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                        <td>
+                            <img style='min-width:100px; max-width:100px; height: 100px;'
+                                src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
                                 alt="">
                         </td>
                         <td><?php echo $row["type"] ?></td>
@@ -368,10 +373,11 @@ nav.scrolled {
                                     </svg>
                                 </a>
 
+
                                 <form action="./delete.php" method="post">
-                                    <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
+                                    <input type="text" value="<?php echo $row["clo_id"]; ?>" name="clo_id"
                                         style="display:none;">
-                                    <button type='submit' class='w-6 h-6'>
+                                    <button type='button' class='w-6 h-6 delete-button'>
                                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -396,6 +402,27 @@ nav.scrolled {
                                         </svg>
                                     </button>
                                 </form>
+
+                                <!-- Custom Modal for Confirmation -->
+                                <div id="custom-modal"
+                                    class="hidded fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
+                                    <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+                                        <h2 class="text-lg font-semibold mb-4">Are you sure?</h2>
+                                        <p class="mb-6">Do you really want to delete this item? This process cannot be
+                                            undone.</p>
+                                        <div class="flex justify-end space-x-4">
+                                            <button id="cancel-btn"
+                                                class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</button>
+                                            <button id="confirm-btn"
+                                                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                             
+
+
+
                             </div>
                         </td>
                     </tr>
@@ -411,6 +438,9 @@ nav.scrolled {
 </body>
 
 <script>
+document.querySelector(".test").addEventListener("click", () => {
+    alert("test")
+})
 if (document.getElementById("selection-table") && typeof simpleDatatables.DataTable !== 'undefined') {
 
     let multiSelect = true;
@@ -496,6 +526,40 @@ document.getElementById("account").addEventListener("click", () => {
     document.getElementById("accountcontent").style.width = "20%";
 
 }, false);
+</script>
+
+<script>
+let formToSubmit = null;
+
+// Function to show the custom modal
+function showCustomModal(event) {
+    // Prevent form from submitting
+    event.preventDefault();
+
+    // Store the form that needs to be submitted
+    formToSubmit = event.target.closest('form');
+
+    // Show the modal
+    document.getElementById('custom-modal').classList.remove('hidded');
+}
+
+// Handle the delete confirmation
+document.getElementById('confirm-btn').addEventListener('click', function() {
+    // Submit the form if "Delete" is clicked
+    if (formToSubmit) {
+        formToSubmit.submit();
+    }
+});
+
+// Hide the modal when "Cancel" is clicked
+document.getElementById('cancel-btn').addEventListener('click', function() {
+    document.getElementById('custom-modal').classList.add('hidded');
+});
+
+// Attach the custom modal trigger to all delete buttons
+document.querySelectorAll('.delete-button').forEach(button => {
+    button.addEventListener('click', showCustomModal);
+});
 </script>
 
 </html>

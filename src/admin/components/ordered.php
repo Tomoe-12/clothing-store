@@ -168,7 +168,7 @@ include("../../function/functions.php");
                 <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-lg bg-blue-100 p-3 text-base font-semibold hover: text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
                     href="#">
                     <svg class='w-7 h-7' viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        stroke="#000000" stroke-width="1.128">
+                        stroke="currentColor" stroke-width="1.128">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -289,14 +289,14 @@ include("../../function/functions.php");
 
                         <td>
                             <?php if($row["admindec"]=="Pending") {?>
-                            <div style='color:#79B5EC; border:1px solid #79B5EC;'
-                                class='border border-[#79B5EC] w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-0.5'>
+                            <div style=' border:1px solid #2563EB;'
+                                class='text-primary  w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-0.5'>
 
                                 <svg class='w-4 h-4' width="32" height="32" viewBox="0 0 32 32" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M16.0002 15.9998L10.303 11.2522C9.45651 10.5468 9.03328 10.1941 8.72901 9.76175C8.45942 9.37868 8.25921 8.95122 8.13752 8.49888C8.00016 7.98835 8.00016 7.43743 8.00016 6.33557V2.6665M16.0002 15.9998L21.6973 11.2522C22.5438 10.5468 22.967 10.1941 23.2713 9.76175C23.5409 9.37868 23.7411 8.95122 23.8628 8.49888C24.0002 7.98835 24.0002 7.43743 24.0002 6.33557V2.6665M16.0002 15.9998L10.303 20.7475C9.45651 21.4529 9.03328 21.8056 8.72901 22.2379C8.45942 22.621 8.25921 23.0484 8.13752 23.5008C8.00016 24.0113 8.00016 24.5622 8.00016 25.6641V29.3332M16.0002 15.9998L21.6973 20.7475C22.5438 21.4529 22.967 21.8056 23.2713 22.2379C23.5409 22.621 23.7411 23.0484 23.8628 23.5008C24.0002 24.0113 24.0002 24.5622 24.0002 25.6641V29.3332M5.3335 2.6665H26.6668M5.3335 29.3332H26.6668"
-                                        stroke="#79B5EC" stroke-width="2" stroke-linecap="round"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg><?php } 
                                 if($row["admindec"]=="Accept"){?>
@@ -329,7 +329,7 @@ include("../../function/functions.php");
                         <td>
                             <div class='flex justify-start items-center' style='gap:50px;'>
                                 <?php  if($row["admindec"]=="Pending"){?>
-                                <a class='cursor-pointer font-semibold' style='color:#79B5EC ;'
+                                <a class='cursor-pointer font-semibold text-primary' style='color:# ;'
                                     href="vieworders.php?or_date=<?php echo $row['or_date'] ?> && cus_id=<?php echo $row["cus_id"] ?>">
                                     <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -349,17 +349,23 @@ include("../../function/functions.php");
                                 </a>
                                 <?php } ?>
                                 <?php  if($row["admindec"]=="Accept"){?>
-                                <a class='cursor-pointer font-semibold' style='color:#FFC107 ;'
+                                <a class='cursor-pointer font-semibold' style='color:#24AE7C ;'
                                     href="viewaccept.php?or_date=<?php echo $row['or_date'] ?> && cus_id=<?php echo $row["cus_id"] ?>">
-                                    <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                    <svg class='w-6 h-6' fill="currentColor" viewBox="0 0 32 32" data-name="Layer 1" id="Layer_1"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
                                         </g>
                                         <g id="SVGRepo_iconCarrier">
-                                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                                d="M21.1213 2.70705C19.9497 1.53548 18.0503 1.53547 16.8787 2.70705L15.1989 4.38685L7.29289 12.2928C7.16473 12.421 7.07382 12.5816 7.02986 12.7574L6.02986 16.7574C5.94466 17.0982 6.04451 17.4587 6.29289 17.707C6.54127 17.9554 6.90176 18.0553 7.24254 17.9701L11.2425 16.9701C11.4184 16.9261 11.5789 16.8352 11.7071 16.707L19.5556 8.85857L21.2929 7.12126C22.4645 5.94969 22.4645 4.05019 21.2929 2.87862L21.1213 2.70705ZM18.2929 4.12126C18.6834 3.73074 19.3166 3.73074 19.7071 4.12126L19.8787 4.29283C20.2692 4.68336 20.2692 5.31653 19.8787 5.70705L18.8622 6.72357L17.3068 5.10738L18.2929 4.12126ZM15.8923 6.52185L17.4477 8.13804L10.4888 15.097L8.37437 15.6256L8.90296 13.5112L15.8923 6.52185ZM4 7.99994C4 7.44766 4.44772 6.99994 5 6.99994H10C10.5523 6.99994 11 6.55223 11 5.99994C11 5.44766 10.5523 4.99994 10 4.99994H5C3.34315 4.99994 2 6.34309 2 7.99994V18.9999C2 20.6568 3.34315 21.9999 5 21.9999H16C17.6569 21.9999 19 20.6568 19 18.9999V13.9999C19 13.4477 18.5523 12.9999 18 12.9999C17.4477 12.9999 17 13.4477 17 13.9999V18.9999C17 19.5522 16.5523 19.9999 16 19.9999H5C4.44772 19.9999 4 19.5522 4 18.9999V7.99994Z"
-                                                fill="#FFC107"></path>
+                                            <title></title>
+                                            <path
+                                                d="M26.61,2H10.74a2.9,2.9,0,0,0-.6.07A7.14,7.14,0,0,0,9.21,2,6.62,6.62,0,0,0,7.94,15.12V27.2a2.81,2.81,0,0,0,2.8,2.8H26.61a2.8,2.8,0,0,0,2.8-2.8V4.8A2.8,2.8,0,0,0,26.61,2ZM4.46,8.62a4.76,4.76,0,1,1,4.75,4.76A4.75,4.75,0,0,1,4.46,8.62ZM27.54,27.2a.93.93,0,0,1-.93.93H10.74a.93.93,0,0,1-.93-.93v-12a6.56,6.56,0,0,0,4.14-2,1,1,0,0,0,.24,0h9a.87.87,0,1,0,0-1.74h-8a6.6,6.6,0,0,0-1.34-7.67h12.8a.93.93,0,0,1,.93.93Z">
+                                            </path>
+                                            <path
+                                                d="M12.2,6.41a.92.92,0,0,0-1.32,0L8.44,8.86,7.54,8A.93.93,0,1,0,6.22,9.28l1.56,1.56a.93.93,0,0,0,.66.27,1,1,0,0,0,.66-.27l3.1-3.11A.92.92,0,0,0,12.2,6.41Z">
+                                            </path>
+                                            <path d="M23.16,15.13h-9a.87.87,0,0,0,0,1.74h9a.87.87,0,1,0,0-1.74Z"></path>
+                                            <path d="M23.16,18.72h-9a.87.87,0,1,0,0,1.74h9a.87.87,0,0,0,0-1.74Z"></path>
                                         </g>
                                     </svg>
                                 </a>
@@ -400,14 +406,14 @@ include("../../function/functions.php");
                     <!-- <tr>
                         <td>khun thi han</td>
                         <td>
-                            <div style='color:#79B5EC; border:1px solid #79B5EC;'
-                                class='border border-[#79B5EC] w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-0.5'>
+                            <div style='color:currentColor; border:1px solid currentColor;'
+                                class='border border-[currentColor] w-fit flex justify-start items-center gap-1 rounded-full px-1.5 py-0.5'>
 
                                 <svg class='w-4 h-4' width="32" height="32" viewBox="0 0 32 32" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M16.0002 15.9998L10.303 11.2522C9.45651 10.5468 9.03328 10.1941 8.72901 9.76175C8.45942 9.37868 8.25921 8.95122 8.13752 8.49888C8.00016 7.98835 8.00016 7.43743 8.00016 6.33557V2.6665M16.0002 15.9998L21.6973 11.2522C22.5438 10.5468 22.967 10.1941 23.2713 9.76175C23.5409 9.37868 23.7411 8.95122 23.8628 8.49888C24.0002 7.98835 24.0002 7.43743 24.0002 6.33557V2.6665M16.0002 15.9998L10.303 20.7475C9.45651 21.4529 9.03328 21.8056 8.72901 22.2379C8.45942 22.621 8.25921 23.0484 8.13752 23.5008C8.00016 24.0113 8.00016 24.5622 8.00016 25.6641V29.3332M16.0002 15.9998L21.6973 20.7475C22.5438 21.4529 22.967 21.8056 23.2713 22.2379C23.5409 22.621 23.7411 23.0484 23.8628 23.5008C24.0002 24.0113 24.0002 24.5622 24.0002 25.6641V29.3332M5.3335 2.6665H26.6668M5.3335 29.3332H26.6668"
-                                        stroke="#79B5EC" stroke-width="2" stroke-linecap="round"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" />
                                 </svg>
 
