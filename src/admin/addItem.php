@@ -26,13 +26,23 @@ include("../function/functions.php");
 .test {
     border: 1px solid red;
 }
+
+.size {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+    .size {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
 </style>
 
 <body>
 
     <!-- navbar -->
     <nav
-        class="navbar flex flex-col  items-center w-full sm:w-14 sm:h-screen sm:py-8 overflow-y-auto bg-white sm:border-r rtl:border-l rtl:border-r-0 ">
+        class="navbar flex flex-col grid-cols-2 items-center w-full sm:w-14 sm:h-screen sm:py-8 overflow-y-auto bg-white sm:border-r rtl:border-l rtl:border-r-0 ">
         <div class="px-3 pb-4  w-full flex flex-col flex-1 sm:space-y-6">
 
             <div class='flex justify-center h-20 '>
@@ -54,8 +64,8 @@ include("../function/functions.php");
                     </a>
                     <a href="./components/ordered.php"
                         class='flex h-[48px] grow items-center justify-center rounded-md  text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3 text-gray-600'>
-                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#000000"
-                            stroke-width="1.128">
+                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            stroke="currentColor" stroke-width="1.128">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -128,7 +138,7 @@ include("../function/functions.php");
                 </a>
                 <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
                     href="./components/accept.php">
-                    <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="#000000" class="icon" version="1.1"
+                    <svg class='w-6 h-6' viewBox="0 0 1024 1024" fill="currentColor" class="icon" version="1.1"
                         xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -206,7 +216,7 @@ include("../function/functions.php");
 
                     <!-- size -->
                     <div class='col-span-6 '>
-                        <div id='number-input' class='grid grid-cols-5 gap-5 '>
+                        <div id='number-input' class='grid size gap-5 '>
                             <div>
                                 <label for="number-input-sm" class="block text-sm font-medium text-gray-700">SM</label>
                                 <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation"
@@ -246,20 +256,63 @@ include("../function/functions.php");
                         </div>
                     </div>
                     <!-- colors -->
-                    <div class="col-span-6">
-                        <label class="block text-sm font-medium text-gray-700">Colors</label>
-                        <div id="color-inputs" class="space-y-3">
-                            <!-- Initial color input -->
-                            <div class="flex items-center space-x-2">
-                                <input type="color" name="colors[]"
-                                    class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-16 h-10"
-                                    required />
-                                <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md"
-                                    onclick="removeColor(this)">Remove</button>
+                    <div class="col-span-6 ">
+                        <label class="block text-sm font-medium text-gray-700">Avaliable Colors</label>
+                        <div class='flex flex-wrap'>
+                            <div id="color-inputs" class="flex flex-wrap space-x-3 mt-3">
+                                <!-- Initial color input -->
+                                <div class="flex items-center space-x-2 w-fit relative">
+                                    <input type="color" name="colors[]"
+                                        class="cursor-pointer border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md block w-12 h-12"
+                                        required />
+                                    <button type="button" class="absolute bg-red-500 text-white p-1 rounded-full"
+                                        style='top :-8px; right:-10px;' onclick="removeColor(this)">
+                                        <svg class='w-3 h-3 text-white' fill="currentColor" viewBox="0 0 32 32"
+                                            version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                            </g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <title>cancel2</title>
+                                                <path
+                                                    d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z">
+                                                </path>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
+
+                            <div class='ml-6 '>
+                                <button type="button" id="add-color"
+                                    class=" mt-3 w-9 h-9 flex items-center justify-center border border-primary bg-primary text-white hover:text-blue-600  hover:bg-white rounded-full">
+                                    <svg class='w-6 h-6' viewBox="0 0 24 24"
+                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <title></title>
+                                            <g id="Complete">
+                                                <g data-name="add" id="add-2">
+                                                    <g>
+                                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2" x1="12" x2="12"
+                                                            y1="19" y2="5"></line>
+                                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2" x1="5" x2="19"
+                                                            y1="12" y2="12"></line>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </button>
+                            </div>
+
+
                         </div>
-                        <button type="button" id="add-color"
-                            class="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md">Add More Colors</button>
                     </div>
                     <!-- product desc -->
                     <div class="col-span-6 max-h-96">
@@ -271,24 +324,27 @@ include("../function/functions.php");
                     <!-- photo select -->
                     <div class="col-span-6">
                         <label for="file-input" class="mb-2 font-medium flex justify-between items-center">
-                            <p>Choose files <span class='text-gray-400'>( up to 3 files )</span> </p>
+                            <p>Choose files</p>
                             <button type='button' id="select-button"
-                                class="bg-primary hover:bg-white hover:text-blue-600 border border-blue-600  text-white font-medium py-1.5 px-4 rounded-full transition-colors duration-300">
-                                Select
+                                class="bg-primary hover:bg-white hover:text-blue-600 border border-blue-600 text-white font-medium py-1.5 px-4 rounded-full transition-colors duration-300">
+                                Add image
                             </button>
                         </label>
-                        <input id='file-input' type="file" name="image[]" class='hidden' accept="img/*" required
+                        <input id='file-input' type="file" name="image[]" class='hidden' accept="image/*" required
                             multiple>
-                        <!-- <input id="file-input" type="file"  name="image[]" accept="img/*" multiple class="hidden" /> -->
                         <div class="flex mb-4 flex-col">
                             <div id="drop-zone"
                                 class="w-full h-48 border-2 border-dashed border-gray-300 rounded-lg flex justify-center items-center text-gray-400 text-lg">
                                 <span>Drag and drop files here</span>
                             </div>
-                            <div id="selected-files-count" class="text-gray-500 text-sm font-medium "></div>
+                            <div id="selected-files-count" class="text-gray-500 text-sm font-medium"></div>
                             <div id="selected-images" class="grid grid-cols-2 gap-3 mt-6"></div>
                         </div>
+
                     </div>
+
+
+
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4 ">
                         <button type="submit"
                             class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
@@ -300,7 +356,130 @@ include("../function/functions.php");
         </main>
     </section>
 
+
     <script>
+    const fileInput = document.getElementById("file-input");
+    const dropZone = document.getElementById("drop-zone");
+    const selectedImages = document.getElementById("selected-images");
+    const selectButton = document.getElementById("select-button");
+    const selectedFilesCount = document.getElementById("selected-files-count");
+    const uploadAllButton = document.getElementById("upload-all");
+
+    let filesArray = [];
+
+    selectButton.addEventListener("click", () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener("change", handleFiles);
+    dropZone.addEventListener("dragover", handleDragOver);
+    dropZone.addEventListener("dragleave", handleDragLeave);
+    dropZone.addEventListener("drop", handleDrop);
+
+    function handleFiles() {
+        const fileList = this.files;
+        addToFileArray(fileList);
+        displayImages();
+        checkAndHideDropZone();
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+        dropZone.classList.add("border-blue-500", "text-blue-500");
+    }
+
+    function handleDragLeave(event) {
+        event.preventDefault();
+        dropZone.classList.remove("border-blue-500", "text-blue-500");
+    }
+
+    function handleDrop(event) {
+        event.preventDefault();
+        const fileList = event.dataTransfer.files;
+        addToFileArray(fileList);
+        displayImages();
+        checkAndHideDropZone();
+        dropZone.classList.remove("border-blue-500", "text-blue-500");
+    }
+
+    function addToFileArray(fileList) {
+        for (const file of fileList) {
+            filesArray.push(file);
+            uploadSingleFile(file); // Upload one by one as they are added
+        }
+    }
+
+    function displayImages() {
+        selectedImages.innerHTML = "";
+        let count = 0;
+        filesArray.forEach((file, index) => {
+            const imageWrapper = document.createElement("div");
+
+            if (count === 0) {
+                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', 'col-span-2',
+                    "mx-2",
+                    'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4', "mb-2");
+            } else {
+                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', "mx-2", "mb-2",
+                    'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4');
+            }
+
+            const image = document.createElement("img");
+            image.src = URL.createObjectURL(file);
+            image.classList.add("w-full", "h-64", "object-contain", "rounded-lg");
+
+            const removeButton = document.createElement("button");
+            removeButton.innerHTML = "&times;";
+            removeButton.classList.add(
+                "absolute", "top-1", "right-1", "h-6", "w-6", "bg-gray-700", "text-white", "text-xs",
+                "rounded-full",
+                "flex", "items-center", "justify-center", "opacity-50", "hover:opacity-100",
+                "transition-opacity", "duration-200"
+            );
+            removeButton.addEventListener("click", () => {
+                filesArray.splice(index, 1);
+                imageWrapper.remove();
+                selectedFilesCount.textContent = `${filesArray.length} file(s) selected`;
+                checkAndHideDropZone();
+            });
+            imageWrapper.appendChild(image);
+            imageWrapper.appendChild(removeButton);
+            selectedImages.appendChild(imageWrapper);
+            count++;
+        });
+        selectedFilesCount.textContent = `${filesArray.length} file(s) selected`;
+    }
+
+    function checkAndHideDropZone() {
+        if (filesArray.length > 0) {
+            dropZone.style.display = "none";
+        } else {
+            dropZone.style.display = "flex";
+        }
+    }
+
+    function uploadSingleFile(file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/upload', { // Change to your upload endpoint
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => console.log('File uploaded successfully:', data))
+            .catch(error => console.error('Error uploading file:', error));
+    }
+
+    uploadAllButton.addEventListener("click", () => {
+        filesArray.forEach(file => uploadSingleFile(file));
+    });
+    </script>
+
+
+
+
+    <!-- <script>
     const fileInput = document.getElementById("file-input");
     const dropZone = document.getElementById("drop-zone");
     const selectedImages = document.getElementById("selected-images");
@@ -347,7 +526,7 @@ include("../function/functions.php");
         selectedImages.innerHTML = "";
         let count = 0;
         for (const file of fileList) {
-            if (count >= 3) break;
+
             const imageWrapper = document.createElement("div");
 
             if (count === 0) {
@@ -402,7 +581,7 @@ include("../function/functions.php");
             dropZone.style.display = "flex";
         }
     }
-    </script>
+    </script> -->
     <script>
     const nav = document.querySelector('nav');
 
@@ -425,8 +604,23 @@ include("../function/functions.php");
         const newColorInput = document.createElement('div');
         newColorInput.classList.add('flex', 'items-center', 'space-x-2');
         newColorInput.innerHTML = `
-            <input type="color" name="colors[]" class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-16 h-10" required />
-            <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="removeColor(this)">Remove</button>
+        <div class="flex items-center space-x-2 w-fit relative">
+            <input type="color" name="colors[]" class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md block w-12 h-12" required />
+            <button type="button" class="cursor-pointer absolute bg-red-500  text-white p-1 rounded-full" style='top :-8px; right:-10px;' onclick="removeColor(this)">
+            <svg class='w-3 h-3 text-white' fill="currentColor" viewBox="0 0 32 32" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <title>cancel2</title>
+                                            <path
+                                                d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z">
+                                            </path>
+                                        </g>
+                                    </svg>
+            </button>
+        </div>
         `;
         colorInputsDiv.appendChild(newColorInput);
     });
