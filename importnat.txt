@@ -1,0 +1,60 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve the colors array from the form submission
+    $colors = $_POST['colors']; // This will be an array of hex codes (e.g., ['#ff0000', '#00ff00', '#0000ff'])
+
+    // Convert the colors array to a string for storage, e.g., using JSON or comma-separated values
+    $colorsString = json_encode($colors); // Store it as a JSON string in the database
+
+    // Prepare other data to be stored
+    $productname = htmlspecialchars($_POST['productname']);
+    $price = htmlspecialchars($_POST['price']);
+    // Handle other fields as well...
+
+    // Database connection
+    $conn = new mysqli("localhost", "username", "password", "database");
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Prepare SQL to insert the product data, including colors
+    $stmt = $conn->prepare("INSERT INTO products (productname, price, colors) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $productname, $price, $colorsString);
+
+    // Execute the query
+    if ($stmt->execute()) {
+        echo "Product added successfully!";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
+
+    // Close connection
+    $stmt->close();
+    $conn->close();
+}
+?>
+
+
+
+
+
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    productname VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    colors TEXT NOT NULL -- This field will store the colors in JSON format or as a comma-separated string
+);
+
+
+
+$result = $conn->query("SELECT * FROM products WHERE id = $product_id");
+$product = $result->fetch_assoc();
+
+// Decode the colors from the JSON format
+$colors = json_decode($product['colors']);
+
+foreach ($colors as $color) {
+    echo "<div style='width: 50px; height: 50px; background-color: $color;'></div>";
+}

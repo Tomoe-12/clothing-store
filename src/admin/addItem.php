@@ -177,6 +177,21 @@ include("../function/functions.php");
                         <input type="text" id="product-name" name="productname" placeholder='Nike Air Force' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
+                    <div class="col-span-6">
+                        <label class="block text-sm font-medium text-gray-700">Colors</label>
+                        <div id="color-inputs" class="space-y-3">
+                            <!-- Initial color input -->
+                            <div class="flex items-center space-x-2">
+                                <input type="color" name="colors[]"
+                                    class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-16 h-10"
+                                    required />
+                                <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md"
+                                    onclick="removeColor(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-color"
+                            class="mt-3 bg-blue-500 text-white px-4 py-2 rounded-md">Add More Colors</button>
+                    </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="type" class="block text-sm font-medium text-gray-700">
                             Type
@@ -398,6 +413,24 @@ include("../function/functions.php");
         document.getElementById("accountcontent").style.width = "20%";
 
     }, false);
+    </script>
+    <script>
+    // Function to add a new color input field
+    document.getElementById('add-color').addEventListener('click', function() {
+        const colorInputsDiv = document.getElementById('color-inputs');
+        const newColorInput = document.createElement('div');
+        newColorInput.classList.add('flex', 'items-center', 'space-x-2');
+        newColorInput.innerHTML = `
+            <input type="color" name="colors[]" class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-16 h-10" required />
+            <button type="button" class="bg-red-500 text-white px-2 py-1 rounded-md" onclick="removeColor(this)">Remove</button>
+        `;
+        colorInputsDiv.appendChild(newColorInput);
+    });
+
+    // Function to remove a color input field
+    function removeColor(button) {
+        button.parentElement.remove();
+    }
     </script>
 
 </body>
