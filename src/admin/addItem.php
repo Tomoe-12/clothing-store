@@ -30,10 +30,16 @@ include("../function/functions.php");
 .size {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+.secImg{
+    grid-column: span 2 / span 2;
+}
 
 @media (min-width: 640px) {
     .size {
         grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+    .secImg{
+        grid-column: span 1 / span 1;
     }
 }
 </style>
@@ -42,7 +48,7 @@ include("../function/functions.php");
 
     <!-- navbar -->
     <nav
-        class="navbar flex flex-col grid-cols-2 items-center w-full sm:w-14 sm:h-screen sm:py-8 overflow-y-auto bg-white sm:border-r rtl:border-l rtl:border-r-0 ">
+        class="navbar flex flex-col items-center w-full sm:w-14 sm:h-screen sm:py-8 overflow-y-auto bg-white sm:border-r rtl:border-l rtl:border-r-0 ">
         <div class="px-3 pb-4  w-full flex flex-col flex-1 sm:space-y-6">
 
             <div class='flex justify-center h-20 '>
@@ -417,10 +423,9 @@ include("../function/functions.php");
 
             if (count === 0) {
                 imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', 'col-span-2',
-                    "mx-2",
-                    'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4', "mb-2");
+                   'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4', "mb-2");
             } else {
-                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', "mx-2", "mb-2",
+                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300','secImg', "mb-2",
                     'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4');
             }
 
@@ -476,112 +481,6 @@ include("../function/functions.php");
     });
     </script>
 
-
-
-
-    <!-- <script>
-    const fileInput = document.getElementById("file-input");
-    const dropZone = document.getElementById("drop-zone");
-    const selectedImages = document.getElementById("selected-images");
-    const selectButton = document.getElementById("select-button");
-    const selectedFilesCount = document.getElementById("selected-files-count");
-
-    selectButton.addEventListener("click", () => {
-        fileInput.click();
-    });
-
-    fileInput.addEventListener("change", handleFiles);
-    dropZone.addEventListener("dragover", handleDragOver);
-    dropZone.addEventListener("dragleave", handleDragLeave);
-    dropZone.addEventListener("drop", handleDrop);
-
-    function handleFiles() {
-        const fileList = this.files;
-        displayImages(fileList);
-        checkAndHideDropZone();
-    }
-
-    function handleDragOver(event) {
-        event.preventDefault();
-        dropZone.classList.add("border-blue-500");
-        dropZone.classList.add("text-blue-500");
-    }
-
-    function handleDragLeave(event) {
-        event.preventDefault();
-        dropZone.classList.remove("border-blue-500");
-        dropZone.classList.remove("text-blue-500");
-    }
-
-    function handleDrop(event) {
-        event.preventDefault();
-        const fileList = event.dataTransfer.files;
-        displayImages(fileList);
-        checkAndHideDropZone();
-        dropZone.classList.remove("border-blue-500");
-        dropZone.classList.remove("text-blue-500");
-    }
-
-    function displayImages(fileList) {
-        selectedImages.innerHTML = "";
-        let count = 0;
-        for (const file of fileList) {
-
-            const imageWrapper = document.createElement("div");
-
-            if (count === 0) {
-                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', 'col-span-2', "mx-2",
-                    'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4', "mb-2");
-            } else {
-                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', "mx-2", "mb-2",
-                    'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4');
-
-            }
-            const image = document.createElement("img");
-            image.src = URL.createObjectURL(file);
-            image.classList.add("w-full", "h-64", "object-contain", "rounded-lg");
-
-            const removeButton = document.createElement("button");
-            removeButton.innerHTML = "&times;";
-            removeButton.classList.add(
-                "absolute",
-                "top-1",
-                "right-1",
-                "h-6",
-                "w-6",
-                "bg-gray-700",
-                "text-white",
-                "text-xs",
-                "rounded-full",
-                "flex",
-                "items-center",
-                "justify-center",
-                "opacity-50",
-                "hover:opacity-100",
-                "transition-opacity",
-                "duration-200"
-            );
-            removeButton.addEventListener("click", () => {
-                imageWrapper.remove();
-                selectedFilesCount.textContent = `${selectedImages.children.length} file(s) selected`;
-                checkAndHideDropZone();
-            });
-            imageWrapper.appendChild(image);
-            imageWrapper.appendChild(removeButton);
-            selectedImages.appendChild(imageWrapper);
-            count++;
-        }
-        selectedFilesCount.textContent = `${selectedImages.children.length} file(s) selected`;
-    }
-
-    function checkAndHideDropZone() {
-        if (selectedImages.children.length > 0) {
-            dropZone.style.display = "none";
-        } else {
-            dropZone.style.display = "flex";
-        }
-    }
-    </script> -->
     <script>
     const nav = document.querySelector('nav');
 
