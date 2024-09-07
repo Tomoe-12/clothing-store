@@ -23,6 +23,21 @@ include("../function/functions.php");
 <script src="../../public/script.js"></script>
 <link rel="stylesheet" href="../css/admin.css">
 <style>
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
 .test {
     border: 1px solid red;
 }
@@ -30,7 +45,8 @@ include("../function/functions.php");
 .size {
     grid-template-columns: repeat(3, minmax(0, 1fr));
 }
-.secImg{
+
+.secImg {
     grid-column: span 2 / span 2;
 }
 
@@ -38,7 +54,8 @@ include("../function/functions.php");
     .size {
         grid-template-columns: repeat(5, minmax(0, 1fr));
     }
-    .secImg{
+
+    .secImg {
         grid-column: span 1 / span 1;
     }
 }
@@ -186,7 +203,7 @@ include("../function/functions.php");
             class="container flex flex-col main items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <h1 class='text-black font-semibold text-xl sm:text-3xl'>Add new Item</h1>
             <div class=" max-w-xl lg:max-w-3xl">
-                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" id="submit" 
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" id="submit"
                     enctype="multipart/form-data" class="mt-8 grid grid-cols-6 gap-6">
                     <!-- product name -->
                     <div class="col-span-6">
@@ -226,28 +243,28 @@ include("../function/functions.php");
                             <div>
                                 <label for="number-input-sm" class="block text-sm font-medium text-gray-700">SM</label>
                                 <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation"
-                                    name="small" 
+                                    name="small"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-md" class="block text-sm font-medium text-gray-700">MD</label>
                                 <input type="number" id="number-input-md" aria-describedby="helper-text-explanation"
-                                    name="medium" 
+                                    name="medium"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-lg" class="block text-sm font-medium text-gray-700">LG</label>
                                 <input type="number" id="number-input-lg" aria-describedby="helper-text-explanation"
-                                    name="large" 
+                                    name="large"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-xl" class="block text-sm font-medium text-gray-700">XL</label>
                                 <input type="number" id="number-input-xl" aria-describedby="helper-text-explanation"
-                                    name="XL" 
+                                    name="XL"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -255,7 +272,7 @@ include("../function/functions.php");
                                 <label for="number-input-xxl"
                                     class="block text-sm font-medium text-gray-700">XXL</label>
                                 <input type="number" id="number-input-xxl" aria-describedby="helper-text-explanation"
-                                    name="XXL" 
+                                    name="XXL"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -293,8 +310,8 @@ include("../function/functions.php");
                             <div class='ml-6 '>
                                 <button type="button" id="add-color"
                                     class=" mt-3 w-9 h-9 flex items-center justify-center border border-primary bg-primary text-white hover:text-blue-600  hover:bg-white rounded-full">
-                                    <svg class='w-6 h-6' viewBox="0 0 24 24"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                                    <svg class='w-6 h-6' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
                                         </g>
@@ -352,7 +369,7 @@ include("../function/functions.php");
 
 
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4 ">
-                        <button type="submit" 
+                        <button type="submit"
                             class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
                             Create New
                         </button>
@@ -423,9 +440,9 @@ include("../function/functions.php");
 
             if (count === 0) {
                 imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', 'col-span-2',
-                   'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4', "mb-2");
+                    'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4', "mb-2");
             } else {
-                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300','secImg', "mb-2",
+                imageWrapper.classList.add("relative", 'w-full', 'border', 'border-gray-300', 'secImg', "mb-2",
                     'rounded-md', 'shadow-sm', 'bg-gray-100', 'p-4');
             }
 
@@ -559,9 +576,9 @@ if($small==null && $medium==null && $large==null && $XL==null && $XXL==null){
     $result=false;
 } ?>
 <script>
-    if(<?php echo $result ?>){
-alert("fill the quantity of the clothe's size at least one");
-    }
+if (<?php echo $result ?>) {
+    alert("fill the quantity of the clothe's size at least one");
+}
 </script>
 
 <?php

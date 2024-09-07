@@ -9,10 +9,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 deletecloset($clo_id);
 deletesize($clo_id);
 deleimg($clo_id);
-
  header("Location:../../admin/home.php");
-
-
 
 }
 ?>

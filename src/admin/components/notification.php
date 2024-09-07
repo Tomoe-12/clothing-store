@@ -100,6 +100,7 @@ nav.scrolled {
 
 .hidded {
     display: none;
+
 }
 </style>
 
@@ -383,7 +384,7 @@ nav.scrolled {
                                 <?php 
                         $colors = json_decode($row['color']);
                         foreach ($colors as $color) { ?>
-                                <div class="rounded-full -z-10"
+                                <div class="rounded-full z-10"
                                     style='width: 20px; height: 20px;  background-color: <?php echo $color;?>'>
                                 </div>
                                 <?php }?>
@@ -439,21 +440,7 @@ nav.scrolled {
                                     </button>
                                 </form>
 
-                                <!-- Custom Modal for Confirmation -->
-                                <div id="custom-modal"
-                                    class="hidded fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center">
-                                    <div class="bg-white rounded-lg shadow-lg p-6 w-80">
-                                        <h2 class="text-lg font-semibold mb-4">Are you sure?</h2>
-                                        <p class="mb-6">Do you really want to delete this item? This process cannot be
-                                            undone.</p>
-                                        <div class="flex justify-end space-x-4">
-                                            <button id="cancel-btn"
-                                                class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</button>
-                                            <button id="confirm-btn"
-                                                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Delete</button>
-                                        </div>
-                                    </div>
-                                </div>
+
 
 
 
@@ -466,6 +453,22 @@ nav.scrolled {
                 </tbody>
 
             </table>
+            <!-- Custom Modal for Confirmation -->
+            <div id="custom-modal"
+                class="hidded fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center"
+                style='z-index:999; !important'>
+                <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+                    <h2 class="text-lg font-semibold mb-4">Are you sure?</h2>
+                    <p class="mb-6">Do you really want to delete this item? This process cannot be
+                        undone.</p>
+                    <div class="flex justify-end space-x-4">
+                        <button id="cancel-btn"
+                            class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</button>
+                        <button id="confirm-btn"
+                            class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Delete</button>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
