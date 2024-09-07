@@ -186,9 +186,9 @@ function sizequantity($xxx,$clo_id){
      }}}
  
      
- function insertintocloset($type,$price,$gender,$instock,$productdesc ,$productname){
+ function insertintocloset($type,$price,$gender,$instock,$productdesc ,$productname,$color){
     include("connection.php");
-    $con->query("INSERT INTO closet (type,price,gender,instock,productdesc,productname) VALUES ('$type','$price','$gender','$instock','$productdesc','$productname')");
+    $con->query("INSERT INTO closet (type,price,gender,instock,productdesc,productname,color) VALUES ('$type','$price','$gender','$instock','$productdesc','$productname','$color')");
     return sizeid();
  }
   
@@ -263,9 +263,9 @@ return $row["img"];
 
 }
 }}
-function insertorder($clo_id,$cus_id,$quantity,$size,$orderprice){
+function insertorder($clo_id,$cus_id,$quantity,$size,$orderprice,$color){
     include("connection.php");
-    $con->query("INSERT INTO orderhistory (clo_id,cus_id,quantity,size,orderprice,admindec) values ('$clo_id','$cus_id','$quantity','$size','$orderprice','Pending')");
+    $con->query("INSERT INTO orderhistory (clo_id,cus_id,quantity,size,orderprice,or_color,admindec) values ('$clo_id','$cus_id','$quantity','$size','$orderprice','$color','Pending')");
 }
 function movtoorder($user_id){
     include("connection.php");
@@ -274,7 +274,7 @@ function movtoorder($user_id){
     if(!empty($result)&& $result->num_rows>0){
         $count=0;
      while($row=$result->fetch_assoc()){
-    insertorder($row["clo_id"],$row["cus_id"],$row["quantity"],$row["size"],$row["orderprice"]);
+    insertorder($row["clo_id"],$row["cus_id"],$row["quantity"],$row["size"],$row["orderprice"],$row["cart_color"]);
 $count++;
      }}
      echo $count;
@@ -340,9 +340,9 @@ function deletcart($user_id){
 
     }
 
-    function updatecart($quantity,$size,$orderprice,$cart_id){
+    function updatecart($quantity,$size,$orderprice,$color,$cart_id){
         include("connection.php");
-        $con->query("UPDATE cart set quantity='$quantity' , size='$size' ,orderprice='$orderprice' where cart_id='$cart_id'");    
+        $con->query("UPDATE cart set quantity='$quantity' , size='$size' ,orderprice='$orderprice', cart_color='$color' where cart_id='$cart_id'");    
 
     }
 ?>

@@ -321,6 +321,15 @@ $key=false;
 
 
                             </div>
+                            <div class="color" style="margin-top: 20px;">
+                        <?php 
+                        $colors = json_decode($row['color']);
+
+                        foreach ($colors as $color) { ?>
+                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%; background-color:<?php echo $color;?>'>
+                  <?php      }?>
+                  </div>
+                            
                         </div>
                         <div class="mt-4 " class=" max-w-xs mx-auto">
                             <h3 class="text-xl font-bold text-gray-800">Quantity</h3>
@@ -467,4 +476,116 @@ thumbnails.forEach((thumbnail, index) => {
 showImage(currentIndex);
 </script>
 
+
 </html>
+<?php 
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        
+
+
+        if(empty($_SESSION["user_id"])){
+            ?>
+    <script>
+    document.getElementById("unsuccess").style.display = "block";
+    </script>
+
+    <?php
+        } 
+        else {
+            $color=$_POST["color"];
+            $size=filter_input(INPUT_POST,"size",FILTER_SANITIZE_SPECIAL_CHARS);
+                if(isset($size)){
+            $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);
+            echo $size;
+            echo $quantity;
+            switch($size){
+                case"small":  $realprice=$price+0;break;
+                case"medium": $realprice=$price+2000;break;
+                case"large": $realprice=$price+4000;break;
+                case"XL": $realprice=$price+6000;break;
+                case"XXL":$realprice=$price+8000;break;
+            }
+            $realprice*=$quantity;
+           echo $realprice;
+            $originquantity=sizequantity($size,$clo_id);
+            echo $originquantity;
+        
+            if($quantity>0){
+            if($originquantity>$quantity || $originquantity==$quantity){
+                $instock=$instock-$quantity;
+                try{
+                    
+                    $con->query("UPDATE closet SET instock='$instock' WHERE clo_id='$item_id'");
+                    sizeretri($size,$quantity,$clo_id);
+                  $key=true;
+                  ?>
+
+    <script>
+    if (<?php echo $key ?>) {
+        alert("Add to cart Successfully!");
+
+    }
+    </script>
+    <?php
+                }catch(mysqli_sql_exception){
+                    echo"fail to upadate";
+                    
+                }
+
+            }else{  
+                $key=false; 
+               
+                
+                ?>
+    <script>
+    document.getElementById("insufficient").style.display = "block";
+    </script>
+    <?php
+            }
+        } 
+        else{ 
+            $key=false;
+            ?>
+    <script>
+    document.getElementById("zero").style.display = "block";
+    </script>
+    <?php 
+
+        } 
+        if(!empty($_SESSION["user_id"])){
+            $user_id=$_SESSION["user_id"];
+          if($_SESSION["user_id"]!=null)  {
+           
+                if($key){  
+            try{
+                $_SESSION["order_id"]=$item_id;
+                $user_id=$_SESSION["user_id"];
+                $order_id= $_SESSION["order_id"];
+                $con->query("INSERT INTO cart (clo_id,cus_id,quantity,size,orderprice,cart_color) VALUES ('$order_id','$user_id','$quantity','$size','$realprice','$color')");
+               
+              
+                ?>
+
+    <?php
+               
+            }catch(mysqli_sql_exception){ ?>
+    <script>
+    document.getElementById("unsuccess").style.display = "block";
+    </script>
+
+    <?php
+                
+            }
+          }
+            
+        }
+            
+        }
+    }
+    else{ ?>
+    <script>
+    document.getElementById("size").style.display = "block";
+    </script>
+    <?php
+
+    }}} ?>

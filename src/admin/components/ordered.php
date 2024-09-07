@@ -329,7 +329,7 @@ include("../../function/functions.php");
                         <td>
                             <div class='flex justify-start items-center' style='gap:50px;'>
                                 <?php  if($row["admindec"]=="Pending"){?>
-                                <a class='cursor-pointer font-semibold text-primary' style='color:# ;'
+                                <a class='cursor-pointer font-semibold text-primary' 
                                     href="vieworders.php?or_date=<?php echo $row['or_date'] ?> && cus_id=<?php echo $row["cus_id"] ?>">
                                     <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1"
                                         xmlns="http://www.w3.org/2000/svg">

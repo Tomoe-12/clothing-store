@@ -93,7 +93,7 @@ if (<?php echo $res?>) {
             $user_name=$row["user_name"];
 $clo_id=$row["clo_id"];
             $user_id=$row["cus_id"];
-
+         
            
             
             
@@ -108,7 +108,8 @@ $clo_id=$row["clo_id"];
 
                             <div class="flex flex-col ">
                                 <h3 class="text-base font-bold text-gray-800">Velvet Sneaker</h3>
-                                <p class="text-xs font-semibold text-gray-500 mt-0.5"><?php echo $row["size"]?></p>
+                                <p class="text-xs font-semibold text-gray-500 mt-0.5"><?php echo $row["size"]?></p> <span style='width: 30px; height: 30px; border-radius:50%; background-color:<?php echo $row["cart_color"];?>'></span>
+
                                 <form action="../function/cartitemremove.php" method="post">
                                     <input type="text" name="cart_id" value="<?php  echo $row["cart_id"] ?>"
                                         style="display: none;">
