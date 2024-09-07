@@ -295,7 +295,7 @@ $key=false;
                             style="margin-top:10px;text-align:center; background-color:white;padding:10px;color:red;border-radius:10px;">
                             Your order quantity must be greater than zero</div>
                         <div class=" gap-4 mt-10">
-                            <input type="submit" value="Add to Cart" name="order"
+                            <input type="submit" value="Update item" name="order"
                                 class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-primary text-white text-sm font-semibold rounded-lg">
                             <btton type='button' onclick="location.href='../pages/Cart.php'"
                                 class="min-w-[200px] px-4 py-3 text-center border border-blue-600 bg-transparent  text-primary text-sm font-bold rounded-lg cursor-pointer">

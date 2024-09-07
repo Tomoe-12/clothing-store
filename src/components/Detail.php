@@ -57,7 +57,7 @@ $key=false;
         position: absolute;
         left: -3%;
         top: 50%;
-        transform: translate-y-50%;
+        transform:translateY(50%);
         color: white;
         padding: 10px;
     }
@@ -66,7 +66,7 @@ $key=false;
         position: absolute;
         right: -3%;
         top: 50%;
-        transform: translate-y-50%;
+        transform:translateY(50%);
         color: white;
         padding: 10px;
     }
