@@ -468,8 +468,8 @@ if (document.getElementById("selection-table") && typeof simpleDatatables.DataTa
         }
 
         const options = {
-            perPage: 15,
-            perPageSelect: [15, 20, 30, 50], // Options for the entries dropdown
+            perPage: 10,
+            perPageSelect: [10,15, 20, 30, 50], // Options for the entries dropdown
             columns: [{
                 select: [0, 4],
                 sortable: false

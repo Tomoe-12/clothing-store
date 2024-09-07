@@ -13,12 +13,15 @@ $key=false;
     <title>Document</title>
 
     <!-- flowbite -->
-    <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
-    <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
+    <link rel="stylesheet" href="node_modules/flowbite/dist/flowbite.min.css">
+    <script src="node_modules/flowbite/dist/flowbite.min.js"></script>
 
     <!-- tailwind -->
     <link href="../output.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/details.css">
+
+      <!-- alpine -->
+      <script src="../script"></script>
     <style>
     #size {
         display: none;
@@ -34,6 +37,7 @@ $key=false;
     .unSelected {
         background-color: white;
     }
+   
     </style>
 </head>
 
@@ -41,42 +45,36 @@ $key=false;
 
     <div class="min-h-screen flex justify-center items-center">
         <?php 
-   $item_id=$_GET["cart_id"];
-   $price=$_GET["price"];
-   $clo_id=$_GET["clo_id"];
-   $quantity=$_GET["quantity"];
-   
+   $item_id=$_GET["item_id"];
   
-   $result=$con->query("SELECT * FROM closet join cart on closet.clo_id=cart.clo_id where cart.cart_id='$item_id' ");
+  
+   $result=$con->query("SELECT * FROM closet WHERE clo_id='$item_id' ");
    if(!empty($result)&& $result->num_rows>0){
-    if($row=$result->fetch_assoc()){ 
-       
-       $size=$row["size"];
-      $selectcolor=$row["cart_color"];
-      
-       
+    while($row=$result->fetch_assoc()){ 
+        $clo_id=$row["clo_id"];
+    $price=$row["price"];
       $instock=$row["instock"];
         ?>
 
-        <form action="../function/cartupdate.php" method="post">
+        <form action=" <?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
             <div class="font-sans p-8 tracking-wide max-lg:max-w-2xl mx-auto">
 
                 <div class="grid items-start grid-cols-1 lg:grid-cols-2 gap-10">
                     <div class="space-y-4 text-center lg:sticky top-8">
                         <div class="bg-gray-100 p-4 flex items-center sm:h-[380px] rounded-lg">
-                            <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="Product"
-                                class="w-full max-h-full object-contain object-top" />
+                            <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                                alt="Product" class="w-full max-h-full object-contain object-top" />
                         </div>
 
                         <div class="grid grid-cols-2 gap-4">
                             <div class="bg-gray-100 p-4 flex items-center rounded-lg sm:h-[182px]">
-                                <img src="data:image/jepg;base64,<?php echo base64_encode(retrimulimg($row["clo_id"])) ?>" alt="Product"
-                                    class="w-full max-h-full object-contain object-top" />
+                                <img src="data:image/jepg;base64,<?php echo base64_encode(retrimulimg($row["clo_id"])) ?>"
+                                    alt="Product" class="w-full max-h-full object-contain object-top" />
                             </div>
 
                             <div class="bg-gray-100 p-4 flex items-center rounded-lg sm:h-[182px]">
-                                <img src="data:image/jepg;base64,<?php echo base64_encode(retrimulimg2($row["clo_id"])) ?>" alt="Product"
-                                    class="w-full max-h-full object-contain object-top" />
+                                <img src="data:image/jepg;base64,<?php echo base64_encode(retrimulimg2($row["clo_id"])) ?>"
+                                    alt="Product" class="w-full max-h-full object-contain object-top" />
                             </div>
                         </div>
                     </div>
@@ -147,109 +145,59 @@ $key=false;
                                $large= sizeout("Large",$row["clo_id"]);
                                $XL= sizeout("XL",$row["clo_id"]);
                                $XXL= sizeout("XXL",$row["clo_id"]);
-                               if($small>0){
-                                if($size=="small"){  ?>
-                            <label for="small" id="size-sm" onclick='document.getElementById("price").innerHTML = <?php echo $price ?>+"KS"'; 
-                                     class="w-10 h-10 border bg-primary text-white  hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="SM">SM</label>
-                              <?php } 
-                              else{?>
-
-                                <label for="small" id="size-sm" onclick='document.getElementById("price").innerHTML = <?php echo $price ?>+"KS"';
+                               if($small>0){ ?>
+                                <label for="small" id="size-sm"
+                                    onclick='document.getElementById("price").innerHTML = <?php echo $price ?>+"KS"' ;
                                     class="w-10 h-10 border  hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="SM">SM</label>
-                                <?php   }}
-
-
-                       if($medium>0) { 
-                        if($size=="medium"){
-                             ?>
-                                  <label for="medium" id="size-md" onclick='document.getElementById("price").innerHTML = <?php echo $price+2000?>+"KS"';
-                                    class="w-10 h-10 border  bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="MD">MD</label>
-                                <?php } 
-                              else{?>
-                                <label for="medium" id="size-md" onclick='document.getElementById("price").innerHTML = <?php echo $price+2000?>+"KS"';
+                                <?php   }
+                               
+                       if($medium>0) {  ?>
+                                <label for="medium" id="size-md"
+                                    onclick='document.getElementById("price").innerHTML = <?php echo $price+2000?>+"KS"'
+                                    ;
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="MD">MD</label>
-                                <?php }  }
-                                
-                                
-                    if($large>0)   {
-                        if($size=="large"){ ?>
-                              <label for="large" id="size-lg" onclick='document.getElementById("price").innerHTML = <?php echo $price +4000?>+"KS"';
-                                    class="w-10 h-10 border bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="LG">LG </label>
-                            <?php } 
-                              else{?>
-                                <label for="large" id="size-lg" onclick='document.getElementById("price").innerHTML = <?php echo $price +4000?>+"KS"';
+                                <?php   }   
+                    if($large>0)   { ?>
+                                <label for="large" id="size-lg"
+                                    onclick='document.getElementById("price").innerHTML = <?php echo $price +4000?>+"KS"'
+                                    ;
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="LG">LG </label>
-                                <?php   } } 
-                if($XL>0){ 
-                    if($size=="large"){?>
-
-                               <label for="XL" id="size-xl" onclick='document.getElementById("price").innerHTML = <?php echo $price +6000?>+"KS"';
-                                    class="w-10 h-10 border bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="XL"> XL</label>
-                                <?php } 
-                              else{?>
-                                <label for="XL" id="size-xl" onclick='document.getElementById("price").innerHTML = <?php echo $price +6000?>+"KS"';
+                                <?php    } 
+                if($XL>0){ ?>
+                                <label for="XL" id="size-xl"
+                                    onclick='document.getElementById("price").innerHTML = <?php echo $price +6000?>+"KS"'
+                                    ;
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XL"> XL</label>
-                                <?Php    }  } 
-          if($XXL>0){
-            if($size=="large"){ ?>
-                                <label for="XXL" id="size-xxl"onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"';
-                                    class="w-10 h-10 border bg-primary text-white hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
-                                    data-size="XXL">XXL</label>
-                            <?php } 
-                              else{?>
-                                <label for="XXL" id="size-xxl"onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"';
+                                <?Php      } 
+          if($XXL>0){ ?>
+                                <label for="XXL" id="size-xxl"
+                                    onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"'
+                                    ;
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XXL">XXL</label>
-                                <?php  }}?>
-                
-                                  <input type="text" name="selectcolor" value="<?php echo $selectcolor?>" style="display:none;">
-                                <input type="text" name="orderprice" value="<?php echo $row["orderprice"] ?>" style="display:none;">
+                                <?php  }
+                ?>
 
-                                <input type="text" name="price" value="<?php echo $row["price"] ?>" style="display:none;">
-                                <input type="text" name="cart_id" value="<?php echo $row["cart_id"] ?>" style="display:none;">
 
-                                <input type="text" name="clo_id" value="<?php echo $clo_id ?>" style="display:none;">
-                                <input type="text" name="size" value="<?php echo $size ?>" style="display:none;">
-                                <input type="text" name="quantity" value="<?php echo $quantity ?>" style="display:none;">
+
+
 
                                 <div class="radio hidden">
-                                    <input type="radio" id="small" value="small" name="orsize">
-                                    <input type="radio" id="medium" value="medium" name="orsize">
-                                    <input type="radio" id="large" value="large" name="orsize">
-                                    <input type="radio" id="XL" value="XL" name="orsize">
-                                    <input type="radio" id="XXL" value="XXL" name="orsize">
+                                    <input type="radio" id="small" value="small" name="size">
+                                    <input type="radio" id="medium" value="medium" name="size">
+                                    <input type="radio" id="large" value="large" name="size">
+                                    <input type="radio" id="XL" value="XL" name="size">
+                                    <input type="radio" id="XXL" value="XXL" name="size">
                                 </div>
 
 
                             </div>
                         </div>
-
-                        <div class="color" style="margin-top: 20px;">
-                        <?php 
-                       
-                       $colors = json_decode($row['color']);
-
-                        foreach ($colors as $color) { 
-             
-                              if($selectcolor!=$color) {  ?>
-                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%;  background-color:<?php echo $color;?>'>
-
-                      <?php      } 
-                      if($selectcolor==$color){ ?>
-                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%; border:1px solid black; background-color:<?php echo $color;?>'>
-
-                 <?php     }
-                     } ?>
-                  </div>
-                        <div class="mt-4 " class="max-w-xs mx-auto">
+                        <div class="mt-4 " max-w-xs mx-auto">
                             <h3 class="text-xl font-bold text-gray-800">Quantity</h3>
 
 
@@ -263,13 +211,13 @@ $key=false;
                                             stroke-width="2" d="M1 1h16" />
                                     </svg>
                                 </button>
-                                <input type="text" id="quantity-input" data-input-counter name="orquantity" value="<?php  echo $quantity;?>"
+                                <input type="text" id="quantity-input" data-input-counter name="quantity"
                                     aria-describedby="helper-text-explanation"
                                     class=" w-full h-11 font-semibold bg-white text-gray-900 text-lg  text-center border border-gray-100 focus:ring-none  block  py-2.5 "
                                     placeholder="0" required />
                                 <button type="button" id="increment-button"
                                     data-input-counter-increment="quantity-input"
-                                    class="bg-blue-600 border border-blue-600 hover:bg-primary  rounded-e-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none">
+                                    class="bg-blue-600 border border-blue-600 hover:bg-blue-700  rounded-e-lg p-3 h-11 focus:ring-gray-100  focus:ring-2 focus:outline-none">
                                     <svg class="w-3 h-3 text-white " aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -294,10 +242,11 @@ $key=false;
                         <div id="zero"
                             style="margin-top:10px;text-align:center; background-color:white;padding:10px;color:red;border-radius:10px;">
                             Your order quantity must be greater than zero</div>
+
                         <div class=" gap-4 mt-10">
                             <input type="submit" value="Add to Cart" name="order"
-                                class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-primary text-white text-sm font-semibold rounded-lg">
-                            <btton type='button' onclick="location.href='../pages/Cart.php'"
+                                class="min-w-[200px] px-4 py-3 text-center bg-primary hover:bg-blue-700 text-white text-sm font-semibold rounded-lg">
+                            <btton type='button' onclick="location.href='../pages/home.php'"
                                 class="min-w-[200px] px-4 py-3 text-center border border-blue-600 bg-transparent  text-primary text-sm font-bold rounded-lg cursor-pointer">
                                 Cancel
                                 </button>
@@ -317,9 +266,9 @@ $key=false;
                                     must-have addition to your wardrobe. The supple and breathable materials ensure
                                     all-day
                                     comfort, making them perfect for everyday wear.</p> -->
-                                    <p class="text-base text-gray-700 mt-4">
-                                        <?php  echo $row["productdesc"]?>
-                                    </p>
+                                <p class="text-base text-gray-700 mt-4">
+                                    <?php  echo $row["productdesc"]?>
+                                </p>
                             </div>
 
                             <!-- <ul class="space-y-3 list-disc mt-6 pl-4 text-sm text-gray-600">
@@ -340,7 +289,7 @@ $key=false;
 
 
 
-           
+
 
 
         </form>
@@ -351,9 +300,88 @@ $key=false;
  
   ?>
     </div>
+    <div class="max-w-4xl mx-auto p-4">
+        <!-- Carousel Container -->
+        <div class="relative">
+            <!-- Images -->
+            <div id="carousel" class="w-full overflow-hidden">
+                <img src="../../img/images (1).jpg" class="w-full h-auto" />
+                <img src="../../img/images (2).jpg" class="w-full h-auto hidden" />
+                <img src="../../img/images (3).jpg" class="w-full h-auto hidden" />
+            </div>
+
+            <!-- Previous Button -->
+            <button id="prevBtn"
+                class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">
+                &#10094;
+            </button>
+
+            <!-- Next Button -->
+            <button id="nextBtn"
+                class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">
+                &#10095;
+            </button>
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="flex justify-center mt-4 space-x-4 ">
+            <img src="../../img/images (1).jpg" class="w-20 h-auto cursor-pointer thumbnail" />
+            <img src="../../img/images (2).jpg" class="w-20 h-auto cursor-pointer thumbnail" />
+            <img src="../../img/images (3).jpg" class="w-20 h-auto cursor-pointer thumbnail" />
+            <img src="../../img/images (3).jpg" class="w-20 h-auto cursor-pointer thumbnail" />
+            <img src="../../img/images (3).jpg" class="w-20 h-auto cursor-pointer thumbnail" />
+        </div>
+    </div>
     <?php 
-    
-       /*  else {
+    if($_SERVER["REQUEST_METHOD"]=="POST"){
+        
+
+
+        if(empty($_SESSION["user_id"])){
+            ?>
+    <script>
+    document.getElementById("unsuccess").style.display = "block";
+    </script>
+
+    <script>
+    const carousel = document.getElementById('carousel');
+    const images = carousel.getElementsByTagName('img');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    let currentIndex = 0;
+
+    // Function to show the current image in the carousel
+    function showImage(index) {
+        for (let i = 0; i < images.length; i++) {
+            images[i].classList.add('hidden');
+        }
+        images[index].classList.remove('hidden');
+    }
+
+    // Event listeners for next/prev buttons
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    });
+
+    // Event listeners for thumbnails
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => {
+            currentIndex = index;
+            showImage(index);
+        });
+    });
+
+    // Initially show the first image
+    showImage(currentIndex);
+    </script>
+    <?php
+        } 
+        else {
             $size=filter_input(INPUT_POST,"size",FILTER_SANITIZE_SPECIAL_CHARS);
                 if(isset($size)){
             $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);
@@ -449,7 +477,7 @@ $key=false;
     </script>
     <?php
 
-    }} */ ?>
+    }}} ?>
 
     <script>
     const sizeButtons = document.querySelectorAll('[data-size]');
@@ -467,7 +495,6 @@ $key=false;
             e.target.classList.remove('border-gray-200');
         });
     });
-
     </script>
 </body>
 
