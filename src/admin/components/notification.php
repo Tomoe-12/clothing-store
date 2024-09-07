@@ -27,6 +27,21 @@ include("../../function/functions.php");
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
 
 <style>
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
 nav {
     z-index: 999 !important;
 }
@@ -221,7 +236,7 @@ nav.scrolled {
     </nav>
 
     <!-- data table -->
-    <h1 class="test">test</h1>
+    <h1 class="testing"></h1>
     <div class='w-full flex justify-center items-center overflow-hidden'>
 
         <div class='container flex flex-col main px-3 py-4 h-fit gap-5 '>
@@ -362,12 +377,18 @@ nav.scrolled {
                         <td><?php echo $row["Medium"] ?></td>
                         <td><?php echo $row["Large"] ?></td>
                         <td><?php echo $row["XL"] ?></td>
-                        <td><?php echo $row["XXL"] ?></td>
-                        <td class="translate-y-1/2 flex flex-row justify-start items-center gap-3 -z-10"><?php 
+                        <td class=''><?php echo $row["XXL"] ?></td>
+                        <td class="-z-10">
+                            <div class='flex gap-3'>
+                                <?php 
                         $colors = json_decode($row['color']);
                         foreach ($colors as $color) { ?>
-        <div  class="rounded-full -z-10"style='width: 30px; height: 30px;  background-color: <?php echo $color;?>'></div>
-                  <?php }?></td>
+                                <div class="rounded-full -z-10"
+                                    style='width: 20px; height: 20px;  background-color: <?php echo $color;?>'>
+                                </div>
+                                <?php }?>
+                            </div>
+                        </td>
                         <td><?php echo $row["price"] ?></td>
                         <td><?php echo $row["instock"] ?></td>
 
@@ -434,7 +455,7 @@ nav.scrolled {
                                     </div>
                                 </div>
 
-                             
+
 
 
 
@@ -453,8 +474,8 @@ nav.scrolled {
 </body>
 
 <script>
-document.querySelector(".test").addEventListener("click", () => {
-    alert("test")
+document.querySelector(".testing").addEventListener("click", () => {
+    alert("testing")
 })
 if (document.getElementById("selection-table") && typeof simpleDatatables.DataTable !== 'undefined') {
 
@@ -469,7 +490,7 @@ if (document.getElementById("selection-table") && typeof simpleDatatables.DataTa
 
         const options = {
             perPage: 10,
-            perPageSelect: [10,15, 20, 30, 50], // Options for the entries dropdown
+            perPageSelect: [10, 15, 20, 30, 50], // Options for the entries dropdown
             columns: [{
                 select: [0, 4],
                 sortable: false

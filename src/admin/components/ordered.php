@@ -24,6 +24,21 @@ include("../../function/functions.php");
 
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
     <style>
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+
     nav {
         z-index: 999 !important;
     }
@@ -105,10 +120,10 @@ include("../../function/functions.php");
                                 d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
                     </a>
-                    <a href="./ordered.php"
+                    <a href="#"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium bg-blue-100 text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3'>
-                        <svg viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#FF4F4E"
-                            stroke-width="1.128">
+                        <svg class='w-7 h-7' viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            stroke="#FF4F4E" stroke-width="1.128">
                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                             <g id="SVGRepo_iconCarrier">
@@ -329,7 +344,7 @@ include("../../function/functions.php");
                         <td>
                             <div class='flex justify-start items-center' style='gap:50px;'>
                                 <?php  if($row["admindec"]=="Pending"){?>
-                                <a class='cursor-pointer font-semibold text-primary' 
+                                <a class='cursor-pointer font-semibold text-primary'
                                     href="vieworders.php?or_date=<?php echo $row['or_date'] ?> && cus_id=<?php echo $row["cus_id"] ?>">
                                     <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -351,8 +366,8 @@ include("../../function/functions.php");
                                 <?php  if($row["admindec"]=="Accept"){?>
                                 <a class='cursor-pointer font-semibold' style='color:#24AE7C ;'
                                     href="viewaccept.php?or_date=<?php echo $row['or_date'] ?> && cus_id=<?php echo $row["cus_id"] ?>">
-                                    <svg class='w-6 h-6' fill="currentColor" viewBox="0 0 32 32" data-name="Layer 1" id="Layer_1"
-                                        xmlns="http://www.w3.org/2000/svg">
+                                    <svg class='w-6 h-6' fill="currentColor" viewBox="0 0 32 32" data-name="Layer 1"
+                                        id="Layer_1" xmlns="http://www.w3.org/2000/svg">
                                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
                                         </g>

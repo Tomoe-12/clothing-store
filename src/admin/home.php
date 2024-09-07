@@ -365,15 +365,21 @@ include("../function/connection.php");
                                     alt="product image" /></td>
                             <td><?php echo $row["type"]?></td>
                             <td><?php echo $row["instock"]?></td>
-                            <td class="flex flex-row justify-start rounded- gap-3"><?php 
+                            <td class="-z-10">
+                                <div class='flex gap-3'>
+                                    <?php 
                         $colors = json_decode($row['color']);
                         foreach ($colors as $color) { ?>
-        <div style='width: 30px; height: 30px;  background-color: <?php echo $color;?>'></div>
-                  <?php }?></td>
+                                    <div style='width: 20px; border-radius:50%; height: 20px;  background-color: <?php echo $color;?>'>
+                                    </div>
+                                    <?php }?>
+                                </div>
+                            </td>
                             <td><?php echo $row["price"]?></td>
                             <td>
                                 <div class='flex justify-start items-center' style='gap:50px;'>
-                                    <a href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?> && noti=<?php echo "home" ?>">
+                                    <a
+                                        href="../admin/components/update.php?item_id=<?php echo $row["clo_id"] ?> && noti=<?php echo "home" ?>">
                                         <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
