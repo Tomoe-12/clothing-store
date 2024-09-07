@@ -249,7 +249,7 @@ $key=false;
                  <?php     }
                      } ?>
                   </div>
-                        <div class="mt-4 " max-w-xs mx-auto">
+                        <div class="mt-4 " class="max-w-xs mx-auto">
                             <h3 class="text-xl font-bold text-gray-800">Quantity</h3>
 
 

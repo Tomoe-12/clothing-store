@@ -13,8 +13,8 @@ $key=false;
     <title>Document</title>
 
     <!-- flowbite -->
-    <link rel="stylesheet" href="node_modules/flowbite/dist/flowbite.min.css">
-    <script src="node_modules/flowbite/dist/flowbite.min.js"></script>
+    <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
+    <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
 
     <!-- tailwind -->
     <link href="../output.css" rel="stylesheet">
@@ -99,7 +99,7 @@ $key=false;
   
    $result=$con->query("SELECT * FROM closet WHERE clo_id='$item_id' ");
    if(!empty($result)&& $result->num_rows>0){
-    while($row=$result->fetch_assoc()){ 
+    if($row=$result->fetch_assoc()){ 
         $clo_id=$row["clo_id"];
     $price=$row["price"];
       $instock=$row["instock"];
@@ -112,23 +112,22 @@ $key=false;
             <div class="font-sans tracking-wide max-lg:max-w-2xl mx-auto ">
 
                 <div class="grid items-start grid-cols-1 lg:grid-cols-2 mt-8 mb-8" style='gap:80px'>
-                    <div class="space-y-4  text-center  overflow-x-auto  ">
+                    <div class="space-y-4  text-center " style='min-width:600px; max-width:600px;'>
                         <!-- Carousel Container -->
                         <div class="relative">
                             <!-- Images -->
                             <div id="carousel"
                                 class="bg-gray-100 rounded-md flex justify-center items-center overflow-hidden  "
                                 style='min-height:600px; max-height:600px; padding:45px;'>
+                                <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
+                            if(!empty($result1)&& $result1->num_rows>0){
+                                while($row1=$result1->fetch_assoc()){ ?>
+                                <img src="data:image/jepg;base64,<?php echo base64_encode($row1["img"]) ?>"
+                                    alt="Product" class=" w-full h-full object-fill object-top " />
+                                <?php     }}
+                               ?>
 
-                                <img src="../../img/images (6).jpg" class=" w-full h-full object-fill object-top " />
-                                <img src="../../img/images (2).jpg"
-                                    class="w-full h-full object-fill object-top  hidden" />
-                                <img src="../../img/images (3).jpg"
-                                    class="w-full h-full object-fill object-top  hidden" />
-                                <img src="../../img/images (4).jpg"
-                                    class="w-full h-full object-fill object-top  hidden" />
-                                <img src="../../img/images (5).jpg"
-                                    class="w-full h-full object-fill object-top  hidden" />
+
 
                             </div>
 
@@ -136,9 +135,10 @@ $key=false;
                             <!-- Previous Button -->
                             <button type='button' id="prevBtn"
                                 class="img-btn-left rounded-full cursor-pointer  bg-white border border-primary ">
-                                <svg class='w-4 h-4 text-primary ' fill="currentColor" version="1.1" baseProfile="tiny" id="Layer_1"
-                                    xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                <svg class='w-4 h-4 text-primary ' fill="currentColor" version="1.1" baseProfile="tiny"
+                                    id="Layer_1" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;"
+                                    xmlns:graph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
                                     xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" viewBox="0 0 42 42"
                                     xml:space="preserve" transform="matrix(-1, 0, 0, 1, 0, 0)">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -154,9 +154,10 @@ $key=false;
                             <!-- Next Button -->
                             <button type='button' id="nextBtn"
                                 class="img-btn-right bg-white border border-primary  rounded-full ">
-                                <svg class='w-4 h-4 text-primary' fill="currentColor" version="1.1" baseProfile="tiny" id="Layer_1"
-                                    xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;" xmlns:graph="&amp;ns_graphs;"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                <svg class='w-4 h-4 text-primary' fill="currentColor" version="1.1" baseProfile="tiny"
+                                    id="Layer_1" xmlns:x="&amp;ns_extend;" xmlns:i="&amp;ns_ai;"
+                                    xmlns:graph="&amp;ns_graphs;" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink"
                                     xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" viewBox="0 0 42 42"
                                     xml:space="preserve">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -172,16 +173,16 @@ $key=false;
 
                         <!-- Thumbnails -->
                         <div class="img-thumnail-scroll gap-5 mt-4 overflow-auto">
-                            <img src="../../img/images (6).jpg"
+                            <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
+                            if(!empty($result1)&& $result1->num_rows>0){
+                                while($row1=$result1->fetch_assoc()){ ?>
+                            <img src="data:image/jepg;base64,<?php echo base64_encode($row1["img"]) ?>" alt="Product"
+                                style='min-width:100px; max-width:100px; min-height:110px; min-height:110px;'
                                 class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
-                            <img src="../../img/images (2).jpg"
-                                class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
-                            <img src="../../img/images (3).jpg"
-                                class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
-                            <img src="../../img/images (4).jpg"
-                                class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
-                            <img src="../../img/images (5).jpg"
-                                class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
+                            <?php     }}
+                               ?>
+
+
                         </div>
                     </div>
 
@@ -302,7 +303,7 @@ $key=false;
                                 <label for="XXL" id="size-xxl"
                                     onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"'
                                     ;
-                                    class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
+                                    class="w-10 h-10 border hover:bor der-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XXL">XXL</label>
                                 <?php  }
                 ?>
@@ -321,17 +322,22 @@ $key=false;
 
 
                             </div>
-                            <div class="color" style="margin-top: 20px;">
-                        <?php 
+                            <!-- colors -->
+                            <div class="color mt-8">
+                                <h3 class="text-xl font-bold text-gray-800 mb-3">Available Colors</h3>
+                                <div class='mt-4'>
+                                    <?php 
                         $colors = json_decode($row['color']);
 
                         foreach ($colors as $color) { ?>
-                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%; background-color:<?php echo $color;?>'>
-                  <?php      }?>
-                  </div>
+                                    <input type="radio"  value="<?php echo $color?>" name="color" required
+                                        style='width: 30px; height: 30px; border-radius:50%; background-color:<?php echo $color;?>'>
+                                    <?php      }?>
+                                </div>
+                            </div>
                             
                         </div>
-                        <div class="mt-4 " class=" max-w-xs mx-auto">
+                        <div class="mt-8 " class=" max-w-xs mx-auto">
                             <h3 class="text-xl font-bold text-gray-800">Quantity</h3>
 
 
@@ -440,6 +446,23 @@ $key=false;
 
 </body>
 <script>
+const sizeButtons = document.querySelectorAll('[data-size]');
+
+sizeButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        const selectedSize = e.target.dataset.size;
+        sizeButtons.forEach((btn) => {
+            btn.classList.remove('bg-primary');
+            btn.classList.remove('text-white');
+            btn.classList.add('border-gray-200');
+        });
+        e.target.classList.add('bg-primary');
+        e.target.classList.add('text-white')
+        e.target.classList.remove('border-gray-200');
+    });
+});
+</script>
+<script>
 const carousel = document.getElementById('carousel');
 const images = carousel.getElementsByTagName('img');
 const thumbnails = document.querySelectorAll('.thumbnail');
@@ -485,11 +508,11 @@ showImage(currentIndex);
 
         if(empty($_SESSION["user_id"])){
             ?>
-    <script>
-    document.getElementById("unsuccess").style.display = "block";
-    </script>
+<script>
+document.getElementById("unsuccess").style.display = "block";
+</script>
 
-    <?php
+<?php
         } 
         else {
             $color=$_POST["color"];
@@ -520,13 +543,13 @@ showImage(currentIndex);
                   $key=true;
                   ?>
 
-    <script>
-    if (<?php echo $key ?>) {
-        alert("Add to cart Successfully!");
+<script>
+if (<?php echo $key ?>) {
+    alert("Add to cart Successfully!");
 
-    }
-    </script>
-    <?php
+}
+</script>
+<?php
                 }catch(mysqli_sql_exception){
                     echo"fail to upadate";
                     
@@ -537,19 +560,19 @@ showImage(currentIndex);
                
                 
                 ?>
-    <script>
-    document.getElementById("insufficient").style.display = "block";
-    </script>
-    <?php
+<script>
+document.getElementById("insufficient").style.display = "block";
+</script>
+<?php
             }
         } 
         else{ 
             $key=false;
             ?>
-    <script>
-    document.getElementById("zero").style.display = "block";
-    </script>
-    <?php 
+<script>
+document.getElementById("zero").style.display = "block";
+</script>
+<?php 
 
         } 
         if(!empty($_SESSION["user_id"])){
@@ -566,14 +589,14 @@ showImage(currentIndex);
               
                 ?>
 
-    <?php
+<?php
                
             }catch(mysqli_sql_exception){ ?>
-    <script>
-    document.getElementById("unsuccess").style.display = "block";
-    </script>
+<script>
+document.getElementById("unsuccess").style.display = "block";
+</script>
 
-    <?php
+<?php
                 
             }
           }
@@ -583,9 +606,9 @@ showImage(currentIndex);
         }
     }
     else{ ?>
-    <script>
-    document.getElementById("size").style.display = "block";
-    </script>
-    <?php
+<script>
+document.getElementById("size").style.display = "block";
+</script>
+<?php
 
     }}} ?>

@@ -58,10 +58,10 @@ if (<?php echo $res?>) {
         opacity: 0.5;
         pointer-events: none;
     }
-    .update:hover{
+
+    .update:hover {
         background-color: #2563EB;
     }
-
     </style>
 
 </head>
@@ -71,14 +71,14 @@ if (<?php echo $res?>) {
         <h1 class="text-3xl font-bold text-gray-800 text-center">Shopping Cart</h1>
     </div>
 
-    <div class="container px-6 py-0 mx-auto   flex justify-center ">
+    <div class="container px-6 py-0 mx-auto flex justify-center ">
 
         <div class="font-sans w-fit mx-auto  bg-white ">
 
             <div class="grid md:grid-cols-3 gap-5">
 
                 <!-- items box  -->
-                <div class="md:col-span-2 space-y-4  h-full ">
+                <div class="md:col-span-2 space-y-4 h-full ">
                     <?php  
                
                 
@@ -107,8 +107,10 @@ $clo_id=$row["clo_id"];
                             </div>
 
                             <div class="flex flex-col ">
-                                <h3 class="text-base font-bold text-gray-800">Velvet Sneaker</h3>
-                                <p class="text-xs font-semibold text-gray-500 mt-0.5"><?php echo $row["size"]?></p> <span style='width: 30px; height: 30px; border-radius:50%; background-color:<?php echo $row["cart_color"];?>'></span>
+                                <h3 class="text-base font-bold text-gray-800"><?php echo $row["productname"]?></h3>
+                                <p class="text-xs font-semibold text-gray-500 mt-0.5"><?php echo $row["size"]?></p>
+                                <span class='rounded-full mt-4'
+                                    style='width: 20px; height: 20px; background-color:<?php echo $row["cart_color"];?>'></span>
 
                                 <form action="../function/cartitemremove.php" method="post">
                                     <input type="text" name="cart_id" value="<?php  echo $row["cart_id"] ?>"
@@ -148,7 +150,8 @@ $clo_id=$row["clo_id"];
 
                             <a class="update text-primary gap-1 font-semibold mt-6 flex items-center px-3 py-1.5 border border-blue-600  hover:text-white text-sm outline-none bg-transparent rounded-md"
                                 href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> ">
-                                <svg class='w-4 h-4 ' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
+                                <svg class='w-4 h-4 ' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                    fill="#000000">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                                     <g id="SVGRepo_iconCarrier">
