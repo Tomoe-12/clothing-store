@@ -170,7 +170,7 @@ include("../function/functions.php");
             class="container flex flex-col main items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <h1 class='text-black font-semibold text-xl sm:text-3xl'>Add new Item</h1>
             <div class=" max-w-xl lg:max-w-3xl">
-                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post"
+                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" id="submit" 
                     enctype="multipart/form-data" class="mt-8 grid grid-cols-6 gap-6">
                     <!-- product name -->
                     <div class="col-span-6">
@@ -210,28 +210,28 @@ include("../function/functions.php");
                             <div>
                                 <label for="number-input-sm" class="block text-sm font-medium text-gray-700">SM</label>
                                 <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation"
-                                    name="small" required
+                                    name="small" 
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-md" class="block text-sm font-medium text-gray-700">MD</label>
                                 <input type="number" id="number-input-md" aria-describedby="helper-text-explanation"
-                                    name="medium" required
+                                    name="medium" 
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-lg" class="block text-sm font-medium text-gray-700">LG</label>
                                 <input type="number" id="number-input-lg" aria-describedby="helper-text-explanation"
-                                    name="large" required
+                                    name="large" 
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-xl" class="block text-sm font-medium text-gray-700">XL</label>
                                 <input type="number" id="number-input-xl" aria-describedby="helper-text-explanation"
-                                    name="XL" required
+                                    name="XL" 
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -239,7 +239,7 @@ include("../function/functions.php");
                                 <label for="number-input-xxl"
                                     class="block text-sm font-medium text-gray-700">XXL</label>
                                 <input type="number" id="number-input-xxl" aria-describedby="helper-text-explanation"
-                                    name="XXL" required
+                                    name="XXL" 
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -290,7 +290,7 @@ include("../function/functions.php");
                         </div>
                     </div>
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4 ">
-                        <button type="submit"
+                        <button type="submit" 
                             class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
                             Create New
                         </button>
@@ -443,6 +443,11 @@ include("../function/functions.php");
 
 <?php 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
+    // Retrieve the colors array from the form submission
+    $colors = $_POST['colors']; // This will be an array of hex codes (e.g., ['#ff0000', '#00ff00', '#0000ff'])
+
+    // Convert the colors array to a string for storage, e.g., using JSON or comma-separated values
+    $colorsString = json_encode($colors); // Store it as a JSON string in the database
     $productname=filter_input(INPUT_POST,"productname",FILTER_SANITIZE_SPECIAL_CHARS);
     $productdesc=filter_input(INPUT_POST,"productdesc",FILTER_SANITIZE_SPECIAL_CHARS);
 $type=filter_input(INPUT_POST,"type",FILTER_SANITIZE_SPECIAL_CHARS);
@@ -454,7 +459,24 @@ $XXL=filter_input(INPUT_POST,"XXL",FILTER_VALIDATE_INT);
 $gender=filter_input(INPUT_POST,"gender",FILTER_SANITIZE_SPECIAL_CHARS);
 $price=filter_input(INPUT_POST,"price",FILTER_VALIDATE_INT);
 $instock=$small+$medium+$large+$XL+$XXL;
-  $clo_id=insertintocloset($type,$price,$gender,$instock,$productdesc,$productname);
+$result=false;
+if($small==null && $medium==null && $large==null && $XL==null && $XXL==null){
+    $result=true;
+}else{
+    $result=false;
+} ?>
+<script>
+    if(<?php echo $result ?>){
+alert("fill the quantity of the clothe's size at least one");
+    }
+</script>
+
+<?php
+
+if(!$result){
+
+
+  $clo_id=insertintocloset($type,$price,$gender,$instock,$productdesc,$productname,$colorsString);
   size($small,$medium,$large,$XL,$XXL);
   
   
@@ -479,6 +501,6 @@ foreach($_FILES["image"]['tmp_name'] as $key => $tmp_name){
      
  
 $con->close();
-
+} 
 }
 ?>

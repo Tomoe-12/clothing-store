@@ -52,6 +52,7 @@ $key=false;
     if($row=$result->fetch_assoc()){ 
        
        $size=$row["size"];
+      $selectcolor=$row["cart_color"];
       
        
       $instock=$row["instock"];
@@ -209,7 +210,7 @@ $key=false;
                                     data-size="XXL">XXL</label>
                                 <?php  }}?>
                 
-
+                                  <input type="text" name="selectcolor" value="<?php echo $selectcolor?>" style="display:none;">
                                 <input type="text" name="orderprice" value="<?php echo $row["orderprice"] ?>" style="display:none;">
 
                                 <input type="text" name="price" value="<?php echo $row["price"] ?>" style="display:none;">
@@ -230,6 +231,24 @@ $key=false;
 
                             </div>
                         </div>
+
+                        <div class="color" style="margin-top: 20px;">
+                        <?php 
+                       
+                       $colors = json_decode($row['color']);
+
+                        foreach ($colors as $color) { 
+             
+                              if($selectcolor!=$color) {  ?>
+                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%;  background-color:<?php echo $color;?>'>
+
+                      <?php      } 
+                      if($selectcolor==$color){ ?>
+                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%; border:1px solid black; background-color:<?php echo $color;?>'>
+
+                 <?php     }
+                     } ?>
+                  </div>
                         <div class="mt-4 " max-w-xs mx-auto">
                             <h3 class="text-xl font-bold text-gray-800">Quantity</h3>
 

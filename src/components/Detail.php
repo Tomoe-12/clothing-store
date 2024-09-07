@@ -34,6 +34,7 @@ $key=false;
     .unSelected {
         background-color: white;
     }
+    
     </style>
 </head>
 
@@ -184,6 +185,14 @@ $key=false;
 
                             </div>
                         </div>
+                        <div class="color" style="margin-top: 20px;">
+                        <?php 
+                        $colors = json_decode($row['color']);
+
+                        foreach ($colors as $color) { ?>
+                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%; background-color:<?php echo $color;?>'>
+                  <?php      }?>
+                  </div>
                         <div class="mt-4 " max-w-xs mx-auto">
                             <h3 class="text-xl font-bold text-gray-800">Quantity</h3>
 
@@ -300,6 +309,7 @@ $key=false;
     <?php
         } 
         else {
+            $color=$_POST["color"];
             $size=filter_input(INPUT_POST,"size",FILTER_SANITIZE_SPECIAL_CHARS);
                 if(isset($size)){
             $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);
@@ -368,7 +378,7 @@ $key=false;
                 $_SESSION["order_id"]=$item_id;
                 $user_id=$_SESSION["user_id"];
                 $order_id= $_SESSION["order_id"];
-                $con->query("INSERT INTO cart (clo_id,cus_id,quantity,size,orderprice) VALUES ('$order_id','$user_id','$quantity','$size','$realprice')");
+                $con->query("INSERT INTO cart (clo_id,cus_id,quantity,size,orderprice,cart_color) VALUES ('$order_id','$user_id','$quantity','$size','$realprice','$color')");
                
               
                 ?>
