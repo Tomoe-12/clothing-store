@@ -62,6 +62,7 @@ width:80%;
         <th>Price</th>
          <!-- <th>Quantity</th>
          <th>Action</th> -->
+         <th>Chosen Color</th>
          <th>Quantity</th>
          <th>Action</th>
 
@@ -83,7 +84,10 @@ width:80%;
             <td ><?php echo $row["type"] ?></td> 
             <td ><?php echo $row["size"] ?></td>
             <td ><?php echo $row["price"] ?></td>
-           
+            <td class="translate-y-1/2 flex flex-row justify-start items-center gap-3"> 
+                       
+        <div class="rounded-full"style='width: 30px; height: 30px;  background-color: <?php echo $row["or_color"];?>'></div>
+                  </td>
             <td ><?php echo $row["quantity"] ?></td>
            
             <?php

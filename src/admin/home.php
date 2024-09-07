@@ -322,6 +322,16 @@ include("../function/connection.php");
                             </th>
                             <th class='bg-gray-100'>
                                 <span class="flex items-center">
+                                    Available Colors
+                                    <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                    </svg>
+                                </span>
+                            </th>
+                            <th class='bg-gray-100'>
+                                <span class="flex items-center">
                                     Price
                                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -355,6 +365,11 @@ include("../function/connection.php");
                                     alt="product image" /></td>
                             <td><?php echo $row["type"]?></td>
                             <td><?php echo $row["instock"]?></td>
+                            <td class="flex flex-row justify-start rounded- gap-3"><?php 
+                        $colors = json_decode($row['color']);
+                        foreach ($colors as $color) { ?>
+        <div style='width: 30px; height: 30px;  background-color: <?php echo $color;?>'></div>
+                  <?php }?></td>
                             <td><?php echo $row["price"]?></td>
                             <td>
                                 <div class='flex justify-start items-center' style='gap:50px;'>

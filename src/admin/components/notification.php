@@ -304,6 +304,16 @@ nav.scrolled {
                         </th>
                         <th>
                             <span class="flex items-center">
+                                Available Colours
+                                <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
+                                </svg>
+                            </span>
+                        </th>
+                        <th>
+                            <span class="flex items-center">
                                 Price
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -353,6 +363,11 @@ nav.scrolled {
                         <td><?php echo $row["Large"] ?></td>
                         <td><?php echo $row["XL"] ?></td>
                         <td><?php echo $row["XXL"] ?></td>
+                        <td class="translate-y-1/2 flex flex-row justify-start items-center gap-3 -z-10"><?php 
+                        $colors = json_decode($row['color']);
+                        foreach ($colors as $color) { ?>
+        <div  class="rounded-full -z-10"style='width: 30px; height: 30px;  background-color: <?php echo $color;?>'></div>
+                  <?php }?></td>
                         <td><?php echo $row["price"] ?></td>
                         <td><?php echo $row["instock"] ?></td>
 

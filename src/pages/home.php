@@ -259,6 +259,11 @@ if(!empty($result)&& $result->num_rows>0){
                             <span class="text-2xl font-bold text-slate-800"><?php echo $row["price"] ?>KS</span>
                         </p>
                     </div>
+                    <?php 
+                        $colors = json_decode($row['color']);
+                        foreach ($colors as $color) { ?>
+                            <input type="radio"  value="<?php echo $color?>" name="color" style='width: 30px; height: 30px; border-radius:50%; background-color:<?php echo $color;?>'>
+                  <?php }?>
                     <a href="../components/Detail.php?item_id=<?php  echo $row["clo_id"]; ?>"
                         class="flex items-center justify-center rounded-md bg-primary  px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
