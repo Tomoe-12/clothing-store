@@ -67,8 +67,14 @@
         position: fixed;
         top: 0;
     }
+    .view-accept-box{
+        margin-top:100px;
+    }
 
     @media (min-width: 640px) {
+        .view-accept-box{
+            margin-top:0px;
+        }
 
         .main-text {
             margin-top: 0rem;
@@ -85,8 +91,6 @@
             position: fixed;
             flex-direction: column;
         }
-
-
     }
 
     .hidded {
@@ -226,12 +230,22 @@
         </div>
     </nav>
 
-    <section class="bg-white flex items-center justify-center h-screen add-item" >
-
-
+    <section class="bg-white mx-auto flex items-center justify-center min-h-screen h-fit view-accept-box" >
         <main
-            class="mb-5 shadow-lg border border-gray-100 rounded-lg container w-full flex flex-col main items-center px-4 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-            <div class="w-full sm:w-96 px-2 py-3 my-3 ">
+            class="relative shadow-md border border-gray-200 rounded-xl container w-full flex flex-col main items-center px-4 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+            <div class='absolute top-5' style='left:3%;'>
+                <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
+                    class='w-fit flex justify-center items-center test gap-1 rounded-full px-2 py-1.5'>
+                    <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <p class='text-base max-sm:text-base font-medium'>Accept</p>
+                </div>
+            </div>
+            <div class="w-full sm:w-96 px-2 my-2 ">
+
+
                 <div class='flex flex-col  gap-4'>
                     <!-- user profile -->
                     <div class='flex sm:flex-row flex-col sm:gap-0 gap-5 w-full'>
@@ -411,73 +425,39 @@
 
                     <!-- ordered item  accepted by admin  -->
                     <div class='mt-5 '>
-                        <div class="item-box flex gap-5">
-                            <div class='bg-gray-100 py-4 px-3 w-full rounded-md h-fit flex flex-row gap-0'>
+                        <div class="item-box sm:w-0 flex gap-5">
+                            <!-- loop start from here  -->
+                            <div class='item-detail bg-gray-100 py-4 px-3 w-full rounded-xl h-fit flex  gap-0'>
+                                <!-- image  -->
                                 <div class="w-1/2 rounded-md flex justify-center items-center overflow-hidden ">
                                     <img src="../../../img/images (7).jpg" alt="Product"
                                         style='min-width:150px; max-width:150px; min-height:150px; max-height:150px; '
                                         class=" object-fill object-top " />
                                 </div>
+                                <!-- text belong to that item -->
                                 <div class='w-1/2 grid grid-rows-3 py-2'>
                                     <div class=' row-span-1 w-full h-full flex gap-3 items-center'>
                                         <h3 class='text-xl font-medium text-gray-900'>type :</h3>
                                         <span class='text-base text-gray-700'>Hoodie</span>
                                     </div>
-                                    <div class=' row-span-1 w-full h-full flex'>
+                                    <div class='items-fact row-span-1 w-full h-full flex'>
                                         <div class='w-full h-full flex  gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>color :</h3>
                                             <div
                                                 style='width: 20px; height: 20px; border-radius:50%; background-color:red'>
                                             </div>
                                         </div>
-                                        <div class='w-full h-full flex  gap-3 items-center'>
+                                        <div class='w-full h-full flex   gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>size :</h3>
                                             <span class='text-base text-gray-700'>Md</span>
                                         </div>
                                     </div>
-                                    <div class=' row-span-1 w-full h-full flex'>
+                                    <div class='items-fact row-span-1 w-full h-full flex'>
                                         <div class='w-full h-full flex  gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>quantity :</h3>
                                             <span class='text-base text-gray-700'>12</span>
                                         </div>
-                                        <div class='w-full h-full flex  gap-3 items-center'>
-                                            <h3 class='text-xl font-medium text-gray-900'>cost :</h3>
-                                            <span class='text-base text-gray-700'>2000000 Ks</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class='bg-gray-100 py-4 px-3 w-full rounded-md h-fit flex flex-row gap-0'>
-                                <div class="w-1/2 rounded-md flex justify-center items-center overflow-hidden ">
-                                    <img src="../../../img/images (7).jpg" alt="Product"
-                                        style='min-width:150px; max-width:150px; min-height:150px; max-height:150px; '
-                                        class=" object-fill object-top " />
-                                </div>
-                                <div class='w-1/2 grid grid-rows-3 py-2'>
-                                    <div class=' row-span-1 w-full h-full flex gap-3 items-center'>
-                                        <h3 class='text-xl font-medium text-gray-900'>type :</h3>
-                                        <span class='text-base text-gray-700'>Hoodie</span>
-                                    </div>
-                                    <div class=' row-span-1 w-full h-full flex'>
-                                        <div class='w-full h-full flex  gap-3 items-center'>
-                                            <h3 class='text-xl font-medium text-gray-900'>color :</h3>
-                                            <div
-                                                style='width: 20px; height: 20px; border-radius:50%; background-color:red'>
-                                            </div>
-                                        </div>
-                                        <div class='w-full h-full flex  gap-3 items-center'>
-                                            <h3 class='text-xl font-medium text-gray-900'>size :</h3>
-                                            <span class='text-base text-gray-700'>Md</span>
-                                        </div>
-                                    </div>
-                                    <div class=' row-span-1 w-full h-full flex'>
-                                        <div class='w-full h-full flex  gap-3 items-center'>
-                                            <h3 class='text-xl font-medium text-gray-900'>quantity :</h3>
-                                            <span class='text-base text-gray-700'>12</span>
-                                        </div>
-                                        <div class='w-full h-full flex  gap-3 items-center'>
+                                        <div class='w-full h-full flex gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>cost :</h3>
                                             <span class='text-base text-gray-700'>2000000 Ks</span>
                                         </div>
@@ -488,23 +468,48 @@
 
                         </div>
                     </div>
-
-
-
-
                 </div>
             </div>
         </main>
     </section>
+
+
 </body>
 <style>
-
 .item-box {
-    flex-direction : column;
+    flex-direction: column;
+}
+
+.item-detail {
+    flex-direction: column;
+}
+
+.item-detail>div {
+    width: 100%;
+}
+
+.items-fact {
+    flex-direction: column;
+}
+
+@media (min-width: 640px) {
+    .item-detail>div {
+        width: 50%;
+    }
+
+    .item-detail {
+        flex-direction: row;
+    }
+
+    .items-fact {
+        flex-direction: row;
+    }
 }
 
 @media (min-width: 1024px) {
-    .item-box { flex-direction : row ;}
+    .item-box {
+        flex-direction: row;
+    }
 }
 </style>
 
