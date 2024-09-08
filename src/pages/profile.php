@@ -11,6 +11,11 @@ include("../function/functions.php")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+    .btn-hover:hover {
+        color: #2563EB;
+        background-color: white;
+    }
+
     .test {
         border: 1px solid red;
     }
@@ -70,10 +75,6 @@ include("../function/functions.php")
                             </g>
                         </g>
                     </svg>
-
-
-
-
                 </div>
                 <?php } 
                      ?>
@@ -274,9 +275,11 @@ include("../function/functions.php")
                 class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-lg flex justify-center items-center ">Update</button>
         </div> -->
 
-        <div class=' w-96  mt-5  '>
+        <div class='w-96 mt-5 flex gap-3'>
+            <button onclick="location.href='./home.php'"
+                class="w-full h-9 px-2.5 py-1.5  bg-white border border-primary   text-base text-primary rounded-lg flex justify-center items-center ">Back</button>
             <button onclick="location.href='../components/logout.php'"
-                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-lg flex justify-center items-center ">Logout</button>
+                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-white border border-primary btn-hover  text-base text-white rounded-lg flex justify-center items-center ">Logout</button>
         </div>
 
 

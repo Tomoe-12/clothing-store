@@ -24,6 +24,11 @@ $user_id=$_SESSION["user_id"];
     <!-- alpine -->
     <script src="../../public/script.js"></script>
     <style>
+    .btn-hover:hover {
+        color: #2563EB;
+        background-color: white;
+    }
+
     .test {
         border: 1px solid red;
     }
@@ -214,26 +219,15 @@ $user_id=$_SESSION["user_id"];
             </div>
 
         </div>
-        <div class='w-96 flex gap-10  mt-5  '>
+        <div class='w-96 flex gap-3 mt-5'>
             <button onclick="location.href='../pages/profile.php'"
                 class="w-full h-9 px-2.5 py-1.5  bg-white text-base text-primary border border-blue-600 rounded-md flex justify-center items-center ">Cancel</button>
             <label for="update"
-                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-blue-700 text-base text-white rounded-md flex justify-center items-center ">Update</label>
+                class="w-full h-9 px-2.5 py-1.5  bg-primary hover:bg-white border border-primary btn-hover text-base text-white rounded-md flex justify-center items-center ">Update</label>
 
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
     <?php
  

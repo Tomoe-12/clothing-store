@@ -29,6 +29,11 @@ include("../function/functions.php");
 
 
     <style>
+    .btn-hover:hover {
+        color: #2563EB;
+        background-color: white;
+    }
+
     .test {
         border: 1px solid red;
     }
@@ -86,13 +91,6 @@ include("../function/functions.php");
                                             fill="currentColor"></path>
                                     </g>
                                 </svg>
-
-                                <?php  if($count!=0){ ?>
-                                <span
-                                    class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
-                                    style="font-size : 11px; top :-30%; right : -40%;"><?php  echo $count?>
-                                </span>
-                                <?php }?>
                             </a>
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
                                 href="./Cart.php">
@@ -230,7 +228,9 @@ include("../function/functions.php");
                                         class="object-cover w-full h-full" alt="avatar">
                                 </div>
 
-                                <h3 class="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+                                <h3 class="mx-2 text-gray-700 lg:hidden">
+                                    <?Php  echo profileout("user_name",$_SESSION["user_id"])?>
+                                </h3>
                             </button>
                         </div>
                     </div>
@@ -242,11 +242,34 @@ include("../function/functions.php");
                             <button type="button" class="flex items-center focus:outline-none"
                                 onclick="location.href='./profile.php'" aria-label="toggle profile dropdown">
                                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                        class="object-cover w-full h-full" alt="avatar">
+                                    <svg class="object-cover w-full h-full bg-gray-200 " viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g id="Iconly/Curved/Profile">
+                                                <g id="Profile">
+                                                    <path id="Stroke 1" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M11.8445 21.6618C8.15273 21.6618 5 21.0873 5 18.7865C5 16.4858 8.13273 14.3618 11.8445 14.3618C15.5364 14.3618 18.6891 16.4652 18.6891 18.766C18.6891 21.0658 15.5564 21.6618 11.8445 21.6618Z"
+                                                        stroke="#bbb" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                    <path id="Stroke 3" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M11.8372 11.1735C14.26 11.1735 16.2236 9.2099 16.2236 6.78718C16.2236 4.36445 14.26 2.3999 11.8372 2.3999C9.41452 2.3999 7.44998 4.36445 7.44998 6.78718C7.4418 9.20172 9.3918 11.1654 11.8063 11.1735C11.8172 11.1735 11.8272 11.1735 11.8372 11.1735Z"
+                                                        stroke="#bbb" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+
                                 </div>
 
-                                <h3 class="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+                                <h3 class="mx-2 text-gray-700 lg:hidden">
+                                    <?Php  echo profileout("user_name",$_SESSION["user_id"])?>
+                                </h3>
                             </button>
                         </div>
                     </div>
@@ -298,15 +321,10 @@ include("../function/functions.php");
                         <?php }?>
                     </div>
                     <a href="../components/Detail.php?item_id=<?php  echo $row["clo_id"]; ?>"
-                        class="flex items-center justify-center rounded-md bg-primary  px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg> -->
+                        class="flex items-center justify-center rounded-md bg-primary btn-hover px-5 py-2.5 text-center text-sm font-medium text-white border border-primary  focus:outline-none focus:ring-4 focus:ring-blue-300">
                         <svg class="mr-2 h-6 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"
                             width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">
-                            <path fill="white"
+                            <path fill="currentColor"
                                 d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" />
                         </svg>
                         View Detail

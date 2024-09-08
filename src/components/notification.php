@@ -41,11 +41,11 @@ nav.scrolled {
 </style>
 
 <body>
-    <nav x-data="{ isOpen: false }" class="w-full bg-white fixed top-0">
+    <nav x-data="{ isOpen: false }" class="w-full  bg-white fixed top-0">
         <div class="container px-6 py-4 mx-auto">
             <div class="lg:flex lg:items-center lg:justify-between">
                 <div class="flex items-center justify-between">
-                    <a href="./home.php">
+                    <a href="../pages/home.php">
                         <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
                     </a>
                     <!-- Mobile menu button -->
@@ -55,7 +55,7 @@ nav.scrolled {
                             <?php if(!empty($_SESSION['user_id'])){
                             $count=cartnoti($_SESSION["user_id"]); ?>
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
-                                href="../components/notification.php">
+                                href="#">
                                 <svg class='w-8 h-8' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -65,16 +65,9 @@ nav.scrolled {
                                             fill="currentColor"></path>
                                     </g>
                                 </svg>
-
-                                <?php  if($count!=0){ ?>
-                                <span
-                                    class="absolute flex justify-center items-center w-5 h-5 p-0.5 text-center text-white bg-blue-500 rounded-full"
-                                    style="font-size : 11px; top :-30%; right : -40%;"><?php  echo $count?>
-                                </span>
-                                <?php }?>
                             </a>
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
-                                href="./Cart.php">
+                                href="../pages/Cart.php">
                                 <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
@@ -131,12 +124,12 @@ nav.scrolled {
                     </div>
 
                     <div class="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-                        <a href="./home.php"
+                        <a href="../pages/home.php"
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">Home</a>
-                        <a href="./Men.php"
+                        <a href="../pages/Men.php"
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">Men's
                         </a>
-                        <a href="./Lady.php"
+                        <a href="../pages/Lady.php"
                             class="px-3 py-2 mx-3 mt-2 text-gray-700 font-semibold transition-colors duration-300 transform rounded-md lg:mt-0  hover:bg-gray-100 ">lady's
                         </a>
 
@@ -144,7 +137,7 @@ nav.scrolled {
                          $count=cartnoti($_SESSION["user_id"]); ?>
                         <div class="lg:flex justify-center hidden gap-5 ">
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200"
-                                href="../components/notification.php">
+                                href="#">
                                 <svg class='w-7 h-7' viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -156,7 +149,7 @@ nav.scrolled {
                                 </svg>
                             </a>
                             <a class="relative text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-300"
-                                href="./Cart.php">
+                                href="../pages/Cart.php">
                                 <svg class="w-6 h-6 viewBox=" 0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z"
@@ -202,14 +195,16 @@ nav.scrolled {
                 if($row=$result->fetch_assoc()){?>
                     <div class="flex items-center lg:mt-0">
                         <div class=''>
-                            <button onclick="location.href='./profile.php'" type="button"
+                            <button onclick="location.href='../pages/profile.php'" type="button"
                                 class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
                                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
                                     <img src="data:image/jepg;base64,<?php echo base64_encode($row["per_img"]) ?>"
                                         class="object-cover w-full h-full" alt="avatar">
                                 </div>
 
-                                <h3 class="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+                                <h3 class="mx-2 text-gray-700 lg:hidden">
+                                    <?Php  echo profileout("user_name",$_SESSION["user_id"])?>
+                                </h3>
                             </button>
                         </div>
                     </div>
@@ -219,13 +214,36 @@ nav.scrolled {
                     <div class="flex items-center mt-4 lg:mt-0">
                         <div class=''>
                             <button type="button" class="flex items-center focus:outline-none"
-                                onclick="location.href='./profile.php'" aria-label="toggle profile dropdown">
+                                onclick="location.href='../pages/profile.php'" aria-label="toggle profile dropdown">
                                 <div class="w-8 h-8 overflow-hidden border-2 border-gray-400 rounded-full">
-                                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
-                                        class="object-cover w-full h-full" alt="avatar">
+                                    <svg class="object-cover w-full h-full bg-gray-200 " viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" stroke="#bbb">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g id="Iconly/Curved/Profile">
+                                                <g id="Profile">
+                                                    <path id="Stroke 1" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M11.8445 21.6618C8.15273 21.6618 5 21.0873 5 18.7865C5 16.4858 8.13273 14.3618 11.8445 14.3618C15.5364 14.3618 18.6891 16.4652 18.6891 18.766C18.6891 21.0658 15.5564 21.6618 11.8445 21.6618Z"
+                                                        stroke="#bbb" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                    <path id="Stroke 3" fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M11.8372 11.1735C14.26 11.1735 16.2236 9.2099 16.2236 6.78718C16.2236 4.36445 14.26 2.3999 11.8372 2.3999C9.41452 2.3999 7.44998 4.36445 7.44998 6.78718C7.4418 9.20172 9.3918 11.1654 11.8063 11.1735C11.8172 11.1735 11.8272 11.1735 11.8372 11.1735Z"
+                                                        stroke="#bbb" stroke-width="1.5" stroke-linecap="round"
+                                                        stroke-linejoin="round">
+                                                    </path>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+
                                 </div>
 
-                                <h3 class="mx-2 text-gray-700 lg:hidden">Khatab wedaa</h3>
+                                <h3 class="mx-2 text-gray-700 lg:hidden">
+                                    <?Php  echo profileout("user_name",$_SESSION["user_id"])?>
+                                </h3>
                             </button>
                         </div>
                     </div>
@@ -241,11 +259,10 @@ nav.scrolled {
     </nav>
 
     <section style='margin-bottom:64px; margin-top:64px; '
-        class='h-fit gap-10 flex flex-col items-center justify-between ' >
-       
+        class='h-fit gap-10 flex flex-col items-center justify-between '>
+
         <!-- loop here to show each order  -->
-        <div
-            class="mt-10 container w-full mx-auto max-w-screen-xl">
+        <div class="mt-10 container w-full mx-auto max-w-screen-xl">
 
             <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
                 <div class='w-full h-fit flex justify-between items-center'>
@@ -312,10 +329,10 @@ nav.scrolled {
                             </div>
                         </div>
                     </li>
-                  
+
                 </ul>
                 <!-- order summary -->
-                 <!-- if one item uses justify-center , if more than one item use justify-end -->
+                <!-- if one item uses justify-center , if more than one item use justify-end -->
                 <header class='flex mt-5 justify-center justify-end gap-10'>
                     <ul class=" text-gray-800 space-y-3 " style='min-width:250px;max-width:250px;'>
                         <?php if(isset($subtotal)){?>
@@ -339,8 +356,7 @@ nav.scrolled {
             </div>
         </div>
 
-        <div
-            class=" container w-full mx-auto max-w-screen-xl ">
+        <div class=" container w-full mx-auto max-w-screen-xl ">
 
             <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
                 <div class='w-full h-fit flex justify-between items-center'>
@@ -432,10 +448,10 @@ nav.scrolled {
                             </div>
                         </div>
                     </li>
-                  
+
                 </ul>
                 <!-- order summary -->
-                 <!-- if one item uses justify-center , if more than one item use justify-end -->
+                <!-- if one item uses justify-center , if more than one item use justify-end -->
                 <header class='flex mt-5 justify-center justify-end gap-10'>
                     <ul class=" text-gray-800 space-y-3 " style='min-width:250px;max-width:250px;'>
                         <?php if(isset($subtotal)){?>
