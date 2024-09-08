@@ -67,11 +67,14 @@ if (<?php echo $res?>) {
 </head>
 
 <body>
+    <div class='w-full flex h-screen items-center justify-center fixed '>
+        <img class='container mx-auto' style='opacity : 1' src="../../public/cart.png" alt="">
+    </div>
     <div class='w-full h-36 flex justify-center items-center  mt-10'>
         <h1 class="text-3xl font-bold text-gray-800 text-center">Shopping Cart</h1>
     </div>
 
-    <div class="container px-6 py-0 mx-auto flex justify-center ">
+    <div class=" bg-transparent container px-6 py-0 mx-auto flex justify-center z-20 ">
 
         <div class="font-sans w-fit mx-auto  bg-white ">
 
