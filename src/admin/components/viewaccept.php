@@ -275,12 +275,12 @@ $cus_id=$_GET["cus_id"];
                                 style="background-image : url('../../public/profileCoverImg.jpg')">
 
                                 <div class="relative ">
-                           <?php 
-                           $img=personaldetail("per_img",$cus_id);
-                           if(isset($img)){  ?>
-                            <img src="data:image/jepg;base64,<?php echo base64_encode($img) ?>"
-                            class="w-40 h-40 ring-4 ring-white bg-gray-200 rounded-full" alt="avatar">
-                          <?php }else{?>
+                                <?php 
+                                $img=personaldetail("per_img",$cus_id);
+                                if(isset($img)){  ?>
+                                <img src="data:image/jepg;base64,<?php echo base64_encode($img) ?>"
+                                class="w-40 h-40 border border-gray-300 bg-gray-200 rounded-full" alt="avatar">
+                                <?php }else{?>
                                     <svg class="w-32 h-32 ring-4 ring-white bg-gray-200 rounded-full"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         stroke="#bbb">

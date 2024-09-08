@@ -38,9 +38,41 @@ nav.scrolled {
 .test {
     border: 1px solid red;
 }
+
+.li-img-box {
+    min-width: 100%;
+    max-width: 1000%;
+}
+
+.li-img {
+    min-height: 1000%;
+    max-height: 100%;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+@media (min-width: 640px) {
+    .li-img-box {
+        min-width: 350px;
+        max-width: 350px;
+    }
+
+    .li-img {
+        min-height: 370px;
+        max-height: 370px;
+        min-width: 350px;
+        max-width: 350px;
+    }
+
+}
 </style>
 
-<body>
+<body class='relative'>
+
+    <div class='w-full flex h-screen items-center justify-center fixed' >
+        <img class='container mx-auto' style='opacity : 0.8' src="../../public/order.png" alt="">
+    </div>
+
     <nav x-data="{ isOpen: false }" class="w-full  bg-white fixed top-0">
         <div class="container px-6 py-4 mx-auto">
             <div class="lg:flex lg:items-center lg:justify-between">
@@ -258,18 +290,20 @@ nav.scrolled {
         </div>
     </nav>
 
-    <section style='margin-bottom:64px; margin-top:64px; '
-        class='h-fit gap-10 flex flex-col items-center justify-between '>
 
+
+    <section style='margin-bottom:64px; margin-top:64px;  '
+        class='h-fit sm:w-0 gap-10 flex flex-col items-center justify-between '>
         <!-- loop here to show each order  -->
 
         <?php
-$cus_id=$_SESSION["user_id"];
-$array=select(); 
-foreach($array as $arr) { 
-   $layout=layout($arr,$cus_id);
-   if($layout==1){
-  ?>
+        $cus_id=$_SESSION["user_id"];
+        $array=select(); 
+        foreach($array as $arr) { 
+        $layout=layout($arr,$cus_id);
+        
+        if($layout == 1){
+        ?>
         <div class="mt-10 container w-full mx-auto max-w-screen-xl">
 
             <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
@@ -305,27 +339,6 @@ foreach($array as $arr) {
                         <p class='text-base max-sm:text-base font-medium'><?php   echo  admindec($arr,$cus_id) ?></p>
                     </div>
                     <?php }?>
-
-                    <!-- this is for the pending state   -->
-                    <!-- 
-                    <div
-                        class='text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
-                        <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M459.8 305.8c11 0 20 9 20 20v15c0 11-9 20-20 20H294.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h165.6zM347.5 458.6c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2zM347.5 617.7c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2z"
-                                fill="currentColor" />
-                            <path
-                                d="M579.1 345c-116.9 0-211.6 94.7-211.6 211.6 0 116.9 94.7 211.6 211.6 211.6 116.9 0 211.6-94.7 211.6-211.6C790.8 439.7 696 345 579.1 345z m0 369.6c-87.3 0-158-70.8-158-158 0-87.3 70.8-158 158-158s158 70.8 158 158c0.1 87.3-70.7 158-158 158z"
-                                fill="currentColor" />
-                            <path
-                                d="M913.7 875.7c7.8 7.8 7.8 20.5 0 28.3l-10.1 10.1c-7.8 7.8-20.5 7.8-28.3 0L697.7 736.6c-7.8-7.8-7.8-20.5 0-28.3l10.1-10.1c7.8-7.8 20.5-7.8 28.3 0l177.6 177.5z"
-                                fill="currentColor" />
-                            <path
-                                d="M750.7 827.3c-7.8-7.8-14.1-5.1-14.1 5.9V858c0 11-9 20-20 20l-475.8-0.5c-11 0-20-9-20-20V171.9c0-11 9-20 20-20h369.1c11 0 20 9 20 20v68.5c0 11 9 20 20 20h66.7c11 0 20 9 20 20v88.3c0 11 5.6 27.1 12.4 35.7l32 52.3c4.7 10 8.5 9.1 8.5-1.9l0.1-204.7c0-11-6.3-26.4-14.1-34.2L673 113.1c-7.8-7.8-23.1-14.2-34.1-14.2H190.1c-11 0-20 9-20 20v789.4c0 11 9 20 20 20h579.1c11 0 20-9 20-20v-22.5c0-11-6.4-26.4-14.1-34.1l-24.4-24.4z"
-                                fill="currentColor" />
-                        </svg>
-                        <p class='text-base max-sm:text-base font-medium'>Pending</p>
-                    </div>-->
                     <div>
                         <p class='text-sm max-sm:text-base font-medium'>Order Date : <span
                                 class='ml-auto font-bold'><?php echo $arr ?></span></p>
@@ -335,19 +348,15 @@ foreach($array as $arr) {
                 <!-- loop here to show the image   -->
                 <ul class="mt-5 flex gap-4 flex-wrap ">
                     <?php
-    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' and orderhistory.or_date='$arr' ");
-    if(!empty($result)&& $result->num_rows>0){
-       while($row=$result->fetch_assoc()){ 
-   
-
-   
-           ?>
-
-                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
+                        $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' and orderhistory.or_date='$arr' ");
+                        if(!empty($result)&& $result->num_rows>0){
+                        while($row=$result->fetch_assoc()){ 
+                    ?>
+                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg li-img-box'>
                         <div class="cursor-pointer group block overflow-hidden">
                             <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
-                                alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
-                                class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
+                                alt=""
+                                class="li-img rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
 
                             <div class="relative pt-3">
                                 <h3
@@ -437,27 +446,6 @@ foreach($array as $arr) {
                         <p class='text-base max-sm:text-base font-medium'><?php   echo  admindec($arr,$cus_id) ?></p>
                     </div>
                     <?php }?>
-
-                    <!-- this is for the pending state   -->
-                    <!-- 
-                    <div
-                        class='text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
-                        <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M459.8 305.8c11 0 20 9 20 20v15c0 11-9 20-20 20H294.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h165.6zM347.5 458.6c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2zM347.5 617.7c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2z"
-                                fill="currentColor" />
-                            <path
-                                d="M579.1 345c-116.9 0-211.6 94.7-211.6 211.6 0 116.9 94.7 211.6 211.6 211.6 116.9 0 211.6-94.7 211.6-211.6C790.8 439.7 696 345 579.1 345z m0 369.6c-87.3 0-158-70.8-158-158 0-87.3 70.8-158 158-158s158 70.8 158 158c0.1 87.3-70.7 158-158 158z"
-                                fill="currentColor" />
-                            <path
-                                d="M913.7 875.7c7.8 7.8 7.8 20.5 0 28.3l-10.1 10.1c-7.8 7.8-20.5 7.8-28.3 0L697.7 736.6c-7.8-7.8-7.8-20.5 0-28.3l10.1-10.1c7.8-7.8 20.5-7.8 28.3 0l177.6 177.5z"
-                                fill="currentColor" />
-                            <path
-                                d="M750.7 827.3c-7.8-7.8-14.1-5.1-14.1 5.9V858c0 11-9 20-20 20l-475.8-0.5c-11 0-20-9-20-20V171.9c0-11 9-20 20-20h369.1c11 0 20 9 20 20v68.5c0 11 9 20 20 20h66.7c11 0 20 9 20 20v88.3c0 11 5.6 27.1 12.4 35.7l32 52.3c4.7 10 8.5 9.1 8.5-1.9l0.1-204.7c0-11-6.3-26.4-14.1-34.2L673 113.1c-7.8-7.8-23.1-14.2-34.1-14.2H190.1c-11 0-20 9-20 20v789.4c0 11 9 20 20 20h579.1c11 0 20-9 20-20v-22.5c0-11-6.4-26.4-14.1-34.1l-24.4-24.4z"
-                                fill="currentColor" />
-                        </svg>
-                        <p class='text-base max-sm:text-base font-medium'>Pending</p>
-                    </div>-->
                     <div>
                         <p class='text-sm max-sm:text-base font-medium'>Order Date : <span
                                 class='ml-auto font-bold'><?php echo $arr ?></span></p>
@@ -467,18 +455,15 @@ foreach($array as $arr) {
                 <!-- loop here to show the image   -->
                 <ul class="mt-5 flex gap-4 flex-wrap ">
                     <?php
-    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' and orderhistory.or_date='$arr' ");
-    if(!empty($result)&& $result->num_rows>0){
-       while($row=$result->fetch_assoc()){ 
-   
-
-   
-           ?>
-                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
+                        $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' and orderhistory.or_date='$arr' ");
+                        if(!empty($result)&& $result->num_rows>0){
+                        while($row=$result->fetch_assoc()){  
+                    ?>
+                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg li-img-box'>
                         <div class="cursor-pointer group block overflow-hidden">
                             <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
-                                alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
-                                class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
+                                alt=""
+                                class="li-imgrounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
 
                             <div class="relative pt-3">
                                 <h3
@@ -532,14 +517,8 @@ foreach($array as $arr) {
         </div>
         <?php  }
 
-    }?>
-
-
-
-
+            }?>
     </section>
-
-
 </body>
 
 </html>
