@@ -454,7 +454,7 @@ $cus_id=$_GET["cus_id"];
                                 </h3>
                                 <div class='row-span-1 w-full h-full flex gap-3 items-center justify-between'>
                                     <span class='text-base text-gray-700'>Subtotal :</span>
-                                    <h3 class='text-base font-medium text-gray-900'><?php  $subtotal=subtotal($or_date,$cus_id);
+                                    <h3 class='text-base font-medium text-gray-900'><?php  $subtotal=subtotal2($or_date,$cus_id);
                                     echo  $subtotal;?>KS</h3>
                                 </div>
                                 <div class=' row-span-1 w-full h-full flex gap-3 items-center justify-between'>

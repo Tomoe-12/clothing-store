@@ -357,6 +357,42 @@ function deletcart($user_id){
         }}
         return $subtotal;
     }
+    function subtotal2($or_date,$cus_id){
+        $subtotal=0;
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+           $subtotal+=$row["orderprice"];
+
+        }}
+        return $subtotal;
+    }
+    function subtotal3($or_date,$cus_id){
+        $subtotal=0;
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where  orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+           $subtotal+=$row["orderprice"];
+
+        }}
+        return $subtotal;
+    }
+    function admindec($or_date,$cus_id){
+       
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where  orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       if($row=$result->fetch_assoc()){
+        return $row["admindec"];
+
+        }}
+       
+    }
 
     function personaldetail($content,$cus_id){
         include("connection.php");
