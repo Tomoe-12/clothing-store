@@ -10,7 +10,7 @@ $cus_id=$_GET["cus_id"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accepted</title>
+    <title>Pending</title>
 
     <!-- flowbite -->
     <link rel="stylesheet" href="../../../node_modules/flowbite/dist/flowbite.min.css">
@@ -479,7 +479,7 @@ $cus_id=$_GET["cus_id"];
 
                     <!-- ordered item  accepted by admin  -->
                     <div class='mt-5 '>
-                        <div class="item-box sm:w-0 grid lg:grid-cols-2  gap-5">
+                    <div class="item-box sm:w-0 grid lg:grid-cols-2  gap-5">
                         <?php
             ob_start();
     
@@ -532,7 +532,19 @@ $cus_id=$_GET["cus_id"];
                     </div>
                 </div>
             </div>
-        </main> 
+            <div class="mt-6 w-1/2 flex gap-4 deli-btn">
+
+<button type="submit"
+    class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
+    Deliver
+</button>
+<button type="button"
+    class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
+    onclick="location.href=''">
+    Cancel
+</button>
+</div>
+</main>
     </section>
 
 

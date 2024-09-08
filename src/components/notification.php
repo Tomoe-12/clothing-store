@@ -3,66 +3,45 @@ include("../function/connection.php");
 session_start(); 
 include("../function/functions.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-
-
-    <!-- <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/home1.css">
-    <link rel="stylesheet" href="../css/home2.css">
-    <link rel="stylesheet" href="../css/home3.css">
-    <link rel="stylesheet" href="../css/home4.css"> -->
-
-    <!-- flowbite -->
-    <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
-    <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
-
-    <!-- tailwind -->
-    <link href="../output.css" rel="stylesheet">
-    <!-- alpine -->
-    <script src="../../public/script.js"></script>
-
-
-    <style>
-    .test {
-        border: 1px solid red;
-    }
-
-    nav {
-        z-index: 999 !important;
-    }
-
-    #drawer-right-example {
-        z-index: 99 !important;
-    }
-
-    nav:not(.scrolled) {
-        box-shadow: none;
-    }
-
-    nav.scrolled {
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    </style>
-
-    <script>
-    if ( < ? Php echo $_SESSION["success"] ? > ) {
-
-        alert("Logged in Successfully!");
-        <?php $_SESSION["success"]=null; ?>
-    }
-    </script>
+    <title>Notification</title>
 </head>
 
+<!-- flowbite -->
+<link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
+<script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
+
+<!-- tailwind -->
+<link href="../output.css" rel="stylesheet">
+<!-- alpine -->
+<script src="../../public/script.js"></script>
+
+<style>
+nav {
+    z-index: 999 !important;
+}
+
+nav:not(.scrolled) {
+    box-shadow: none;
+}
+
+nav.scrolled {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.test {
+    border: 1px solid red;
+}
+</style>
+
 <body>
-
-
-    <nav x-data="{ isOpen: false }" class="w-full  bg-white fixed top-0">
+    <nav x-data="{ isOpen: false }" class="w-full bg-white fixed top-0">
         <div class="container px-6 py-4 mx-auto">
             <div class="lg:flex lg:items-center lg:justify-between">
                 <div class="flex items-center justify-between">
@@ -218,10 +197,10 @@ include("../function/functions.php");
                  if(profileimgvalidate($user_id)) {
 
                     
-                    $result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
-                    if(!empty($result)&& $result->num_rows>0){
-                    if($row=$result->fetch_assoc()){?>
-                        <div class="flex items-center lg:mt-0">
+                $result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
+                if(!empty($result)&& $result->num_rows>0){
+                if($row=$result->fetch_assoc()){?>
+                    <div class="flex items-center lg:mt-0">
                         <div class=''>
                             <button onclick="location.href='./profile.php'" type="button"
                                 class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
@@ -260,86 +239,230 @@ include("../function/functions.php");
             </div>
         </div>
     </nav>
-    <div id="all" class="container px-6 md:px-0 mx-auto " style="margin-top:80px;">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
-            <?php
+    <section style='margin-bottom:64px; margin-top:64px; '
+        class='h-fit gap-10 flex flex-col items-center justify-between ' >
+       
+        <!-- loop here to show each order  -->
+        <div
+            class="mt-10 container w-full mx-auto max-w-screen-xl">
 
-   $result=$con->query("SELECT * FROM closet  order by arrDate desc");
-   if(!empty($result)&& $result->num_rows>0){
-    while($row=$result->fetch_assoc()){ 
-        
-       ?>
-
-            <div
-                class="group my-10 flex w-full md:max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-                <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-                    <img class="peer absolute top-0 right-0 h-full w-full object-cover"
-                        src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
-                        alt="product image" />
-                    <!-- <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span> -->
-                </a>
-                <div class="mt-4 px-5 pb-5">
-                    <a href="#">
-                        <h5 class="text-xl tracking-tight text-slate-900"><?php echo $row["productname"] ?></h5>
-                    </a>
-                    <div class="mt-2 mb-5 flex items-center justify-between">
-                        <p>
-                            <span class="text-2xl font-bold text-slate-800"><?php echo $row["price"] ?>KS</span>
-                        </p>
-                    </div>
-                    <div class='mb-5 flex gap-2'>
-                        <?php 
-                        $colors = json_decode($row['color']);
-                        foreach ($colors as $color) { ?>
-                        <div
-                            style='width: 20px; height: 20px; border-radius:50%; background-color:<?php echo $color;?>'>
-                        </div>
-                        <?php }?>
-                    </div>
-                    <a href="../components/Detail.php?item_id=<?php  echo $row["clo_id"]; ?>"
-                        class="flex items-center justify-center rounded-md bg-primary  px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg> -->
-                        <svg class="mr-2 h-6 w-6" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img"
-                            width="1em" height="1em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 32 32">
-                            <path fill="white"
-                                d="M2 10a4 4 0 0 1 4-4h20a4 4 0 0 1 4 4v10a4 4 0 0 1-2.328 3.635a2.996 2.996 0 0 0-.55-.756l-8-8A3 3 0 0 0 14 17v7H6a4 4 0 0 1-4-4V10Zm14 19a1 1 0 0 0 1.8.6l2.7-3.6H25a1 1 0 0 0 .707-1.707l-8-8A1 1 0 0 0 16 17v12Z" />
+            <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
+                <div class='w-full h-fit flex justify-between items-center'>
+                    <!--  this is for accept state -->
+                    <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
+                        class='w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
+                        <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
                         </svg>
-                        View Detail
-                    </a>
+                        <p class='text-base max-sm:text-base font-medium'>Accept</p>
+                    </div>
+
+                    <!-- this is for the pending state   -->
+                    <!-- 
+                    <div
+                        class='text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
+                        <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M459.8 305.8c11 0 20 9 20 20v15c0 11-9 20-20 20H294.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h165.6zM347.5 458.6c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2zM347.5 617.7c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2z"
+                                fill="currentColor" />
+                            <path
+                                d="M579.1 345c-116.9 0-211.6 94.7-211.6 211.6 0 116.9 94.7 211.6 211.6 211.6 116.9 0 211.6-94.7 211.6-211.6C790.8 439.7 696 345 579.1 345z m0 369.6c-87.3 0-158-70.8-158-158 0-87.3 70.8-158 158-158s158 70.8 158 158c0.1 87.3-70.7 158-158 158z"
+                                fill="currentColor" />
+                            <path
+                                d="M913.7 875.7c7.8 7.8 7.8 20.5 0 28.3l-10.1 10.1c-7.8 7.8-20.5 7.8-28.3 0L697.7 736.6c-7.8-7.8-7.8-20.5 0-28.3l10.1-10.1c7.8-7.8 20.5-7.8 28.3 0l177.6 177.5z"
+                                fill="currentColor" />
+                            <path
+                                d="M750.7 827.3c-7.8-7.8-14.1-5.1-14.1 5.9V858c0 11-9 20-20 20l-475.8-0.5c-11 0-20-9-20-20V171.9c0-11 9-20 20-20h369.1c11 0 20 9 20 20v68.5c0 11 9 20 20 20h66.7c11 0 20 9 20 20v88.3c0 11 5.6 27.1 12.4 35.7l32 52.3c4.7 10 8.5 9.1 8.5-1.9l0.1-204.7c0-11-6.3-26.4-14.1-34.2L673 113.1c-7.8-7.8-23.1-14.2-34.1-14.2H190.1c-11 0-20 9-20 20v789.4c0 11 9 20 20 20h579.1c11 0 20-9 20-20v-22.5c0-11-6.4-26.4-14.1-34.1l-24.4-24.4z"
+                                fill="currentColor" />
+                        </svg>
+                        <p class='text-base max-sm:text-base font-medium'>Pending</p>
+                    </div>-->
+                    <div>
+                        <p class='text-sm max-sm:text-base font-medium'>Order Date : <span
+                                class='ml-auto font-bold'>2004-12-22</span></p>
+                    </div>
+
                 </div>
+                <!-- loop here to show the image   -->
+                <ul class="mt-5 flex gap-4 flex-wrap ">
+                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
+                        <div class="cursor-pointer group block overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
+                                class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
+
+                            <div class="relative pt-3">
+                                <h3
+                                    class="text-base font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                    Basic Tee
+                                </h3>
+
+                                <div class="color mt-2 flex items-center gap-3 ">
+                                    <div style='width: 17px; height: 17px; border-radius:50%; background-color:red'>
+                                    </div>
+                                    <p>Medium</p>
+                                </div>
+
+                                <p class="mt-2">
+                                    <span class="sr-only"> Regular Price </span>
+                                    <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                  
+                </ul>
+                <!-- order summary -->
+                 <!-- if one item uses justify-center , if more than one item use justify-end -->
+                <header class='flex mt-5 justify-center justify-end gap-10'>
+                    <ul class=" text-gray-800 space-y-3 " style='min-width:250px;max-width:250px;'>
+                        <?php if(isset($subtotal)){?>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        </li> <?php } else{?>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        </li> <?php }?>
+                        <li class="flex flex-wrap gap-4 text-base">Shipping <span class="ml-auto font-bold">
+                                30000000000000 KS
+                            </span>
+                        </li>
+                        <li class="flex flex-wrap gap-4 text-base">Tax <span class="ml-auto font-bold">
+                                KS
+                            </span></li>
+                        <hr class="border-gray-300" />
+                        <li class="flex flex-wrap gap-4 text-base font-bold">Total <span class="ml-auto">KS</span>
+                        </li>
+                    </ul>
+
+                </header>
             </div>
-            <?php
-
-    }
-   }
-   
-   ?>
         </div>
-    </div>
 
+        <div
+            class=" container w-full mx-auto max-w-screen-xl ">
+
+            <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
+                <div class='w-full h-fit flex justify-between items-center'>
+                    <!--  this is for accept state -->
+                    <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
+                        class='w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
+                        <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <p class='text-base max-sm:text-base font-medium'>Accept</p>
+                    </div>
+
+                    <!-- this is for the pending state   -->
+                    <!-- 
+                    <div
+                        class='text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
+                        <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M459.8 305.8c11 0 20 9 20 20v15c0 11-9 20-20 20H294.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h165.6zM347.5 458.6c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2zM347.5 617.7c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2z"
+                                fill="currentColor" />
+                            <path
+                                d="M579.1 345c-116.9 0-211.6 94.7-211.6 211.6 0 116.9 94.7 211.6 211.6 211.6 116.9 0 211.6-94.7 211.6-211.6C790.8 439.7 696 345 579.1 345z m0 369.6c-87.3 0-158-70.8-158-158 0-87.3 70.8-158 158-158s158 70.8 158 158c0.1 87.3-70.7 158-158 158z"
+                                fill="currentColor" />
+                            <path
+                                d="M913.7 875.7c7.8 7.8 7.8 20.5 0 28.3l-10.1 10.1c-7.8 7.8-20.5 7.8-28.3 0L697.7 736.6c-7.8-7.8-7.8-20.5 0-28.3l10.1-10.1c7.8-7.8 20.5-7.8 28.3 0l177.6 177.5z"
+                                fill="currentColor" />
+                            <path
+                                d="M750.7 827.3c-7.8-7.8-14.1-5.1-14.1 5.9V858c0 11-9 20-20 20l-475.8-0.5c-11 0-20-9-20-20V171.9c0-11 9-20 20-20h369.1c11 0 20 9 20 20v68.5c0 11 9 20 20 20h66.7c11 0 20 9 20 20v88.3c0 11 5.6 27.1 12.4 35.7l32 52.3c4.7 10 8.5 9.1 8.5-1.9l0.1-204.7c0-11-6.3-26.4-14.1-34.2L673 113.1c-7.8-7.8-23.1-14.2-34.1-14.2H190.1c-11 0-20 9-20 20v789.4c0 11 9 20 20 20h579.1c11 0 20-9 20-20v-22.5c0-11-6.4-26.4-14.1-34.1l-24.4-24.4z"
+                                fill="currentColor" />
+                        </svg>
+                        <p class='text-base max-sm:text-base font-medium'>Pending</p>
+                    </div>-->
+                    <div>
+                        <p class='text-sm max-sm:text-base font-medium'>Order Date : <span
+                                class='ml-auto font-bold'>2004-12-22</span></p>
+                    </div>
+
+                </div>
+                <!-- loop here to show the image   -->
+                <ul class="mt-5 flex gap-4 flex-wrap ">
+                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
+                        <div class="cursor-pointer group block overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
+                                class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
+
+                            <div class="relative pt-3">
+                                <h3
+                                    class="text-base font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                    Basic Tee
+                                </h3>
+
+                                <div class="color mt-2 flex items-center gap-3 ">
+                                    <div style='width: 17px; height: 17px; border-radius:50%; background-color:red'>
+                                    </div>
+                                    <p>Medium</p>
+                                </div>
+
+                                <p class="mt-2">
+                                    <span class="sr-only"> Regular Price </span>
+                                    <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
+                        <div class="cursor-pointer group block overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                                alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
+                                class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
+
+                            <div class="relative pt-3">
+                                <h3
+                                    class="text-base font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
+                                    Basic Tee
+                                </h3>
+
+                                <div class="color mt-2 flex items-center gap-3 ">
+                                    <div style='width: 17px; height: 17px; border-radius:50%; background-color:red'>
+                                    </div>
+                                    <p>Medium</p>
+                                </div>
+
+                                <p class="mt-2">
+                                    <span class="sr-only"> Regular Price </span>
+                                    <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                  
+                </ul>
+                <!-- order summary -->
+                 <!-- if one item uses justify-center , if more than one item use justify-end -->
+                <header class='flex mt-5 justify-center justify-end gap-10'>
+                    <ul class=" text-gray-800 space-y-3 " style='min-width:250px;max-width:250px;'>
+                        <?php if(isset($subtotal)){?>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        </li> <?php } else{?>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        </li> <?php }?>
+                        <li class="flex flex-wrap gap-4 text-base">Shipping <span class="ml-auto font-bold">
+                                30000000000000 KS
+                            </span>
+                        </li>
+                        <li class="flex flex-wrap gap-4 text-base">Tax <span class="ml-auto font-bold">
+                                KS
+                            </span></li>
+                        <hr class="border-gray-300" />
+                        <li class="flex flex-wrap gap-4 text-base font-bold">Total <span class="ml-auto">KS</span>
+                        </li>
+                    </ul>
+
+                </header>
+            </div>
+        </div>
+
+
+    </section>
 
 
 </body>
 
 </html>
-<script src="../js/home.js"></script>
-<script>
-const nav = document.querySelector('nav');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 0) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-});
-document.getElementById("account").addEventListener("click", () => {
-    document.getElementById("accountcontent").style.width = "20%";
-
-}, false);
-</script>
