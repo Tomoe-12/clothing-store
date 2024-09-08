@@ -476,7 +476,7 @@
 
                     <!-- ordered item  accepted by admin  -->
                     <div class='mt-5 '>
-                        <div class="item-box sm:w-0 flex gap-5">
+                        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:w-0 ">
                             <!-- loop start from here  -->
                             <div class='item-detail bg-gray-100 py-4 px-3 w-full rounded-xl h-fit flex  gap-0'>
                                 <!-- image  -->
@@ -521,7 +521,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-6 flex gap-4 deli-btn">
+            <div class="mt-6 w-1/2 flex gap-4 deli-btn">
 
                 <button type="submit"
                     class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
