@@ -51,7 +51,7 @@ include("../function/functions.php");
     </style>
 
     <script>
-    if ( < ? Php echo $_SESSION["success"] ? > ) {
+    if ( <?Php echo $_SESSION["success"] ?> ) {
 
         alert("Logged in Successfully!");
         <?php $_SESSION["success"]=null; ?>

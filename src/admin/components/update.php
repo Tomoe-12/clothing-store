@@ -1,6 +1,7 @@
 <?php 
 include("../../function/connection.php");
 include("../../function/functions.php");
+session_start();
 
 ?>
 
@@ -44,8 +45,15 @@ include("../../function/functions.php");
         grid-column: span 1 / span 1;
     }
 }
-</style>
 
+</style>
+<script>
+     if ( <?Php echo $_SESSION["update"] ?> ) {
+
+alert("Update Successfully!");
+<?php $_SESSION["update"]=null; ?>
+}
+</script>
 <body>
 
     <!-- navbar -->
@@ -159,7 +167,7 @@ include("../../function/functions.php");
 
                 <div class="hidden h-auto w-full grow rounded-sm bg-gray-100 sm:block"></div>
 
-                <form action="" enctype="multipart/form-data" method="POST">
+                <form action="" enctype="multipart/form-data" method="get">
                     <input type="hidden" name="$ACTION_ID_afb2820c8facca439123229c7bfc8d5d4f1e5184">
                     <button
                         class="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-sm bg-gray-100 p-3 text-base font-semibold hover:bg-sky-100 hover:text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3">
@@ -184,12 +192,22 @@ include("../../function/functions.php");
             class="container flex flex-col main items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <h1 class='text-black font-semibold text-xl sm:text-3xl'>Updating An Item</h1>
             <div class=" max-w-xl lg:max-w-3xl">
-                <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post" id="submit"
+           
+     
+    <?php
+
+    ob_start();
+    
+    $item_id=$_GET["item_id"];
+$result=$con->query("SELECT * FROM  closet join size ON closet.clo_id=size.clo_id WHERE closet.clo_id='$item_id'");
+if(!empty($result)&& $result->num_rows>0){
+ if($row=$result->fetch_assoc()){?>
+                <form action="../../function/adminnotiupdate.php" method="post" id="submit"
                     enctype="multipart/form-data" class="mt-8 grid grid-cols-6 gap-6">
                     <!-- product name -->
                     <div class="col-span-6">
                         <label for="product-name" class="block text-sm font-medium text-gray-700"> Product Name </label>
-                        <input type="text" id="product-name" name="productname" placeholder='Nike Air Force' required
+                        <input type="text" id="product-name" name="productname"  value="<?php echo $row["productname"]?>" placeholder='Nike Air Force' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <!-- Type -->
@@ -197,7 +215,7 @@ include("../../function/functions.php");
                         <label for="type" class="block text-sm font-medium text-gray-700">
                             Type
                         </label>
-                        <input type="text" id="type" name="type" placeholder='somthing else' required
+                        <input type="text" id="type" value="<?php echo $row["type"] ?>" name="type" placeholder='somthing else' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <!-- price -->
@@ -205,7 +223,7 @@ include("../../function/functions.php");
                         <label for="price" class="block text-sm font-medium text-gray-700">
                             Price
                         </label>
-                        <input type="text" id="price" name="price" placeholder='100000' required
+                        <input type="text" id="price" name="price" value="<?php echo $row["price"]?>" placeholder='100000' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <!-- Gender -->
@@ -213,7 +231,7 @@ include("../../function/functions.php");
                         <label for="Gender" class="block text-sm font-medium text-gray-700">
                             Gender
                         </label>
-                        <input type="text" id="Gender" name="gender" placeholder='no lgbtq++ only male and female '
+                        <input type="text" id="Gender" name="gender" value="<?php echo $row["gender"]?>" placeholder='no lgbtq++ only male and female '
                             required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
@@ -224,28 +242,28 @@ include("../../function/functions.php");
                             <div>
                                 <label for="number-input-sm" class="block text-sm font-medium text-gray-700">SM</label>
                                 <input type="number" id="number-input-sm" aria-describedby="helper-text-explanation"
-                                    name="small"
+                                    name="small" value="<?php echo $row["Small"]?>"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-md" class="block text-sm font-medium text-gray-700">MD</label>
                                 <input type="number" id="number-input-md" aria-describedby="helper-text-explanation"
-                                    name="medium"
+                                    name="medium" value="<?php echo $row["Medium"]?>"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-lg" class="block text-sm font-medium text-gray-700">LG</label>
                                 <input type="number" id="number-input-lg" aria-describedby="helper-text-explanation"
-                                    name="large"
+                                    name="large" value="<?php echo $row["Large"]?>"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
                             <div>
                                 <label for="number-input-xl" class="block text-sm font-medium text-gray-700">XL</label>
                                 <input type="number" id="number-input-xl" aria-describedby="helper-text-explanation"
-                                    name="XL"
+                                    name="XL" value="<?php echo $row["XL"]?>"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -253,7 +271,7 @@ include("../../function/functions.php");
                                 <label for="number-input-xxl"
                                     class="block text-sm font-medium text-gray-700">XXL</label>
                                 <input type="number" id="number-input-xxl" aria-describedby="helper-text-explanation"
-                                    name="XXL"
+                                    name="XXL" value="<?php echo $row["XXL"]?>"
                                     class=" border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                     placeholder="0" />
                             </div>
@@ -266,7 +284,11 @@ include("../../function/functions.php");
                             <div id="color-inputs" class="flex flex-wrap space-x-3 mt-3">
                                 <!-- Initial color input -->
                                 <div class="flex items-center space-x-2 w-fit relative">
-                                    <input type="color" name="colors[]"
+                                <div class='mb-5 flex gap-2'>
+                        <?php 
+                        $colors = json_decode($row['color']);
+                        foreach ($colors as $color) { ?>
+                          <input type="color" name="colors[]" value="<?php echo $color;?>"
                                         class="cursor-pointer border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md block w-12 h-12"
                                         required />
                                     <button type="button" class="absolute bg-red-500 text-white p-1 rounded-full"
@@ -285,9 +307,12 @@ include("../../function/functions.php");
                                             </g>
                                         </svg>
                                     </button>
+                        <?php }?>
+                    </div>
+                                  
                                 </div>
                             </div>
-
+                                    
                             <div class='ml-6 '>
                                 <button type="button" id="add-color"
                                     class=" mt-3 w-9 h-9 flex items-center justify-center border border-primary bg-primary text-white hover:text-blue-600  hover:bg-white rounded-full">
@@ -322,8 +347,8 @@ include("../../function/functions.php");
                     <div class="col-span-6 max-h-96">
                         <label for="product-desc" class="block text-sm font-medium text-gray-700"> Product Description
                         </label>
-                        <textarea id="product-desc" name="productdesc" placeholder='sth description' required
-                            class="mt-1 w-full h-36 max-h-96 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"></textarea>
+                        <textarea id="product-desc" name="productdesc"  placeholder='sth description' required
+                            class="mt-1 w-full h-36 max-h-96 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"><?php echo $row["productdesc"]?></textarea>
                     </div>
                     <!-- photo select -->
                     <!-- <div class="col-span-6">
@@ -349,14 +374,14 @@ include("../../function/functions.php");
 
 
 
-
+                 <input type="text" name="item_id" value="<?php echo $item_id?>" style="display:none">
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4 ">
                         <button type="submit"
                             class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                            Updaet
+                            Update
                         </button>
                     </div>
-                </form>
+                </form> <?php }}  ?>
             </div>
         </main>
     </section>
@@ -414,3 +439,4 @@ include("../../function/functions.php");
 </body>
 
 </html>
+ 
