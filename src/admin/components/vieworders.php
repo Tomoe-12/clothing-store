@@ -1,3 +1,9 @@
+<?php 
+include("../../function/connection.php");
+include("../../function/functions.php");
+$or_date=$_GET["or_date"];
+$cus_id=$_GET["cus_id"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,7 +138,7 @@
                                 d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
                         </svg>
                     </a>
-                    <a href="#"
+                    <a href="./ordered.php"
                         class='flex h-[48px] grow items-center justify-center gap-2 rounded-md  text-sm font-medium bg-blue-100 text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3'>
                         <svg class='w-7 h-7' viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"
                             stroke="#FF4F4E" stroke-width="1.128">
@@ -194,7 +200,7 @@
                     </svg>
                 </a>
                 <a class="flex h-[48px] grow items-center justify-center gap-2 rounded-lg bg-blue-100 p-3 text-base font-semibold hover: text-blue-600 sm:flex-none sm:justify-start sm:p-2 sm:px-3"
-                    href="#">
+                    href="./ordered.php">
                     <svg class='w-6 h-6' viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg"
                         stroke="currentColor" stroke-width="1.128">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -243,25 +249,16 @@
         </div>
     </nav>
 
+    
     <section class="bg-white mx-auto flex items-center justify-center min-h-screen h-fit view-accept-box">
         <main
             class="relative shadow-md border border-gray-200 rounded-xl container w-full flex flex-col main items-center px-4 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <div class='absolute top-5' style='left:3%;'>
-                <div
+                <div 
                     class='text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
-                    <svg class="w-6 h-6" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M459.8 305.8c11 0 20 9 20 20v15c0 11-9 20-20 20H294.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h165.6zM347.5 458.6c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2zM347.5 617.7c11 0 20 9 20 20v15c0 11-9 20-20 20h-53.2c-11 0-20-9-20-20v-15c0-11 9-20 20-20h53.2z"
-                            fill="currentColor" />
-                        <path
-                            d="M579.1 345c-116.9 0-211.6 94.7-211.6 211.6 0 116.9 94.7 211.6 211.6 211.6 116.9 0 211.6-94.7 211.6-211.6C790.8 439.7 696 345 579.1 345z m0 369.6c-87.3 0-158-70.8-158-158 0-87.3 70.8-158 158-158s158 70.8 158 158c0.1 87.3-70.7 158-158 158z"
-                            fill="currentColor" />
-                        <path
-                            d="M913.7 875.7c7.8 7.8 7.8 20.5 0 28.3l-10.1 10.1c-7.8 7.8-20.5 7.8-28.3 0L697.7 736.6c-7.8-7.8-7.8-20.5 0-28.3l10.1-10.1c7.8-7.8 20.5-7.8 28.3 0l177.6 177.5z"
-                            fill="currentColor" />
-                        <path
-                            d="M750.7 827.3c-7.8-7.8-14.1-5.1-14.1 5.9V858c0 11-9 20-20 20l-475.8-0.5c-11 0-20-9-20-20V171.9c0-11 9-20 20-20h369.1c11 0 20 9 20 20v68.5c0 11 9 20 20 20h66.7c11 0 20 9 20 20v88.3c0 11 5.6 27.1 12.4 35.7l32 52.3c4.7 10 8.5 9.1 8.5-1.9l0.1-204.7c0-11-6.3-26.4-14.1-34.2L673 113.1c-7.8-7.8-23.1-14.2-34.1-14.2H190.1c-11 0-20 9-20 20v789.4c0 11 9 20 20 20h579.1c11 0 20-9 20-20v-22.5c0-11-6.4-26.4-14.1-34.1l-24.4-24.4z"
-                            fill="currentColor" />
+                    <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
                     </svg>
                     <p class='text-base max-sm:text-base font-medium'>Pending</p>
                 </div>
@@ -278,7 +275,12 @@
                                 style="background-image : url('../../public/profileCoverImg.jpg')">
 
                                 <div class="relative ">
-
+                           <?php 
+                           $img=personaldetail("per_img",$cus_id);
+                           if(isset($img)){  ?>
+                            <img src="data:image/jepg;base64,<?php echo base64_encode($img) ?>"
+                            class="w-40 h-40 ring-4 ring-white bg-gray-200 rounded-full" alt="avatar">
+                          <?php }else{?>
                                     <svg class="w-32 h-32 ring-4 ring-white bg-gray-200 rounded-full"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         stroke="#bbb">
@@ -301,7 +303,7 @@
                                                 </g>
                                             </g>
                                         </g>
-                                    </svg>
+                                    </svg> <?php }?>
                                 </div>
                             </div>
                         </div>
@@ -332,7 +334,7 @@
                                     </div>
                                     <div class=' col-span-3 h-full flex'>
                                         <h3 class="text-lg max-sm:text-base font-medium text-gray-800">
-                                            name
+                                            <?php echo personaldetail("user_name",$cus_id)?>
                                         </h3>
 
                                     </div>
@@ -361,7 +363,7 @@
                                     </div>
                                     <div class='col-span-3 h-full flex'>
                                         <h3 class="text-lg max-sm:text-base font-medium text-gray-800">
-                                            Email
+                                        <?php echo personaldetail("email",$cus_id)?>
                                         </h3>
 
                                     </div>
@@ -398,7 +400,7 @@
                                     </div>
                                     <div class='col-span-3 h-full flex'>
                                         <h3 class="text-lg max-sm:text-base font-medium text-gray-800">
-                                            09974398234
+                                        <?php echo personaldetail("ph_no",$cus_id)?>
                                         </h3>
 
                                     </div>
@@ -434,7 +436,7 @@
                                     </div>
                                     <div class='col-span-3 h-full flex'>
                                         <h3 class="text-lg max-sm:text-base font-medium text-gray-800">
-                                            lksjdfljowejrl jflksdj poifjsdlkfjlks jofiwerj pojflksf
+                                        <?php echo personaldetail("address",$cus_id)?>
                                         </h3>
 
                                     </div>
@@ -452,7 +454,8 @@
                                 </h3>
                                 <div class='row-span-1 w-full h-full flex gap-3 items-center justify-between'>
                                     <span class='text-base text-gray-700'>Subtotal :</span>
-                                    <h3 class='text-base font-medium text-gray-900'> 0ks</h3>
+                                    <h3 class='text-base font-medium text-gray-900'><?php  $subtotal=subtotal2($or_date,$cus_id);
+                                    echo  $subtotal;?>KS</h3>
                                 </div>
                                 <div class=' row-span-1 w-full h-full flex gap-3 items-center justify-between'>
                                     <span class='text-base text-gray-700'>Shipping :</span>
@@ -466,7 +469,7 @@
 
                                 <div class=' row-span-1 w-full h-full flex gap-3 items-center justify-between'>
                                     <span class='text-base text-gray-700'>Total :</span>
-                                    <h3 class='text-base font-medium text-gray-900'>3000Ks</h3>
+                                    <h3 class='text-base font-medium text-gray-900'><?php echo $subtotal+3000+1000?>KS</h3>
                                 </div>
                             </div>
                         </div>
@@ -476,12 +479,20 @@
 
                     <!-- ordered item  accepted by admin  -->
                     <div class='mt-5 '>
-                        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 sm:w-0 ">
+                    <div class="item-box sm:w-0 grid lg:grid-cols-2  gap-5">
+                        <?php
+            ob_start();
+    
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+        
+         ?>
                             <!-- loop start from here  -->
                             <div class='item-detail bg-gray-100 py-4 px-3 w-full rounded-xl h-fit flex  gap-0'>
                                 <!-- image  -->
                                 <div class="w-1/2 rounded-md flex justify-center items-center overflow-hidden ">
-                                    <img src="../../../img/images (7).jpg" alt="Product"
+                                    <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="Product"
                                         style='min-width:150px; max-width:150px; min-height:150px; max-height:150px; '
                                         class=" object-fill object-top " />
                                 </div>
@@ -489,61 +500,56 @@
                                 <div class='w-1/2 grid grid-rows-3 py-2'>
                                     <div class=' row-span-1 w-full h-full flex gap-3 items-center'>
                                         <h3 class='text-xl font-medium text-gray-900'>type :</h3>
-                                        <span class='text-base text-gray-700'>Hoodie</span>
+                                        <span class='text-base text-gray-700'><?php echo $row["type"]?></span>
                                     </div>
                                     <div class='items-fact row-span-1 w-full h-full flex '>
                                         <div class='w-full h-full flex  gap-3 items-center '>
                                             <h3 class='text-xl font-medium text-gray-900'>color :</h3>
                                             <div
-                                                style='width: 20px; height: 20px; border-radius:50%; background-color:red'>
+                                                style='width: 20px; height: 20px; border-radius:50%; background-color:<?Php echo $row["or_color"]?>'>
                                             </div>
                                         </div>
                                         <div class='w-full h-full flex   gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>size :</h3>
-                                            <span class='text-base text-gray-700'>Md</span>
+                                            <span class='text-base text-gray-700'><?php echo $row["size"]?></span>
                                         </div>
                                     </div>
                                     <div class='items-fact row-span-1 w-full h-full flex'>
                                         <div class='w-full h-full flex  gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>quantity :</h3>
-                                            <span class='text-base text-gray-700'>12</span>
+                                            <span class='text-base text-gray-700'><?php echo $row["quantity"]?></span>
                                         </div>
                                         <div class='w-full h-full flex gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>cost :</h3>
-                                            <span class='text-base text-gray-700'>2000000 Ks</span>
+                                            <span class='text-base text-gray-700'><?php  echo $row["orderprice"]?>KS</span>
+                                            
                                         </div>
                                     </div>
 
                                 </div>
-                            </div>
-
+                            </div> <?PHP }}?>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-6 w-1/2 flex gap-4 deli-btn">
 
-                <button type="submit"
-                    class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
-                    Deliver
-                </button>
-                <button type="button"
-                    class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
-                    onclick="location.href=''">
-                    Cancel
-                </button>
-            </div>
-        </main>
+<button type="submit"
+    class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
+    Deliver
+</button>
+<button type="button"
+    class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
+    onclick="location.href=''">
+    Cancel
+</button>
+</div>
+</main>
     </section>
 
 
 </body>
 <style>
-.deli-btn {
-    width: 100% ;
-    flex-direction: column;
-}
-
 .item-box {
     flex-direction: column;
 }
@@ -561,11 +567,6 @@
 }
 
 @media (min-width: 640px) {
-    .deli-btn {
-        width:50%;
-        flex-direction : row;
-    }
-
     .item-detail>div {
         width: 50%;
     }

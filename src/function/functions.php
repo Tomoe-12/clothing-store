@@ -345,4 +345,90 @@ function deletcart($user_id){
         $con->query("UPDATE cart set quantity='$quantity' , size='$size' ,orderprice='$orderprice', cart_color='$color' where cart_id='$cart_id'");    
 
     }
+    function subtotal($or_date,$cus_id){
+        $subtotal=0;
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Accept' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+           $subtotal+=$row["orderprice"];
+
+        }}
+        return $subtotal;
+    }
+    function subtotal2($or_date,$cus_id){
+        $subtotal=0;
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+           $subtotal+=$row["orderprice"];
+
+        }}
+        return $subtotal;
+    }
+    function subtotal3($or_date,$cus_id){
+        $subtotal=0;
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where  orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+           $subtotal+=$row["orderprice"];
+
+        }}
+        return $subtotal;
+    }
+    function admindec($or_date,$cus_id){
+       
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where  orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       if($row=$result->fetch_assoc()){
+        return $row["admindec"];
+
+        }}
+       
+    }
+    function layout($or_date,$cus_id){
+       
+        include("connection.php");
+        $layout=0;
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where  orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+        $layout++;
+
+        }}
+        return $layout;
+       
+    }
+
+    function personaldetail($content,$cus_id){
+        include("connection.php");
+        $result=$con->query("SELECT $content FROM customers WHERE cus_id='$cus_id'");
+        if(!empty($result)&& $result->num_rows>0){
+            if($row=$result->fetch_assoc()){
+               return $row[$content];
+     
+             }}
+    }
+
+
+    function select(){
+        ;include("../function/connection.php");
+        $arr=array();
+        $cus_id=$_SESSION["user_id"];
+        $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' group by orderhistory.or_date order by orderhistory.or_date desc");
+        if(!empty($result)&& $result->num_rows>0){
+           while($row=$result->fetch_assoc()){  
+                  array_push($arr,$row["or_date"]);
+    
+           }}
+           return $arr;
+    }
+    
 ?>

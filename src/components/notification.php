@@ -1,5 +1,5 @@
 <?php 
-include("../function/connection.php");
+include("../function/connection.php" );
 session_start(); 
 include("../function/functions.php");
 ?>
@@ -262,19 +262,39 @@ nav.scrolled {
         class='h-fit gap-10 flex flex-col items-center justify-between '>
 
         <!-- loop here to show each order  -->
-        <div class="mt-10 container w-full mx-auto max-w-screen-xl">
+
+          <?php
+$cus_id=$_SESSION["user_id"];
+$array=select(); 
+foreach($array as $arr) { 
+   $layout=layout($arr,$cus_id);
+   if($layout==1){
+  ?>
+        <div
+            class="mt-10 container w-full mx-auto max-w-screen-xl">
 
             <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
                 <div class='w-full h-fit flex justify-between items-center'>
                     <!--  this is for accept state -->
-                    <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
+                      <?php  $dec=admindec($arr,$cus_id);
+                       if($dec=="Pending"){?>
+                    <div 
+                        class=' text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
+                        <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <p class='text-base max-sm:text-base font-medium'><?php   echo  admindec($arr,$cus_id) ?></p>
+                    </div> <?php } else if($dec=="Accept"){?>
+                         <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
                         class='w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
                         <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                        <p class='text-base max-sm:text-base font-medium'>Accept</p>
-                    </div>
+                        <p class='text-base max-sm:text-base font-medium'><?php   echo  admindec($arr,$cus_id) ?></p>
+                    </div> 
+                        <?php }?>
 
                     <!-- this is for the pending state   -->
                     <!-- 
@@ -298,77 +318,100 @@ nav.scrolled {
                     </div>-->
                     <div>
                         <p class='text-sm max-sm:text-base font-medium'>Order Date : <span
-                                class='ml-auto font-bold'>2004-12-22</span></p>
+                                class='ml-auto font-bold'><?php echo $arr ?></span></p>
                     </div>
 
                 </div>
                 <!-- loop here to show the image   -->
                 <ul class="mt-5 flex gap-4 flex-wrap ">
+                <?php
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' and orderhistory.or_date='$arr' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+   
+
+   
+           ?>
+                
                     <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
                         <div class="cursor-pointer group block overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                            <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
                                 alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
                                 class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
 
                             <div class="relative pt-3">
                                 <h3
                                     class="text-base font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                    Basic Tee
+                                  <?php echo $row["productname"]?>
                                 </h3>
 
                                 <div class="color mt-2 flex items-center gap-3 ">
-                                    <div style='width: 17px; height: 17px; border-radius:50%; background-color:red'>
+                                    <div style='width: 17px; height: 17px; border-radius:50%; background-color:<?php echo $row["or_color"]?>'>
                                     </div>
-                                    <p>Medium</p>
+                                    <p> <?php echo $row["type"]?></p>
                                 </div>
 
                                 <p class="mt-2">
                                     <span class="sr-only"> Regular Price </span>
-                                    <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
+                                    <span class="tracking-wider text-gray-900"> <?php echo $row["orderprice"]?> KS </span>
                                 </p>
                             </div>
                         </div>
                     </li>
+                  
+               
+                <?Php }}?>
+                </ul>  
 
-                </ul>
                 <!-- order summary -->
                 <!-- if one item uses justify-center , if more than one item use justify-end -->
-                <header class='flex mt-5 justify-center justify-end gap-10'>
+                <header class='flex mt-5 justify-center gap-10'>
                     <ul class=" text-gray-800 space-y-3 " style='min-width:250px;max-width:250px;'>
                         <?php if(isset($subtotal)){?>
-                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold"><?php echo   subtotal3($arr,$cus_id); ?> KS</span>
                         </li> <?php } else{?>
-                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold"> <?php echo   subtotal3($arr,$cus_id);?> KS</span>
                         </li> <?php }?>
                         <li class="flex flex-wrap gap-4 text-base">Shipping <span class="ml-auto font-bold">
-                                30000000000000 KS
+                                3000 KS
                             </span>
                         </li>
                         <li class="flex flex-wrap gap-4 text-base">Tax <span class="ml-auto font-bold">
-                                KS
+                              1000  KS
                             </span></li>
                         <hr class="border-gray-300" />
-                        <li class="flex flex-wrap gap-4 text-base font-bold">Total <span class="ml-auto">KS</span>
+                        <li class="flex flex-wrap gap-4 text-base font-bold">Total <span class="ml-auto"><?php echo subtotal3($arr,$cus_id)+3000+1000 ?> KS</span>
                         </li>
                     </ul>
 
                 </header>
             </div>
-        </div>
-
-        <div class=" container w-full mx-auto max-w-screen-xl ">
+        </div> <?PHP } else if($layout>1) { ?>
+            <div
+            class=" container w-full mx-auto max-w-screen-xl ">
 
             <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
                 <div class='w-full h-fit flex justify-between items-center'>
                     <!--  this is for accept state -->
-                    <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
+                    <?php  $dec=admindec($arr,$cus_id);
+                       if($dec=="Pending"){?>
+                    <div 
+                        class=' text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
+                        <svg class='w-4 h-4 ' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <p class='text-base max-sm:text-base font-medium'><?php   echo  admindec($arr,$cus_id) ?></p>
+                    </div> <?php } else if($dec=="Accept"){?>
+                         <div style='color:#24AE7C ; border :1px solid #24AE7C ;'
                         class='w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
                         <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10 3L4.5 8.5L2 6" stroke="#24AE7C" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
-                        <p class='text-base max-sm:text-base font-medium'>Accept</p>
-                    </div>
+                        <p class='text-base max-sm:text-base font-medium'><?php   echo  admindec($arr,$cus_id) ?></p>
+                    </div> 
+                        <?php }?>
 
                     <!-- this is for the pending state   -->
                     <!-- 
@@ -392,88 +435,77 @@ nav.scrolled {
                     </div>-->
                     <div>
                         <p class='text-sm max-sm:text-base font-medium'>Order Date : <span
-                                class='ml-auto font-bold'>2004-12-22</span></p>
+                                class='ml-auto font-bold'><?php echo $arr ?></span></p>
                     </div>
 
                 </div>
                 <!-- loop here to show the image   -->
                 <ul class="mt-5 flex gap-4 flex-wrap ">
+                <?php
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' and orderhistory.or_date='$arr' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){ 
+   
+
+   
+           ?>
                     <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
                         <div class="cursor-pointer group block overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                        <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
                                 alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
                                 class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
 
                             <div class="relative pt-3">
                                 <h3
                                     class="text-base font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                    Basic Tee
+                                    <?php echo $row["productname"] ?>
                                 </h3>
 
                                 <div class="color mt-2 flex items-center gap-3 ">
-                                    <div style='width: 17px; height: 17px; border-radius:50%; background-color:red'>
-                                    </div>
-                                    <p>Medium</p>
+                                <div style='width: 17px; height: 17px; border-radius:50%; background-color:<?php echo $row["or_color"]?>'>
+                                </div>
+                                    <p> <?php echo $row["size"] ?></p>
                                 </div>
 
                                 <p class="mt-2">
                                     <span class="sr-only"> Regular Price </span>
-                                    <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
+                                    <span class="tracking-wider text-gray-900">  <?php echo $row["orderprice"] ?> </span>
                                 </p>
                             </div>
                         </div>
                     </li>
-                    <li class='bg-white h-fit px-4 pb-5 pt-4 rounded-lg' style=' min-width:350px; max-width:350px;'>
-                        <div class="cursor-pointer group block overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                                alt="" style='min-height:370px; max-height:370px ; min-width:350px; max-width:350px;'
-                                class="rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
-
-                            <div class="relative pt-3">
-                                <h3
-                                    class="text-base font-semibold text-gray-700 group-hover:underline group-hover:underline-offset-4">
-                                    Basic Tee
-                                </h3>
-
-                                <div class="color mt-2 flex items-center gap-3 ">
-                                    <div style='width: 17px; height: 17px; border-radius:50%; background-color:red'>
-                                    </div>
-                                    <p>Medium</p>
-                                </div>
-
-                                <p class="mt-2">
-                                    <span class="sr-only"> Regular Price </span>
-                                    <span class="tracking-wider text-gray-900"> £24.00 GBP </span>
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-
+                   <?php }} ?>
+                  
                 </ul>
                 <!-- order summary -->
-                <!-- if one item uses justify-center , if more than one item use justify-end -->
-                <header class='flex mt-5 justify-center justify-end gap-10'>
+                 <!-- if one item uses justify-center , if more than one item use justify-end -->
+                <header class='flex mt-5  justify-end gap-10'>
                     <ul class=" text-gray-800 space-y-3 " style='min-width:250px;max-width:250px;'>
                         <?php if(isset($subtotal)){?>
-                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold"> <?php echo subtotal3($arr,$cus_id)?> KS</span>
                         </li> <?php } else{?>
-                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold">KS</span>
+                        <li class="flex flex-wrap gap-4 text-base">Subtotal <span class="ml-auto font-bold"><?php echo subtotal3($arr,$cus_id)?> KS</span>
                         </li> <?php }?>
                         <li class="flex flex-wrap gap-4 text-base">Shipping <span class="ml-auto font-bold">
-                                30000000000000 KS
+                                3000 KS
                             </span>
                         </li>
                         <li class="flex flex-wrap gap-4 text-base">Tax <span class="ml-auto font-bold">
-                                KS
+                              1000  KS
                             </span></li>
                         <hr class="border-gray-300" />
-                        <li class="flex flex-wrap gap-4 text-base font-bold">Total <span class="ml-auto">KS</span>
+                        <li class="flex flex-wrap gap-4 text-base font-bold">Total <span class="ml-auto"><?php echo subtotal3($arr,$cus_id)+3000+1000 ?></span>
                         </li>
                     </ul>
 
                 </header>
             </div>
         </div>
+      <?php  }
+
+    }?>
+
+      
 
 
     </section>

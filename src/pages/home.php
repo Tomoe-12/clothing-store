@@ -216,10 +216,10 @@ include("../function/functions.php");
                  if(profileimgvalidate($user_id)) {
 
                     
-                $result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
-                if(!empty($result)&& $result->num_rows>0){
-                if($row=$result->fetch_assoc()){?>
-                    <div class="flex items-center lg:mt-0">
+                    $result=$con->query("SELECT * FROM customers  WHERE cus_id=$user_id");
+                    if(!empty($result)&& $result->num_rows>0){
+                    if($row=$result->fetch_assoc()){?>
+                        <div class="flex items-center lg:mt-0">
                         <div class=''>
                             <button onclick="location.href='./profile.php'" type="button"
                                 class="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
@@ -288,7 +288,7 @@ include("../function/functions.php");
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             <?php
 
-   $result=$con->query("SELECT * FROM closet  order by price");
+   $result=$con->query("SELECT * FROM closet  order by arrDate desc");
    if(!empty($result)&& $result->num_rows>0){
     while($row=$result->fetch_assoc()){ 
         
