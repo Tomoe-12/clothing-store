@@ -393,6 +393,19 @@ function deletcart($user_id){
         }}
        
     }
+    function layout($or_date,$cus_id){
+       
+        include("connection.php");
+        $layout=0;
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where  orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+        $layout++;
+
+        }}
+        return $layout;
+       
+    }
 
     function personaldetail($content,$cus_id){
         include("connection.php");
@@ -405,4 +418,17 @@ function deletcart($user_id){
     }
 
 
+    function select(){
+        ;include("../function/connection.php");
+        $arr=array();
+        $cus_id=$_SESSION["user_id"];
+        $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where   orderhistory.cus_id='$cus_id' group by orderhistory.or_date order by orderhistory.or_date desc");
+        if(!empty($result)&& $result->num_rows>0){
+           while($row=$result->fetch_assoc()){  
+                  array_push($arr,$row["or_date"]);
+    
+           }}
+           return $arr;
+    }
+    
 ?>
