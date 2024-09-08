@@ -45,15 +45,15 @@ session_start();
         grid-column: span 1 / span 1;
     }
 }
-
 </style>
 <script>
-     if ( <?Php echo $_SESSION["update"] ?> ) {
+if ( < ? Php echo $_SESSION["update"] ? > ) {
 
-alert("Update Successfully!");
-<?php $_SESSION["update"]=null; ?>
+    alert("Update Successfully!");
+    <?php $_SESSION["update"]=null; ?>
 }
 </script>
+
 <body>
 
     <!-- navbar -->
@@ -192,9 +192,9 @@ alert("Update Successfully!");
             class="container flex flex-col main items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <h1 class='text-black font-semibold text-xl sm:text-3xl'>Updating An Item</h1>
             <div class=" max-w-xl lg:max-w-3xl">
-           
-     
-    <?php
+
+
+                <?php
 
     ob_start();
     
@@ -207,7 +207,8 @@ if(!empty($result)&& $result->num_rows>0){
                     <!-- product name -->
                     <div class="col-span-6">
                         <label for="product-name" class="block text-sm font-medium text-gray-700"> Product Name </label>
-                        <input type="text" id="product-name" name="productname"  value="<?php echo $row["productname"]?>" placeholder='Nike Air Force' required
+                        <input type="text" id="product-name" name="productname" value="<?php echo $row["productname"]?>"
+                            placeholder='Nike Air Force' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <!-- Type -->
@@ -215,7 +216,8 @@ if(!empty($result)&& $result->num_rows>0){
                         <label for="type" class="block text-sm font-medium text-gray-700">
                             Type
                         </label>
-                        <input type="text" id="type" value="<?php echo $row["type"] ?>" name="type" placeholder='somthing else' required
+                        <input type="text" id="type" value="<?php echo $row["type"] ?>" name="type"
+                            placeholder='somthing else' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <!-- price -->
@@ -223,7 +225,8 @@ if(!empty($result)&& $result->num_rows>0){
                         <label for="price" class="block text-sm font-medium text-gray-700">
                             Price
                         </label>
-                        <input type="text" id="price" name="price" value="<?php echo $row["price"]?>" placeholder='100000' required
+                        <input type="text" id="price" name="price" value="<?php echo $row["price"]?>"
+                            placeholder='100000' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
                     <!-- Gender -->
@@ -231,8 +234,8 @@ if(!empty($result)&& $result->num_rows>0){
                         <label for="Gender" class="block text-sm font-medium text-gray-700">
                             Gender
                         </label>
-                        <input type="text" id="Gender" name="gender" value="<?php echo $row["gender"]?>" placeholder='no lgbtq++ only male and female '
-                            required
+                        <input type="text" id="Gender" name="gender" value="<?php echo $row["gender"]?>"
+                            placeholder='no lgbtq++ only male and female ' required
                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm" />
                     </div>
 
@@ -279,75 +282,54 @@ if(!empty($result)&& $result->num_rows>0){
                     </div>
                     <!-- colors -->
                     <div class="col-span-6 ">
-                        <label class="block text-sm font-medium text-gray-700">Avaliable Colors</label>
-                        <div class='flex flex-wrap'>
-                            <div id="color-inputs" class="flex flex-wrap space-x-3 mt-3">
-                                <!-- Initial color input -->
-                                <div class="flex items-center space-x-2 w-fit relative">
-                                <div class='mb-5 flex gap-2'>
-                        <?php 
-                        $colors = json_decode($row['color']);
-                        foreach ($colors as $color) { ?>
-                          <input type="color" name="colors[]" value="<?php echo $color;?>"
-                                        class="cursor-pointer border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md block w-12 h-12"
-                                        required />
-                                    <button type="button" class="absolute bg-red-500 text-white p-1 rounded-full"
-                                        style='top :-8px; right:-10px;' onclick="removeColor(this)">
-                                        <svg class='w-3 h-3 text-white' fill="currentColor" viewBox="0 0 32 32"
-                                            version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                            </g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <title>cancel2</title>
-                                                <path
-                                                    d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </button>
-                        <?php }?>
-                    </div>
-                                  
-                                </div>
-                            </div>
-                                    
-                            <div class='ml-6 '>
+                        <label class="block text-sm font-medium text-gray-700">Available Colors</label>
+                        <div id="color-inputs" class=" w-fit flex flex-wrap gap-3 mt-3">
+                            <div class="h-fit ml-6 mt-2 ">
                                 <button type="button" id="add-color"
-                                    class=" mt-3 w-9 h-9 flex items-center justify-center border border-primary bg-primary text-white hover:text-blue-600  hover:bg-white rounded-full">
-                                    <svg class='w-6 h-6' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                    class="w-9 h-9 flex items-center justify-center border border-primary bg-primary text-white hover:text-blue-600 hover:bg-white rounded-full">
+                                    <svg class="w-6 h-6" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                        </g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <title></title>
-                                            <g id="Complete">
-                                                <g data-name="add" id="add-2">
-                                                    <g>
-                                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2" x1="12" x2="12"
-                                                            y1="19" y2="5"></line>
-                                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2" x1="5" x2="19"
-                                                            y1="12" y2="12"></line>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                        </g>
+                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2" x1="12" x2="12" y1="19" y2="5">
+                                        </line>
+                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2" x1="5" x2="19" y1="12" y2="12">
+                                        </line>
                                     </svg>
                                 </button>
                             </div>
+                            <div class="mb-5 flex flex-wrap gap-2">
+                                <?php 
+                                    $colors = json_decode($row['color']); // Decoding stored colors from database
+                                    foreach ($colors as $color) { ?>
+                                <div class="flex items-center space-x-2 w-fit relative ">
+                                    <!-- Color input -->
+                                    <input type="color" name="colors[]" value="<?php echo $color; ?>"
+                                        class="cursor-pointer border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md block w-12 h-12"
+                                        required />
 
-
+                                    <!-- Delete button -->
+                                    <button type="button" class="absolute bg-red-500 text-white p-1 rounded-full"
+                                        style="top: -8px; right: -10px;" onclick="removeColor(this)">
+                                        <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 32 32"
+                                            version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
+
+
                     <!-- product desc -->
                     <div class="col-span-6 max-h-96">
                         <label for="product-desc" class="block text-sm font-medium text-gray-700"> Product Description
                         </label>
-                        <textarea id="product-desc" name="productdesc"  placeholder='sth description' required
+                        <textarea id="product-desc" name="productdesc" placeholder='sth description' required
                             class="mt-1 w-full h-36 max-h-96 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"><?php echo $row["productdesc"]?></textarea>
                     </div>
                     <!-- photo select -->
@@ -374,7 +356,7 @@ if(!empty($result)&& $result->num_rows>0){
 
 
 
-                 <input type="text" name="item_id" value="<?php echo $item_id?>" style="display:none">
+                    <input type="text" name="item_id" value="<?php echo $item_id?>" style="display:none">
                     <div class="col-span-6 sm:flex sm:items-center sm:gap-4 ">
                         <button type="submit"
                             class="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
@@ -407,25 +389,16 @@ if(!empty($result)&& $result->num_rows>0){
     document.getElementById('add-color').addEventListener('click', function() {
         const colorInputsDiv = document.getElementById('color-inputs');
         const newColorInput = document.createElement('div');
-        newColorInput.classList.add('flex', 'items-center', 'space-x-2');
+        newColorInput.classList.add('flex', 'items-center', 'space-x-2', 'w-fit', 'relative');
         newColorInput.innerHTML = `
-        <div class="flex items-center space-x-2 w-fit relative">
+         <div class="mb-4">
             <input type="color" name="colors[]" class="border border-gray-300 text-gray-900 text-sm shadow-sm rounded-md block w-12 h-12" required />
-            <button type="button" class="cursor-pointer absolute bg-red-500  text-white p-1 rounded-full" style='top :-8px; right:-10px;' onclick="removeColor(this)">
-            <svg class='w-3 h-3 text-white' fill="currentColor" viewBox="0 0 32 32" version="1.1"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                        </g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <title>cancel2</title>
-                                            <path
-                                                d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z">
-                                            </path>
-                                        </g>
-                                    </svg>
+            <button type="button" class="absolute bg-red-500 text-white p-1 rounded-full" style="top: -8px; right: -10px;" onclick="removeColor(this)">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19.587 16.001l6.096 6.096c0.396 0.396 0.396 1.039 0 1.435l-2.151 2.151c-0.396 0.396-1.038 0.396-1.435 0l-6.097-6.096-6.097 6.096c-0.396 0.396-1.038 0.396-1.434 0l-2.152-2.151c-0.396-0.396-0.396-1.038 0-1.435l6.097-6.096-6.097-6.097c-0.396-0.396-0.396-1.039 0-1.435l2.153-2.151c0.396-0.396 1.038-0.396 1.434 0l6.096 6.097 6.097-6.097c0.396-0.396 1.038-0.396 1.435 0l2.151 2.152c0.396 0.396 0.396 1.038 0 1.435l-6.096 6.096z"></path>
+                </svg>
             </button>
-        </div>
+            </div>
         `;
         colorInputsDiv.appendChild(newColorInput);
     });
@@ -434,9 +407,8 @@ if(!empty($result)&& $result->num_rows>0){
     function removeColor(button) {
         button.parentElement.remove();
     }
-    </script>
+</script>
 
 </body>
 
 </html>
- 

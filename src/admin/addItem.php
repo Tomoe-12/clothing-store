@@ -176,7 +176,7 @@ include("../function/functions.php");
                     </svg>
                 </a>
 
-                
+
                 <div>
                     <a href='../pages/home.php'
                         class="flex h-[48px] w-full grow items-center justify-center gap-2 rounded-lg bg-gray-100 p-3 text-base font-semibold  sm:flex-none sm:justify-start sm:p-2 sm:px-3">
@@ -285,8 +285,36 @@ include("../function/functions.php");
                     <!-- colors -->
                     <div class="col-span-6 ">
                         <label class="block text-sm font-medium text-gray-700">Avaliable Colors</label>
-                        <div class='flex flex-wrap'>
+                        <div class='flex flex-wrap gap-3'>
                             <div id="color-inputs" class="flex flex-wrap space-x-3 mt-3">
+                                <div class='ml-6 '>
+                                    <button type="button" id="add-color"
+                                        class=" w-9 h-9 flex items-center justify-center border border-primary bg-primary text-white hover:text-blue-600  hover:bg-white rounded-full">
+                                        <svg class='w-6 h-6' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                            fill="currentColor">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                            </g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <title></title>
+                                                <g id="Complete">
+                                                    <g data-name="add" id="add-2">
+                                                        <g>
+                                                            <line fill="none" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" x1="12" x2="12" y1="19" y2="5"></line>
+                                                            <line fill="none" stroke="currentColor"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" x1="5" x2="19" y1="12" y2="12"></line>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+
                                 <!-- Initial color input -->
                                 <div class="flex items-center space-x-2 w-fit relative">
                                     <input type="color" name="colors[]"
@@ -311,32 +339,6 @@ include("../function/functions.php");
                                 </div>
                             </div>
 
-                            <div class='ml-6 '>
-                                <button type="button" id="add-color"
-                                    class=" mt-3 w-9 h-9 flex items-center justify-center border border-primary bg-primary text-white hover:text-blue-600  hover:bg-white rounded-full">
-                                    <svg class='w-6 h-6' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                        fill="currentColor">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                        </g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <title></title>
-                                            <g id="Complete">
-                                                <g data-name="add" id="add-2">
-                                                    <g>
-                                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2" x1="12" x2="12"
-                                                            y1="19" y2="5"></line>
-                                                        <line fill="none" stroke="currentColor" stroke-linecap="round"
-                                                            stroke-linejoin="round" stroke-width="2" x1="5" x2="19"
-                                                            y1="12" y2="12"></line>
-                                                    </g>
-                                                </g>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                </button>
-                            </div>
 
 
                         </div>

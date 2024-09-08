@@ -10,7 +10,7 @@ $key=false;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update</title>
 
     <!-- flowbite -->
     <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">

@@ -10,7 +10,7 @@ $key=false;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detail</title>
 
     <!-- flowbite -->
     <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
@@ -87,6 +87,8 @@ $key=false;
 
     @media (min-width: 640px) {
         .img-box{
+        min-width:700px;
+        max-width:700px;
         padding-left: 0px;
         padding-rigth: 0px;
     }
