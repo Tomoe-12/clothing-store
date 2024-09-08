@@ -248,13 +248,11 @@ $cus_id=$_GET["cus_id"];
 
         </div>
     </nav>
-
-    
     <section class="bg-white mx-auto flex items-center justify-center min-h-screen h-fit view-accept-box">
         <main
             class="relative shadow-md border border-gray-200 rounded-xl container w-full flex flex-col main items-center px-4 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <div class='absolute top-5' style='left:3%;'>
-                <div 
+                <div
                     class='text-primary border border-primary w-fit flex justify-center items-center gap-1 rounded-full px-2 py-1.5'>
                     <svg class='w-4 h-4' viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
@@ -275,12 +273,12 @@ $cus_id=$_GET["cus_id"];
                                 style="background-image : url('../../public/profileCoverImg.jpg')">
 
                                 <div class="relative ">
-                           <?php 
+                                    <?php 
                            $img=personaldetail("per_img",$cus_id);
                            if(isset($img)){  ?>
-                            <img src="data:image/jepg;base64,<?php echo base64_encode($img) ?>"
-                            class="w-40 h-40 ring-4 ring-white bg-gray-200 rounded-full" alt="avatar">
-                          <?php }else{?>
+                                    <img src="data:image/jepg;base64,<?php echo base64_encode($img) ?>"
+                                        class="w-40 h-40 ring-4 ring-white bg-gray-200 rounded-full" alt="avatar">
+                                    <?php }else{?>
                                     <svg class="w-32 h-32 ring-4 ring-white bg-gray-200 rounded-full"
                                         viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
                                         stroke="#bbb">
@@ -363,7 +361,7 @@ $cus_id=$_GET["cus_id"];
                                     </div>
                                     <div class='col-span-3 h-full flex'>
                                         <h3 class="text-lg max-sm:text-base font-medium text-gray-800">
-                                        <?php echo personaldetail("email",$cus_id)?>
+                                            <?php echo personaldetail("email",$cus_id)?>
                                         </h3>
 
                                     </div>
@@ -400,7 +398,7 @@ $cus_id=$_GET["cus_id"];
                                     </div>
                                     <div class='col-span-3 h-full flex'>
                                         <h3 class="text-lg max-sm:text-base font-medium text-gray-800">
-                                        <?php echo personaldetail("ph_no",$cus_id)?>
+                                            <?php echo personaldetail("ph_no",$cus_id)?>
                                         </h3>
 
                                     </div>
@@ -436,7 +434,7 @@ $cus_id=$_GET["cus_id"];
                                     </div>
                                     <div class='col-span-3 h-full flex'>
                                         <h3 class="text-lg max-sm:text-base font-medium text-gray-800">
-                                        <?php echo personaldetail("address",$cus_id)?>
+                                            <?php echo personaldetail("address",$cus_id)?>
                                         </h3>
 
                                     </div>
@@ -469,7 +467,8 @@ $cus_id=$_GET["cus_id"];
 
                                 <div class=' row-span-1 w-full h-full flex gap-3 items-center justify-between'>
                                     <span class='text-base text-gray-700'>Total :</span>
-                                    <h3 class='text-base font-medium text-gray-900'><?php echo $subtotal+3000+1000?>KS</h3>
+                                    <h3 class='text-base font-medium text-gray-900'><?php echo $subtotal+3000+1000?>KS
+                                    </h3>
                                 </div>
                             </div>
                         </div>
@@ -479,8 +478,8 @@ $cus_id=$_GET["cus_id"];
 
                     <!-- ordered item  accepted by admin  -->
                     <div class='mt-5 '>
-                    <div class="item-box sm:w-0 grid lg:grid-cols-2  gap-5">
-                        <?php
+                        <div class="item-box sm:w-0 grid lg:grid-cols-2  gap-5">
+                            <?php
             ob_start();
     
     $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
@@ -492,7 +491,8 @@ $cus_id=$_GET["cus_id"];
                             <div class='item-detail bg-gray-100 py-4 px-3 w-full rounded-xl h-fit flex  gap-0'>
                                 <!-- image  -->
                                 <div class="w-1/2 rounded-md flex justify-center items-center overflow-hidden ">
-                                    <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>" alt="Product"
+                                    <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                                        alt="Product"
                                         style='min-width:150px; max-width:150px; min-height:150px; max-height:150px; '
                                         class=" object-fill object-top " />
                                 </div>
@@ -521,30 +521,32 @@ $cus_id=$_GET["cus_id"];
                                         </div>
                                         <div class='w-full h-full flex gap-3 items-center'>
                                             <h3 class='text-xl font-medium text-gray-900'>cost :</h3>
-                                            <span class='text-base text-gray-700'><?php  echo $row["orderprice"]?>KS</span>
-                                            
+                                            <span
+                                                class='text-base text-gray-700'><?php  echo $row["orderprice"]?>KS</span>
+
                                         </div>
                                     </div>
 
                                 </div>
-                            </div> <?PHP }}?>
+                            </div>
+                            <?PHP }}?>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="mt-6 w-1/2 flex gap-4 deli-btn">
 
-<button type="submit"
-    class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
-    Deliver
-</button>
-<button type="button"
-    class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
-    onclick="location.href=''">
-    Cancel
-</button>
-</div>
-</main>
+                <button type="submit"
+                    class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
+                    Deliver
+                </button>
+                <button type="button"
+                    class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
+                    onclick="location.href='./ordered.php'">
+                    Cancel
+                </button>
+            </div>
+        </main>
     </section>
 
 

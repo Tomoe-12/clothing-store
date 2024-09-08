@@ -24,6 +24,21 @@ include("../function/connection.php");
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
 
     <style>
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+
     nav {
         z-index: 999 !important;
     }
@@ -78,7 +93,10 @@ include("../function/connection.php");
             position: fixed;
             flex-direction: column;
         }
+    }
 
+    .hidded {
+        display: none;
 
     }
     </style>
@@ -397,10 +415,10 @@ include("../function/connection.php");
                                             </g>
                                         </svg>
                                     </a>
-                                    <form action="../admin/components/delete.php" method="post">
-                                        <input type="text" value="<?php echo $row["clo_id"] ?>" name="clo_id"
+                                    <form action="./components/delete.php" method="post">
+                                        <input type="text" value="<?php echo $row["clo_id"]; ?>" name="clo_id"
                                             style="display:none;">
-                                        <button type='submtit' class='w-6 h-6'>
+                                        <button type='button' class='w-6 h-6 delete-button'>
                                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -432,8 +450,22 @@ include("../function/connection.php");
                         <?php }}?>
                     </tbody>
                 </table>
-
-
+                <!-- Custom Modal for Confirmation -->
+                <div id="custom-modal"
+                    class="hidded fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center"
+                    style='z-index:999; !important'>
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-80">
+                        <h2 class="text-lg font-semibold mb-4">Are you sure?</h2>
+                        <p class="mb-6">Do you really want to delete this item? This process cannot be
+                            undone.</p>
+                        <div class="flex justify-end space-x-4">
+                            <button id="cancel-btn"
+                                class="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</button>
+                            <button id="confirm-btn"
+                                class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">Delete</button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -532,6 +564,41 @@ include("../function/connection.php");
         document.getElementById("accountcontent").style.width = "20%";
 
     }, false);
+    </script>
+
+
+    <script>
+    let formToSubmit = null;
+
+    // Function to show the custom modal
+    function showCustomModal(event) {
+        // Prevent form from submitting
+        event.preventDefault();
+
+        // Store the form that needs to be submitted
+        formToSubmit = event.target.closest('form');
+
+        // Show the modal
+        document.getElementById('custom-modal').classList.remove('hidded');
+    }
+
+    // Handle the delete confirmation
+    document.getElementById('confirm-btn').addEventListener('click', function() {
+        // Submit the form if "Delete" is clicked
+        if (formToSubmit) {
+            formToSubmit.submit();
+        }
+    });
+
+    // Hide the modal when "Cancel" is clicked
+    document.getElementById('cancel-btn').addEventListener('click', function() {
+        document.getElementById('custom-modal').classList.add('hidded');
+    });
+
+    // Attach the custom modal trigger to all delete buttons
+    document.querySelectorAll('.delete-button').forEach(button => {
+        button.addEventListener('click', showCustomModal);
+    });
     </script>
 
 

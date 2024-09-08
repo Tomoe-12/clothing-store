@@ -442,13 +442,6 @@ nav.scrolled {
                                         </svg>
                                     </button>
                                 </form>
-
-
-
-
-
-
-
                             </div>
                         </td>
                     </tr>
