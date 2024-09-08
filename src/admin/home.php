@@ -358,7 +358,7 @@ include("../function/connection.php");
                     <tbody>
 
                         <?php   
-                            $result=$con->query("SELECT * FROM closet order by type ");
+                            $result=$con->query("SELECT * FROM closet order by arrDate desc ");
                             if(!empty($result)&& $result->num_rows>0){
                                while($row=$result->fetch_assoc()){ 
                              ?>

@@ -299,7 +299,7 @@ include("../../function/functions.php");
                     <?php
     ob_start();
     
-    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' or admindec='Accept' group by orderhistory.or_date; ");
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Pending' or admindec='Accept' group by orderhistory.or_date  order by orderhistory.or_date desc");
     if(!empty($result)&& $result->num_rows>0){
        while($row=$result->fetch_assoc()){ ?>
                     <tr>

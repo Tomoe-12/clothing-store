@@ -51,7 +51,7 @@ include("../function/functions.php")
     </style>
 
     <script>
-    if ( < ? Php echo $_SESSION["success"] ? > ) {
+    if ( <?Php echo $_SESSION["success"] ?> ) {
 
         alert("Logged in Successfully!");
         <?php $_SESSION["success"]=null; ?>
@@ -236,7 +236,7 @@ if(!empty($result)&& $result->num_rows>0){
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             <?php
  $val=$_GET["val"];
-   $result=$con->query("SELECT * FROM closet where type='$val'  order by price");
+   $result=$con->query("SELECT * FROM closet where type='$val'  order by arrDate desc");
    if(!empty($result)&& $result->num_rows>0){
     while($row=$result->fetch_assoc()){ 
         

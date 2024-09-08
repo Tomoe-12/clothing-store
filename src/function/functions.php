@@ -345,4 +345,28 @@ function deletcart($user_id){
         $con->query("UPDATE cart set quantity='$quantity' , size='$size' ,orderprice='$orderprice', cart_color='$color' where cart_id='$cart_id'");    
 
     }
+    function subtotal($or_date,$cus_id){
+        $subtotal=0;
+        include("connection.php");
+        
+    $result=$con->query("SELECT * FROM orderhistory JOIN closet ON closet.clo_id=orderhistory.clo_id JOIN customers ON customers.cus_id=orderhistory.cus_id where admindec='Accept' and orderhistory.or_date='$or_date' and orderhistory.cus_id='$cus_id' ");
+    if(!empty($result)&& $result->num_rows>0){
+       while($row=$result->fetch_assoc()){
+           $subtotal+=$row["orderprice"];
+
+        }}
+        return $subtotal;
+    }
+
+    function personaldetail($content,$cus_id){
+        include("connection.php");
+        $result=$con->query("SELECT $content FROM customers WHERE cus_id='$cus_id'");
+        if(!empty($result)&& $result->num_rows>0){
+            if($row=$result->fetch_assoc()){
+               return $row[$content];
+     
+             }}
+    }
+
+
 ?>

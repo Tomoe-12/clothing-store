@@ -47,7 +47,7 @@ session_start();
 }
 </style>
 <script>
-if ( < ? Php echo $_SESSION["update"] ? > ) {
+if ( <?Php echo $_SESSION["update"] ?> ) {
 
     alert("Update Successfully!");
     <?php $_SESSION["update"]=null; ?>

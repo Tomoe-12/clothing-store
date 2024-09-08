@@ -367,7 +367,7 @@ nav.scrolled {
                 <tbody>
                     <?php
     
-    $result=$con->query("SELECT * FROM closet JOIN size ON closet.clo_id=size.clo_id where Small<=3 or Medium<=3 or Large<=3 or XL<=3 or XXL<=3  order by type  ");
+    $result=$con->query("SELECT * FROM closet JOIN size ON closet.clo_id=size.clo_id where Small<=3 or Medium<=3 or Large<=3 or XL<=3 or XXL<=3  order by arrDate desc  ");
     if(!empty($result)&& $result->num_rows>0){
      while($row=$result->fetch_assoc()){ ?>
                     <tr>

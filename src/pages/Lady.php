@@ -236,7 +236,7 @@ if(!empty($result)&& $result->num_rows>0){
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             <?php
 
-   $result=$con->query("SELECT * FROM closet where gender='female' or gender='unisex' order by price");
+   $result=$con->query("SELECT * FROM closet where gender='female' or gender='unisex' order by arrDate");
    if(!empty($result)&& $result->num_rows>0){
     while($row=$result->fetch_assoc()){ 
         
