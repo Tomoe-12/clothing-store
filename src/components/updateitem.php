@@ -617,6 +617,60 @@ foreach ($colors as $color) {
     });
     </script>
 
+    <script>
+    const sizeButtons = document.querySelectorAll('[data-size]');
+
+    sizeButtons.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const selectedSize = e.target.dataset.size;
+            sizeButtons.forEach((btn) => {
+                btn.classList.remove('bg-primary');
+                btn.classList.remove('text-white');
+                btn.classList.add('border-gray-200');
+            });
+            e.target.classList.add('bg-primary');
+            e.target.classList.add('text-white')
+            e.target.classList.remove('border-gray-200');
+        });
+    });
+    </script>
+    <script>
+    const carousel = document.getElementById('carousel');
+    const images = carousel.getElementsByTagName('img');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    let currentIndex = 0;
+
+    // Function to show the current image in the carousel
+    function showImage(index) {
+        for (let i = 0; i < images.length; i++) {
+            images[i].classList.add('hidden');
+        }
+        images[index].classList.remove('hidden');
+    }
+
+    // Event listeners for next/prev buttons
+    document.getElementById('nextBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    });
+
+    // Event listeners for thumbnails
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', () => {
+            currentIndex = index;
+            showImage(index);
+        });
+    });
+
+    // Initially show the first image
+    showImage(currentIndex);
+    </script>
+
 </body>
 <style>
 .color-label {
