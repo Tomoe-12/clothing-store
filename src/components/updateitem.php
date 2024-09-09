@@ -464,6 +464,7 @@ foreach ($colors as $color) {
                                 </p>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
             </div>

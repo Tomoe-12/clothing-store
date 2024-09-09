@@ -332,6 +332,14 @@ if(!empty($result)&& $result->num_rows>0){
                         <textarea id="product-desc" name="productdesc" placeholder='sth description' required
                             class="mt-1 w-full h-36 max-h-96 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"><?php echo $row["productdesc"]?></textarea>
                     </div>
+                    <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
+                            if(!empty($result1)&& $result1->num_rows>0){
+                                while($row1=$result1->fetch_assoc()){ ?>
+                            <img src="data:image/jepg;base64,<?php echo base64_encode($row1["img"]) ?>" alt="Product"
+                                style='min-width:100px; max-width:100px; min-height:110px; min-height:110px;'
+                                class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
+                            <?php     }}
+                               ?>
                     <!-- photo select -->
                     <!-- <div class="col-span-6">
                         <label for="file-input" class="mb-2 font-medium flex justify-between items-center">
