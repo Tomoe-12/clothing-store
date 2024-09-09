@@ -78,7 +78,7 @@ nav.scrolled {
             <div class="lg:flex lg:items-center lg:justify-between">
                 <div class="flex items-center justify-between">
                     <a href="../pages/home.php">
-                        <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
+                        <img class="w-auto h-6 sm:h-7" src="https://merakiui.com/images/logo.svg" alt="">
                     </a>
                     <!-- Mobile menu button -->
 

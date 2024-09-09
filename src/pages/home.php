@@ -345,7 +345,7 @@ include("../function/functions.php");
                 <div class="w-full -mx-6 lg:w-2/5">
                     <div class="px-6">
                         <a href="#">
-                            <img class="w-auto h-7" src="https://merakiui.com/images/full-logo.svg" alt="">
+                            <img class="w-auto h-7" src="https://merakiui.com/images/logo.svg" alt="">
                         </a>
 
                         <p class="max-w-sm mt-2 text-gray-500 dark:text-gray-400">Join 31,000+ other and never miss out
