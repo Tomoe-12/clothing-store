@@ -1,7 +1,7 @@
 <?php 
 include("../function/functions.php");
 include("../function/connection.php");
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -99,7 +99,15 @@ include("../function/connection.php");
         display: none;
 
     }
-    </style>
+    </style> 
+    <script>
+if ( <?Php echo $_SESSION["update"] ?> ) {
+
+alert("Updated Successfully!");
+<?php $_SESSION["update"]=null; ?>
+}
+    </script>
+  
 </head>
 
 <body class='flex p-0'>
@@ -341,7 +349,7 @@ include("../function/connection.php");
                                     </svg>
                                 </span>
                             </th>
-                            <th class='bg-gray-100'>
+                            <th class='bg-gray-100  noSort'>
                                 <span class="flex items-center">
                                     Available Colors
                                     <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

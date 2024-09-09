@@ -284,7 +284,7 @@ include("../function/functions.php")
             </div>
         </div>
     </nav>
-    <div id="all" class="container px-6 md:px-0 mx-auto h-screen" style="margin-top:80px;">
+    <div id="all" class="container px-6 md:px-0 mx-auto min-h-screen" style="margin-top:80px;">
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
             <?php

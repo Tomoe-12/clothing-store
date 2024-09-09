@@ -602,7 +602,7 @@ foreach($_FILES["image"]['tmp_name'] as $key => $tmp_name){
     $statement=$con->prepare("INSERT INTO closet_img (clo_id,img) VALUES ( '$clo_id',?)");
     $statement->bind_param("s",$imgdata);
     $current_id= $statement->execute() or die("<b> Error </b> problem on image insertion".mysqli_connect_error());
-   echo $statement ;
+   echo $current_id ;
  if($current_id){    ?>
 <script>
 alert("Create Item Successfully!");

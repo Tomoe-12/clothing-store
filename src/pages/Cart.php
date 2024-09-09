@@ -108,8 +108,9 @@ $clo_id=$row["clo_id"];
 
                             <div class="flex flex-col ">
                                 <h3 class="text-base font-bold text-gray-800"><?php echo $row["productname"]?></h3>
-                                <p class="text-xs font-semibold text-gray-500 mt-0.5"><?php echo $row["size"]?></p>
-                                <span class='rounded-full mt-4 border border-gray-400'
+                                <p class="text-xs font-semibold text-gray-500 mt-0.5">Size : <?php echo $row["size"]?></p>
+                                <p class="text-xs font-semibold text-gray-500 mt-0.5">Number : <?php echo $row["quantity"]?></p>
+                                <span class='rounded-full mt-2 border border-gray-400'
                                     style='width: 20px; height: 20px; background-color:<?php echo $row["cart_color"];?>'></span>
 
                                 <form action="../function/cartitemremove.php" method="post">

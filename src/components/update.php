@@ -1,8 +1,7 @@
 <?php 
 include("../function/connection.php");
-
-
-
+include("../function/functions.php")
+$noti=$_GET["noti"];
 ?>
 <!DOCTYPE html>
 <html lang="en">

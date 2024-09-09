@@ -1,6 +1,7 @@
 <?php 
 include("../../function/connection.php");
 include("../../function/functions.php");
+session_start();
 ?>
 
 
@@ -103,6 +104,13 @@ nav.scrolled {
 
 }
 </style>
+<script>
+if ( <?Php echo $_SESSION["update"] ?> ) {
+
+alert("Updated Successfully!");
+<?php $_SESSION["update"]=null; ?>
+}
+    </script>
 
 <body class='flex p-0 relative'>
 
@@ -321,7 +329,7 @@ nav.scrolled {
                                 </svg>
                             </span>
                         </th>
-                        <th>
+                        <th class='noSort'>
                             <span class="flex items-center">
                                 Available Colours
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
