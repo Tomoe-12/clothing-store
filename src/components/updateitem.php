@@ -150,7 +150,7 @@ $key=false;
                             <div id="carousel"
                                 class="bg-gray-100 mx-auto big-img rounded-md flex justify-center items-center overflow-hidden  "
                                 style='min-height:600px; max-height:600px; padding:45px;'>
-                                <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
+                                <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$clo_id'");
                             if(!empty($result1)&& $result1->num_rows>0){
                                 while($row1=$result1->fetch_assoc()){ ?>
                                 <img src="data:image/jepg;base64,<?php echo base64_encode($row1["img"]) ?>"
@@ -203,7 +203,7 @@ $key=false;
 
                         <!-- Thumbnails -->
                         <div class="img-thumnail-scroll gap-5 mt-4 overflow-auto">
-                            <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
+                            <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$clo_id'");
                             if(!empty($result1)&& $result1->num_rows>0){
                                 while($row1=$result1->fetch_assoc()){ ?>
                             <img src="data:image/jepg;base64,<?php echo base64_encode($row1["img"]) ?>" alt="Product"
