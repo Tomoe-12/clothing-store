@@ -535,11 +535,17 @@ $cus_id=$_GET["cus_id"];
                 </div>
             </div>
             <div class="mt-6 w-1/2 flex gap-4 deli-btn">
-
-                <button type="submit"
-                    class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
+                <label for="submit" style="text-align:center;" class=" cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
+           
                     Deliver
-                </button>
+                    
+               
+                </label>
+            <form action="../../function/validate.php" method="get" style="display:none;">
+    <input type="text" style="display:none" value="<?php echo $cus_id ?>" name="cus_id"><br>
+                <input type="text" style="display:none" value="<?php echo $or_date ?>" name="or_date"><br>
+                 <input type="submit" id="submit">
+            </form>
                 <button type="button"
                     class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
                     onclick="location.href='./ordered.php'">
