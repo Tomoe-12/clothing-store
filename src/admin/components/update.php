@@ -36,6 +36,17 @@ session_start();
     grid-column: span 2 / span 2;
 }
 
+
+.img-thumnail-scroll {
+    display: flex;
+    overflow-x: auto;
+}
+
+.img-thumnail-scroll>img {
+    width: 100px;
+    height: 100px;
+}
+
 @media (min-width: 640px) {
     .size {
         grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -45,9 +56,25 @@ session_start();
         grid-column: span 1 / span 1;
     }
 }
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
 </style>
 <script>
-if ( <?Php echo $_SESSION["update"] ?> ) {
+if ( < ? Php echo $_SESSION["update"] ? > ) {
 
     alert("Update Successfully!");
     <?php $_SESSION["update"]=null; ?>
@@ -332,35 +359,18 @@ if(!empty($result)&& $result->num_rows>0){
                         <textarea id="product-desc" name="productdesc" placeholder='sth description' required
                             class="mt-1 w-full h-36 max-h-96 rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"><?php echo $row["productdesc"]?></textarea>
                     </div>
-                    <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
+
+                    <!---image--->
+                    <div class="img-thumnail-scroll col-span-6 gap-5 overflow-auto">
+                        <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
                             if(!empty($result1)&& $result1->num_rows>0){
                                 while($row1=$result1->fetch_assoc()){ ?>
-                            <img src="data:image/jepg;base64,<?php echo base64_encode($row1["img"]) ?>" alt="Product"
-                                style='min-width:100px; max-width:100px; min-height:110px; min-height:110px;'
-                                class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
-                            <?php     }}
+                        <img src="data:image/jepg;base64,<?php echo base64_encode($row1["img"]) ?>" alt="Product"
+                            style='min-width:150px; max-width:150px; min-height:160px; min-height:160px;'
+                            class="bg-gray-100 p-2 rounded-md cursor-pointer thumbnail" />
+                        <?php     }}
                                ?>
-                    <!-- photo select -->
-                    <!-- <div class="col-span-6">
-                        <label for="file-input" class="mb-2 font-medium flex justify-between items-center">
-                            <p>Choose files</p>
-                            <button type='button' id="select-button"
-                                class="bg-primary hover:bg-white hover:text-blue-600 border border-blue-600 text-white text-sm font-medium py-1.5 px-4 rounded-full transition-colors duration-300">
-                                Add image
-                            </button>
-                        </label>
-                        <input id='file-input' type="file" name="image[]" class='hidden' accept="image/*" required
-                            multiple>
-                        <div class="flex mb-4 flex-col">
-                            <div id="drop-zone"
-                                class="w-full h-48 border-2 border-dashed border-gray-300 rounded-lg flex justify-center items-center text-gray-400 text-lg">
-                                <span>Drag and drop files here</span>
-                            </div>
-                            <div id="selected-files-count" class="text-gray-500 text-sm font-medium"></div>
-                            <div id="selected-images" class="grid grid-cols-2 gap-3 mt-6"></div>
-                        </div>
-
-                    </div> -->
+                    </div>
 
 
 
@@ -415,7 +425,7 @@ if(!empty($result)&& $result->num_rows>0){
     function removeColor(button) {
         button.parentElement.remove();
     }
-</script>
+    </script>
 
 </body>
 
