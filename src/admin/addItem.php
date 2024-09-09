@@ -619,10 +619,7 @@ alert("Sth went Wrong !");
  }
   
 } 
-   
     
-     
- 
 $con->close();
 } 
 }
