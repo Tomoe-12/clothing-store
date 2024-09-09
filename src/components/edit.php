@@ -255,8 +255,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
       else{ 
         try{
             $con->query("UPDATE customers SET user_name='$user_name', address='$address' , ph_no='$ph_no' where cus_id='$user_id'");
-          
-             header("Location:edit.php");
+            ?>
+                <script>
+                    alert('Updated Successfully !');
+                    window.location.href = '../pages/profile.php';
+                </script>
+            <?php
+            
             ob_end_flush();
 
         }catch(mysqli_sql_exception){

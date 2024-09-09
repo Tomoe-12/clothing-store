@@ -455,9 +455,7 @@ document.getElementById("unsuccess").style.display = "block";
             $color=$_POST["color"];
             $size=filter_input(INPUT_POST,"size",FILTER_SANITIZE_SPECIAL_CHARS);
                 if(isset($size)){
-            $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);
-            echo $size;
-            echo $quantity;
+            $quantity=filter_input(INPUT_POST,"quantity",FILTER_VALIDATE_INT);]
             switch($size){
                 case"small":  $realprice=$price+0;break;
                 case"medium": $realprice=$price+2000;break;

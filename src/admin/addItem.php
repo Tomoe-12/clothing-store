@@ -566,17 +566,17 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $colorsString = json_encode($colors); // Store it as a JSON string in the database
     $productname=filter_input(INPUT_POST,"productname",FILTER_SANITIZE_SPECIAL_CHARS);
     $productdesc=filter_input(INPUT_POST,"productdesc",FILTER_SANITIZE_SPECIAL_CHARS);
-$type=filter_input(INPUT_POST,"type",FILTER_SANITIZE_SPECIAL_CHARS);
-$small=filter_input(INPUT_POST,"small",FILTER_VALIDATE_INT);
-$medium=filter_input(INPUT_POST,"medium",FILTER_VALIDATE_INT);
-$large=filter_input(INPUT_POST,"large",FILTER_VALIDATE_INT);
-$XL=filter_input(INPUT_POST,"XL",FILTER_VALIDATE_INT);
-$XXL=filter_input(INPUT_POST,"XXL",FILTER_VALIDATE_INT);
-$gender=filter_input(INPUT_POST,"gender",FILTER_SANITIZE_SPECIAL_CHARS);
-$price=filter_input(INPUT_POST,"price",FILTER_VALIDATE_INT);
-$instock=$small+$medium+$large+$XL+$XXL;
-$result=false;
-if($small==null && $medium==null && $large==null && $XL==null && $XXL==null){
+    $type=filter_input(INPUT_POST,"type",FILTER_SANITIZE_SPECIAL_CHARS);
+    $small=filter_input(INPUT_POST,"small",FILTER_VALIDATE_INT);
+    $medium=filter_input(INPUT_POST,"medium",FILTER_VALIDATE_INT);
+    $large=filter_input(INPUT_POST,"large",FILTER_VALIDATE_INT);
+    $XL=filter_input(INPUT_POST,"XL",FILTER_VALIDATE_INT);
+    $XXL=filter_input(INPUT_POST,"XXL",FILTER_VALIDATE_INT);
+    $gender=filter_input(INPUT_POST,"gender",FILTER_SANITIZE_SPECIAL_CHARS);
+    $price=filter_input(INPUT_POST,"price",FILTER_VALIDATE_INT);
+    $instock=$small+$medium+$large+$XL+$XXL;
+    $result=false;
+    if($small==null && $medium==null && $large==null && $XL==null && $XXL==null){
     $result=true;
 }else{
     $result=false;
@@ -602,13 +602,20 @@ foreach($_FILES["image"]['tmp_name'] as $key => $tmp_name){
     $statement=$con->prepare("INSERT INTO closet_img (clo_id,img) VALUES ( '$clo_id',?)");
     $statement->bind_param("s",$imgdata);
     $current_id= $statement->execute() or die("<b> Error </b> problem on image insertion".mysqli_connect_error());
- if($current_id){
-     echo"inserted successfully";
-    
-     
+ if($current_id){   ?>
+<script>
+alert("Create Item Successfully!");
+window.location.href = './home.php';
+</script>
+<?php
+   
  } 
- else {
-     echo"fail to insert";
+ else {?>
+<script>
+alert("Sth went Wrong !");
+</script>
+<?php
+    echo"fail to insert";
  }
   
 } 
