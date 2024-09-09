@@ -1,270 +1,313 @@
 <?php 
-include("connection.php");
+include("../function/connection.php");
+session_start(); 
+include("../function/functions.php");
+
+if(empty( $_SESSION["res"])){
+    echo"";
+}
+if( isset($_SESSION["update"] )){
+    $_SESSION["update"]=null;
+    $update=true;
+}  
+ ?>
+<script>
+if (<?php echo $update ?>) {
+    alert("Update Successfully!");
+}
+</script>
+<?php
+if(isset($_SESSION["res"])){ 
+    $res=true;
+    $_SESSION["res"]=null;
+    ?>
+<script>
+if (<?php echo $res?>) {
+    alert("Order all items Successfully!");
+    window.location.href = './home.php';
+}
+</script>
+<?php
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cart</title>
+
+    <!-- flowbite -->
+    <link rel="stylesheet" href="../../node_modules/flowbite/dist/flowbite.min.css">
+    <script src="../../node_modules/flowbite/dist/flowbite.min.js"></script>
+
+    <!-- tailwind -->
+    <link href="../output.css" rel="stylesheet">
+
+    <!-- alpine -->
+    <script src="../../public/script.js"></script>
+
+    <style>
+    .test {
+        border: 1px solid red;
+    }
+
+    .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    .update:hover {
+        background-color: #2563EB;
+    }
+    </style>
+
 </head>
+
 <body>
-<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post"  enctype="multipart/form-data">
-
-<label>Image <input type="file" name="image" accept="img/*"></label><br>
-<input type="submit" name="save" value="Post">
-</form>
-<?php 
-if(isset($_POST["save"])){
 
 
-if(isset($_FILES["image"]) && $_FILES["image"]["error"]==0){
-    $image=$_FILES["image"]["tmp_name"];
-    $image_content=file_get_contents($image);
-    $statement=$con->prepare("UPDATE  customers  SET per_img=? where cus_id=1");
-    $statement->bind_param("s",$image_content);
-    $current_id= $statement->execute() or die("<b> Error </b> problem on image insertion".mysqli_connect_error());
- if($current_id){
-     echo"inserted successfully<a href='home.php'>view all images</a>";
-     
- } 
- else {
-     echo"fail to insert";
- }
-  }
-  else{
-    echo "please select an image";
-  }
-} 
-$con->close();
+
+    <?php  
+                     if(!empty($_SESSION["user_id"])){
+                     $user_id=$_SESSION["user_id"];
+                    $result=$con->query("SELECT * FROM cart JOIN closet ON closet.clo_id=cart.clo_id JOIN customers ON customers.cus_id=cart.cus_id WHERE cart.cus_id='$user_id' ");
+                    if($result->num_rows == 0){?>
+    <div class='w-full flex h-screen items-center justify-center fixed '>
+        <img class='container mx-auto' style='opacity : 0.7' src="../../public/cart.png" alt="">
+    </div>
+
+    <div class='w-full h-fit flex flex-col justify-center items-center mt-10'>
+        <h1 class="text-3xl font-bold text-gray-800 text-center"style='z-index:999;!important'>Shopping Cart</h1> 
+        <h1 class="text-2xl font-semibold text-gray-600 text-center mt-10"style='z-index:999;!important'>Emply Cart , You haven't added anything yet!</h1>
+    </div>
+
+  
+    <?php  }else {
+                        $subtotal=0;
+                        while($row=$result->fetch_assoc()){
+                        $email=$row["email"];
+                        $user_name=$row["user_name"];
+                        $clo_id=$row["clo_id"];
+                        $user_id=$row["cus_id"];
+                    ?>
 
 
-?>
+    <div class='w-full h-36 flex justify-center items-center  mt-10'>
+        <h1 class="text-3xl font-bold text-gray-800 text-center">Shopping Cart</h1>
+    </div>
+
+    <div class=" bg-transparent container px-6 py-0 mx-auto flex justify-center z-20 ">
+
+        <div class="font-sans w-fit mx-auto  bg-white ">
+
+            <div class="grid md:grid-cols-3 gap-5">
+
+                <!-- items box  -->
+                <div class="md:col-span-2 space-y-4 h-full ">
+                    <div class="grid grid-cols-3 items-start gap-4">
+                        <div class="col-span-2 flex items-start gap-4">
+                            <div class="w-28 h-28 max-sm:w-24 max-sm:h-24 shrink-0 bg-gray-100 p-2 rounded-md">
+                                <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
+                                    class="w-full h-full object-contain" />
+
+                            </div>
+
+                            <div class="flex flex-col ">
+                                <h3 class="text-base font-bold text-gray-800">
+                                    <?php echo $row["productname"]?></h3>
+                                <p class="text-xs font-semibold text-gray-500 mt-0.5">
+                                    <?php echo $row["size"]?></p>
+                                <span class='rounded-full mt-4'
+                                    style='width: 20px; height: 20px; background-color:<?php echo $row["cart_color"];?>'></span>
+
+                                <form action="../function/cartitemremove.php" method="post">
+                                    <input type="text" name="cart_id" value="<?php  echo $row["cart_id"] ?>"
+                                        style="display: none;">
+                                    <input type="text" name="clo_id" value="<?php  echo $row["clo_id"] ?>"
+                                        style="display: none;">
+                                    <input type="text" name="quantity" value="<?php  echo $row["quantity"] ?>"
+                                        style="display: none;">
+                                    <input type="text" name="size" value="<?php  echo $row["size"] ?>"
+                                        style="display: none;">
+
+
+                                    <button type="submit" name="remove"
+                                        class="mt-6 font-semibold text-red-500 text-xs flex items-center gap-1 shrink-0 ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 fill-current inline"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                                                data-original="#000000"></path>
+                                            <path
+                                                d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                                                data-original="#000000"></path>
+                                        </svg>
+                                        REMOVE
+
+                                    </button>
+                                </form>
+                                <!-- <a
+                                    href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> ">Update</a> -->
+                            </div>
+                        </div>
+
+                        <div class="ml-auto">
+
+                            <h4 class="text-lg max-sm:text-base font-bold text-gray-800"><?php  $subtotal+=$row["orderprice"];
+                                                echo  $row["orderprice"]?></h4>
+
+                            <a class="update text-primary gap-1 font-semibold mt-6 flex items-center px-3 py-1.5 border border-blue-600  hover:text-white text-sm outline-none bg-transparent rounded-md"
+                                href="../components/updateitem.php?cart_id=<?php echo $row["cart_id"]?>&&  clo_id=<?php echo $row["clo_id"] ?> && quantity=<?php  echo $row["quantity"]?> && size=<?php echo $row["size"]  ?> && price=<?php echo $row["price"] ?> ">
+                                <svg class='w-4 h-4 ' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                    fill="#000000">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path fill="none" stroke="currentColor" stroke-width="2"
+                                            d="M2.99787498,6.99999999 L2.99787498,0.999999992 L17.4999998,0.999999992 L20.9999998,4.50000005 L21,23 L15,23 M16,1 L16,6 L21,6 M8,23 C11.8659932,23 15,19.8659932 15,16 C15,12.1340068 11.8659932,9 8,9 C4.13400675,9 1,12.1340068 1,16 C1,19.8659932 4.13400675,23 8,23 Z M4.5,16.5 L8,13 L11.5,16.5 M8,13.5 L8,20">
+                                        </path>
+                                    </g>
+                                </svg>
+                                Update
+                            </a>
+
+
+                        </div>
+                    </div>
+
+                    <hr class="border-gray-300" />
+
+
+                </div>
+                <?PHP }}} ?>
+                <!-- summary box -->
+                <div class="bg-gray-100 bg-tr rounded-md w-full p-4 h-max z-10">
+                    <h3 class="text-lg max-sm:text-base font-bold text-gray-800 border-b border-gray-300 pb-2">
+                        Order
+                        Summary
+                    </h3>
+
+                    <form class="mt-6">
+                        <div>
+                            <div class="space-y-5">
+                                <div class="relative flex items-center justify-between">
+                                    <!-- <input type="text" placeholder="Full Name"
+                                                    class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" /> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-5 h-5"
+                                        viewBox="0 0 24 24">
+                                        <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                                        <path
+                                            d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
+                                            data-original="#000000"></path>
+                                    </svg>
+                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800">
+                                        <?php echo usernameout($user_id); ?></h3>
+
+
+                                </div>
+
+                                <div class=" relative flex items-center justify-between">
+                                    <!-- <input type="email" placeholder="Email"
+                                                    class="px-4 py-2.5 bg-white text-gray-800 rounded-md w-full text-sm border-b focus:border-gray-800 outline-none" /> -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" class="w-5 h-5 "
+                                        viewBox="0 0 682.667 682.667">
+                                        <defs>
+                                            <clipPath id="a" clipPathUnits="userSpaceOnUse">
+                                                <path d="M0 512h512V0H0Z" data-original="#000000">
+                                                </path>
+                                            </clipPath>
+                                        </defs>
+                                        <g clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
+                                            <path fill="none" stroke-miterlimit="10" stroke-width="40"
+                                                d="M452 444H60c-22.091 0-40-17.909-40-40v-39.446l212.127-157.782c14.17-10.54 33.576-10.54 47.746 0L492 364.554V404c0 22.091-17.909 40-40 40Z"
+                                                data-original="#000000"></path>
+                                            <path
+                                                d="M472 274.9V107.999c0-11.027-8.972-20-20-20H60c-11.028 0-20 8.973-20 20V274.9L0 304.652V107.999c0-33.084 26.916-60 60-60h392c33.084 0 60 26.916 60 60v196.653Z"
+                                                data-original="#000000"></path>
+                                        </g>
+                                    </svg>
+                                    <h3 class="text-base max-sm:text-sm font-semibold text-gray-800">
+                                        <?php  echo emailout($user_id)?> </h3>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <ul class="text-gray-800 mt-8 space-y-3">
+                        <?php if(isset($subtotal)){?>
+                        <li class="flex flex-wrap gap-4 text-sm">Subtotal <span
+                                class="ml-auto font-bold"><?php echo $subtotal;?>KS</span>
+                        </li> <?php } else{?>
+                        <li class="flex flex-wrap gap-4 text-sm">Subtotal <span
+                                class="ml-auto font-bold"><?php echo $subtotal=0;?>KS</span>
+                        </li> <?php }?>
+                        <li class="flex flex-wrap gap-4 text-sm">Shipping <span class="ml-auto font-bold">
+                                <?PHP  echo $shipping=3000?>KS
+                            </span>
+                        </li>
+                        <li class="flex flex-wrap gap-4 text-sm">Tax <span class="ml-auto font-bold">
+                                <?PHP  echo $tax=1000?>KS
+                            </span></li>
+                        <hr class="border-gray-300" />
+                        <li class="flex flex-wrap gap-4 text-sm font-bold">Total <span
+                                class="ml-auto"><?php echo $subtotal+$shipping+$tax; ?>KS</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-6 w-full space-y-3 ">
+
+                        <button type="submit"
+                            class="cursor-pointer text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-primary hover:bg-white hover:text-blue-600  border border-blue-600  text-white rounded-md">
+                            <label for="order" class='cursor-pointer'>Order Now</label>
+                        </button>
+                        <button type="button"
+                            class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
+                            onclick="location.href='./home.php'">Continue
+                            Shopping
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+
+
+    <form action="../function/cartmovorder.php" method="post" style="display: none;">
+        <input type="text" name="user_id" value="<?php  echo $user_id;?>">
+        <input type="submit" name="submit" value="submit" id="order">
+    </form>
 </body>
+
+
+<script>
+const quantityInput = document.getElementById('quantity-input');
+const incrementButton = document.getElementById('increment-button');
+const decrementButton = document.getElementById('decrement-button');
+
+incrementButton.addEventListener('click', () => {
+    const currentValue = parseInt(quantityInput.value, 10);
+    quantityInput.value = currentValue + 0.5;
+    decrementButton.classList.remove('disabled');
+});
+
+decrementButton.addEventListener('click', () => {
+    const currentValue = parseInt(quantityInput.value, 10);
+    if (currentValue > 1) {
+        quantityInput.value = currentValue - 0.5;
+    } else if (currentValue === 1) {
+        console.log('1');
+        quantityInput.value = 1;
+        decrementButton.classList.add('disabled');
+    }
+});
+</script>
+
+
 </html>
-
-
-
-
-
-
-
-
-
-
-<form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post"> -->
-     <!-- <a href="../pages/home.php">Back</a>
-    <div class="signupbox">
-
-        <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post"> -->
-    <!-- <h1>Sign Up</h1>
-    <input type="text" name="username" placeholder="User name" required>
-    <input type="email" name="email" placeholder="E-mail" required>
-    <input type="password" name="pass" placeholder="Password" maxlength="10" required>
-    <input type="password" name="repass" placeholder="Confirm Password" maxlength="10" required>
-    <input type="text" name="ph_no" placeholder="Contact Number" required>
-    <input type="textarea" name="address" placeholder="Address" required>
-    <input type="submit" name="Login" value="Sign Up">
-    <div id="success" style="margin-top:10px;text-align:center;background-color:white;padding:10px; color:green;border-radius:10px;"> Sign Up Successfully</div>
-<div id="unsuccess" style="margin-top:10px;text-align:center; background-color:white;padding:10px; color:red;border-radius:10px;">Already have an account .Please Login ! </div>
-<div id="pass" style="margin-top:10px;text-align:center; background-color:white;padding:10px; color:red;border-radius:10px;"> Password and confirm password must be the same!</div>
-<div id="complete" style="margin-top:10px;text-align:center; background-color:white;padding:10px; color:red;border-radius:10px;"> Please fill the form completely!</div> -->
-
-    <!--
-  Heads up! 👋
-
-  Plugins:
-    - @tailwindcss/forms
--->
-
- <!-- data table -->
- <div class='container flex flex-col main px-3 py-4 h-fit'>
-
-
-<h1 class='main-text text-black text-xl sm:text-3xl'>Dashboard</h1>
-
-<!-- upper 4 boxes-->
-<div class='w-full grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 '>
-
-    <div class="rounded-xl bg-gray-100 p-2 shadow-sm">
-        <div class="flex p-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" aria-hidden="true" data-slot="icon" class="h-5 w-5 text-gray-700">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z">
-                </path>
-            </svg>
-            <h3 class="ml-2 text-base text-gray-500 font-medium">Collected</h3>
-        </div>
-        <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">$3,313.44
-        </p>
-    </div>
-
-    <div class="rounded-xl bg-gray-100 p-2 shadow-sm">
-        <div class="flex p-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" aria-hidden="true" data-slot="icon" class="h-5 w-5 text-gray-700">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-            </svg>
-            <h3 class="ml-2 text-base text-gray-500 font-medium">Pending</h3>
-        </div>
-        <p class="rounded-xl bg-white px-4 py-8 text-center text-2xl">
-            $125,968.64
-        </p>
-    </div>
-
-    <div class="rounded-xl bg-gray-100 p-2 shadow-sm">
-        <div class="flex p-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" aria-hidden="true" data-slot="icon" class="h-5 w-5 text-gray-700">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z">
-                </path>
-            </svg>
-            <h3 class="ml-2 text-base text-gray-500 font-medium">Collected</h3>
-        </div>
-        <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">$3,313.44
-        </p>
-    </div>
-
-    <div class="rounded-xl bg-gray-100 p-2 shadow-sm">
-        <div class="flex p-3">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" aria-hidden="true" data-slot="icon" class="h-5 w-5 text-gray-700">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z">
-                </path>
-            </svg>
-            <h3 class="ml-2 text-base text-gray-500 font-medium">Total Customers</h3>
-        </div>
-        <p class=" rounded-xl bg-white px-4 py-8 text-center text-2xl">6</p>
-    </div>
-
-
-</div>
-
-<!-- Page Wrapper -->
-<div class='w-full my-10 '>
-    <table class='rounded border' id="selection-table">
-        <thead>
-            <tr>
-                <th class='noSort bg-gray-100'>
-                    <span class="flex items-center">
-                        Image
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th class='bg-gray-100' data-type="date" data-format="YYYY/DD/MM">
-                    <span class="flex items-center">
-                        Type
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th class='bg-gray-100'>
-                    <span class="flex items-center">
-                        Instock
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th class='bg-gray-100'>
-                    <span class="flex items-center">
-                        Price
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th class='noSort bg-gray-100'>
-                    <span class="flex items-center">
-                        Edit
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-                <th class='noSort bg-gray-100'>
-                    <span class="flex items-center">
-                        Delete
-                        <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m8 15 4 4 4-4m0-6-4-4-4 4" />
-                        </svg>
-                    </span>
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="hover:bg-gray-50 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                <td>2021/25/09</td>
-                <td>269000</td>
-                <td>49%</td>
-                <td>269000</td>
-                <td>49%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                <td>2013/24/05</td>
-                <td>4500000</td>
-                <td>24%</td>
-                <td>269000</td>
-                <td>49%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                <td>2021/25/09</td>
-                <td>269000</td>
-                <td>49%</td>
-                <td>269000</td>
-                <td>49%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                <td>2013/24/05</td>
-                <td>4500000</td>
-                <td>24%</td>
-                <td>269000</td>
-                <td>49%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap ">Flowbite</td>
-                <td>2021/25/09</td>
-                <td>269000</td>
-                <td>49%</td>
-                <td>269000</td>
-                <td>49%</td>
-            </tr>
-            <tr class="hover:bg-gray-50 cursor-pointer">
-                <td class="font-medium text-gray-900 whitespace-nowrap ">React</td>
-                <td>2013/24/05</td>
-                <td>4500000</td>
-                <td>24%</td>
-                <td>269000</td>
-                <td>49%</td>
-            </tr>
-        </tbody>
-    </table>
-
-
-
-</div>
-<!-- /.container-fluid -->
-</div>

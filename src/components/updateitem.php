@@ -346,22 +346,58 @@ $key=false;
 
                         <div class="color" style="margin-top: 20px;">
                             <?php 
-                       
-                       $colors = json_decode($row['color']);
+$colors = json_decode($row['color']);
+foreach ($colors as $color) { 
+    // If the color is not the selected one
+    if ($selectcolor != $color) { ?>
+                            <label class="color-label relative inline-block">
+                                <input class='color-select hidden' type="radio" value="<?php echo $color ?>"
+                                    name="color" required>
+                                <span class="color-circle inline-block w-8 h-8 rounded-full border border-gray-400"
+                                    style="background-color: <?php echo $color; ?>;">
+                                </span>
+                                <span
+                                    class="hidden checkmark absolute inset-0 flex top-1 justify-center text-primary text-base">
+                                    <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </label>
+                            <?php } else { 
+        // If the color is the selected one, apply a border
+        ?>
+                            <label class="color-label relative inline-block">
+                                <input class='color-select hidden' type="radio" value="<?php echo $color ?>"
+                                    name="color" required checked>
+                                <span class="color-circle inline-block w-8 h-8 rounded-full border border-black"
+                                    style="background-color: <?php echo $color; ?>;">
+                                </span>
+                                <span
+                                    class="hidden checkmark absolute inset-0 flex top-1 justify-center text-primary text-base">
+                                    <svg class='w-6 h-6' viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </label>
+                            <?php } 
+} ?>
 
-                        foreach ($colors as $color) { 
-             
-                              if($selectcolor!=$color) {  ?>
-                            <input type="radio" value="<?php echo $color?>" name="color"
-                                style='width: 30px; height: 30px; border-radius:50%;  background-color:<?php echo $color;?>'>
-
-                            <?php      } 
-                      if($selectcolor==$color){ ?>
-                            <input type="radio" value="<?php echo $color?>" name="color"
-                                style='width: 30px; height: 30px; border-radius:50%; border:1px solid black; background-color:<?php echo $color;?>'>
-
-                            <?php     }
-                     } ?>
                         </div>
                         <div class="mt-4 " class="max-w-xs mx-auto">
                             <h3 class="text-xl font-bold text-gray-800">Quantity</h3>
@@ -556,6 +592,55 @@ $key=false;
         });
     });
     </script>
+
+    <script>
+    // Select all the radio buttons with the 'color-select' class
+    const colorRadios = document.querySelectorAll('.color-select');
+
+    // Remove checkmarks from all
+    function removeCheckmarks() {
+        colorRadios.forEach(radio => {
+            radio.nextElementSibling.nextElementSibling.style.display = 'none';
+        });
+    }
+
+    // Add event listener to each radio button
+    colorRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            removeCheckmarks(); // Remove checkmarks from all before applying to the selected one
+            if (radio.checked) {
+                radio.nextElementSibling.nextElementSibling.style.display =
+                    'flex'; // Show the checkmark
+            }
+        });
+    });
+    </script>
+
 </body>
+<style>
+.color-label {
+    position: relative;
+    cursor: pointer;
+}
+
+.color-circle {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid gray;
+}
+
+.color-select:checked+.color-circle {
+    border: 1px solid #2563EB;
+    /* Optional: Highlight the selected circle */
+}
+
+.color-select:checked+.color-circle+.checkmark {
+    display: flex;
+    /* Show the checkmark when selected */
+}
+</style>
+
 
 </html>

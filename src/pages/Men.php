@@ -311,11 +311,11 @@ include("../function/functions.php")
                         </p>
                     </div>
                     <div class='mb-5 flex gap-2'>
-                        <?php 
+                    <?php 
                         $colors = json_decode($row['color']);
                         foreach ($colors as $color) { ?>
-                        <div
-                            style='width: 20px; height: 20px; border-radius:50%; background-color:<?php echo $color;?>'>
+                        <div class='border border-gray-400'
+                            style='width: 22px; height: 22px; border-radius:50%; background-color:<?php echo $color;?>'>
                         </div>
                         <?php }?>
                     </div>
