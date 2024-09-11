@@ -120,7 +120,7 @@ alert("Updated Successfully!");
         <div class="px-3 pb-4  w-full flex flex-col flex-1 sm:space-y-6">
 
             <div class='flex justify-center h-20 '>
-                <a href="#">
+                <a href="../home.php">
                     <img class="w-auto h-6 " src="https://merakiui.com/images/logo.svg" alt="">
                 </a>
             </div>
@@ -254,7 +254,7 @@ alert("Updated Successfully!");
         <div class='container flex flex-col main px-3 py-4 h-fit gap-5 '>
 
 
-            <h1 class='main-text text-black  text-xl sm:text-3xl '>Notification</h1>
+            <h1 class='main-text text-primary font-semibold  text-xl sm:text-3xl '>Notification</h1>
 
             <table id="selection-table">
                 <thead>
@@ -269,7 +269,7 @@ alert("Updated Successfully!");
                                 </svg>
                             </span>
                         </th>
-                        <th data-type="date" data-format="YYYY/DD/MM">
+                        <th>
                             <span class="flex items-center">
                                 Type
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -499,7 +499,7 @@ if (document.getElementById("selection-table") && typeof simpleDatatables.DataTa
             perPage: 10,
             perPageSelect: [10, 15, 20, 30, 50], // Options for the entries dropdown
             columns: [{
-                select: [0, 4],
+                select: [0,7,10],
                 sortable: false
             }],
             rowRender: (row, tr, _index) => {

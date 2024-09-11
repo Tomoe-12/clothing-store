@@ -250,7 +250,7 @@ alert("Updated Successfully!");
         <div class='container  flex flex-col main px-3 py-4 h-fit gap-5'>
 
 
-            <h1 class='main-text text-black text-xl sm:text-3xl'>Dashboard</h1>
+            <h1 class='main-text text-primary font-semibold text-xl sm:text-3xl'>Dashboard</h1>
 
             <!-- upper 4 boxes-->
             <div class='w-full grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-10 '>
@@ -512,7 +512,7 @@ alert("Updated Successfully!");
             perPage: 5,
             perPageSelect: [5, 10, 20, 50], // Options for the entries dropdown
             columns: [{
-                select: [0, 4],
+                select: [0,3, 5],
                 sortable: false
             }],
             template: (options, dom) => "<div class='" + options.classes.top + "'>" +

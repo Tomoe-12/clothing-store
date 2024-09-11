@@ -104,7 +104,7 @@ include("../../function/functions.php");
         <div class="px-3 pb-4  w-full flex flex-col flex-1 sm:space-y-6">
 
             <div class='flex justify-center h-20 '>
-                <a href="#">
+                <a href="../home.php">
                     <img class="w-auto h-6 " src="https://merakiui.com/images/logo.svg" alt="">
                 </a>
             </div>
@@ -237,14 +237,14 @@ include("../../function/functions.php");
         <div class='container flex flex-col main px-3 py-4 h-fit gap-5 '>
 
 
-            <h1 class='main-text text-black  text-xl sm:text-3xl '>Customer Orders</h1>
+            <h1 class='main-text text-primary font-semibold  text-xl sm:text-3xl '>Customer Orders</h1>
 
 
             <table id="selection-table">
                 <thead>
                     <tr>
                         <th>
-                            <span class="flex items-center noSort">
+                            <span class="flex items-center">
                                 UserName
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -263,7 +263,7 @@ include("../../function/functions.php");
                                 </svg>
                             </span>
                         </th>
-                        <th data-type="date" data-format="YYYY/DD/MM">
+                        <th >
                             <span class="flex items-center">
                                 E-mail
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -273,7 +273,7 @@ include("../../function/functions.php");
                                 </svg>
                             </span>
                         </th>
-                        <th>
+                        <th >
                             <span class="flex items-center">
                                 Ordered-Date
                                 <svg class="w-4 h-4 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -405,7 +405,7 @@ if (document.getElementById("selection-table") && typeof simpleDatatables.DataTa
             perPage: 15,
             perPageSelect: [15, 30, 40, 50], // Options for the entries dropdown
             columns: [{
-                select: [0, 4],
+                select: [1, 4],
                 sortable: false
             }],
             rowRender: (row, tr, _index) => {
