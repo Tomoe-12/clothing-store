@@ -41,14 +41,14 @@ nav.scrolled {
 
 .li-img-box {
     min-width: 100%;
-    max-width: 1000%;
+    max-width: 100%;
 }
 
 .li-img {
-    min-height: 1000%;
-    max-height: 100%;
-    min-width: 100%;
-    max-width: 100%;
+    min-height: 450px;
+    max-height: 450px;
+    min-width: 450px;
+    max-width: 450px;
 }
 
 @media (min-width: 640px) {
@@ -412,7 +412,7 @@ nav.scrolled {
             </div>
         </div>
         <?PHP } else if($layout>1) { ?>
-        <div class=" container w-full mx-auto max-w-screen-xl ">
+        <div class="mt-10 container w-full mx-auto max-w-screen-xl ">
 
             <div class='rounded-xl bg-gray-100 w-fit relative px-4 py-8 sm:px-6 sm:py-12 lg:px-8'>
                 <div class='w-full h-fit flex justify-between items-center'>
@@ -463,7 +463,7 @@ nav.scrolled {
                         <div class="cursor-pointer group block overflow-hidden">
                             <img src="data:image/jepg;base64,<?php echo base64_encode(retriimg($row["clo_id"])) ?>"
                                 alt=""
-                                class="li-imgrounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
+                                class="li-img rounded-md w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px]" />
 
                             <div class="relative pt-3">
                                 <h3

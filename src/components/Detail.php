@@ -140,15 +140,15 @@ $key=false;
         <!-- image -->
         <form action=" <?php htmlspecialchars($_SERVER["PHP_SELF"])?>" method="post">
 
-            <div class="font-sans tracking-wide max-lg:max-w-2xl mx-auto ">
+            <div class="font-sans container   flex tracking-wide max-lg:max-w-2xl mx-auto">
 
-                <div class="grid items-start grid-cols-1 lg:grid-cols-2 sm:w-0 mt-8 mb-8" style='gap:80px'>
-                    <div class="space-y-4 img-box   text-center " style=''>
+                <div class="grid  items-start grid-cols-1 lg:grid-cols-2 sm:w-0 mt-8 mb-8" style='gap:80px'>
+                    <div class=" space-y-4 img-box   text-center " style=''>
                         <!-- Carousel Container -->
                         <div class="relative">
                             <!-- Images -->
                             <div id="carousel"
-                                class="bg-gray-100 mx-auto big-img rounded-md flex justify-center items-center overflow-hidden  "
+                                class=" bg-gray-100 mx-auto big-img rounded-md flex justify-center items-center overflow-hidden  "
                                 style='min-height:600px; max-height:600px; padding:45px;'>
                                 <?php  $result1=$con->query("SELECT * FROM closet_img where clo_id='$item_id'");
                             if(!empty($result1)&& $result1->num_rows>0){
@@ -256,14 +256,14 @@ $key=false;
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="LG">LG </label>
                                 <?php    } 
-                if($XL>0){ ?>
+                            if($XL>0){ ?>
                                 <label for="XL" id="size-xl"
                                     onclick='document.getElementById("price").innerHTML = <?php echo $price +6000?>+"KS"'
                                     ;
                                     class="w-10 h-10 border hover:border-blue-700 font-semibold text-sm rounded-lg flex items-center justify-center shrink-0"
                                     data-size="XL"> XL</label>
                                 <?Php      } 
-          if($XXL>0){ ?>
+                                if($XXL>0){ ?>
                                 <label for="XXL" id="size-xxl"
                                     onclick='document.getElementById("price").innerHTML = <?php echo $price +8000?>+"KS"'
                                     ;
