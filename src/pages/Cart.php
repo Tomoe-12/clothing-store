@@ -82,21 +82,18 @@ if (<?php echo $res?>) {
                     <?php  
                
                 
-    if(!empty($_SESSION["user_id"])){
-        $user_id=$_SESSION["user_id"];
+            if(!empty($_SESSION["user_id"])){
+             $user_id=$_SESSION["user_id"];
        
-        $result=$con->query("SELECT * FROM cart JOIN closet ON closet.clo_id=cart.clo_id JOIN customers ON customers.cus_id=cart.cus_id WHERE cart.cus_id='$user_id' ");
-        if(!empty($result)&& $result->num_rows>0){
-           $subtotal=0;
-           while($row=$result->fetch_assoc()){
-            $email=$row["email"];
-            $user_name=$row["user_name"];
-$clo_id=$row["clo_id"];
-            $user_id=$row["cus_id"];
+                $result=$con->query("SELECT * FROM cart JOIN closet ON closet.clo_id=cart.clo_id JOIN customers ON customers.cus_id=cart.cus_id WHERE cart.cus_id='$user_id' ");
+                if(!empty($result)&& $result->num_rows>0){
+                $subtotal=0;
+                while($row=$result->fetch_assoc()){
+                $email=$row["email"];
+                $user_name=$row["user_name"];
+                $clo_id=$row["clo_id"];
+                 $user_id=$row["cus_id"];
          
-           
-            
-            
            ?>
                     <div class="grid grid-cols-3 items-start gap-4">
                         <div class="col-span-2 flex items-start gap-4">
