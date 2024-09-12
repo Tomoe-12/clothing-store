@@ -236,7 +236,8 @@ document.getElementById("unsuccess").style.display = "block";
                ?>
 <script>
 if(<?php  echo $result ?>){
-    alert("Sign Up Successfully!");
+    alert("Sign Up Successfully! \n login Again ");
+    window.location.href = './login.php';
 } 
 </script>
 <?php

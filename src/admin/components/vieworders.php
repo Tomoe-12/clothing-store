@@ -549,7 +549,7 @@ $cus_id=$_GET["cus_id"];
                 <button type="button"
                     class="text-sm px-4 py-2.5 w-full font-semibold tracking-wide bg-transparent text-gray-800 border border-gray-300 rounded-md"
                     onclick="location.href='./ordered.php'">
-                    Cancel
+                    Back
                 </button>
             </div>
         </main>

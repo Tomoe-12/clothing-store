@@ -202,7 +202,7 @@ if (<?php echo $res?>) {
                     class="absolute  inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white  lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center">
 
                     <div class="relative mt-4  md:mt-0 ">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <span class="absolute inset-y-0 pb-4 mb-0 left-0 flex items-center pl-3">
                             <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
                                 <path
                                     d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
