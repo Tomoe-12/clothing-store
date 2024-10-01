@@ -11,6 +11,7 @@ This project was developed as part of a school assignment at the University of C
   - Frontend: [Javascript,php]
   - Backend: [Php,Mysql]
   - Styling: [TailwindCSS, MerakiUI, Bootstrap]
+  - Database: [Mysql]
 
 
 ## Team
